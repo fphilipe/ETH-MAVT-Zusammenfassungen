@@ -1,0 +1,94 @@
+\documentclass[10pt,fleqn,english,article]{memoir}
+
+\usepackage[usenames,dvipsnames]{color} 
+
+\title{Informatik II -- Summary}
+\author{Philipe Fatio}
+
+\input{../.includes/layout_setup}
+\input{../.includes/page_setup}
+\input{../.includes/extra_packages}
+\input{../.includes/macro_setup}
+
+\hypersetup{
+    pdffitwindow=true,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Informatik II -- Summary},    % title
+    pdfauthor={Philipe Fatio},     % author
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=black           % color of external links
+}
+
+%% adittional packages
+
+%% Code Listings
+\usepackage{fontspec}
+%\usepackage{pifont}
+%\usepackage{xunicode}
+%\usepackage{xltxtra}
+\defaultfontfeatures{Scale=MatchLowercase,Mapping=tex-text}
+%\setromanfont[Mapping=tex-text]{Garamond}
+%\setsansfont[Mapping=tex-text]{Lucida Grande}
+\setmonofont{Menlo}
+\setmainfont{Palatino}
+
+\usepackage{framed}
+\usepackage[formats]{listings}
+\definecolor{shadecolor}{gray}{.67}
+
+\lstdefinestyle{list}{
+	language=C++,
+	% numbering
+	numbers=left,
+	numberstyle=\ttfamily\scriptsize\bfseries\color{White},
+	numbersep=7.5pt,
+	% frame
+	frame=single,
+	framerule=0pt,
+	%framexleftmargin=7.5mm,
+	framexrightmargin=1.85mm,
+	xleftmargin=10pt,
+	% style
+	basicstyle=\ttfamily\normalsize,
+	identifierstyle=\color{NavyBlue}, 
+	commentstyle=\color{ForestGreen}\itshape,
+	stringstyle=\color{RedOrange}\itshape,
+	keywordstyle=\color{RedViolet},
+	morekeywords={string},
+	backgroundcolor=\color{White},
+	showstringspaces=false,
+	tabsize=2,
+	breaklines=true
+}
+
+\lstset{
+	language=C++,
+	basicstyle=\ttfamily\normalsize,
+	identifierstyle=\color{NavyBlue}, 
+	commentstyle=\color{ForestGreen}\itshape,
+	stringstyle=\color{RedOrange}\itshape,
+	keywordstyle=\color{RedViolet},
+	morekeywords={string},
+	showstringspaces=false
+}
+
+\newenvironment{code}
+{
+	\begin{shaded}
+	\vspace{-2.2mm}
+} 
+{
+	\vspace{-5.0mm}
+	\end{shaded}
+}
+
+\begin{document}
+	\content{titlepage}
+	\begin{multicols*}{3}
+		\content{outline}
+	\end{multicols*}
+\end{document}

@@ -1,0 +1,75 @@
+%!TEX root = /Users/philipe/Documents/ETH/4. Semester/Informatik/Summary/Informatik II - Summary.tex
+
+\section{Numerics} % (fold)
+	
+	\subsection{Time Integration} % (fold)
+	
+		Most particle systems can be described with ODEs as:
+		\[
+			\Diff x t = u \quad, \qquad m \cdot \Diff u t = F
+		\]
+		
+		Criteria to select a scheme:
+		\begin{itemize}
+			\item Consistency
+			\item Accuracy
+			\item Stability
+			\item Efficiency
+		\end{itemize}
+		
+		Important notions:
+		\begin{itemize}
+			\item Preservation of \textbf{time symmetries}
+			\item Conservation of \textbf{physical quantities} such as $E$, $m\cdot u$
+		\end{itemize}
+		
+		\subsubsection{The Leapfrog Scheme} % (fold)
+			
+			\begin{itemize}
+				\item Time centered
+			\end{itemize}
+			
+			\begin{gather*}
+				\frac{x^{n+1} - x^n}{\delta t} = u^{n+\nicehalf} \\
+				m \cdot \frac{u^{n+\nicehalf} - u^{n-\nicehalf}}{\delta t} = F(x^n)
+			\end{gather*}
+			
+			In general:
+			\[
+				\sum_{i=0}^k \alpha_{k-i} x^{n+k-i} = \frac{\delta t^2}{m} \sum_{i=0}^k b_{k-i} F^{n+k-i}
+			\]
+			If $b_k$ is zero the scheme is explicit, else it is implicit and solutions are found iteratively.
+		% subsubsection: The Leapfrog Scheme (end)
+		
+		\subsubsection{The Verlet Algorithm} % (fold)
+			Use postitions $r(t)$, accelerations $a(t)$ and $r(t-\diff t)$, velocities do not appear.
+			
+			\begin{gather*}
+				r \parens{t + \diff t} = r(t) + \diff t \cdot u \parens{t + \frac{\diff t}{2}} \\
+				u \parens{t + \frac{\diff t}{2}} = u \parens{t - \frac{\diff t}{2}} + \diff t \cdot a(t)
+			\end{gather*}
+			
+			Store $r(t)$, $a(t)$ and $u \parens{t-\frac{\diff t}{2}}$.
+			\[
+				u(t) = \nicehalf \left[
+					u \parens{t + \frac{\diff t}{2}} + u \parens{t - \frac{\diff t}{2}}
+				\right]
+			\]
+		% subsubsection: The Verlet Algorithm (end)
+		
+		\subsubsection{Euler Scheme} % (fold)
+			
+			\begin{itemize}
+				\item \textbf{Not} time centered
+			\end{itemize}
+			
+		% subsubsection: Euler Scheme (end)
+		
+	% subsection: Time Integration (end)
+	
+	\subsection{Algorithmic Complexity} % (fold)
+		Complexity determines the spectrum of problems that can practically be solved on a given computer in a given time. The Bachmann-Landau (aka.~Big $O$) notation is used to express this scaling.
+		$O$ gives the \textbf{upper bound} on the scaling.
+	% subsection: Algorithmic Complexity (end)
+	
+% section: Numerics (end)

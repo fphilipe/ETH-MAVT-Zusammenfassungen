@@ -1,0 +1,476 @@
+%!TEX root = /Users/philipe/Documents/ETH/4. Semester/Informatik/Summary/Informatik II - Summary.tex
+
+\section{Language} % (fold)
+	
+	\subsection{Expressions} % (fold)
+		
+		Expressions that don't require creating a new object, such as \lstinline!a=b!, \lstinline!++a!, \lstinline!p[i]!, \lstinline!p->m!, \lstinline!x.m!, \lstinline!a?b:c!, \lstinline!a,b! etc. are \emph{lvalues}, meaning they may appear on the left side of an assignment. Other expressions and conversions create temporary objects to hold the result, which are \lstinline!const!. An expression used as a statement discards the final result.
+		\begin{code}\begin{lstlisting}[style=list]
+int a, b, c;
+a+b; // Legal, add a and b, discard the sum
+a=b=c; // Legal, assign c to b, then new b to a
+(a+=b)+=c; // Legal, add b to a, then add c to a
+a+b=c; // Error, a+b is const
+double(a)=b; // Error, double(a) is const
+		\end{lstlisting}\end{code}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		%There are 18 levels of operator precedence, listed highest to lowest. Operators at the same level are evaluated left to right unless indicted, thus, \lstinline!a=b+c! means \lstinline!a=(b+c)! because \lstinline!+! is higher than \lstinline!=!, and \lstinline!a-b-c! means \lstinline!(a-b)-c!. Order of evaluation is undefined, e.g. for \lstinline!sin(x)+cos(x)! we cannot say whether \lstinline!sin()! or \lstinline!cos()! is called first.
+
+		% \begin{tabular}{lp{6.5cm}}
+		% 	\textbf{1.} & \\
+		% 	\lstinline!X::m! & Member m of namespace or class X \\
+		% 	\lstinline!::m! & Global name m when otherwise hidden by a local declaration \\
+		% 	
+		% 	\textbf{2.} & \\
+		% 	\lstinline!p[i]! & \lstinline!i!'th element of container \lstinline!p! (\lstinline!array!, \lstinline!vector!, \lstinline!string!) \\
+		% 	\lstinline!x.m! & Member \lstinline!m! of object \lstinline!x! \\
+		% 	\lstinline!p->m  ! & Member m of object pointed to by p \\
+		% 	\lstinline!f(x,y)! & Call function f with 0 or more arguments \\
+		% 	\lstinline!i++   ! & Add 1 to i, result is original value of i \\
+		% 	\lstinline!i--   ! & Subtract 1 from i, result is original value of i \\
+		% 	type cast & \\
+		% 
+		% 	\textbf{3.} & \textbf{(right to left)} \\
+		% 	\lstinline!*p           ! & Contents of pointer p, or p[0].  If p is type T*, *p is T \\
+		% 	\lstinline!&x           ! & Address of (pointer to) x.  If x is type T, \&x is T* \\
+		% 	\lstinline!-a           ! & Negative of numeric a \\
+		% 	\lstinline!!i           ! & Not i, true if i is false or 0 \\
+		% 	\lstinline!(T)x         ! & Convert (cast) object x to type T (by static, const, or reinterpret) \\
+		% 	\lstinline!T(x,y)       ! & Convert, initializing with 0 or more arguments \\
+		% 	\lstinline!new T        ! & Create a T object on heap, return its address as T* \\
+		% 	\lstinline!new T(x,y)   ! & Create, initializing with 0 or more arguments \\
+		% 	\lstinline!new(p) T     ! & (rare) Initialize T at address p without allocating from heap \\
+		% 	\lstinline!new(p) T(x,y)! & (rare) Initialize T with 0 or more arguments at p \\
+		% 	\lstinline!new T[i]     ! & Create array of i objects of type T, return T* pointing to first element \\
+		% 	\lstinline!delete p     ! & Destroy object pointed to by p obtained with new T or new T() \\
+		% 	\lstinline!delete[] p   ! & Destroy array obtained with new T[] \\
+		% 	\lstinline!++i          ! & Add 1 to i, result is the new i \\
+		% 	\lstinline!--i          ! & Subtract 1 from i, result is the new i \\
+		% 	\lstinline!sizeof x     ! & Size of object x in bytes \\
+		% 	\lstinline!sizeof(T)    ! & Size of objects of type T in bytes
+		% \end{tabular}
+
+		% 
+		% 4
+		% x.*p           (rare) Object in x pointed to by pointer to member p
+		% q->*p          (rare) Object in *q pointed to by pointer to member p
+		% 
+		% 5
+		% a*b            Multiply numeric a and b
+		% a/b            Divide numeric a and b, round toward 0 if both are integer
+		% i%j            Integer remainder i-(i/j)*j
+		% 
+		% 6
+		% a+b            Addition, string concatenation
+		% a-b            Subtraction
+		% 
+		% 7
+		% x<<y           Integer x shifted y bits to left, or output y to ostream x
+		% x>>y           Integer x shifted y bits to right, or input y from istream x
+		% 
+		% 8
+		% x<y            Less than
+		% x>y            Greater than
+		% x<=y           Less than or equal to
+		% x>=y           Greater than or equal to
+		% 
+		% 9
+		% x==y           Equals
+		% x!=y           Not equals
+		% 
+		% 10
+		% i&j            Bitwise AND of integers i and j
+		% 
+		% 11
+		% i^j            Bitwise XOR of integers i and j
+		% 
+		% 12
+		% i|j            Bitwise OR of integers i and j
+		% 
+		% 13
+		% i&&j           i and then j (evaluate j only if i is true/nonzero)
+		% 
+		% 14
+		% i||j           i or else j (evaluate j only if i is false/zero)
+		% 
+		% 15 (right to left)
+		% x=y            Assign y to x, result is new value of x
+		% x+=y           x=x+y, also -= *= /= %= &= |= ^= <<= >>=
+		% 
+		% 16
+		% i?x:y          If i is true/nonzero then x else y
+		% 
+		% 17
+		% throw x        Throw exception x (any type)
+		% 
+		% 18
+		% x,y            Evaluate x and y (any types), result is y
+		% Expressions that don't require creating a new object, such as a=b, ++a, p[i], p->m, x.m, a?b:c, a,b etc. are lvalues, meaning they may appear on the left side of an assignment. Other expressions and conversions create temporary objects to hold the result, which are const (constant). An expression used as a statement discards the final result.
+		%   int a, b, c;
+		%   a+b;         // Legal, add a and b, discard the sum
+		%   a=b=c;       // Legal, assign c to b, then assign the new b to a
+		%   (a+=b)+=c;   // Legal, add b to a, then add c to a
+		%   a+b=c;       // Error, a+b is const
+		%   double(a)=b; // Error, double(a) is const
+		
+	% subsection: Expressions (end)
+	
+	\subsection{Declarations} % (fold)
+		A declaration creates a type, object, or function and gives it a name. The syntax is a \textbf{type name} followed by a list of objects with possible modifiers and initializers applying to each object. A name consists of upper or lowercase letters, digits, and underscores with a leading letter. (Leading underscores are allowed but may be reserved). An initializer appends the form \lstinline!=x! where \lstinline!x! is an expression, or \lstinline!(x,y)! for a list of one or more expressions. For instance,
+		\begin{code}\begin{lstlisting}[style=list]
+string s1, s2="xxx", s3("xxx"), s4(3,'x'), *p,    a[5], next_Word();
+		\end{lstlisting}\end{code}
+		declares \lstinline!s1! to be a \lstinline!string! with initial value \lstinline!""!, \lstinline!s2!, \lstinline!s3!, and \lstinline!s4! to be \lstinline!string!s with initial value \lstinline!"xxx"!, \lstinline!p! to be a pointer to \lstinline!string!, \lstinline!a! to be an array of \lstinline!5! \lstinline!string!s (\lstinline!a[0]! to \lstinline!a[4]! with initial values \lstinline!""!), and \lstinline!next_Word! to be a function that takes no parameters and returns a \lstinline!string!.
+	% subsection: Declarations (end)
+	
+	\subsection{Built-in Types} % (fold)
+		All built-in types are numeric. They are not automatically initialized to \lstinline!0! unless \emph{global} or \lstinline!static!.
+		\begin{code}\begin{lstlisting}[style=list]
+int a, b=0;      // a's value is undefined
+static double x; // 0.0
+		\end{lstlisting}\end{code}
+		
+		Conversion from a \lstinline!float!ing point type to an \lstinline!int!eger type drops the decimal part and rounds toward \lstinline!0!. \lstinline!int! divisions round toward \lstinline!0!.
+		\begin{code}\begin{lstlisting}[style=list]
+int(-3.8); // -3
+-7/4; // -1
+		\end{lstlisting}\end{code}
+		
+	% subsection: Built-in Types (end)
+	
+	\subsection{Modifiers} % (fold)
+		
+		In a declaration, modifiers before the type name apply to all objects in the list. Otherwise they apply to single objects.
+		\begin{code}\begin{lstlisting}[style=list]
+int *p, q; // p is a pointer, q is an int
+const int a=0, b=0; // a and b are both const
+		\end{lstlisting}\end{code}
+		
+		\lstinline!const! objects cannot be modified once created. They must be initialized in the declaration. By convention, const objects are UPPERCASE when used globally or as parameters.
+		\begin{code}\begin{lstlisting}[style=list]
+const double PI=3.14159265359;  // Assignment to PI not allowed
+		\end{lstlisting}\end{code}
+		
+		A \textbf{reference} creates an alias for an object that already exists. It must be initialized. A reference to a \lstinline!const! object must also be \lstinline!const!.
+		\begin{code}\begin{lstlisting}[style=list]
+int i=3;
+int& r=i;      // r is an alias for i
+r=4;           // i=4;
+double& pi=PI; // Error, would allow PI to be modified
+const double& pi=PI;  // OK
+		\end{lstlisting}\end{code}
+		
+		\paragraph{Pointers} % (fold)
+			
+			A pointer stores the address of another object, and unlike a reference, may be moved to point elsewhere. The expression \lstinline!&x! means \emph{address of \lstinline!x!} and has type \emph{pointer to \lstinline!x!}. If \lstinline!x! has type \lstinline!T!, then \lstinline!&x! has type \lstinline!T*!. If \lstinline!p! has type \lstinline!T*!, then \lstinline!*p! is the object to which it points, which has type \lstinline!T!. The \lstinline!*! and \lstinline!&! operators are inverses, e.g. \lstinline!*&x == x!.
+			Two pointers are equal if they point to the same object. All \textbf{pointer types are distinct}, and can only be assigned pointers of the same type or \lstinline!0! (\lstinline!NULL!). There are no run time checks against reading or writing the contents of a pointer to invalid memory. This usually causes a \textbf{segmentation fault} or general protection fault.
+			\begin{code}\begin{lstlisting}[style=list]
+int i=3, *p=&i; // p points to i, *p == 3
+*p=5; // i=5
+p=new int(6); // OK, p points to int with value 6
+p=new char('a'); // Error, even though char converts to int
+p=6; // Error, no conversion from int to pointer
+p=0; // OK
+p=i-5; // Error, compiler can't know this is 0
+*p=7; // Segmentation fault: writing to address 0
+int *q; *q; // Segmentation fault: q is not initialized, reading random memory
+			\end{lstlisting}\end{code}
+			
+			\newpage
+			A pointer to a \lstinline!const! object of type \lstinline!T! must also be \lstinline!const!, of type \lstinline!const T*!, meaning that the pointer may be assigned to but its contents may not.
+			\begin{code}\begin{lstlisting}[style=list]
+const double PI=3.1415926535898;
+double* p=&PI; // Error, would allow *p=4 to change PI
+const double* p=&PI; // OK, can't assign to *p (but may assign to p)
+double* const p=&PI; // Error, may assign to *p (but not to p)
+const double* const p=&PI; // OK, both *p and p are const
+			\end{lstlisting}\end{code}
+			
+		% paragraph: Pointers (end)
+		
+		\paragraph{Arrays} % (fold)
+			
+			The size of an array must be specified by a constant, and may be left blank if the array is initialized from a list. Array bounds start at 0. There are no run time checks on array bounds. Multi-dimensional arrays use a separate bracket for each dimension. An array name used without brackets is a pointer to the first element.
+			\begin{code}\begin{lstlisting}[style=list]
+int a[]={0,1,2,3,4}; // Array with elements a[0] to a[4]
+int b[5]={6,7}; // Implied ={6,7,0,0,0};
+int c[5]; // Not initialized, c[0] to c[4] could have any values
+int d[][3]={{1,2,3},{4,5,6}}; // Initialized 2-D array
+int i=d[1][2]; // 6
+d[-1][7]=0; // Not checked, program may crash
+			\end{lstlisting}\end{code}
+			
+			\columnbreak
+			The bare name of an array is a \lstinline!const! pointer to the first element. If \lstinline!p! is a pointer to an array element, then \lstinline!p+i! points \lstinline!i! elements ahead, to \lstinline!p[i]!. By definition, \lstinline!p[i]! is \lstinline!*(p+i)!.
+			\begin{code}\begin{lstlisting}[style=list]
+int a[5];               // a[0] through a[4]
+int* p=a+2;             // *p is a[2]
+p[1];                   // a[3]
+p-a;                    // 2
+p>a;                    // true because p-a > 0
+p-1 == a+1              // true, both are &a[1]
+*a;                     // a[0] or p[-2]
+a=p;                    // Error, a is const (but not *a)
+			\end{lstlisting}\end{code}
+			
+			A literal string enclosed in double quotes is an unnamed static array of \lstinline!const char! with an implied \lstinline!'\0'! as the last element. It may be used either to initialize an array of \lstinline!char!, or in an expression as a pointer to the first \lstinline!char!. Special \lstinline!chars! in literals may be escaped with a backslash as before. Literal strings are concatenated without a \lstinline!+! operator (convenient to span lines).
+			\begin{code}\begin{lstlisting}[style=list]
+char s[]="abc"; // char s[4]={'a','b','c','\0'};
+const char* p="a" "b\n"; // Points to the 'a' in the 4 element array "ab\n\0"
+const char* answers[2]={"no","yes"}; // Array of pointers to char
+cout << answers[1]; // prints yes (type const char*)
+cout << answers[1][0]; // prints y (type const char)
+"abc"[1]; // 'b'
+			\end{lstlisting}\end{code}
+			
+			\columnbreak
+			Arrays do not support copying, assignment, or comparison.
+			\begin{code}\begin{lstlisting}[style=list]
+int a[5], b[5]=a; // Error: can't initialize b this way
+b=a; // Error: can't assign arrays
+b==a; // false, comparing pointers, not contents
+"abc"=="abc"; // false, comparing pointers to 2 different locations
+			\end{lstlisting}\end{code}
+
+			The size of an array created with \lstinline!new[]! may be an expression. The elements cannot be initialized with a list. There is no run time check against accessing deleted elements.
+			\begin{code}\begin{lstlisting}[style=list]
+int n, *p;
+cin >> n;
+p=new int[n]; // Elements p[0] to p[n-1] with values initially undefined
+delete[] p; // Use delete with new or new(), delete[] with new[]
+p[0] = 1; // May crash
+			\end{lstlisting}\end{code}
+			
+		% paragraph: Arrays (end)
+		
+	% subsection: Modifiers (end)
+	
+	\subsection{Standard Library Types} % (fold)
+		
+		Iterating over containers such as a \lstinline!vector<T>! or a \lstinline!string! is done using standard iterators.
+		\begin{code}\begin{lstlisting}[style=list]
+ContType C;
+ContType::iterator // Iterator type ContType*
+ContType::const_iterator // Iterator type const ContType* (not editable, faster)
+for (ContType::const_iterator it = C.begin(); it != C.end(); ++it) {
+	std::cout << *it << endl;
+}
+		\end{lstlisting}\end{code}
+		
+		\newpage
+		
+		\paragraph{\lstinline!vector!} % (fold)
+			
+			A \lstinline!vector<T>! is like an array of \lstinline!T!, but \emph{supports copying, assignment, and comparison}. Its size can be set and changed at run time, and it can efficiently implement a stack. It has random iterators like string, which behave like type \lstinline!T*! (or \lstinline!const T*! if the vector is \lstinline!const!). If \lstinline!T! is numeric, elements are initialized to \lstinline!0!. It is not possible to have an initialization list such as \lstinline!{1,2,3}!.
+			\begin{code}\begin{lstlisting}[style=list]
+vector<T>() // Empty vector, elements of type T
+vector<T>(n) // n elements, default initialized
+vector<T>(n, x) // n elements each initialized to x
+vector<T> v2=v; // Copy v to v2
+v2=v; // Assignment
+v2<v // Also >, ==, !=, <=, >= if defined for T
+v.size() // n
+vector<T>::size_type // Type of v.size(), usually unsigned int
+v.empty() // true if v.size() == 0
+v[i] // i'th element, 0 <= i < v.size() (unchecked), may be assigned to
+v.at(i) // v[i] with bounds check, throws out_of_range
+v.begin(), v.end() // Iterators [b, e)
+vector<T>::iterator // Iterator type, also const_iterator
+v.back() // v[v.size()-1] (unchecked if empty)
+v.push_back(x) // Increase size by 1, copy x to last element
+v.pop_back() // Decrease size by 1 (unchecked if empty)
+v.front() // v[0] (unchecked)
+v.resize(n) // Change size to n >= 0 (unchecked)
+v.insert(d, x) // Insert x in front of iterator d, shift, increase size by 1
+v.erase(d) // Remove *d, shift, decrease size by 1
+v.erase(d, e) // Remove subsequence [d, e)
+v.clear() // v.erase(v.begin(), v.end())
+			\end{lstlisting}\end{code}
+			
+		% paragraph: \lstinline!vector! (end)
+		
+	% subsection: Standard Library Types (end)
+	
+	\subsection{Classes} % (fold)
+		
+		A \lstinline!class! defaults to \lstinline!private! and has two special member functions, a constructor, which is called when the object is created, and a destructor, called when destroyed. The constructor is named \lstinline!class::class!, has no return type or value, may be overloaded and have default arguments, and is \emph{never \lstinline!const!}. It is followed by an optional initialization list listing each data member and its initial value. \emph{Initialization takes place before the constructor code is executed.} Initialization might not be in the order listed. Members not listed are default-initialized by calling their constructors with default arguments. If no constructor is written, the compiler provides one which default-initializes all members. The syntax is:
+		\begin{code}\begin{lstlisting}[style=list]
+class::class(parameter list): member(value), member(value) { /* code */ }
+		\end{lstlisting}\end{code}
+		
+		The destructor is named \lstinline!class::~class!, has no return type or value, no parameters, and is never const. It is usually not needed except to return shared resources by closing files or deleting memory. After the code executes, the data members are destroyed using their respective destructors in the reverse order in which they were constructed.
+		
+		\begin{code}\begin{lstlisting}[style=list]
+class Complex {
+	double re, im;
+public:
+	Complex(double r=0, double i=0): re(r), im(i) {}  // Constructor
+	~Complex() {}                                     // Destructor
+	// Other members...
+};
+Complex a(1,2), b(3), c=4, d;  // (1,2) (3,0) (4,0) (0,0)
+	  \end{lstlisting}\end{code}
+		
+		A constructor defines a conversion function for creating temporary objects. A constructor that allows 1 argument allows implicit conversion wherever needed, such as in expressions, parameter passing, assignment, and initialization.
+		\begin{code}\begin{lstlisting}[style=list]
+Complex(3, 4).real(); // 3
+Complex a = 5; // Implicit =Complex(5) or =Complex(5, 0)
+
+void assign_if(bool, Complex&, const Complex&);
+assign_if(true, a, 6); // Implicit Complex(6) passed to third parameter
+assign_if(true, 6, a); // Error, non-const reference to Complex(6), which is const
+		\end{lstlisting}\end{code}
+		
+		A class or member function may be templated. The type parameter must be passed in the declaration for objects of the class. Note that \lstinline!<class T>! is equivalent to \lstinline!<typename T>! and is only a matter of style or convention which one to use. Often \lstinline!class! is used in class definitions and \lstinline!typename! elsewhere.
+		\begin{code}\begin{lstlisting}[style=list]
+template <class T>
+class Complex {
+	T re, im;
+public:
+	T real() const {return re;}
+	T imag() const {return im;}
+	Complex(T r=0, T i=0);
+	friend Complex<T> operator - (const Complex<T>&, const Complex<T>&);
+};
+
+template <class T>
+Complex<T>::Complex(T r, T i): re(r), im(i) {}
+
+Complex<int> a(1, 2); // Complex of int
+Complex<double> b(1.0, 2.0); // Complex of double
+a=a-Complex<int>(3, 4); // Complex<int>(-2, -2)
+Complex<Complex<double> > c(b, b); // Note space, not >
+		\end{lstlisting}\end{code}
+		
+		\newpage
+		Templates can have default arguments and \lstinline!int! parameters. The argument to an \lstinline!int! parameter must be a value \emph{known at compile time}.
+		\begin{code}\begin{lstlisting}[style=list]
+template <class T, class U=T, int n=0> class V {};
+V<double, string, 3> v1;
+V<char> v2; // V<char, char, 0>
+		\end{lstlisting}\end{code}
+		
+		Classes define default behavior for copying and assignment, which is to copy/assign each data member. This behavior can be overridden by writing a copy constructor and \lstinline!operator=! as members, both taking arguments of the same type, passed by \lstinline!const! reference. They are usually required in classes that have destructors. If we did not overload these, \emph{the default behavior would be to copy the data pointer, resulting in two Vectors pointing into the same array}. The assignment operator normally returns itself \lstinline!(*this)! by reference to allow expressions of the form \lstinline!a=b=c;!, but is not required to do so. \lstinline!this! means the address of the current object; thus any member m may also be called \lstinline!this->m! within a member function.
+		
+		A type defined in a class is accessed through \lstinline!class::type!
+		\begin{code}\begin{lstlisting}[style=list]
+template <class T> class Vector {
+public:
+	typedef T* iterator;
+	typedef const T* const_iterator;
+}
+Vector<int>::iterator p; // Type is int*
+Vector<int>::const_iterator cp; // Type is const int*
+		\end{lstlisting}\end{code}
+		
+		\subsubsection{Inheritance} % (fold)
+			
+			By default, a base class is private, making all inherited members private. 
+			\lstinline!class D: public B! defines \lstinline!class D! as \emph{derived} from (subclass of) \emph{base} class (superclass) \lstinline!B!, meaning that \lstinline!D! \emph{inherits} all of B's members, \emph{except} the constructors, destructor, and assignment operator. A protected member is accessible to derived classes but private elsewhere.
+			
+			A class may have more than one base class (called \emph{multiple inheritance}). If both bases are in turn derived from a third base, then we derive from this root class using virtual to avoid inheriting its members twice further on. Any indirectly derived class treats the virtual root as a direct base class in the constructor initialization list.
+			\begin{code}\begin{lstlisting}[style=list]
+class ios {...}; // good(), binary
+class fstreambase: public virtual ios {...}; // open(), close()
+class istream: public virtual ios {...}; // get(), operator>>()
+class ifstream: public fstreambase, public istream {...} // Only 1 copy of ios
+			\end{lstlisting}\end{code}
+			
+		% subsubsection: Inheritance (end)
+		
+		\subsubsection{Polymorphism} % (fold)
+		
+			Polymorphism is the technique of defining a common interface for a hierarchy of classes. To support this, a derived object is allowed wherever a base object is expected.
+			\begin{code}\begin{lstlisting}[style=list]
+String s="Hello";
+Vector<char> v=s; // Discards derived part of s to convert
+Vector<char>* p=&s; // p points to base part of s
+			\end{lstlisting}\end{code}
+			
+			A derived class may redefine inherited member functions, overriding any function with the same name, parameters, return type, and const-ness (and hiding other functions with the same name, thus \emph{the overriding function should not be overloaded}). The \emph{function call is resolved at compile time}. This is incorrect in case of a base pointer or reference to a derived object. \textbf{To allow run time resolution, the base member function should be declared virtual.} Since the default destructor is not virtual, a virtual destructor should be added to the base class. If empty, no copy constructor or assignment operator is required. Constructors and = are never virtual.
+			\begin{code}\begin{lstlisting}[style=list]
+class Shape {
+public:
+	virtual void draw() const;
+	virtual ~Shape() {}
+};
+class Circle: public Shape {
+public:
+	void draw() const; // Must use same parameters, return type, and const
+};
+Shape s; s.draw(); // Shape::draw()
+Circle c; c.draw(); // Circle::draw()
+Shape& r=c; r.draw(); // Circle::draw() if virtual
+Shape* p=&c; p->draw(); // Circle::draw() if virtual
+p=new Circle; p->draw(); // Circle::draw() if virtual
+delete p; // Circle::~Circle() if virtual
+			\end{lstlisting}\end{code}
+			
+			An abstract base class defines an \emph{interface} for one or more derived classes, which are allowed to instantiate objects. Abstractness can be enforced by using protected (not private) constructors or using \emph{pure virtual member functions}, which must be overridden in the derived class or else that class is abstract too. \textbf{A pure virtual member function is declared \lstinline!=0;! and has no code defined.}
+			\begin{code}\begin{lstlisting}[style=list]
+class Shape {
+protected:
+	Shape(); // Optional, but default would be public
+public:
+	virtual void draw() const = 0; // Pure virtual, no definition
+	virtual ~Shape() {}
+};
+// Circle as before
+Shape s; // Error, protected constructor, no Shape::draw()
+Circle c; // OK
+Shape& r=c; r.draw(); // OK, Circle::draw()
+Shape* p=new Circle(); // OK
+			\end{lstlisting}\end{code}
+			
+		% subsubsection: Polymorphism (end)
+	% subsection: Classes (end)
+	
+	\subsection{Other Types} % (fold)
+		\paragraph{\lstinline!struct!} % (fold)
+			
+			is a class where the default protection is public instead of private. A struct can be initialized like an array.
+			\begin{code}\begin{lstlisting}[style=list]
+struct Complex {double re, im;}; // Declare type
+Complex a, b={1,2}, *p=&b; // Declare objects
+a.re = p->im; // Access members
+			\end{lstlisting}\end{code}
+		
+			\subparagraph{POD-structs} % (fold)
+				A POD-struct (\emph{Plain Old Data Structure}) is an aggregate class that has no non-static data members of type non-POD-struct, non-POD-union (or array of such types) or reference, and has no user-defined assignment operator and no user-defined destructor. A POD-struct could be said to be the C++ equivalent of a C struct. For this reason, POD-structs are sometimes colloquially referred to as ``C-style structs''.
+			% subparagraph: POD-structs (end)
+		% paragraph: struct (end)
+		
+		\paragraph{\lstinline!typedef!} % (fold)
+			
+			defines a synonym for a type.
+			\begin{code}\begin{lstlisting}[style=list]
+typedef char* Str; // Str is a synonym for char*
+Str a, b[5], *c; // char* a; char* b[5]; char** c;
+char* d=a; // OK, really the same type
+			\end{lstlisting}\end{code}
+			
+		% paragraph: typedef (end)
+		
+		\paragraph{\lstinline!enum!} % (fold)
+			defines a type and a set of symbolic values for it. There is an implicit conversion to \lstinline!int! and explicit conversion from \lstinline!int! to \lstinline!enum!. You can specify the \lstinline!int! equivalents of the symbolic names, or they default to successive values beginning with \lstinline!0!. Enums may be anonymous, specifying the set of symbols and possibly objects without giving the type a name.
+			\begin{code}\begin{lstlisting}[style=list]
+enum Weekday {MON,TUE=1,WED,THU,FRI}; // Type declaration
+enum Weekday today=WED; // Object declaration, has value 2
+today==2 // true, implicit int(today)
+today=Weekday(3); // THU, conversion must be explicit
+enum {N=10}; // Anonymous enum, only defines N
+int a[N]; // OK, N is known at compile time
+enum {SAT,SUN} weekend=SAT; // Object of anonymous type
+			\end{lstlisting}\end{code}
+		% paragraph: enum (end)
+	% subsection: Other Types (end)
+	
+% section: Language (end)
