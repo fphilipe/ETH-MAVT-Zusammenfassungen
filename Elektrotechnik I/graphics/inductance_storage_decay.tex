@@ -1,0 +1,16 @@
+\begin{circuitikz}[scale=1.25,>=latex]
+	\ctikzset{voltage/distance from node=.75}
+	
+	\draw
+	(.5,0) to[V=$E$] (.5,2)
+	to[short, -o] (.75,2) node[above,xshift=-3]{$\mathbf{1}$}
+	(1.5,1.25)  node[left]{$\mathbf{2}$} to[short, o-*] (1.5,0)
+	-- (.5,0)
+	(1.5,2) to[R=$R$, v=$V_R$, o-] (3.5,2)
+	to[short, i=$I_L$] (3.5,1.5)
+	to[L=$L$, v=$V_L$] (3.5,0)
+	(1.5,0) to[short, i=$e$] (3.5,0)
+	;
+	\draw[->](1.5,2) -- (.85,2.375);
+	
+\end{circuitikz}

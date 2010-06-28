@@ -1,0 +1,159 @@
+%% Custom commands =============================================================
+
+%% Depends on this
+\usepackage{ifthen}
+\usepackage{rotating}
+\usepackage{xy}
+
+%% Differential d. This sets it as proper operator in roman type. With correct
+%% spacing. ISO standards for mathematical typesetting says it should be printed
+%% like this.
+\newcommand{\diff}[1]{\operatorname{d}\ifthenelse{\equal{#1}{}}{\,}{\!#1}}
+
+% Einheitsmatrix
+\newcommand{\I}{\mathbb{I}}
+
+%% Symbols for euler number and imaginary unit
+\providecommand*{\eu}%
+{\ensuremath{\mathrm{e}}}
+% The imaginary unit
+\providecommand*{\iu}%
+{\ensuremath{\mathrm{i}}} % i can be replaced with j on preference.
+
+%% Ortsvektor mit römischen buchstaben
+\newcommand{\pVec}[1]{\vv{r_{#1}}}
+
+%% Uncomment below what style you prefer for printing differential operators
+%\DeclareMathOperator{\grad}{grad}
+%\DeclareMathOperator{\rot}{rot}
+%\DeclareMathOperator{\Div}{div}
+\DeclareMathOperator{\grad}{\nabla\!}
+\DeclareMathOperator{\rot}{\nabla\times}
+\DeclareMathOperator{\Div}{\nabla\cdot}
+
+% complex and real operators
+\renewcommand{\Im}{\mathrm{Im}}
+\renewcommand{\Re}{\mathrm{Re}}
+
+%% Additional mathematical operators
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\id}{Id}
+\DeclareMathOperator{\Kern}{Kern}
+\DeclareMathOperator{\diag}{diag}
+\DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\arsinh}{arsinh}
+\DeclareMathOperator{\arcosh}{arcosh}
+\DeclareMathOperator{\artanh}{artanh}
+\DeclareMathOperator{\const}{const}
+\DeclareMathOperator{\erf}{erf}
+\DeclareMathOperator{\erfc}{erfc}
+\newcommand{\transp}{\mathsf T}
+
+\newcommand{\bVec}[1]{\mathbold{#1}}
+
+%% German variants
+%\DeclareMathOperator{\Kern}{Kern}
+%\DeclareMathOperator{\Bild}{Bild}
+%\DeclareMathOperator{\Grad}{Grad}
+%% English variants
+%% \ker is provided by LaTeX
+\DeclareMathOperator{\im}{im}
+%% \grad is provided by LaTeX
+
+%% Special characters for number sets, e.g. real or complex numbers.
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\X}{\mathbb{X}}
+
+%% Fixed size delimiter examples
+\newcommand{\floor}[1]{\lfloor #1 \rfloor}
+\newcommand{\ceil}[1]{\lceil #1 \rceil}
+\newcommand{\seq}[1]{\langle #1 \rangle}
+\newcommand{\set}[1]{\{ #1 \}}
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+\newcommand{\norm}[1]{\lVert #1 \rVert}
+\newcommand{\indic}[1]{\bigl[#1\bigr]}
+
+%% Scaling delimiter examples
+\newcommand{\Floor}[1]{\left\lfloor #1 \right\rfloor}
+\newcommand{\Ceil}[1]{\left\lceil #1 \right\rceil}
+\newcommand{\Seq}[1]{\left\langle #1 \right\rangle}
+\newcommand{\Set}[1]{\left\{ #1 \right\}}
+\newcommand{\Abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\Norm}[1]{\left\lVert #1 \right\rVert}
+
+%% Absolute and partial derrivate fractions
+\newcommand{\Diff}[2]{\displaystyle\frac{\diff{#1}}{\diff{#2}}}
+\newcommand{\Part}[2]{\displaystyle\frac{\partial #1}{\partial #2}}
+
+%% Set an index and print it to the current position at the same time
+\newcommand{\Index}[1]{\emph{#1}\index{#1}}
+
+%% Displaystyle math for inline math mode
+\newcommand{\ds}{\displaystyle}
+
+%% Easy to use alias for the default matrices with round braces
+\newcommand{\Mx}[1]{\ensuremath{\begin{bmatrix}#1\end{bmatrix}}}
+
+%% Include a lecture from the lectures/ folder by date.
+\newcommand{\Include}[4][\prefix]%
+{\ifthenelse{\equal{#1}{+PRE% this comment prevents substitution
+FIX+}}{\Include[TP]{#2}{#3}{#4}}{\lecturedate{\formatdate{#2}{#3}{20#4}}\input{lectures/#1-#4-#3-#2.tex}}}
+
+
+%% A macro to typeset a commutitive diagram in the style of
+%% \[\Abb[functionname]{from}{to}{fromelement}{toelement}\]
+\newcommand{\Sidein}{\begin{rotate}{90}\small$\in$\end{rotate}}
+\newcommand{\sidew}[1]{\rotatebox{90}{\small$#1$}}
+
+\newcommand{\Abb}[5][]{\ensuremath{
+    \begin{array}{lc}
+      \ifthenelse{\equal{#1}{}}{}{#1:}\;\; &
+      \begin{xy}
+        \xymatrixrowsep{1em}\xymatrixcolsep{2em}%
+        \xymatrix{ #2 \ar[r] \ar@{}[d]^<<<<{\hspace{0.001em} \Sidein}
+          & #3  \ar@{}[d]^<<<<{\hspace{0.001em} \Sidein} \\
+          #4 \ar@{|->}[r] & #5} \end{xy}
+    \end{array}
+  }%
+}
+
+
+%% Use the alternative epsilon per default and define the old one as \oldepsilon
+\let\oldepsilon\epsilon
+
+\renewcommand{\epsilon}{\ensuremath\varepsilon}
+
+%% Also set the alternate phi as default.
+\renewcommand{\phi}{\ensuremath{\varphi}}
+
+%% Table centering header
+\newcommand{\ctabletitle}[2]{\multicolumn{#1}{c}{\bfseries#2}}
+
+%% emphasized equation
+\newcommand{\emphequation}[2]{
+	\begin{empheq}[box=\shadowbox*]{#1}
+		#2
+	\end{empheq}%
+}
+
+% renew \abs so the bars are adjusted to the height of the content
+\renewcommand{\abs}[1]{\ensuremath{\left|#1\right|}}
+
+% conditional equation with large left curly brace
+\newcommand{\conditional}[1]{
+\left\{\begin{array}{@{}l@{\quad}l}
+	#1
+\end{array}\right.
+}
+
+% parentheses
+\newcommand{\parens}[1]{\ensuremath{\left(#1\right)}}
+
+% 1/2 fractions
+\newcommand{\half}{\ensuremath{\frac{1}{2}}}
+\newcommand{\nicehalf}{\ensuremath{\nicefrac{1}{2}}}

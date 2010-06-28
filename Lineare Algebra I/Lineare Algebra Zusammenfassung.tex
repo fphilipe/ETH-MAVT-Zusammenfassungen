@@ -1,0 +1,1320 @@
+\documentclass[9pt,fleqn,ngerman,article]{memoir}
+
+\title{Lineare Algebra -- Zusammenfassung}
+\author{Philipe Fatio}
+
+\input{../.includes/layout_setup}
+\input{../.includes/page_setup}
+\input{../.includes/extra_packages}
+\input{../.includes/macro_setup}
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=true,          % non-Latin characters in Acrobat’s bookmarks
+%    pdftoolbar=true,        % show Acrobat’s toolbar?
+%    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=true,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Lineare Algebra -- Zusammenfassung},    % title
+    pdfauthor={Philipe Fatio},     % author
+%    pdfsubject={Zusammenfassung},   % subject of the document
+%    pdfcreator={Creator},   % creator of the document
+%    pdfproducer={Producer}, % producer of the document
+%    pdfkeywords={keywords}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=black           % color of external links
+}
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}%
+  {-3.25ex\@plus -1ex \@minus -.2ex}%
+  {1.5ex \@plus .2ex}%
+  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+\makeindex
+
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+% Theorems etc.
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{satz}[lemma]{Satz}
+\newtheorem{korollar}[lemma]{Korollar}
+
+% Definitions etc.
+\newenvironment{definition}
+	{\textsc{Definition:}\,}
+
+\newenvironment{beispiel}
+	{\textsc{Beispiel:}\,}
+
+\newenvironment{bemerkung}
+	{\textsc{Bemerkung:}\,}
+	
+\newenvironment{folgerung}
+	{\textsc{Folgerung:}\,}
+
+% New math functions
+\DeclareMathOperator{\vspan}{span}
+\DeclareMathOperator{\Bild}{Bild}
+\DeclareMathOperator{\Rang}{Rang}
+\DeclareMathOperator{\Spur}{Spur}
+
+\def\Real{\mathrm{I\!R}}
+\def\Complex{\mathrm{l\!\!\!C}}
+\addtodef{\tableofcontents}{\pagestyle{mystyle}}{}
+% HEADER (end)
+\begin{document}
+	\begin{multicols*}{3}
+	\thispagestyle{mystyle}
+	\tableofcontents
+	\thispagestyle{mystyle}
+	
+	\section{Lineare Gleichungssysteme — Der Gauss'sche Algorithmus} % (fold)
+		\subsection{Herleitung des Gaussverfahrens} % (fold)
+			\begin{definition}
+				Die Menge aller Lösungen eines linearen Gleichungssystem heisst \emph{Lösungsmenge}\index{Lösungsmenge} des linearen Gleichungssystems.
+			\end{definition}
+		
+			\begin{definition}
+				Der Koeffizient $a_{pj}^{(j)}$ im $j$--ten Eliminationsschema heisst \emph{Pivot}\index{Pivot} des $j$--ten Eliminationsschritts. Ein Pivot ist nach Definition immer ungleich null. Die Zeile in der das Pivot steht, heisst \emph{Pivot-Zeile}\index{Pivot!-Zeile}.
+			\end{definition}
+		
+			\subparagraph{Gauss'scher Algorithmus:}\index{Gauss!Gauss'scher Algorithmus}  ($m$ Gleichungen, $n$ Unbekannte)
+		
+			Setze $i := 1$, $j := 1$.
+			\begin{itemize}
+				\item[$\alpha$)] Falls $i > m$ oder $j > n$ gehe zu (L); sonst
+				\item[$\mathbf{(\textbf{E})}_{\boldsymbol{j}}$] Führe im $j$--ten Eliminationsschema einen Eliminationsschritt durch:
+				\item[a)] Falls möglich, bestimme einen Zeilenindex $p \in \{i,\dots,m\}$, für den $a_{pj}^{(j)} \neq 0$; sonst setze $j:=j+1$ und gehe zu $\alpha)$.
+			
+				\item[b)] Falls $p \neq i$, vertausche diese beiden Zeilen und numeriere sie entsprechend um.
+				\item[c)] Für $k=i+1,\dots,m$: Bilde $l_{ki} := a_{kj}^{(j)}/a_{ij}^{(j)}$ und subtrahiere das $l_{ki}$--fache der Zeile mit Index $k$.
+				\item[$\omega$)] Setze $i:=i+1$, $j:=j+1$ und gehe zu $\alpha)$.
+				\item[\textbf{(L)}] Bestimme die Lösungsmenge durch Rückwärtseinsetzen.
+			\end{itemize}
+		% (end)
+		
+		\subsection{Folgerungen aus dem Gauss'schen Endschema} % (fold)
+			\begin{definition}
+				Die Zahl $r$ (die Anzahl ``Nicht-Nullzeilen'' im Hauptteil des Endschemas) heisst \emph{Rang des Gleichungssystems}\index{Gleichunssystem!Rang des}. Eine über einem Pivot in der Kopfzeile des Endschemas stehende Variable heisst \emph{Pivotvariable}\index{Pivot!variable}. Variablen, die keine Pivotvariablen sind, heissen \emph{freie Parameter}\index{freie Parameter}.
+			\end{definition}
+			
+			\begin{bemerkung}
+				Es gilt $r \geq 0$ und $r \leq m$. Da die Anzahl der Pivotvariablen gleich $r$ ist, muss auch $r \leq n$ gelten. Es gibt $n - r$ freie Parameter.
+			\end{bemerkung}
+			
+			\begin{satz}
+				Ein lineares Gleichungssystem hat genau dann mindestens eine Lösung, wenn
+				
+				\begin{tabular}{lrl}
+					entweder & \textnormal{i)} & $r=m$\\
+					oder & \textnormal{ii)} & $r < m$ und $c_i = 0$, $i = r+1,\dots,m$.
+				\end{tabular}
+
+			\end{satz}
+			
+			\begin{satz}
+				Die Lösung eines linearen Gleichungssystems --- falls sie existiert --- ist genau dann eindeutig, wenn $r = n$ ist.
+			\end{satz}
+			
+			\begin{definition}
+				Ein lineares Gleichungssystem heisst \emph{homogen}\index{Gleichungssystem!homogenes}, falls alle rechten Seiten gleich null sind.
+			\end{definition}
+			
+			\begin{korollar}
+				Ein homogenes Gleichungssystem hat genau dann nichttriviale Lösungen, wenn $r < n$ ist.
+			\end{korollar}
+			
+			\begin{korollar}
+				Ein lineares Gleichungssystem ist genau dann für beliebige rechte Seiten lösbar, wenn $r = m$ ist.
+			\end{korollar}
+			
+			\begin{korollar}
+				Ein lineares Gleichungssystem ist genau dann \emph{nicht} für beliebige rechte Seiten lösbar, wenn $r < m$ ist.
+			\end{korollar}
+			
+			\begin{korollar}
+				Sei $m = n$. Die Lösung eines linearen Gleichungssystems ist genau dann eindeutig, wenn das System für beliebige rechte Seiten lösbar ist.
+			\end{korollar}
+			
+			\begin{korollar}
+				Sei $m = n$. Ein lineares Gleichungssystem ist genau dann für beliebige rechte Seiten lösbar, wenn das zugehörige homogene System nur die triviale Lösung besitzt.
+			\end{korollar}
+			
+			\begin{bemerkung}
+				Der Rang $r$ eines linearen Gleichungssystems ist \emph{eindeutig bestimmt}, dass heisst, $r$ ist unabhängig von den vorgenommenen Zeilenvertauschungen beim Gaussverfahren.
+			\end{bemerkung}
+		% (end)
+	% (end)
+	
+	\section{Matrizen} % (fold)
+	
+		\subsection{Definition und spezielle Matrizen} % (fold)
+			\begin{definition}
+				Eine \emph{$m \times n$--Matrix}\index{Matrix} ist ein Schema von $mn$ Zahlen, angeordnet in $m$ \emph{Zeilen} und $n$ \emph{Spalten}. Diese $mn$ Zahlen heissen \emph{Elemente} der $m \times n$--Matrix.
+			\end{definition}
+			
+			\begin{beispiel}
+				Das Schema
+				\[
+					A = \left(\begin{array}{rrr}
+									2 & 3 & 1 \\
+									5 & 1 & 2
+								\end{array}\right)
+				\]
+				ist eine $2 \times 3$--Matrix. In der ersten Zeile ist das zweite Element $(A)_{12} = a_{12} = 3$.
+			\end{beispiel}
+			
+			\begin{definition}
+				Eine $n \times n$--Matrix (d.h. eine Matrix mit gleich vielen Spalten wie Zeilen) heisst \emph{quadratische Matrix}\index{Matrix!quadratische}.
+			\end{definition}
+			
+			\begin{definition}
+				\emph{Gleichheit von Matrizen}\index{Matrizen!Gleichheit von}. Zwei Matrizen $A$ und $B$ heissen \emph{gleich}, wenn die die gleiche Anzahl Zeilen und Spalten haben und die entsprechenden Elemente gleich sind:
+				\[
+					(A)_{ij} = (B)_{ij},\ \text{für alle } i,j
+				\]
+			\end{definition}
+			
+			\begin{definition}
+				\emph{Spezielle Matrizen}\index{Matrix!spezielle}.
+				
+				\begin{itemize}
+					\item[i)] Eine $m \times n$--Matrix heisst \emph{Nullmatrix}\index{Nullmatrix}, falls jedes Element gleich null ist. Jede Nullmatrix wird mit $0$ bezeichnet.
+					
+					\begin{beispiel}
+						Die Matrix
+						\[
+							0= \left(\begin{array}{rrr}
+								0 & 0 & 0 \\
+								0 & 0 & 0
+							\end{array}\right)
+						\]
+						ist die $2 \times 3$--Nullmatrix.
+					\end{beispiel}
+					
+					\item[ii)] Eine quadratische Matrix $R$ heisst \emph{obere Dreicksmatrix}\index{Dreiecksmatrix!obere} oder \emph{Rechtsdreiecksmatrix}\index{Rechtsdreiecksmatrix}, falls $(R)_{ij} = 0$ für $i > j$.
+					
+					\begin{beispiel}
+						\[
+							R= \left(\begin{array}{rrr}
+								1 & 3 & 1 \\
+								0 & 2 & 4 \\
+								0 & 0 & 3
+							\end{array}\right).
+						\]
+					\end{beispiel}
+					
+					Eine quadratische Matrix $L$ heisst \emph{untere Dreiecksmatrix}\index{Dreiecksmatrix!untere} oder \emph{Linksdreiecksmatrix}\index{Linksdreiecksmatrix}, falls $(L)_{ij} = 0$ für $i < j$.
+					
+					\begin{beispiel}
+						\[
+							L = \left(\begin{array}{rrrr}
+								2 & 0 & 0 & 0 \\
+								3 & 4 & 0 & 0 \\
+								1 & 2 & 2 & 0 \\
+								1 & 0 & 0 & 3
+							\end{array}\right).
+						\]
+					\end{beispiel}
+					
+					\item[iii)] Eine $n \times n$--Matrix $D$ heisst \emph{Diagonalmatrix}\index{Diagonalmatrix}, falls $(D)_{ij} = 0$ für $i \neq j$. Die Elemente $(D)_{ii} = d_{ii}$ heissen \emph{Diagonalelemente}\index{Diagonalelemente}. Für die Diagonalmatrix mit gegebenen Diagonalelementen $d_{11},\,d_{22},\,\dots,\,d_{nn}$ schreiben wir $D = \diag (d_{11},\,d_{22},\,\dots,\,d_{nn})$.
+					
+					\begin{beispiel}
+						\[
+							D = \left(\begin{array}{rrr}
+								5 & 0 & 0 \\
+								0 & -2 & 0 \\
+								0 & 0 & 3
+							\end{array}\right) = \diag(5,2,3).
+						\]
+						
+					\end{beispiel}
+					
+					\item[iv)] Die $n \times n$--Matrix $I_n = \diag(1,1,\dots,1)$ heisst \emph{Einheitsmatrix}\index{Einheitsmatrix} oder \emph{Identität}\index{Identität}.
+					
+					\begin{beispiel}
+						\[
+							I_3 = \left(\begin{array}{rrr}
+								1 & 0 & 0 \\
+								0 & 1 & 0 \\
+								0 & 0 & 1
+							\end{array}\right).
+						\]
+					\end{beispiel}
+					
+					\item[v)] Eine weitere häufig auftretende Klasse von Matrizen sind 1-spaltige oder $n \times 1$--Matrizen. Diese $n \times 1$--Matrizen werden \emph{Spaltenvektoren}\index{Spaltenvektoren} genannt. Wir bezeichnen Spaltenvektoren mit Kleinbuchstaben. Die Elemente eines Spaltenvektors heissen \emph{Komponenten}\index{Spaltenvektor!Komponenten}. Die Komponenten eines Spaltenvektors werden nur mit dem Zeilendindex indiziert.
+					
+					\begin{beispiel}
+						Die $4 \times 1$--Matrix $b = \left(\begin{array}{r}
+							2 \\ -4 \\ 7 \\ 0
+						\end{array}\right)$ ist ein Spaltenvektor.
+						
+						Es gilt $b = \left(\begin{array}{r}
+							b_1 \\ b_2 \\ b_3 \\ b_4
+						\end{array}\right)$ mit $b_1 = 2$, $b_2 = -4$, $b_3 = 7$, $b_4 = 0$.
+					\end{beispiel}
+				\end{itemize}
+			\end{definition}
+			
+		% (end)
+			
+		\subsection{Das Rechnen mit Matrizen} % (fold)
+			\begin{definition}
+				\emph{Addition}\index{Matrix!Addition}. Es seien $A$ und $B$ zwei $m \times n$--Matrizen. $A$ und $B$ werden addiert, indem man entsprechende Elemente addiert. Genauer: Die $m \times n$--Matrix $A + B$ mit $(A + B)_{ij} = (A)_{ij} + (B)_{ij}$ heisst \emph{Summe} der Matrizen $A$ und $B$.
+				
+				\begin{beispiel}
+					\[
+						\left(\begin{array}{rrr}
+							3 & 1 & 0 \\
+							2 & -2 & 1
+						\end{array}\right)
+						+
+						\left(\begin{array}{rrr}
+							1 & 2 & 0 \\
+							0 & 1 & 1
+						\end{array}\right)
+						=
+						\left(\begin{array}{rrr}
+							4 & 3 & 0 \\
+							2 & -1 & 2
+						\end{array}\right).
+					\]
+				\end{beispiel}
+			\end{definition}
+			
+			\begin{definition}
+				\emph{Multiplikation mit einer Zahl}\index{Matrix!Multiplikation mit einer Zahl}. Eine $m \times n$--Matrix $A$ wird mit einer Zahl $\alpha$ multipliziert, indem man jedes Element von $A$ mit $\alpha$ multipliziert: Die $m \times n$--Matrix $\alpha A$ mit $(\alpha A)_{ij} = \alpha (A)_{ij}$ \emph{Vielfaches} (genauer $\alpha$--faches) der Matrix $A$.
+				
+				\begin{beispiel}
+					\[
+						3 \left(\begin{array}{rrr}
+							3 & 1 & 0 \\
+							2 & -2 & 1
+						\end{array}\right)
+						=
+						\left(\begin{array}{rrr}
+							9 & 3 & 0 \\
+							6 & -6 & 3
+						\end{array}\right).
+					\]
+				\end{beispiel}
+			\end{definition}
+			
+			\begin{definition}
+				\emph{Multiplikation zweier Matrizen}\index{Matrix!Multiplikation mit einer Matrix}\index{Matrix!Produkt}. $A$ sei eine $m \times n$--Matrix und $B$ sei eine $n \times p$--Matrix. Die $m \times p$--Matrix $AB$, mit $(AB)_{ij} = \sum_{k=1}^n (A)_{ik} (B)_{kj}$, heisst Produkt der Matrizen $A$ und $B$.
+				
+				\begin{bemerkung}
+					Das Produkt $AB$ kann nur gebildet werden, wenn die Anzahl Spalten von $A$ mit der Anzahl Zeilen von $B$ üereinstimmt. Das Element $(AB)_{ij}$ in der $i$--ten Zeile und der $j$--ten Spalte von $AB$ wird erhalten, wenn die $i$--te Zeile der Matrix $A$ mit der $j$--ten Spalte der Matrix $B$ ``multipliziert'' wird. Eine Zeile wird mit einer Spalte multipliziert, indem für jedes $k$ das $k$--te Element der Zeile mit dem $k$--ten Element der Spalte multipliziert wird und schliesslich alle diese Produkte addiert werden:
+					\[
+						(AB)_{ij} = a_{i1} b_{1j} + a_{i2} b_{2j} + \dots + a_{in} b_{nj}.
+					\]
+				\end{bemerkung}
+				
+				\begin{beispiel}
+					Sei $A = \left(\begin{array}{rrr}
+						3 & 1 & 0 \\
+						2 & -2 & 1
+					\end{array}\right)$ eine $2 \times 3$--Matrix und
+					$B = \left(\begin{array}{rrrr}
+						1 & 1 & 0 & 0 \\
+						1 & 2 & 2 & 1 \\
+						2 & -1 & -1 & 2
+					\end{array}\right)$ eine $3 \times 4$--Matrix.
+					
+					Dann ist $AB = \left(\begin{array}{rrrr}
+						4 & 5 & 2 & 1 \\
+						2 & -3 & -5 & 0
+					\end{array}\right)$ eine $2 \times 4$--Matrix.
+				\end{beispiel}
+			\end{definition}
+			
+			\begin{satz}
+				\begin{itemize}
+					\item[i)] Für $m \times n$--Matrizen $A$ und $B$ gilt das Kommutativgesetz\index{Kommutativgesetz} bezüglich der Addition:
+					\[
+						A + B = B + A.
+					\]
+					
+					\item[ii)] Für $m \times n$--Matrizen $A$, $B$ und $C$ gilt das Assoziativgesetz\index{Assoziativgesetz} bezüglich der Addition:
+					\[
+						(A+B)+C=A+(B+C).
+					\]
+					
+					\item[iii)] Für jede $m \times n$--Matrix $A$, $n \times p$--Matrix B und $p \times q$--Matrix $C$ gilt das Assoziativgesetz\index{Assoziativgesetz} bezüglich der Multiplikation:
+					\[
+						(AB)C=A(BC).
+					\]
+					
+					\item[iv)] Für $m \times n$--Matrizen $A$, $B$ und $n \times p$--Matrizen $C$, $D$ gelten die Distributivgesetze\index{Distributivgesetz}:
+					\begin{align*}
+						(A+B)C&=AC+BC \\
+						A(C+D)&=AC+AD.
+					\end{align*}
+				\end{itemize}
+
+				\begin{bemerkung}
+					\begin{enumerate}
+						\item Die Matrixmultiplikation ist \emph{nicht kommutativ}, d.h. im allgemeinen gilt $AB \neq BA$.
+						\item Für jede $m \times n$--Matrix $A$ gilt $I_m A = A I_n = A$. Daher kommt der Name Einheitsmatrix oder Identität für $I_m$ bzw. $I_n$.
+					\end{enumerate}
+				\end{bemerkung}
+			\end{satz}
+			
+			\begin{satz}
+				Sei $A = \left(a^{(1)}\ a^{(2)} \ \dots \ a^{(n)}\right)$ eine $m \times n$--Matrix mit $m$--Spaltenvektoren $a^{(j)},\, j=1,2,\dots,n$, sei $x$ ein $n$--Spaltenvektor mit Komponenten $x_1, \dots, x_n$ und sei $e^{(i)}$ der $i$--te Spaltenvektor der Einheitsmatrix $I_n$. Dann gilt:
+				\begin{itemize}
+					\item[i)] $Ae^{(i)} = a^{(i)} = $ $i$--ter Spaltenvektor von $A$.
+					\item[ii)] $Ax = x_1 a^{(1)} + x_2 a^{(2)} + \dots + x_n a^{(n)}$.
+				\end{itemize}
+			\end{satz}
+			
+			\begin{satz}
+				Sei $A$ eine $m \times n$--Matrix, $B = \left(b^{(1)} \ b^{(2)} \ \dots \ b^{(p)}\right)$ eine $n \times p$--Matrix. Dann gilt:
+				\[
+					AB = \left(Ab^{(1)} \ Ab^{(2)} \ \dots \ Ab^{(p)}\right),
+				\]
+				d.h. die $i$--te Spalte der Produktmatrix $AB$ ist das Produkt der Matrix $A$ mit dem $i$--ten Spaltenvektor $b^{(i)}$ der Matrix $B$.
+			\end{satz}
+			
+			\begin{definition}
+				Sei $A$ eine $m \times n$--Matrix. Dann heisst die $n \times m$--Matrix $A^T$, mit $\left(A^T\right)_{ij} := \left(A\right)_{ji}$ die \emph{Transponierte}\index{Matrix!Transponierte} von $A$. Eine Matrix $A$ heisst \emph{symmetrisch}\index{Matrix!symmetrische}, falls $A^T = A$ gilt.
+				
+				\begin{beispiel}
+					\begin{enumerate}
+						\item Für $A = \left(\begin{array}{rrrr}
+							1 & 2 & 3 & 4 \\
+							5 & 6 & 7 & 8
+						\end{array}\right) \quad$
+						ist
+						$\quad A^T = \left(\begin{array}{rr}
+							1 & 5 \\
+							2 & 6 \\
+							3 & 7 \\
+							4 & 8
+						\end{array}\right)$.
+						\item Die Matrix $B = \left(\begin{array}{rrr}
+							2 & 3 & -5 \\
+							3 & -1 & 2 \\
+							-5 & 2 & 7
+						\end{array}\right) = B^T$ ist symmetrisch.
+					\end{enumerate}
+				\end{beispiel}
+			\end{definition}
+			
+			Für das Transponieren gelten folgende Rechenregeln:
+			
+			\begin{satz}
+				\begin{itemize}
+					\item[i)] Für jede Matrix $A$ gilt $\left(A^T\right)^T = A$.
+					\item[ii)] Für beliebige $m \times n$--Matrizen $A$ und $B$ gilt $(A+B)^T = A^T + B^T$.
+					\item[iii)] Für jede $m \times n$--Matrix $A$ und jede $n \times p$--Matrix $B$ gilt $(AB)^T = B^T A^T$.
+				\end{itemize}
+			\end{satz}
+			
+			\begin{korollar}
+				Seien
+				\[
+					A = \left(\begin{array}{c}
+						a^{[1]} \\
+						\vdots \\
+						a^{[m]}
+					\end{array}\right)
+					, \qquad
+					B = \left(\begin{array}{c}
+						b^{[1]} \\
+						\vdots \\
+						b^{[n]}
+					\end{array}\right)
+				\]
+				eine $m \times n$--Matrix mit n-Zeilenvektoren $a^{[i]}$, bzw. eine $n \times p$--Matrix mit $p$--Zeilenvektoren $b^{[j]}$, sei $y = (y_1, \dots, y_n)$ ein $n$--Zeilenvektor und sei $e^{[i]}$ der $i$--te Zeilenvektor der Einheitsmatrix $I_n$. Dann gilt:
+				\begin{itemize}
+					\item[i)] $e^{[i]} B = b^{[i]}$.
+					\item[ii)] $yB = y_1 b^{[1]} + y_2 b^{[2]} + \dots + y_n b^{[n]}$.
+					\item[iii)] $AB = \left(\begin{array}{c}
+						a^{[1]} B \\
+						\vdots \\
+						a^{[n]} B
+					\end{array}\right)$.
+				\end{itemize}
+			\end{korollar}
+		
+		% (end)
+			
+		\subsection{Die Inverse einer Matrix} % (fold)
+			\begin{definition}
+				Die $n \times n$--Matrix $X$ heisst \emph{Inverse}\index{Matrix!Inverse} der $n \times n$--Matrix $A$, falls $AX = I_n$ gilt. Falls die $n \times n$--Matrix $A$ eine Inverse hat, dann heisst die Matrix $A$ \emph{invertierbar}\index{Matrix!invertierbare} oder \emph{regulär}\index{Matrix!reguläre}, andernfalls \emph{singulär}\index{Matrix!singuläre}.
+			\end{definition}
+			
+			\begin{lemma}
+				Die Inverse\label{lemma.inverse} einer Matrix ist eindeutig bestimmt, d.h. für $n \times n$--Matrizen $A$, $X$ und $Y$ gilt: Aus $AX = I_n$ und $AY = I_n$ folgt $X=Y$.
+			\end{lemma}
+			
+			Falls die $n \times n$--Matrix $A$ regulär ist, besitzt sie nach Lemma~\ref{lemma.inverse} eine eindeutig bestimmte Inverse. Wir bezeichnen diese mit $A^{-1}$. Im nächsten Satz stellen wir einige Eigenschaften der Inversen zusammen.
+			
+			\begin{satz}
+				Seien $A$ und $B$ invertierbare $n \times n$--Matrizen; dann gilt:
+				
+				\begin{itemize}
+					\item[i)] $A^{-1} A = I_n$.
+					\item[ii)] $A^{-1}$ ist invertierbar und $\left(A^{-1}\right)^{-1} = A$.
+					\item[iii)] $I_n$ ist invertierbar und $I_n^{-1} = I_n$.
+					\item[iv)] $AB$ ist invertierbar und $(AB)^{-1} = B^{-1} A^{-1}$
+					\item[v)] $A^T$ ist invertierbar und $\left(A^T\right)^{-1} = \left(A^{-1}\right)^T$.
+				\end{itemize}
+			\end{satz}
+			
+			\begin{satz}
+				Für jede $n \times n$--Matrix $A$ sind folgende Aussagen äquivalent:
+				
+				\begin{itemize}
+					\item[i)] $A$ ist invertierbar.
+					\item[ii)] Das Gleichungssystem $Ax = b$ ist für jedes $b$ lösbar.
+					\item[iii)] Das Gleichungssystem $Ax = 0$ hat nur die triviale Lösung $x = 0$.
+				\end{itemize}
+			\end{satz}
+			
+			\paragraph{Orthogonale Matrizen.}\index{Matrix!orthogonale}
+			
+			\begin{definition}
+				Eine $n \times n$--Matrix $A$ heisst \emph{orthogonal}, falls $A^T A = I_n$ gilt.
+			\end{definition}
+			
+			\begin{satz}
+				Seien $A$ und $B$ orthogonale $n \times n$--Matrizen; dann gilt:
+				\begin{itemize}
+					\item[i)] $A$ ist invertierbar und $A^{-1} = A^T$.
+					\item[ii)] $A^{-1}$ ist orthogonal.
+					\item[iii)] $AB$ ist orthogonal.
+					\item[iv)] $I_n$ ist orthogonal.
+				\end{itemize}
+			\end{satz}
+		
+		% (end)
+			
+		\subsection{LR-Zerlegung} % (fold)
+			\begin{definition}
+				Eine $n \times n$--Matrix, die aus der Einheitsmatrix $I_n$ durch Zeilenvertauschungen hervorgeht, heisst \emph{Permutationsmatrix}\index{Permutationsmatrix}.
+			\end{definition}
+			
+			Führt man den Gaussalgorithmus für eine $n \times n$--Matrix $A$ durch, so lassen sich aus dem Endschema die Dreiecksmatrizen $L$ und $R$ ablesen für die $LR = PA$ gilt. Die Matrix $P$ erhält man aus der Matrix $I_n$, indem man bei dieser dieselben Zeilenvertauschungen vornimmt wie beim Gaussverfahren.
+			
+			Wir können nun für den allgemeinen Fall der LR-Zerlegung folgendes Resultat formulieren.
+			
+			\begin{satz}
+				Sei $A$ eine $m \times n$--Matrix. Dann liefert das Gaussverfahren, angewandt auf die Matrix $A$, eine invertierbare $m \times m$--Linksdreiecksmatrix $L$ mit Einsen in der Diagonalen, eine $m \times n$--Matrix $R$ in Zeilenstufenform und eine $m \times m$--Permutationsmatrix P, so dass $LR =PA$ gilt. Die Matrizen $L$ (ohne Einsen), $R$ und $P$ stehen im erweiterten Endschema.
+			\end{satz}
+			
+			\begin{bemerkung}
+					$A$ ist genau dann invertierbar, wenn $R$ invertierbar ist; es gilt $A^{-1} = R^{-1} L^{-1} P$.
+			\end{bemerkung}
+			
+			\subparagraph{LR-Algorithmus:}\index{LR-Zerlegung!LR-Algorithmus}  Lösen eines Gleichungssystems $Ax = b$ mit Hilfe der LR-Zerlegung.
+		
+			% TODO: Format correctly
+			1) LR-Zerlegung von $A$: Bestimme mit dem Gaussverfahren Matrizen $L$, $R$ und $P$, so dass $LR = PA$. \\
+			2) Vorwärtseinsetzen: Löse $Lc = Pb$ nach $c$ auf. \\
+			3) Rückwärtseinsetzen: Bestimme die Lösungsmenge des Gleichungssystems $Rx = c$.
+			
+			\begin{definition}
+				Der \emph{Rang einer Matrix}\index{Matrix!Rang} $A$ ist gleich dem Rang des linearen Gleichungssystems $Ax = 0$. Er wird mit Rang $A$ bezeichnet.
+			\end{definition}
+		% (end)
+	
+	% (end)
+	
+	\section{Determinanten} % (fold)
+		Die Determinante einer quadratischen Matrix chrarakterisiert, ob eine Matrix regulär (Determinante $\neq 0$) oder singulär (Determinante $= 0$) ist.
+		
+		\subsection{Definition und Eigenschaften} % (fold)
+			Wir ordnen jeder quadratischen Matrix eine Zahl zu, die Determinante. Diese Zahl bezeichnen wir mit $\det A$ oder $|A|$.
+			
+			\begin{definition}
+				\begin{enumerate}
+					\item Für $1 \times 1$--Matrizen $A = (a)$ ist
+					\[
+						\det A = |A| = a.
+					\]
+					\item Sei
+					\[
+						A = \left(\begin{array}{cccc}
+									a_{11} & a_{12} & \cdots & a_{1n} \\
+									a_{21} & a_{22} & \cdots & a_{2n} \\
+									\vdots & & & \vdots \\
+									a_{n1} & a_{n2} & \cdots & a_{nn}
+							\end{array}\right)
+					\]
+					eine $n \times n$--Matrix mit $n \geq 2$. Für $i = 1,2,\dots,n$ sei $A_{i1}$ die $(n-1) \times (n-1)$--Matrix, die man erhält, wenn bei $A$ die $i$--te Zeile und die erste Spalte gestrichen werden. Dann heisst diese Zahl
+					\[
+						\det A = |A| := a_{11} \det A_{11} - a_{21} \det A_{21} + a_{31} \det A_{31} - \cdots + (-1)^{n+1} a_{n1} \det A_{n1}
+					\]
+					\emph{Determinante}\index{Determinante} von A.
+				\end{enumerate}
+			\end{definition}
+			
+			\begin{beispiel}
+				\begin{enumerate}
+					\item \[
+						\left|\begin{array}{rr}
+									3&2\\
+									1&2
+							\end{array}\right|
+						= 3 \cdot 2 - 1 \cdot 2 = 4.
+					\]
+					\item \begin{align*}
+						\left|\begin{array}{rrr}
+									1&2&1\\
+									2&3&2\\
+									4&1&2
+							\end{array}\right|
+						&= 1
+						\left|\begin{array}{rr}
+									3&2\\
+									1&2
+							\end{array}\right|
+						- 2
+						\left|\begin{array}{rr}
+									2&1\\
+									1&2
+							\end{array}\right|
+						+ 4
+						\left|\begin{array}{rr}
+									2&1\\
+									3&2
+							\end{array}\right| \\
+						&= 1 \cdot 4 - 2 \cdot 3 + 4 \cdot 1 = 2.
+					\end{align*}
+				\end{enumerate}
+			\end{beispiel}
+			
+			\begin{satz}
+				\begin{itemize}
+					\item[ii)] Werden in der Matrix $A$ zwei Zeilen vertauscht, so ändert die Determinante ihr Vorzeichen.
+					\item[ii)] Wird in der Matrix $A$ zu einer Zeile ein Vielfaches einer anderen Zeile addiert, so bleibt die Determinante unverändert.
+					\item[iii)] Wird in der Matrix $A$ eine Zeile mit einem Faktor $\alpha$ multipliziert, dann vervielfacht sich die Determinante um den Faktor $\alpha$.
+				\end{itemize}
+			\end{satz}
+			
+			\begin{folgerung}
+				\begin{enumerate}
+					\item Die Determinante einer Matrix mit zwei gleichen Zeilen ist gleich null.
+					\item Die Determinante einer Matrix, die eine Zeile aus lauter Nullen enthält, ist gleich null.
+				\end{enumerate}
+			\end{folgerung}
+			
+			\begin{lemma}
+				Die Determinante einer Dreiecksmatrix ist gleich dem Produkt ihrer Diagonalelemente.
+			\end{lemma}
+			
+			\begin{satz}
+				Für jede $n \times n$--Matrix $A$ gilt:
+				\[
+					\det A^T = \det A.
+				\]
+			\end{satz}
+			
+			\begin{lemma}
+				Für jede $n \times n$--Matrix $A$, $n \geq 2$, gilt
+				\[
+					\det A = \sum_{j=1}^n (-1)^{j+1} a_{1j} \det A_{1j}.
+				\]
+				Dabei bezeichnet $A_{1j}$ diejenige $(n-1) \times (n-1)$--Matrix, die entsteht, wenn bei $A$ die erste Zeile und die $j$--te Spalte gestrichen werden.
+			\end{lemma}
+			
+			\begin{korollar}
+				\begin{itemize}
+					\item[i)] Werden in der Matrix $A$ zwei spalten vertauscht, so ändert die Determinante ihr Vorzeichen.
+					\item[ii)] Wird in der Matrix $A$ zu einer Spalte ein Vielfaches einer anderen Spalte addiert, so bleibt die Determinante unverändert.
+					\item[iii)] Wird in der Matrix $A$ eine Spalte mit einem Faktor $\alpha$ multipliziert, dann vervielfacht dich die Determinante um den Faktor $\alpha$.
+				\end{itemize}
+			\end{korollar}
+			
+			\begin{satz}
+				Für beliebige $m \times m$--Matrizen $A$ und $B$ gilt:
+				\[
+					\det AB = (\det A)(\det B).
+				\]
+			\end{satz}
+			
+			\begin{lemma}
+				Sei $A$ eine $m \times m$--Matrix, $B$ eine $m \times n$--Matrix, $C$ eine $n \times n$--Matrix und sei $M$ die durch
+				\[
+					\left(\begin{array}{rr}
+								A&B\\
+								0&C
+						\end{array}\right)
+				\]
+				gegebene $(m + n) \times (m + n)$--Matrix. Dann gilt
+				\[
+					\det M = (\det A)(\det C).
+				\]
+			\end{lemma}
+			
+			\begin{korollar}
+				Ist die $n \times n$--Matrix $A$ invertierbar, so gilt $\det A \neq 0$ und
+				\[
+					\det A^{-1} = \frac{1}{\det A}
+				\]
+			\end{korollar}
+			
+		% (end)
+		
+		\subsection{Die effiziente Berechnung von Determinanten} % (fold)
+			\begin{satz}
+				Sei eine $m \times m$--Matrix $A$ gegeben. Wird der Gaussalgorithmus auf $A$ angewendet, so liefert er Matrizen $L$, $R$, und $P$ mit $LR = PA$ und es gilt
+				\[
+					\det A = (\det P)(\det R) = (-1)^{\text{Anzahl Zeilenvertauschungen}} \det R,
+				\]
+				wobei $\det R = r_{11} r_{22} \dots r_{nn}$ ist.
+			\end{satz}
+			
+		% (end)
+		
+		\subsection{Determinanten und lineare Gleichnungssysteme} % (fold)
+			
+			\begin{lemma}
+				Sei $A$ eine $n \times n$--Matrix. Wenden wir auf $A$ das Gauss'sche Eliminationsverfahren an, so ist $\det A \neq 0$ genau dann, wenn im Endschema $r = n$ gilt.
+			\end{lemma}
+			
+			\begin{satz}
+				Für jede $n \times n$--Matrix sind folgende Aussagen äquivalent:
+				\begin{itemize}
+					\item[i)] Die Matrix $A$ ist invertierbar.
+					\item[ii)] $\det A \neq 0$.
+					\item[iii)] Im Gauss--Endschema ist $r = n$.
+					\item[iv)] Das lineare Gleichnungssystem $Ax = b$ ist für jedes $b$ lösbar.
+					\item[v)] Die Lösung des linearen Gleichnungssystems $Ax = b$ ist eindeutig bestimmt.
+					\item[vi)] Das lineare Gleichungssystem $Ax = 0$ hat nur die triviale Lösung $x = 0$.
+				\end{itemize}
+			\end{satz}
+			
+			\begin{korollar}
+				Sei $A$ eine $n \times n$--Matrix. Dann gilt:
+				\begin{itemize}
+					\item[i)] Das homogene lineare Gleichungssystem $Ax = 0$ hat genau dann nur die triviale Lösung, wenn $\det A \neq 0$.
+					\item[ii)] Das lineare Gleichungssystem $Ax = b$ ist genau dann für beliebige rechte Seiten lösbar, wenn $\det A \neq 0$ ist.
+					\item[iii)] Die Lösung des linearen Gleichungssystems $Ax = b$ ist genau eindeutig, wenn $\det A \neq 0$ gilt.
+				\end{itemize}
+			\end{korollar}
+			
+			Die wichtigsten Aussagen über die Lösungsmenge eines linearen Gleichungssystems von $n$ Gleichungen und $n$ Unbekannten in Abhängigkeit der Determinante der Koeffizientenmatrix $A$:
+			
+			\begin{itemize}
+				\item Falls $|A| \neq 0$, hat das \emph{homogene} lineare Gleichungssystem $Ax = 0$ \emph{nur} die triviale Lösung.
+				\item Falls $|A| = 0$, hat das \emph{homogene} lineare Gleichungssystem $Ax = 0$ \emph{unendlich viele} Lösungen.
+				\item Falls $|A| \neq 0$ hat das lineare Gleichungssystem $Ax = b$ für beliebige rechte Seiten $b$ \emph{genau eine} Lösung.
+				\item Falls $|A| = 0$, hat das lineare Gleichungssystem $Ax = b$ --- abhängig von der rechten Seite $b$ --- \emph{keine oder unendlich viele} Lösungen.
+			\end{itemize}
+		% (end)
+
+	% (end)
+	
+	\section{Vektorräume} % (fold)
+		\subsection{Definition und Beispiele} % (fold)
+			\begin{definition}
+				Ein \emph{reeller Vektorraum} $V$ ist eine Menge con Objekten (Vektoren) mit den folgenden Eigenschaften: \\
+				Es ist eine \emph{Addition} definiert, d.h. zwei Vektoren $a$, $b$ aus $V$ ist ein dritter Vektor aus $V$ zugeordnet, der mit $a + b$ bezeichnet wird. Es ist eine \emph{Multiplikation mit reellen Zahlen} definiert, d.h. einer reellen Zahl $\alpha$ und einem Vektor $a$ aus $V$ ist ein Vektor aus $V$ zugeordnet, der mit $\alpha a$ bezeichnet wird.
+			\end{definition}
+		% (end)
+		
+		\subsection{Die Struktur von Vektorräumen} % (fold)
+			\begin{definition}
+				Eine nichtleere Teilmenge $U$ eines Vektorraumes $V$ heisst \emph{Unterraum} von $V$, falls folgende zwei Bedingungen erfüllt sind:
+				\begin{itemize}
+					\item[(a)] Mit $a,\ b \in U$ ist auch $a + b \in U$.
+					\item[(b)] Mit $a \in U$, $\alpha$ eine Zahl, ist auch $\alpha a \in U$.
+				\end{itemize}
+			\end{definition}
+			
+			\begin{bemerkung}
+				Es gibt immer die folgenden trivialen Unterräume des Vektorraumes $V$: $V$ selbst und ${0}$, d.h. die Menge, die nur aus dem Nullvektor besteht.
+			\end{bemerkung}
+			
+			\begin{definition}
+				Kann jeder Vektor $b$ einer Vektorraumes $V$ als Linearkombination der Vektoren $a^{(1)}, a^{(2)}, \dots, a^{(k)}$ von $V$ dargestellt werden, so nennt man diese Vektoren ein \emph{Erzeugendensystem} des Vektorraumes $V$.\\
+				$U$ heisst der \emph{von} $a^{(1)}, a^{(2)}, \dots, a^{(k)}$ \emph{aufgespannte} oder \emph{erzeugte Unterraum}. Man deutet das durch folgende Schreibweise an: \[
+					U = \vspan \left\{a^{(1)}, a^{(2)}, \dots, a^{(k)}\right\}
+				\]
+			\end{definition}
+			
+			\begin{bemerkung}
+				Die Vektoren eines Erzeugendensystems eines Vektorraumes $V$ nennt man auch \emph{erzeugend}. Man beachte, dass wir hier nur \emph{endliche} Erzeugendensysteme betrachten.
+			\end{bemerkung}
+			
+			\begin{definition}
+				Ein Vektorraum $V$ heisst \emph{endlichdimensional}, wenn er ein Erzeugendensystem besitzt, d.h. wenn es Vektoren $a^{(1)}, a^{(2)}, \dots, a^{(k)}$ gibt, so dass $V = \vspan \left\{a^{(1)}, a^{(2)}, \dots, a^{(k)}\right\}$ gilt. Andernfalls heisst der Vektorraum \emph{unendlichdimensional}.
+			\end{definition}
+			
+			\begin{definition}
+				\begin{itemize}
+					\item[i)] Die Vektoren $a^{(1)}, a^{(2)}, \dots, a^{(k)}$ aus dem Vektorraum $V$ heissen \emph{linear unabhängig}, falls aus \[
+						x_1 a^{(1)} + x_2 a^{(2)} + \dots + x_k a^{(k)} = 0
+					\] folgt, dass $x_1 = x_2 = \dots = x_k = 0$ gilt.
+					\item[ii)] Die Vektoren $a^{(1)}, a^{(2)}, \dots, a^{(k)}$ aus dem Vektorraum $V$ heissen \emph{linear abhängig}, falls es Zahlen $x_1, x_2, \dots, x_k$ gibt, welche nicht alle null sind und für die \[
+						x_1 a^{(1)} + x_2 a^{(2)} + \dots + x_k a^{(k)} = 0
+					\] gilt.
+				\end{itemize}
+			\end{definition}
+			
+			\begin{definition}
+				Sei $a^{(1)}, a^{(2)}, \dots, a^{(k)}$ ein Erzeugendensystem für einen Vektorraum $V$. Falls die Vektoren $a^{(1)}, a^{(2)}, \dots, a^{(k)}$ linear unabhängig sind, nennt man das Erzeugendensystem eine \emph{Basis} für $V$.
+			\end{definition}
+			
+			\begin{satz}
+				Verschiedene Basen für einen Vektorraum bestehen aus gleich vielen Vektoren.
+			\end{satz}
+			
+			\begin{lemma}
+				Es sei $V$ ein Vektorraum. Die Vektoren $a^{(1)}, a^{(2)}, \dots, a^{(k)}$ aus $V$ seien linear unabhängig und die Vektoren $b^{(1)}, b^{(2)}, \dots, b^{(l)}$ seien ein Erzeugendensystem für $V$. Dann gilt $k \leq l$.
+			\end{lemma}
+			
+			\begin{definition}
+				Besitzt der Vektorraum $V \neq {0}$ eine Basis $b^{(1)}, b^{(2)}, \dots, b^{(n)}$, so heisst $n$ die \emph{Dimension von $V$} und man schreibt $n = \dim V$.
+			\end{definition}
+			
+			\begin{bemerkung}
+				\begin{enumerate}
+					\item Der Nullvektor eines Vektorraumes ist immer linear abhängig, da die Gleichung $x_1 0 = 0$ eine nichttriviale Lösung besitzt, z.B. $x_1 = 1$. Der triviale Vektorraum ${0}$ hat also keine Basis. Man setzt daher $\dim \{0\} = 0$.
+					\item Ist $V$ ein unendlichdimensionaler Vektorraum, so setzt man $\dim V = \infty$.
+				\end{enumerate}
+			\end{bemerkung}
+			
+			\begin{satz}
+				Es sei $V$ ein Vektorraum der Dimension $n$. Dann gilt:
+				\begin{itemize}
+					\item[i)] Mehr als $n$ Vektoren in $V$ sind linear abhängig.
+					\item[ii)] Weniger als $n$ Vektoren in $V$ sind nicht erzeugend.
+					\item[iii)] $n$ Vektoren in $V$ sind linear unabhängig genau dann, wenn sie erzeugend sind, und genau dann bilden sie eine Basis.
+				\end{itemize}
+			\end{satz}
+			
+			\begin{definition}
+				Die Zahlen $x_1, x_2, \dots, x_n$ in $x = \sum^n_{i=1} x_i a^{(i)}$ heissen \emph{Koordinaten} des Vektors $x$ bezüglich der Basis $a^{(1)}, a^{(2)}, \dots, a^{(n)}$.
+			\end{definition}
+			
+			\begin{bemerkung}
+				Der Rang einer Matrix $A$ ist gleich der maximalen Anzahl linear unabhängiger Spaltenvektoren von $A$.
+			\end{bemerkung}
+			
+		% (end)
+		
+		\subsection{Normierte Vektorräume} % (fold)
+			\begin{definition}
+				Sei $V$ ein Vektorraum. Eine Vorschrift, die jedem Vektor $a \in V$ eine reelle Zahl $||a||$ zuordnet, heisst \emph{Norm} (oder \emph{Länge}) in $V$, falls die folgende Regeln erfüllt sind:
+				\begin{itemize}
+					\item[(N1)]
+						\begin{itemize}
+							\item[i)] Für jeden Vektor $a \in V$ gilt $||a|| \geq 0$,
+							\item[ii)] aus $||a|| = 0$ folgt $a = 0$.
+						\end{itemize}
+					\item[(N2)] Für jeden Vektor $a \in V$ und für jede Zahl $\alpha$ gilt: $||\alpha a|| = |\alpha| ||a||$.
+					\item[(N3)] Für alle Vektoren $a, b \in V$ gilt: $||a+b|| \leq ||a|| + ||b||$ (Dreiecksungleichung).
+				\end{itemize}
+			\end{definition}
+			
+			\begin{satz}
+				Sei $V$ ein endlichdimensionaler Vektorraum, und seien $||x||$ und $||x||'$, $x \in V$, zwei Normen. Dann gibt es eine Konstante $c \geq 1$, so dass für jeden Vektor $x \in V$ gilt: \[
+					\frac{1}{c} ||x||' \leq ||x|| \leq c ||x||'.
+				\]
+			\end{satz}
+			
+		% (end)
+		
+		\subsection{Das Skalarprodukt} % (fold)
+			\begin{definition}
+				Sei $V$ ein reeller Vektorraum. Eine Vorschrift, die jedem Paar $x$, $y$ von Vektoren aus $V$ eine reelle Zahl $(x, y)$ zuordnet, heisst \emph{Skalarprodukt im Vektorraum $V$}, falls gilt:
+				\begin{itemize}
+					\item[(S1)] Das Skalarprodukt ist \emph{linear im zweiten Faktor}, d.h. es gilt
+						\begin{itemize}
+							\item[i)] $(x, y^{(1)} + y^{(2)}) = (x, y^{(1)}) + (x, y^{(2)})$ für alle $x,\ y^{(1)},\ y^{(2)} \in V$;
+							\item[ii)] $(x, \alpha y) = \alpha(x, y)$ für alle $x,\ y \in V,\ \alpha \in \Real$;
+						\end{itemize}
+					\item[(S2)] Das Skalarprodukt ist \emph{symmetrisch}, d.h. es gilt \\
+						$(x, y) = (y, x)$ für alle $x,\ y \in V$.
+					\item[(S3)] Das Skalarprodukt ist \emph{positiv definit}, d.h. es gilt
+						\begin{itemize}
+							\item[i)] $(x, x) \geq 0$ für alle $x \in V$;
+							\item[ii)] aus $(x, x) = 0$ folgt $x = 0$.
+						\end{itemize}
+				\end{itemize}
+			\end{definition}
+			
+			\begin{definition}
+				Zwei Vektoren stehen \emph{orthogonal} (man sagt auch, sie \emph{stehen senkrecht aufeinander}), falls $(x, y) = 0$ ist.
+			\end{definition}
+			
+			\begin{satz}
+				Sei $V$ ein reeller Vektorraum mit Skalarprodukt.
+				\begin{itemize}
+					\item[i)] Die orthogonale Projektion eines Vektors $x$ auf den Vektor $y \neq 0$ ist gegeben durch den Vektor $\frac{(y,x)}{(y,y)}y$.
+					\item[ii)] Für alle $x,\ y \in V$ gilt \[
+						(x, y)^2 \leq (x, x) (y, y) \quad \textit{(Schwarzsche Ungleichung)}.
+					\]
+					\item[iii)] Die Vorschrift, die jedem $x \in V$ die Zahl \[
+						||x|| := \sqrt{(x,x)}
+					\] zuordnet, ist eine Norm in $V$.
+					\item[iv)] Stehen zwei Vektoren $x,\ y \in V$ senkrecht aufeinander, d.h. ist $(x,y) = 0$, so gilt \[
+						||x + y||^2 = ||x - y||^2 = ||x||^2 + ||y||^2 \quad \textit{(Satz von Pythagoras)}.
+					\] Dabei bezeichnet $||x||,\ x \in V$ die in iii) eingeführte Norm.
+				\end{itemize}
+			\end{satz}
+			
+			\begin{bemerkung}
+				\begin{enumerate}
+					\item $||x|| := \sqrt{(x,x)}$ heisst die \emph{vom Skalarprodukt} $(x,y)$ \emph{induzierte Norm}. Wir vereinbaren: Falls im Vektorraum V ein Skalarprodukt definiert ist, so bezeichnet $||\cdot||$ die von diesem Skalarprodukt induzierte Norm.
+					\item Nicht jede Norm ist von einem Skalarprodukt induziert, z.B. gibt es kein Skalarprodukt in $\Real^n$, das die Maximumnorm induziert.
+				\end{enumerate}
+			\end{bemerkung}
+			
+			\begin{definition}
+				Ein Vektor $x$ der Länge $||x|| = 1$ heisst \emph{Einheitsvektor}.
+			\end{definition}
+			
+			\begin{satz}
+				Seien $e^{(1)}, e^{(2)}, \dots, e^{(k)}$ paarweise orthogonale Einheitsvektoren in einem reellen $n$-dimensionalen Vektorraum. Dann gilt: Die $k$ Vektoren $e^{(1)}, e^{(2)}, \dots, e^{(k)}$ sind linear unabhängig.
+			\end{satz}
+			
+			\begin{korollar}
+				In einem reellen $n$-dimensionalen Vektorraum bilden $n$ paarweise orthogonale Einheitsvektoren eine Basis.
+			\end{korollar}
+			
+			\begin{definition}
+				Eine Basis aus paarweise orthogonalen Einheitsvektoren heisst \emph{orthonormale Basis}.
+			\end{definition}
+			
+			\begin{satz}
+				In einem reellen $n$-dimensionalen Vektorraum $V$ sei eine Basis $b^{(1)}, b^{(2)}, \dots, b^{(n)}$ gegeben. Diese Basis lässt sich zu einer orthonormalen Basis $e^{(1)}, e^{(2)}, \dots, e^{(n)}$ umformen mit folgender Eigenschaft:\\
+				\hspace*{1cm} $e^{(1)}$ spannt den gleichen Unterraum auf wie $b^{(1)}$;\\
+				\hspace*{1cm} $e^{(1)},\ e^{(2)}$ spannen den gleichen Unterraum auf wie $b^{(1)},\ b^{(2)}$;\\
+				\hspace*{1cm} $e^{(1)},\ e^{(2)},\ e^{(3)}$ spannen den gleichen Unterraum auf wie $b^{(1)},\ b^{(2)},\ b^{(3)}$;\\
+				usw.
+			\end{satz}
+			
+			\paragraph{Schmidtsches Orthogonalisierungsverfahren} % (fold)
+				\begin{description}
+					\item[\emph{1. Schritt:}] Setze $e^{(1)} := \frac{1}{||b^{(1)}||} b^{(1)}$.
+					\item[\emph{2. Schritt:}]
+						\begin{itemize}
+							\item[a)] Orthogonale Projektion von $b^{(2)}$ auf $e^{(1)}$:\\ \[
+								c^{(2)} := b^{(2)} - (b^{(2)}, e^{(1)}) e^{(1)}.
+							\]
+							\item[b)] $c^{(2)}$ normieren zu $1$: \[
+								e^{(2)} := \frac{1}{||c^{(2)}||} c^{(2)}.
+							\]
+						\end{itemize}
+						
+					\item[\emph{Schritt 3:}]
+						\begin{itemize}
+							\item[a)] Projiziere den Vektor $b^{(3)}$ auf $e^{(1)}$ und $e^{(2)}$ und definiere dann \[
+								c^{(3)} := b^{(3)} - (b^{(3)}, e^{(1)}) e^{(1)} - (b^{(3)}, e^{(2)}) e^{(2)}.
+							\]
+							\item[b)] Normiere $c^{(3)}$ auf 1: \[
+								e^{(3)} := \frac{1}{||c^{(3)}||} c^{(3)}.
+							\]
+						\end{itemize}
+				\end{description}
+				So wird Schritt für Schritt die neue Basis $e^{(1)},e^{(2)},\dots,e^{(n)}$ konstruiert.
+			% (end)
+			
+		% (end)
+		
+	% (end)
+	
+	\section{Ausgleichsrechnung — Methode der kleinsten Quadrate} % (fold)
+		\subsection{Die Methode der kleinsten Quadrate --- Normalgleichung} % (fold)
+			\begin{equation*}
+				\begin{array}{ccccccc}
+					x_1 & & & - & 31 & = & r_1 \\
+					 & & x_2 & - & 62 & = & r_2 \\
+					x_1 & + & x_2 & - & 90 & = & r_3
+				\end{array}
+			\end{equation*}
+			
+			\begin{equation}
+				Ax - \mathbf{c} = \mathbf{r} \label{eq.qr1}
+			\end{equation}
+			
+			\begin{equation}
+				A^T Ax = A^T \mathbf{c} \label{eq.qr2}
+			\end{equation}
+			
+			\begin{satz}
+				\begin{itemize}
+					\item[i)] Ist $x*$ Lösung der Normalgleichungen \eqref{eq.qr2}, so minimiert $x*$ die Fehlergleichung \eqref{eq.qr1} im Sinne der kleinsten Quadrate.
+					\item[ii)] Sind die Spalten der Koeffizientenmatrix $A$ der Fehlergleichung \eqref{eq.qr1} linear unabhängig, so besitzen die Normalengleichungen \eqref{eq.qr2} eine eindeutig bestimmte Lösung.
+				\end{itemize}
+			\end{satz}
+		% subsection: Die Methode der kleinsten Quadrate --- Normalgleichung (end)
+		\subsection{Die Methode der kleinsten Quadrate --- QR-Zerlegung} % (fold)
+			\begin{satz}
+				\begin{itemize}
+					\item[i)] Zu jeder $m \times n$-Matrix $A$, mit $m \geq n$, existiert eine orthogonale $m \times m$-Matrix $Q$, so dass gilt
+					\[
+						 A = QR \quad \text{mit} \quad R = \left(\frac{R_0}{0}\right) \ ,
+					\]
+					wobei $R_0$ eine $n \times n$-Rechtsdreiecksmatrix ist und $0$ die $(m-n) \times n$-Nullmatrix.
+					\item[ii)] Sind die Spaltenvektoren $\mathbf{a}^{(1)},\dots,\mathbf{a}^{(n)}$ der Matrix $A$ linear unabhängig, so ist die Matrix $R_0$ regulär.
+				\end{itemize}
+			\end{satz}
+			
+			\paragraph{Algorithmus:} % (fold)
+				Lösen der Fehlergleichung $Ax - \mathbf{c} = \mathbf{r}$ mit Hilfe der QR-Zerlegung:
+				\[
+					\begin{array}{r@{\quad}r@{\quad}ll}
+						1) & R:= & Q^T A & \text{(QR-Zerlegung von $A$ mit} \\
+						&&& \text{ Givens-Rotationen)} \\[5pt]
+						2) & \mathbf{d}:= & Q^T \mathbf{c} & \text{(Transformation von $\mathbf{c}$)} \\[5pt]
+						3) & R_0 x = & d_0 & \text{(Rückwärtseinsetzen)}
+					\end{array}
+				\]
+			% paragraph: Algorithmus: (end)
+		% subsection: Die Methode der kleinsten Quadrate --- QR-Zerlegung (end)
+	% (end)
+	
+	\section{Lineare Abbildungen} % (fold)
+		\begin{definition}
+			Eine Abbildung $\mathcal{F}\ : \quad x \in V \longmapsto y = \mathcal{F}(x) \in W$ heisst \emph{lineare Abbildung vom endlichdimensionalen Vektorraum $V$ in den endlichdimensionalen Vektorraum $W$}, falls
+			\begin{itemize}
+				\item[i)] $\mathcal{F}(x + y) = \mathcal{F}(x) + \mathcal{F}(y) \qquad$ für alle $x,\ y \in V$ \\
+				\item[ii)] $\mathcal{F}(\alpha x) = \alpha \mathcal{F}(x) \qquad$ für alle Zahlen $\alpha$ und alle $x \in V$
+				gilt.
+			\end{itemize}
+		\end{definition}
+		
+		Jede beliebige lineare Abbildung $\mathcal{F}$ lässt sich durch eine $m \times n$-Matrix $A$ beschreiben.
+		
+		\subsection{Lineare Abbildungen und Matrizen} % (fold)
+			\begin{definition}
+				Sei $\mathcal{F}\::\ x \in V^n \longmapsto y = Ax \in V^m$ eine lineare Abbildung.
+				\begin{itemize}
+					\item[i)] Die Menge aller Vektoren, welche auf null abgebildet werden, heisst \emph{Kern der Matrix $A$}.
+					\[
+						\Kern A := \{x \in V^n | \: Ax = 0\}
+					\]
+					\item[ii)] Die Menge aller Bildvektoren $y \in V^m$ heisst \emph{Bild der Matrix $A$}.
+					\begin{align*}
+						\Bild A := \{ & y \in V^m | \text{ Es gibt ein $x \in V^n$,} \\ & \text{so dass $y = Ax$} \}
+					\end{align*}
+				\end{itemize}
+			\end{definition}
+			
+			\begin{satz}
+				Sei $A = (a^{(1)} \ \dots \ a^{(n)})$ eine $m \times n$-Matrix. Dann gilt
+				\begin{itemize}
+					\item[i)] $b$ liegt genau dann im Bild von $A$, wenn das Gleichungssystem $Ax = b$ lösbar ist.
+					\[
+						\Bild A = \vspan \left\{ a^{(1)}, a^{(2)}, \dots , a^{(n)} \right\}
+					\]
+					\item[ii)] Der Kern von $A$ ist die Lösungsmenge des homogenen Gleichungssystems $Ax = 0$.
+					\item[iii)] $\Kern A$ ist ein Unterraum von $V^n$. \\
+					$\Bild A$ ist ein Unterraum von $V^m$.
+					\item[iv)] $\dim(\Kern A) + \dim(\Bild A) = n = \dim V^n$.
+					\item[v)] $\dim(\Bild A) = \dim(\Bild A^T)$
+				\end{itemize}
+			\end{satz}
+			
+			\begin{korollar}
+				Sei $A$ eine $m \times n$-Matrix, $B_1$ eine reguläre $m \times m$-Matrix und $B_2$ eine reguläre $n \times n$-Matrix. Dann gilt
+				\begin{itemize}
+					\item[i)] $\Rang A = \Rang A^T$.
+					\item[ii)] $\Rang B_1 A = \Rang A$.
+					\item[iii)] $\Rang A B_2 = \Rang A$.
+				\end{itemize}
+			\end{korollar}
+			
+			\begin{satz}
+				Sei $V = \Real^n$ oder $V = \Complex^n$ und seien
+				$b^{(1)}, \dots, b^{(k)} \in V,\ k < n$, linear unabhängig.
+				Dann gibt es Vektoren $b^{(k+1)}, \dots ,b^{(n)} \in V$, so dass
+				$b^{(1)}, \dots, b^{(n)}$ eine Basis in $V$ bilden.
+			\end{satz}
+			
+			\paragraph{Das Zusammensetzen von Abbildungen:} % (fold)
+				\[
+					\mathcal{H}(x) = \mathcal{G}(\mathcal{F}(x)) = B(Ax) = (BA)x
+				\]
+				
+				\begin{satz}
+					\begin{itemize}
+						\item[i)] Die Zusammensetzung von linearen Abbildungen ist wiederum linear.
+						\item[ii)] Für $\mathcal{F}: x \in V^n \longmapsto y = Ax \in V^m$ und $\mathcal{G}: y \in V^m \longmapsto z = By \in V^p$ ist die zusammengesetzte Abbildung $\mathcal{H} := \mathcal{G} \circ \mathcal{F}$ gegeben durch $\mathcal{H} : x \in V^n \longmapsto z = BAx \in V^p$.
+					\end{itemize}
+				\end{satz}
+			% paragraph: Das Zusammensetzen con Abbildungen: (end)
+		% subsection: Lineare Abbildungen und Matrizen (end)
+		\subsection{Lineare Abbildungen und Skalarprodukt} % (fold)
+			\begin{satz}
+				\begin{itemize}
+					\item[i)] Die Unterräume $\Bild A$ und $\Kern A^T$ von $\Real^m$ spannen $\Real^m$ auf:
+					\[
+						\Bild A + \Kern A^T = \Real^m.
+					\]
+					\item[ii)] Die Unteräume $\Bild A$ und $\Kern A^T$ von $\Real^m$ stehen senkrecht aufeinander:
+					Aus $y \in \Bild A$ und $v \in \Kern A^T$ folgt $(y,v) = y^T v = 0$.
+					\item[iii)] $\dim (\Kern A) + \dim (\Kern A^T) = \dim \Real^m = m$
+				\end{itemize}
+			\end{satz}
+			
+			\begin{korollar}
+				Das Gleichungssystem $Ax = b$ ist genau dann lösbar, wenn $b$ senkrecht auf allen Lösungen des sogenannten \emph{adjungierten} Gleichungssystems $A^T y = 0$ steht.
+			\end{korollar}
+		% subsection: Lineare Abbildungen und Skalarprodukt (end)
+		\subsection{Lineare Selbstabbildungen von Vektorräumen} % (fold)
+			\begin{definition}
+				\begin{itemize}
+					\item[i)] Eine Abbildung $\mathcal{F}: x \in V^n \longmapsto x' \in V^n$ heisst \emph{umkehrbar} oder \emph{invertierbar}, falls es zu jedem $x' \in V^n$ ein eindeutig bestimmtes $x \in V^n$ gibt mit $\mathcal{F}(x) = x'$.
+					\item[ii)] Ist $\mathcal{F}$ invertierbar, so heisst die Abbildung, die jedem $x' = \mathcal{F}(x)$ das eindeutig bestimmte Urbild $x$ zuordnet, die \emph{Umkehrabbildung} von $\mathcal{F}$. Diese wird mit $\mathcal{F}^{-1}$ bezeichnet.
+				\end{itemize}
+			\end{definition}
+			
+			\begin{satz}
+				\begin{itemize}
+					\item[i)] Eine lineare Abbildung $\mathcal{F} : x \in V^n \longmapsto x' = Ax \in V^n$ ist genau dann umkehrbar, wenn $A$ regulär ist.
+					\item[ii)] Ist $\mathcal{F} : x \longmapsto x' = Ax$ umkehrbar, so ist $\mathcal{F}^{-1}$ linear und $\mathcal{F}^{-1}$ wird durch die Matrix $A^{-1}$ beschrieben. $\mathcal{F}^{-1}: x' \longmapsto x = A^{-1} x'$.
+					\item[iii)] Ist $\mathcal{F}$ umkehrbar, so gilt $\mathcal{F}^{-1} \circ \mathcal{F} = \mathcal{F} \circ \mathcal{F}^{-1} = \mathcal{I}$. Dabei ist $\mathcal{I}$ die Identität, d.h. $\mathcal{I} : x \in V^n \longmapsto x \in V^n$.
+				\end{itemize}
+			\end{satz}
+			
+			\paragraph{Koordinatentransformation} % (fold)
+			
+				\[
+					x = Ty
+				\]
+			
+				\begin{satz}
+					Seien eine lineare Abbildung $\mathcal{F} : x \in V^n \longmapsto x' = Ax \in V^n$ und eine Koordinatentransformation $\mathcal{T} : y \in W^n \longmapsto x = Ty \in V^n$ gegeben.
+					
+					Dann lässt sich die lineare Abbildung in den neuen Koordinaten darstellen als
+					\[
+						\mathcal{G} = \mathcal{T}^{-1} \circ \mathcal{F} \circ \mathcal{T} : y \in W^n \longmapsto y' = T^{-1} ATy \in W^n.
+					\]
+				\end{satz}
+				
+				\begin{definition}
+					Die $n \times n$-Matrix $B$ heisst \emph{ähnlich} zur $n \times n$-Matrix $A$, falls es eine reguläre $n \times n$-Matrix $T$ gibt, so dass
+					\[
+						B = T^{-1} AT .
+					\]
+				\end{definition}
+			% paragraph: Koordinatentransformation (end)
+			\paragraph{Die Norm einer Matrix} % (fold)
+				\begin{definition}
+					Sei $A$ eine $n \times n$-Matrix, und sei in $V^n$ eine Norm $||x||_*, x \in V^n$, gegeben. Dann ist die Zahl
+					\[
+						||A||_* := \sup_{x \in V^n, x \neq 0} \left\{ \frac{||Ax||_*}{||x||_*} \right\}
+					\]
+					\emph{Norm von A} (genauer: die \emph{von der Vektornorm $||x||_*$ induzierte Matrixnorm}).
+				\end{definition}
+				
+				\begin{bemerkung}
+					In der Definition von $||A||_*$ kann der Quotient $||Ax||_* / ||x||_*$ auch anders geschrieben werden.
+					\[
+						\left|\left| A \left( \frac{1}{||x||_*} x \right) \right|\right|_*.
+					\]
+					Für alle $x \in V^n, x \neq 0$, hat der Vektor $\frac{1}{||x||_*}x$ die Norm 1. Es gilt also
+					\[
+						||A||_* = \sup_{||x||_* = 1} \{||Ax||_*\}.
+					\]
+				\end{bemerkung}
+				
+				\begin{satz}
+					\renewcommand{\labelenumi}{\textup{\roman{enumi})}}
+					\begin{enumerate}
+						\item $||A||_* \geq 0$, aus $||A||_* = 0$ folgt $A = 0$.
+						\item $||\alpha A ||_* = |\alpha| ||A||_*$.
+						\item $|| A + B ||_* \leq ||A||_* + ||B||_*$.
+						\item $||Ax||_* \leq ||A||_* ||x||_*$.
+						\item $||AB||_* \leq ||A||_* ||B||_*$.
+					\end{enumerate}
+				\end{satz}
+			% paragraph: Die Norm einer Matrix (end)
+			\paragraph{Orthogonale Abbildungen} % (fold)
+				\begin{definition}
+					\begin{enumerate}
+						\item Die Abbildung $\mathcal{F} : x \in \Real^n \longmapsto x' = Ax \in \Real^n$ heisst \emph{orthogonal}, falls $(x', y') = (Ax, Ay) = (x, y)$ für alle $x, y \in \Real^n$ gilt.
+						\item Die Abbildung $\mathcal{F} : x \in \Real^n \longmapsto x' = Ax \in \Real^n$ heisst \emph{längentreu}, falls $||x'|| = ||Ax|| = ||x||$ für alle $x \in \Real^n$ gilt.
+					\end{enumerate}
+				\end{definition}
+				
+				\begin{satz}
+					Sei die lineare Abbildung $\mathcal{F} : x \in \Real^n \longmapsto x' = Ax \in \Real^n$ gegeben. Dann sind folgende Aussagen äquivalent:
+					\renewcommand{\labelenumi}{\textup{\roman{enumi})}}
+					\begin{enumerate}
+						\item $\mathcal{F}$ ist orthogonal.
+						\item $\mathcal{F}$ ist längentreu.
+						\item Die Spalten von $A$ bilden eine orthonormale Basis in $\Real^n$.
+						\item Die Matrix $A$ ist orthogonal, d.h. es gilt $A^T A = I$, bzw. $A^T = A^{-1}$.
+					\end{enumerate}
+				\end{satz}
+				
+				\begin{bemerkung}
+					\renewcommand{\labelenumi}{\textup{\arabic{enumi})}}
+					\begin{enumerate}
+						\item Jede längentreue Abbildung ist \emph{winkeltreu}.
+						\item Für eine orthogonal Matrix $A$ gilt $||A||_2 = 1$.
+					\end{enumerate}
+				\end{bemerkung}
+			% paragraph: Orthogonale Abbildungen (end)
+		% subsection: Lineare Selbstabbildung von Vektorräumen (end)
+	% (end)
+	
+	\section{Das Eigenwertproblem} % (fold)
+		\subsection{Eigenwerte} % (fold)
+			\begin{definition}
+				\renewcommand{\labelenumi}{\textup{\roman{enumi})}}
+				\begin{enumerate}
+					\item Eine Zahl $\lambda \in \Complex$ heisst \emph{Eigenwert der Matrix $A$}, falls es einen Vektor $x \in \Complex^n$ gibt, $x \neq 0$, so dass $Ax = \lambda x$ gilt.
+					\item Ist $\lambda \in \Complex$ Eigenwert der Matrix $A$, so heisst jeder Vektor $x \in \Complex^n, x \neq 0$, für den $Ax = \lambda x$ gilt, \emph{Eigenvektor der Matrix $A$ zum Eigenwert $\lambda$}.
+				\end{enumerate}
+			\end{definition}
+			
+			\begin{satz}
+				Die Zahl $\lambda \in \Complex$  ist genau dann ein Eigenwert der Matrix $A$, wenn $\det(A-\lambda I_n) = 0$ gilt.
+			\end{satz}
+			
+			Für jede $n \times n$-Matrix $A$ ist $\det(A - \lambda I_n)$ ein Polynom $n$-ten Grades in $\lambda$.
+			\begin{definition}
+				Das Polynom $\det(A-\lambda I_n)$ heisst \emph{charakteristisches Polynom der Matrix $A$}. Es wird mit $P_A(\lambda)$ bezeichnet.
+			\end{definition}
+			
+			\begin{definition}
+				Ist $\lambda^*$ Eigenwert der Matrix $A$ und ist der Faktor $\lambda - \lambda^*$ genau $k$-mal in der Linearfaktorzerlegung des charakteristischen Polynoms $P_A(\lambda)$ enthalten, so heisst $k$ die \emph{algebraische Vielfachheit} von $\lambda^*$ (kürzer: $\lambda^*$ ist \emph{$k$-facher Eigenwert} von $A$).
+				
+				Es gelten die folgenden Aussagen:
+				\begin{itemize}
+					\item Jede quadratische Matrix hat mindestens einen Eigenwert.
+					\item Jede $n \times n$-Matrix hat höchstens $n$ Eigenwerte.
+					\item Für jeden Eigenwert ist die algebraische Vielfachheit grösser gleich $1$ und kleiner gleich $n$.
+					\item Jede $n \times n$-Matrix hat genau $n$ Eigenwerte, wenn jeder Eigenwert mit seiner algebraischen Vielfachheit gezählt wird.
+					\item Für jede reelle Matrix sind die Koeffizienten des charakteristischen Polynoms reell. In diesem Fall sind die Eigenwerte entweder reell oder sie treten in konjugiert komplexen Paaren auf.
+					\item Für das charakteristische Polynom $P_A(\lambda) = c_n \lambda^n + c_{n-1} \lambda^{n-1} + \dots + c_1 \lambda + c_0$ der $n \times n$-Matrix $A$ gilt immer
+					\[
+						\begin{array}{l@{\:=\:}l}
+							c_n & (-1)^n \\ [5pt]
+							c_{n-1} & (-1)^{n-1} (a_{11} + a_{22} + \dots + a_{nn}) \\
+							 & (-1)^{n-1} \Spur A \\ [5pt]
+							c_0 & \det A .
+						\end{array}
+					\]
+				\end{itemize}
+			\end{definition}
+			
+			\begin{satz}
+				\renewcommand{\labelenumi}{\textup{\roman{enumi})}}
+				\begin{enumerate}
+					\item Ähnliche Matrizen haben das gleiche charakteristische Polynom; sie haben also die gleichen Eigenwerte mit den gleichen algebraischen Vielfachheiten.
+					\item Ist $B = T^{-1} AT$ und ist $x$ ein Eigenvektor von $A$ zum Eigenwert $\lambda$, so ist $y = T^{-1} x$ ein Eigenvektor von $B$ zum selbel Eigenwert $\lambda$.
+				\end{enumerate}
+			\end{satz}
+		% subsection: Eigenwerte (end)
+		\subsection{Eigenvektoren} % (fold)
+			\begin{equation}
+				(A-\lambda I_n)x = 0 \label{eq.eigenvek}
+			\end{equation}
+			
+			\begin{definition}
+				Ist $\lambda$ Eigenwert der Matrix $A$, dann heisst die Menge der Lösungen von \eqref{eq.eigenvek} \emph{Eigenraum von $A$ zum Eigenwert $\lambda$}. Dieser Unterraum von $\Complex^n$ wird mit $E_{\lambda}$ bezeichnet. Die Dimension des Unterraumes $E_{\lambda}$ heisst \emph{geometrische Vielfachheit} des Eigenwertes $\lambda$.
+			\end{definition}
+			
+			\begin{satz}
+				Sei $\lambda^*$ Eigenwert der Matrix $A$, dann gilt
+				\begin{gather*}
+					1 \leq \text{ geometrische Vielfachheit von } \lambda^* \\ \leq \text{ algebraische Vielfachheit von } \lambda^*
+				\end{gather*}
+			\end{satz}
+			
+			\begin{satz}
+				Seien $\lambda_1, \dots, \lambda_k$ paarweise verschiedene Eigenwerte der Matrix $A$ und seien $u^{(1)}, \dots , u^{(k)}$ zugehörige Eigenvektoren.
+				
+				Dann sind die Eigenvektoren $u^{(1)}, \dots , u^{(k)}$ linear unabhängig.
+			\end{satz}
+			
+			\begin{definition}
+				Eine Basis von Eigenvektoren einer Matrix $A$ nennt man \emph{Eigenbasis zur Matrix $A$}.
+			\end{definition}
+			
+			\begin{satz}
+				Seien $g_1, g_2, \dots, g_k$ die geometrischen Vielfachheiten der paarweise verschiedenen Eigenwerte $\lambda_1, \lambda_2, \dots , \lambda_k$. In jedem Eigenraum $E_{\lambda_i}, i = 1, \dots, k$, gibt es also $g_i$ linear unabhängige Vektoren.
+				
+				Dann gilt: Diese $g_1 + g_2 + \dots + g_k$ Vektoren zusammen sind linear unabhängig.
+			\end{satz}
+			
+			\begin{folgerung}
+				Wenn die Summe der geometrischen Vielfachheiten einer $n \times n$-Matrix $A$ gleich $n$ ist, dann gibt es eine Eigenbasis zu $A$. Die Summe der geometrischen Vielfachheiten ist genau dann gleich $n$, wenn für jeden Eigenwert die geometrische Vielfachheit gleich der algebraischen Vielfachheit ist.
+			\end{folgerung}
+			
+			\begin{definition}
+				\renewcommand{\labelenumi}{\textup{\roman{enumi})}}
+				\begin{enumerate}
+					\item Eine quadratische Matrix heisst \emph{einfach}, wenn jeder Eigenwert die algebraische Vielfachheit 1 (und damit auch die geometrische Vielfachheit 1) hat.
+					\item Eine quadratische Matrix heisst \emph{halbeinfach}, wenn für jeden Eigenwert die geometrische Vielfachheit gleich der algebraischen Vielfachheit ist.
+				\end{enumerate}
+			\end{definition}
+			
+			\paragraph{Diagonalisierbarkeit} % (fold)
+				\begin{definition}
+					Eine quadratische Matrix $A$ heisst \emph{diagonalisierbar}, falls es eine reguläre Matrix $T$ gibt, so dass die Matrix $T^{-1} AT$ eine Diagonalmatrix ist.
+				\end{definition}
+				
+				\begin{satz}
+					Für jede quadratische Matrix $A$ sind folgende Aussagen äquivalent:
+					\renewcommand{\labelenumi}{\textup{\roman{enumi})}}
+					\begin{enumerate}
+						\item Die Matrix $A$ ist halbeinfach.
+						\item Die Matrix $A$ besitzt eine Eigenbasis.
+						\item Die Matrix $A$ ist diagonalisierbar.
+					\end{enumerate}
+				\end{satz}
+				
+				\begin{folgerung}
+					\renewcommand{\labelenumi}{\textup{\arabic{enumi})}}
+					\begin{enumerate}
+						\item Bilden $u^{(1)}, u^{(2)}, \dots, u^{(n)}$ eine Eigenbasis zu $A$, dann diagonalisiert die Matrix $T = (u^{(1)} u^{(2)} \dots u^{(n)})$ die Matrix $A$, d.h. die Matrix $D := T^{-1} AT$ ist diagonal. In der Diagonalen von $D$ stehen die Eigenwerte von $A$.
+						\item Umgekehrt gilt: Gibt es eine reguläre Matrix $T$ und eine Diagonalmatrix $D$, so dass $T^{-1} AT = D$ ist, dann bilden die Spalten von $T$ eine Eigenbasis zu $A$. In der Diagonalen von $D$ stehen die Eigenwerte von $A$.
+					\end{enumerate}
+				\end{folgerung}
+			% paragraph: Diagonalisierbarkeit (end)
+		% subsection: Eigenvektoren (end)
+		\subsection{Das Eigenwertproblem symmetrischer Matrizen} % (fold)
+			\begin{satz}
+				Sei $A$ eine reelle, symmetrische Matrix. Dann gilt:
+				\renewcommand{\labelenumi}{\textup{\roman{enumi})}}
+				\begin{enumerate}
+					\item Alle Eigenwerte von $A$ sind reell.
+					\item Eigenvektoren zu verschiedenen Eigenwerten stehen senkrecht aufeinander.
+				\end{enumerate}
+			\end{satz}
+			
+			\begin{satz}
+				Sei $A$ eine reelle, symmetrische Matrix. Dann gilt:
+				\renewcommand{\labelenumi}{\textup{\roman{enumi})}}
+				\begin{enumerate}
+					\item Die Matrix $A$ ist halbeinfach (und somit diagonalisierbar).
+					\item Es gibt eine orthonormale Eigenbasis zu A.
+					\item Es gibt eine orthogonale Matrix $T$, so dass die Matrix $T^T AT$ diagonal ist. In der Diagonalen stehen die Eigenwerte der Matrix $A$. Die Spalten von $T$ sind die entsprechenden Eigenvektoren der Matrix $A$.
+				\end{enumerate}
+			\end{satz}
+		% subsection: Das Eigenwertproblem symmetrischer Matrizen (end)
+	% (end)
+	
+	% \section{Anwendungen zum Eigenwertproblem} % (fold)
+	% 
+	% % (end)
+	% 
+	% \section{Normalformen} % (fold)
+	% 
+	% % (end)
+	% 
+	% \section{Numerische Behandlung des Eigenwertproblems} % (fold)
+	% 
+	% % (end)
+	
+	\end{multicols*}
+	
+	\printindex
+\end{document}

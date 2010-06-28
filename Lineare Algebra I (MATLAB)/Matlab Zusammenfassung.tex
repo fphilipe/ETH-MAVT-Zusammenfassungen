@@ -1,0 +1,186 @@
+% HEADER (fold)
+\documentclass[10pt]{article}
+
+\author{Philipe Fatio}
+\title{Lineare Algebra \\ Zusammenfassung}
+\date{\today}
+
+\usepackage[
+	a4paper,
+	landscape,
+	left=1.25cm,
+	right=1.25cm,
+	top=0.75cm,
+	bottom=0.75cm,
+	includeheadfoot
+]{geometry}
+
+\usepackage{multicol}
+\setlength{\columnseprule}{.5pt}
+\setlength{\columnsep}{1cm}
+\setlength{\parindent}{0cm}
+
+% Wir schreiben hier auf Deutsch
+\usepackage[german]{babel}
+\usepackage{pdfpages}
+
+% Setup for fullpage use
+%\usepackage[margin=2.5cm,includeheadfoot]{geometry}
+
+% Enable syncing with PDF view
+%\usepackage{pdfsync}
+
+% Use utf-8 encoding for foreign characters
+\usepackage[utf8]{inputenc}
+
+% Nice headers
+\usepackage{fancyhdr}
+\fancyhf{}
+\cfoot{-- \emph{\thepage} --}
+\rhead{\textit{Philipe Fatio} -- \today}
+\lhead{\textbf{MATLAB Zusammenfassung}}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+
+
+\usepackage{titlesec}
+\titleformat*{\section}{\large \bf}
+\titleformat*{\subsection}{\normalsize \bf}
+\titleformat*{\subsubsection}{\normalsize \bf}
+\titleformat*{\paragraph}{\footnotesize \bf}
+\titleformat*{\subparagraph}{\footnotesize \bf}
+
+% \makeatletter
+% \renewcommand\paragraph{\@startsection*{paragraph}{4}{\z@}%
+%   {-3.25ex\@plus -1ex \@minus -.2ex}%
+%   {1.5ex \@plus .2ex}%
+%   {\normalfont\normalsize\bfseries}}
+% \makeatother
+
+% Use Mathematical Equations
+\usepackage{amsmath}
+\usepackage{bbm}
+
+% Set the paragraph style
+%\setlength{\parindent}{10pt}
+\setlength{\parskip}{.5ex plus 0.25ex minus 0.1ex}
+
+% HEADER (end)
+\begin{document}
+	\begin{multicols*}{3}
+		\section*{Grundlegendes} % (fold)
+			Ausgabe einer Zeile wird mit abschliessendem Punktstrich unterdrückt.
+			
+			Wurzeln werden per \verb+sqrt+ eingegeben. Die Wurzel von 2 wäre \verb+sqrt(2)+.
+			
+			\verb+clear A+ löscht die Variable \verb+A+.
+			
+			Anhand \verb+format long+ wird eine höhere Präzision bei den Fliesskommazahlen erreicht.
+		% section: Grundlegendes (end)
+		\subsection*{Eingabe von Matrizen} % (fold)
+			Matrizen werden Zeilenweise eingegeben. Falls eine Matrix aus mehreren Zeilen besteht, werden die einzelnen Zeilen per Punktstrich getrennt.
+			
+			\begin{verbatim}
+				A = [-6 -1  2;    x = [ 0;
+				      4  3 -5;         -2;
+				      1 -2  3]          4]
+			\end{verbatim}
+			\subsubsection*{Einheitsmatrix} % (fold)
+				Eine Einheitsmatrix kann anhand der Funktion \verb+eye+ erzeugt werden, welche als einzigen Parameter die Dimension der Matrix hat.
+				\begin{verbatim}
+					I_2 = eye(2)
+				\end{verbatim}
+			% subsubsection: Einheitsmatrix (end)
+			\subsubsection*{Teilmatrix} % (fold)
+				Einen Bereich einer Matrix erhält man mit der Syntax \verb+A(Startzeile:Endzeile,Startspalte:Endspalte)+.
+				\begin{verbatim}
+					A(2:3,1:2) -> [4  3;
+					               1 -2]
+				\end{verbatim}
+			% subsubsection: Teilmatrix (end)
+			\subsubsection*{Matrizen generieren} % (fold)
+				Eine Matrix mit einer linearen Folge kann per \verb+[Startwert:Schrittgrösse:Maximalwert]+  definiert werden.
+				\begin{verbatim}
+					y = [1:1:4] -> [1 2 3 4]
+				\end{verbatim}
+			% subsubsection: Matrizen generieren (end)
+		% subsection: Eingabe von Matrizen (end)
+		\section*{Operationen} % (fold)
+			\subsection*{Transponieren} % (fold)
+				Um eine Matrix zu transponieren wird an die die Matrix ein \verb+'+ angehängt.
+				Somit kann man auch einfacher Vektoren schreiben:
+				\begin{verbatim}
+					x = [0 -2 4]'
+				\end{verbatim}
+			% subsection: Transponieren (end)
+			\subsection*{Inverse} % (fold)
+				Die Inverse einer Matrix \verb+A+ kann per \verb+inv(A)+ berechnet werden.
+			% subsection: Inverse (end)
+			\subsection*{Lösen von Gleichungssystemen} % (fold)
+				Durch Linksdivision kann ein Gleichungssystem der Form \verb+Ax = b+ gelöst werden.
+				\begin{verbatim}
+					x = A\b
+				\end{verbatim}
+			% subsection: Lösen von Gleichungssystemen (end)
+			\subsection*{Lösen von Fehlergleichungen} % (fold)
+				Mehrere Methoden:
+				\begin{itemize}
+					\item durch Linksdivision: \verb+x = A\c+
+					\item \verb+x = regress(c, A)+
+					\item \verb+x = linsolve(A'*A, A'*c)+
+					\item mit QR--Zerlegung
+				\end{itemize}
+			% subsection: Lösen von Fehlergleichungen (end)
+			\subsection*{Determinanten} % (fold)
+				Determinante der Matrix \verb+A+:
+				\begin{verbatim}
+					det(A)
+				\end{verbatim}
+			% subsection: Determinanten (end)
+			\subsection*{LR--Zerlegung} % (fold)
+				LR-Zerlegung einer Matrix \verb+A+:
+				\begin{verbatim}
+					[L,R,P] = lu(A)
+				\end{verbatim}
+				Die Lösung des Gl.sys. \verb+Ax = b+ ist dann
+				\begin{verbatim}
+					c = L\(P*b);
+					x = R\c
+				\end{verbatim}
+			% subsection: LR--Zerlegung (end)
+			\subsection*{QR--Zerlegung} % (fold)
+				QR-Zerlegung einer Matrix \verb+A+:
+				\begin{verbatim}
+					[Q,R] = qr(A);
+					d = Q'*c;
+					x = R(1:n,1:n)\d(1:n)
+				\end{verbatim}
+				wobei \verb+n+ die Anzahl Spalten der Matrix \verb+A+ ist.
+			% subsection: QR--Zerlegung (end)
+			\subsection*{Eigenwerte} % (fold)
+				Eigenwerte und -vektoren werden wie folgt bestimmt. Dabei sind in der Diagonalen von \verb+D+ die Eigenwerte und in den Spalten von \verb+V+ die Eigenvektoren gespeichert:
+				\begin{verbatim}
+					[V,D] = eig(A)
+				\end{verbatim}
+			% subsection: Eigenwerte (end)
+			\subsection*{Norm} % (fold)
+				Die Norm einer Matrix kann anhand der Funktion \verb+norm+ berechnet werden. Als zweiter Parameter wird angegeben, welche Norm berechnet werden soll. Falls dieser nicht angegeben wird, wird die 2-Norm berechnet. Möglich wäre auch \verb+1+ oder \verb+inf+.
+				\begin{verbatim}
+					norm(A)
+					norm(A,inf)
+				\end{verbatim}
+			% subsection: Norm (end)
+			\subsection*{Rang} % (fold)
+				\begin{verbatim}
+					rank(A)
+				\end{verbatim}
+			% subsection: Rang (end)
+			\subsection*{Singulärwerte} % (fold)
+				Singulärwerte sind in der Diagonalen von \verb+S+ gespeichert:
+				\begin{verbatim}
+					[U,S,V] = svd(A)
+				\end{verbatim}
+			% subsection: Singulärwerte (end)
+		% section: Operationen (end)
+	\end{multicols*}
+\end{document}

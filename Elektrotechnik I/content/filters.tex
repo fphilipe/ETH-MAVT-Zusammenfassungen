@@ -1,0 +1,63 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\section{Filters} % (fold)
+	Any combination of passive ($R$, $L$ or $C$) or active (transistors or operational amplifiers) elements designed to select or reject a band of frequencies is called a filter.
+	
+	Active filters can cause an amplification, whereas passive filters not.
+	
+	Filters may be cascaded. Two same 1st order filters in series result in a 2nd order filter with unmodified cutoff-frequency.
+	
+	\begin{center}
+		\circuit{cascade}
+	\end{center}
+	
+	\paragraph{Cutoff-Frequency:} % (fold)
+		Also called \SI{-3}{\deci\bel}-Frequency, ``Eckfrequenz'' or ``Grenzfrequenz''.
+		
+		The frequency $f_c$, where
+		\begin{tightitemize}
+			\item the output is at \SI{-3}{\deci\bel} of the filter's reference value (e.g.~DC gain of the lowpass filter)
+			\item the output is at rms of the filter's reference value (e.g.~lowpass filter: $v_o(\iu 2\pi \cdot f_c) = \nicefrac{v_o(0)}{\sqrt 2}$)
+		\end{tightitemize}
+	% paragraph: Cutoff-Frequency: (end)
+	
+	\subsection{Lowpass Filter} % (fold)
+		\SI{-20}{\deci\bel\per{decade}}, \ang{-90} phase
+		
+		\begin{gather*}
+			H(\iu \omega) = \frac{1}{1+\iu \omega R C} \qquad \abs{H(\iu \omega)} = \frac{1}{\sqrt{1+(\omega RC)^2}} \\
+			\angle H(\iu \omega) = -\arctan(\omega R C) \qquad f_c = \frac{1}{2\pi R C}
+		\end{gather*}
+
+		\begin{center}
+			\circuit{lowpass_filter}
+		\end{center}
+	% subsection: Lowpass Filter (end)
+	
+	\subsection{Highpass Filter} % (fold)
+		\SI{+20}{\deci\bel\per{decade}}, \ang{-90} phase
+		
+		\begin{gather*}
+			H(\iu \omega) = \frac{\iu \omega R C}{1 + \iu \omega R C} \qquad \abs{H(\iu \omega)} = \frac{\omega R C}{\sqrt{1+(\omega RC)^2}} \\
+			\angle H(\iu \omega) = \ang{90} - \arctan(\omega RC) \qquad f_c = \frac{1}{2\pi R C}
+		\end{gather*}
+
+		\begin{center}
+			\circuit{highpass_filter}
+		\end{center}
+	
+	\subsection{Bandpass Filter} % (fold)
+		Highpass and lowpass filters in series.
+	% subsection: Bandpass Filter (end)
+	
+	\subsection{Biquadratic Filter} % (fold)
+		The transfer function has the following form:
+		\[
+			H(\iu \omega) = K \cdot \frac{\omega_0^2}{(\iu \omega)^2 + \frac{\omega_0}{Q} \cdot \iu \omega + \omega_0^2}
+		\]
+		\begin{tightitemize}
+			\item[$K$:] gain
+			\item[$Q$:] quality factor
+		\end{tightitemize}
+	% subsection: Biquadratic Filter (end)
+% section: Frequency Selective Filters (end)

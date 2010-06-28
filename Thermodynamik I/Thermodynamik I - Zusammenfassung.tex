@@ -1,0 +1,32 @@
+\documentclass[9pt,fleqn,ngerman,article]{memoir}
+
+\title{Thermodynamik I -- Zusammenfassung}
+\author{Philipe Fatio}
+
+\input{../.includes/layout_setup}
+\input{../.includes/page_setup}
+\input{../.includes/extra_packages}
+\input{../.includes/macro_setup}
+
+\hypersetup{
+    pdffitwindow=true,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Thermodynamik I -- Zusammenfassung},    % title
+    pdfauthor={Philipe Fatio},     % author
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=black           % color of external links
+}
+
+%% adittional packages
+\usepackage{pifont}
+
+\begin{document}
+	\content{titelseite}
+	\begin{multicols*}{3}
+		\content{outline}
+	\end{multicols*}
+\end{document}

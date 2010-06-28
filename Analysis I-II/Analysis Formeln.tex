@@ -1,0 +1,800 @@
+\documentclass[12pt]{article}
+
+\author{Philipe Fatio}
+\title{Analysis Formelsammlung}
+\date{\today}
+
+\usepackage[
+	a4paper,
+	landscape,
+	left=1.25cm,
+	right=1.25cm,
+	top=0.75cm,
+	bottom=0.75cm,
+	includeheadfoot
+]{geometry}
+
+\usepackage{multicol}
+\setlength{\columnseprule}{.5pt}
+\setlength{\columnsep}{1cm}
+\setlength{\parindent}{0cm}
+
+%\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{pdfpages}
+
+\usepackage[all]{xy}
+
+\usepackage{empheq}
+
+\usepackage{fancybox}
+\setlength\shadowsize{1.5pt}
+
+% Wir schreiben hier auf Deutsch
+\usepackage[german]{babel}
+
+% Use utf-8 encoding for foreign characters
+\usepackage[utf8]{inputenc}
+
+% Differential
+\newcommand{\ud}{\,\mathrm{d}}
+\newcommand{\ci}{\:\mathrm{i}\:}
+
+% Nice headers
+\usepackage{fancyhdr}
+\fancyhf{}
+\cfoot{-- \emph{\thepage} --}
+\rhead{\textit{Philipe Fatio} -- \today}
+\lhead{\textbf{Analysis Formelsammlung}}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+
+% Use Mathematical Equations
+\usepackage{amsmath}
+
+\usepackage{titlesec}
+\titleformat*{\section}{\large \bf}
+\titleformat*{\subsection}{\normalsize \bf}
+\titleformat*{\subsubsection}{\normalsize \bf}
+\titleformat*{\paragraph}{\footnotesize \bf}
+\titleformat*{\subparagraph}{\footnotesize \bf}
+
+% Operators
+\DeclareMathOperator{\grad}{\mathbf{grad}}
+\DeclareMathOperator{\divergenz}{\mathbf{div}}
+\DeclareMathOperator{\rot}{\mathbf{rot}}
+
+\begin{document}
+	\begin{multicols*}{3}
+		\section{Grundlagen} % (fold)
+			% Trigonometrische Funktionen (fold)
+			\begin{tabular}{r|ccccc}
+			 	& $\mathbf{0^{\circ}}$ & $\mathbf{30^{\circ}}$ & $\mathbf{45^{\circ}}$ & $\mathbf{60^{\circ}}$ & $\mathbf{90^{\circ}}$\\
+				\hline
+				$\boldsymbol{\sin}$ & $0$ & $\frac{1}{2}$ & $\frac{\sqrt{2}}{2}$ & $\frac{\sqrt{3}}{2}$ & $1$\\
+				$\boldsymbol{\cos}$ & $1$ & $\frac{\sqrt{3}}{2}$ & $\frac{\sqrt{2}}{2}$ & $\frac{1}{2}$ & $0$\\
+				$\boldsymbol{\tan}$ & $0$ & $\frac{\sqrt{3}}{3}$ & $1$ & $\sqrt{3}$ & Pol\\
+			\end{tabular}
+			% Trigonometrische Funktionen (end)
+			\subsection{Zylindrische Koordinaten} % (fold)
+				\[
+					\begin{array}{r@{\:=\:}l|r@{\:=\:}l}
+						x & \rho \cos{\varphi} & \rho & \sqrt{x^2 + y^2} \\
+						y & \rho \sin{\varphi} & \varphi & \arctan{\frac{y}{x}} \\
+						z & z & z & z
+					\end{array}
+				\]
+			% Zylindrische Koordinaten (end)
+			\subsection{Sphärische Koordinaten} % (fold)
+				\[
+					\begin{array}{r@{\:=\:}l|r@{\:=\:}l}
+						x & r \cos{\varphi} \sin{\theta} & r & \sqrt{x^2 + y^2 + z^2} \\
+						y & r \sin{\varphi} \sin{\theta} & \varphi & \arctan{\frac{y}{x}} \\
+						z & r \cos{\theta} & \theta & \arctan{\frac{\sqrt{x^2 + y^2}}{z}}
+					\end{array}
+				\]
+			% Sphärische Koordinaten (end)
+		% section: Grundlagen (end)
+		\section{Funktionen} % (fold)
+			
+			\subsection{Folgen, Konvergenz} % (fold)
+				
+			% (end)
+			
+			\subsection{Funktionen} % (fold)
+				
+				Es sei $f\ :\ x \to \ f(x)$ eine Funktion. Sie heisst:
+				\begin{itemize}
+					\item \emph{gerade}, wenn
+				\end{itemize}
+				
+			% (end)
+			
+		% (end)
+		\section{Limes} % (fold)
+			\begin{gather*}
+				\lim_{x \to 0^-} \frac{1}{x} = -\infty \,, \ 
+				\lim_{x \to 0^+} \frac{1}{x} = \infty \\
+				\not{\exists} \lim_{x \to 0} \frac{1}{x}
+			\end{gather*}
+			\subsection{Rechenregeln} % (fold)
+				\begin{gather*}
+					\lim_{x \to x_0} (f(x) \pm g(x)) = \lim_{x \to x_0} f(x) \pm \lim_{x \to x_0} g(x) \\
+					\lim_{x \to x_0} (f(x) \cdot g(x)) = \lim_{x \to x_0} f(x) \cdot \lim_{x \to x_0} g(x) \\
+					\lim_{x \to x_0} \frac{f(x)}{g(x)} = \frac{\lim_{x \to x_0} f(x)}{\lim_{x \to x_0} g(x)} \\
+					\lim_{x \to x_0} g(x)^{f(x)} = \exp\left( \lim_{x \to x_0} (f(x) \cdot \ln{g(x)})\right)
+				\end{gather*}
+				
+				\subsubsection{Bernoulli-de-l'Hospital (BH)} % (fold)
+					Falls ein Limes zu Operationen mit $0$ und $\infty$ wird, z.B. $\frac{0}{0}$ oder $0 \cdot \infty$,
+					dann ist
+					\[
+						\lim_{x \to \infty} \frac{f(x)}{g(x)} = \lim_{x \to \infty} \frac{f'(x)}{g'(x)}
+					\]
+				% subsubsection: Bernoulli-de-l'Hospital (end)
+				
+				\subsubsection{Grössenordnung} % (fold)
+					\[
+						e^x \gg a^x \gg x^k \gg \ln x
+					\]
+				% subsubsection: Grössenordnung (end)
+				
+			% subsection: Rechenregeln (end)
+			\subsection{Tricks} % (fold)
+				\[
+					\sqrt{x+c} - d \Rightarrow \frac{x+c-d^2}{\sqrt{x+c}+d}
+				\]
+				
+				\begin{gather*}
+					\lim_{n \to \infty} \sqrt[n]{n^2+c} \Rightarrow \\
+					1 \leq \sqrt[n]{n^2+c} \leq \sqrt[n]{2n^2} = \underbrace{\sqrt[n]{2}}_{\to 1} \underbrace{\sqrt[n]{n}}_{\to 1} \underbrace{\sqrt[n]{n}}_{\to 1} = 1
+				\end{gather*}
+				
+				\begin{gather*}
+					\begin{array}{l}
+						\frac{P(x)}{e^x} \stackrel{x \to \infty}{\longrightarrow} 0 \\
+						\frac{\ln(x)}{e^x} \stackrel{x \to \infty}{\longrightarrow} 0
+					\end{array}
+				\end{gather*}
+				$e^x$ wächst schneller als jedes Polynom.
+			% subsection: Tricks (end)
+		% section: Limes (end)
+		\section{Komplexe Zahlen} % (fold)
+			\begin{gather*}
+				z = x + \ci y \\
+				x = \mathrm{Re}(z)\ ,\, y = \mathrm{Im}(z)
+			\end{gather*}
+			
+			\subsection{Rechenregeln} % (fold)
+				\begin{description}
+					\item[Division:] \begin{align*}
+						\frac{x_1 + \ci y_1}{x_2 + \ci y_2} &= \frac{(x_1 + \ci y_1)(x_2 - \ci y_2)}{(x_2 + \ci y_2)(x_2 - \ci y_2)} \\
+						 &= \frac{(x_1 + \ci y_1)(x_2 - \ci y_2)}{x_2^2 + y_2^2}
+					\end{align*}
+					\item[Polarform:] 
+					\begin{gather*}
+						z = r \cdot e^{\ci \varphi} = r(\cos \varphi + \ci \sin \varphi) \\
+						r = \sqrt{z \cdot \overline{z}} = |z| = \sqrt{x^2 + y^2} \\
+						x = r \cos \varphi \ ,\, y = r \sin \varphi
+					\end{gather*}
+					\item[Umrechnen:] \begin{gather*}
+						r = \sqrt{x^2 + y^2} \\
+						\varphi = \left\{\begin{array}{l@{\ ,\,}r}
+							\arccos \frac{x}{r} & y \geq 0 \\
+							-\arccos \frac{x}{r} & y < 0 \\
+							\text{unbestimmt} & r = 0
+						\end{array}\right.
+					\end{gather*}
+				\end{description}
+			% subsection: Rechenregeln (end)
+		% section: Komplexe Zahlen (end)
+		\section{Asymptoten} % (fold)
+			\begin{description}
+				\item[senkrechte:] resultieren aus Singularitäten im Nenner, z.B. $\frac{1}{x}$
+				\item[waagrechte:] z.B. $\lim = 1$
+				\item[schräge:] z.B. $\lim = x+1$
+				\item[Kurven:] durch Polynomdivision
+			\end{description}
+		% section: Asymptoten (end)
+		\section{Integralrechnung} % (fold)
+			\subsection{Hauptsatz der Infinitesimalrechnung} % (fold)
+			
+				\paragraph{Mittelwertsatz der Integralrechnung:}
+					Es existiert $\xi$ in $[a,b]$ mit 
+					\[
+						(b-a)f(\xi) = \int_a^b f(x) \ud x
+					\]
+				
+				\paragraph{Hauptsatz der Infinitesimalrechnung:}
+					Die Ableitung eines bestimmten Integrals über eine stetige Funktion $f$
+					nach der oberen Integrationsgrenze ist gleich dem Wert des Integranden an
+					dieser Grenze:
+					\[
+						\frac{\ud}{\ud x} \int_a^x f(t) \ud t = f(x)
+					\]
+			% (end)
+			\subsection{Methode der partiellen Integration} % (fold)
+				Umkehrung der Produktregel. Sind $u : x \to u(x)$ und $v : x \to x(v)$ zwei Funktionen, so gilt
+				\[
+					(u \cdot v)' = u' \cdot v + u \cdot v'
+				\]
+				\[
+					uv + C = \int (u \cdot v)' \ud x = \int u' v \ud x + \int u v' \ud x
+				\]
+				und damit
+				\begin{empheq}[box=\shadowbox*]{equation*}
+						\int u' v \ud x = uv - \int u v' \ud x
+				\end{empheq}
+				
+				\paragraph{Beispiel:}
+					\[
+						\int x e^x \ud x
+					\]
+					\[
+						\begin{array}{r@{\:=\:}l@{\, , \quad}r@{\:=\:}l}
+							u'(x) & e & u(x) & e^x \\
+							v(x) & x & v'(x) & 1
+						\end{array}
+					\]
+					\begin{align*}
+						\int x e^x &= x e^x - \int 1 \cdot e^x \ud x \\
+						&= x e^x - e^x + C \\
+						&= (x-1)e^x + C
+					\end{align*}
+				
+			% (end)
+			\subsection{Partialbruchzerlegung} % (fold)
+				Integration einer gebrochen rationalen Funktion soll vereinfacht werden.
+				\[
+					\int \frac{1}{x^2 -7x+10} \ud x
+				\]
+				Klammeransatz im Nenner:
+				\[
+				\int \frac{1}{(x-5)(x-2)} \ud x = \int \left(\frac{A}{x-5} + \frac{B}{x-2}\right) \ud x
+				\]
+			% subsection: Partialbruchzerlegung (end)
+			\subsection{Methode der Substitution} % (fold)
+				Die Substitution einer Funktion $u(x)$ eignet sich besonders dann, wenn der Integrand $u'(x)$ als Faktor enthält.
+				
+				\paragraph{Beispiel:}
+					\[
+						I = \int \sin^n x \cos x \ud x
+					\]
+					Wenn $u(x) = \sin x$ ist, dann ist $u'(x) = cos x$, so dass sich das Integral wie folgt schreiben lässt:
+					\[
+						I = \int (u(x))^n u'(x) \ud x
+					\]
+					\[
+						U(x) = \frac{1}{n+1} (u(x))^{n+1}
+					\]
+					\[
+						I = \int \sin^n x \cos x \ud x = \frac{1}{n+1} \sin^{n+1} x + C
+					\]
+					
+				\subsubsection{Standard Substitutionen} % (fold)
+					\begin{itemize}
+						\item \[
+							\int R(e^x) \ud x
+						\]
+						setze $e^x = t$ $\Rightarrow$ $\ud x = \frac{\ud t}{t}$:
+						\[
+							\Rightarrow \int R(t) \frac{\ud t}{t}
+						\]
+					
+						\item \[
+							\int R(\sinh (x), \cosh (x)) \ud x
+						\]
+						setze $\sinh(x) = \frac{e^x - e^{-x}}{2}$ bzw. $\cosh(x) = \frac{e^x + e^{-x}}{2}$, anschliessend $e^x = t$.
+					
+						\item \[
+							\int R(\sqrt{a^2 + x^2}) \ud x
+						\]
+						wähle $x = a \cdot \sinh(t)$ und nutze $\cosh^2 - \sinh^2 = 1$
+					
+						\item \[
+							\int R(\sqrt{x^2 - a^2}) \ud x
+						\]
+						wähle $x = a \cdot \sinh(t)$ und nutze $\cosh^2 - \sinh^2 = 1$
+					
+						\item \[
+							\int R(\sqrt{a^2 - x^2}) \ud x
+						\]
+						wähle $x = a \cdot \sin(t)$ und nutze $\sin^2 + \cos^2 = 1$
+					\end{itemize}
+				% subsubsection: Standard Substitutionen (end)
+			% (end)
+			
+			\subsection{Tricks} % (fold)
+				\begin{itemize}
+					\item \[
+						\int f'(x) \cdot f(x) \ud x = \frac{1}{2} f^2(x)
+					\]
+					
+					\item \[
+						\int \frac{f'(x)}{f(x)} \ud x = \ln(f(x))
+					\]
+				\end{itemize}
+			% subsection: Tricks (end)
+			\subsection{Trägheitsmoment} % (fold)
+				Kinetische Energie $T$:
+				\[
+					T = \frac{1}{2} \ \Theta_z \ \omega^2
+				\]
+				Trägheitsmoment um die $z$-Achse:
+				\[
+					\Theta_z = m_1 (x_1^2 + y_1^2) + m_2 (x_2^2 + y_2^2) + \dots + m_n (x_n^2 + y_n^2)
+				\]
+				Trägheitsmoment um die Achse $a$ ist definiert als Summe der Produkte $d^2 \cdot m_d$, wo $m_d$ die Masse bezeichnet, welches sich im Abstand $d$ von der Achse $a$ befindet.
+			% (end)
+		% section: Integralrechnung (end)
+		\section{Funktionen von mehreren Variablen, Differentialrechnung} % (fold)
+			\subsection{Satz von Schwarz} % (fold)
+				Gemischte Ableitungen $f_{xy}$ und $f_{yx}$ sind gleich, wenn beide Funktionen stetig sind.
+			% subsection: Satz von Schwarz (end)
+			\subsection{Linearisieren, Fehlerrechnung} % (fold)
+				Eigenschaften:
+				\begin{itemize}
+					\item Wert in $(x_0, y_0)$ ist $f(x_0, y_0)$
+					\item partielle Ableitung nach $x$ ist $f_x (x_0, y_0)$
+					\item partielle Ableitung nach $y$ ist $f_y (x_0, y_0)$
+				\end{itemize}
+				\begin{align*}
+					(x_0, y_0) &\rightarrow f(x_0,y_0) + f_x(x_0,y_0)(x-x_0) \\
+					&+ f_y (x_0, y_0) (y-y_0)
+				\end{align*}
+				Graph ist eine Tangentialebene.
+			% subsection: Linearisieren, Fehlerrechnung (end)
+			\subsection{Extrema} % (fold)
+				$(x_0,y_0)$ ist lokale Extremalstelle von $f$, dann
+				\begin{itemize}
+					\item $(x_0,y_0)$ Punkt des Randes von $D(f)$, \textbf{oder}
+					\item $f_x$ und/oder $f_y$ in $(x_0,y_0)$ nicht definiert, \textbf{oder}
+					\item $f_x$ und $f_y$ in $(x_0,y_0)$ definiert und beide in $(x_0,y_0) = 0 \Rightarrow$ horizontale Tangentialebene.
+				\end{itemize}
+				
+				\begin{itemize}
+					\item nicht jede Extremalstelle von $f$ ist gemeinsame Nullstelle von $f_x$ und $f_y$,
+					\item nicht jede gemeinsame Nullstelle von $f_x$ und $f_y$ ist Extremalstelle von $f$.
+				\end{itemize}
+			% subsection: Extrema (end)
+			\subsection{Verallgemeinerte Kettenregel} % (fold)
+				\[
+					t \rightarrow F(t) = f(x(t), y(t))
+				\]
+				\begin{align*}
+					\frac{dF}{dt}(t) &= \frac{df}{dt}(x(t),y(t)) \\ &= f_x(x(t),y(t)) \ \dot{x}(t) + f_y(x(t),y(t)) \ \dot{y}(t)
+				\end{align*}
+			% subsection: Verallgemeinerte Kettenregel (end)
+			\subsection{Koordinatentransformation} % (fold)
+				\begin{gather*}
+					x = x(u,v) \ , \, y = y(u,v) \\
+					u = u(x,y) \ , \, v = v(x,y)
+				\end{gather*}
+				\begin{align*}
+					\tilde{F}(u,v) &= F(x(u,v),y(u,v)) \\
+					F(x,y) &= \tilde{F}(u(x,y),v(x,y))
+				\end{align*}
+				\begin{align*}
+					F_x &= \tilde{F}_u \cdot u_x + \tilde{F}_v \cdot v_x \\
+					F_y &= \tilde{F}_u \cdot u_y + \tilde{F}_v \cdot v_y
+				\end{align*}
+			% subsection: Koordinatentransformation (end)
+		% section: Funktionen von mehreren Variablen, Differentialrechnung (end)
+		\section{Vektoranalysis} % (fold)
+			\subsection{Jacobi-Matrix} % (fold)
+				\begin{gather*}
+					\iint_G f(x,y) \ud x \ud y \\ = \iint_H f(x(u,v), y(u,v)) |\det J| \ud u \ud v
+				\end{gather*}
+				\[
+					J = \frac{\partial(x,y)}{\partial(u,v)} = \left( \begin{array}{cc}
+						\partial_u x & \partial_v x \\
+						\partial_u y & \partial_v y
+					\end{array} \right)
+				\]
+				\subsubsection{Einige Jacobi-Determinanten} % (fold)
+					kartesische $\to$ Zylinder:
+					\[
+						\ud V: \ud x \ud y \ud z \to r \ud r \ud \varphi \ud z
+					\]
+					
+					kartesische $\to$ Kugel:
+					\[
+						\ud V: \ud x \ud y \ud z \to r^2 \sin \theta \ud r \ud \varphi \ud \theta
+					\]
+				% subsubsection: Einige Jacobi-Determinanten (end)
+			% subsection: Jacobi-Matrix (end)
+			\subsection{Linienintegrale} % (fold)
+				\[
+					\int_{\gamma} f(x) \ud x = \int_{\gamma} f(\vec{r}(t)) \cdot \dot{\vec{r}}(t) \ud t
+				\]
+			% subsection: Linienintegrale (end)
+			\subsection{Bogenlänge} % (fold)
+				Es sei $f(x,y)$ eine Funktion und $t$ eine geeignete Parametrisierung. Die Länge der Kurve zwischen den Punkten $a, b$ ist wie folgt definiert:
+				\[
+					S = \int_a^b \sqrt{\dot{x}^2(t) + \dot{y}^2(t)} \ud t
+				\]
+			% subsection: Bogenlänge (end)
+			\subsection{Differentialoperatoren der Vektoranalysis} % (fold)
+				\subsubsection{Gradient ($\grad$)} % (fold)
+					Skalarfeld $\rightarrow$ Vektorfeld
+					
+					\[
+						\grad f(x,y,z) = \nabla f(x,y,z) = \left(\begin{array}{c}
+							\frac{\partial f}{\partial x} \\ [2pt]
+							\frac{\partial f}{\partial y} \\ [2pt]
+							\frac{\partial f}{\partial z}
+						\end{array}\right)
+					\]
+					
+					\paragraph{Eigenschaften:} % (fold)
+						\begin{itemize}
+							\item Länge ist Betrag der grössten Richtungsableitung von $f(x,y,z)$
+							\item Richtung ist diejenige, in der grösste Richtungsableitung erhalten wird
+							\item Steht senkrecht zur Niveaufläche von $f$ durch den Punkt $(x,y,z)$
+						\end{itemize}
+					% paragraph: Eigenschaften (end)
+				% subsubsection: Gradient ($grad$) (end)
+				\subsubsection{Divergenz ($div$)} % (fold)
+					Vektorfeld $\rightarrow$ Skalarfeld
+					
+					\[
+						\divergenz \vec{v}(x,y,z) = \frac{\partial v_1}{\partial x} + \frac{\partial v_2}{\partial y} + \frac{\partial v_3}{\partial z}
+					\]
+				% subsubsection: Divergenz ($div$) (end)
+				\subsubsection{Rotation ($rot$)} % (fold)
+					Vektorfeld $\rightarrow$ Vektorfeld
+					
+					\[
+						\rot \vec{v}(x,y,z) = \left( \begin{array}{c}
+							\frac{\partial v_3}{\partial y} - \frac{\partial v_2}{\partial z} \\ [2pt]
+							\frac{\partial v_1}{\partial z} - \frac{\partial v_3}{\partial x} \\ [2pt]
+							\frac{\partial v_2}{\partial x} - \frac{\partial v_1}{\partial y}
+						\end{array} \right)
+					\]
+				% subsubsection: Rotation ($rot$) (end)
+				\subsubsection{Beziehungen der Differentialoperatoren} % (fold)
+					$\divergenz \grad f$: Skalarfeld $\rightarrow$ Skalarfeld \\
+					auch Laplace-Operator ($\Delta$) genannt
+					\[
+						\divergenz \grad f = f_{xx} + f_{yy} + f_{zz}
+					\]
+
+					\[
+						\rot \grad f \equiv (0,0,0)
+					\]
+					
+					\[
+						\divergenz \rot \vec{v} \equiv 0
+					\]
+					
+					\[
+						\rot \rot \vec{v} = \grad \divergenz \vec{v} - \left(\begin{array}{c}
+							\Delta v_1 \\
+							\Delta v_2 \\
+							\Delta v_3
+						\end{array}\right)
+					\]
+				% subsubsection: Beziehungen der Differentialoperatoren (end)
+			% subsection: Differentialoperatoren der Vektoranalysis (end)
+			\subsection{Richtungsableitung} % (fold)
+				Richtungsableitung einer Funktion $f$ in Richtung $\vec{r}$ im Punkt $x_0, y_0, z_0$:
+				\[
+					\vec{r} \cdot \grad f(x_0, y_0, z_0)
+				\]
+				$\vec{r}$ normiert.
+			% subsection: Richtungsableitung (end)
+			\subsection{Flächenberechnung} % (fold)
+				Fläche mit $u,v$ parametrisieren: $\vec{r}(u,v)$
+				\[
+					O = \iint_B |\vec{r}_u (u,v) \times \vec{r}_v (u,v) | \ud u \ud v
+				\]
+				
+				Bei Funktionen der Form $f(x,y)$:
+				\[
+					O = \iint_B \sqrt{f_x^2 + f_y^2 + 1} \ud x \ud y
+				\]
+			% subsection: Flächenberechnung (end)
+			\subsection{Fluss} % (fold)
+				\ldots des Vektorfeldes $\vec{v}$ in Richtung $\vec{n}$ durch $S$.
+				\[
+					\Phi = \iint_S \vec{v} \cdot \vec{n} \ud O
+				\]
+				$\vec{n}$ normiert:
+				\[
+					\vec{n}(u,v) = \frac{\vec{r}_u (u,v) \times \vec{r}_v (u,v)}{|\vec{r}_u (u,v) \times \vec{r}_v (u,v)|}
+				\]
+				Da
+				\[
+					\ud O = |\vec{r}_u (u,v) \times \vec{r}_v (u,v)| \ud u \ud v
+				\]
+				ergibt sich
+				\[
+					\Phi = \iint_S \vec{v} \cdot (\vec{r}_u (u,v) \times \vec{r}_v (u,v)) \ud u \ud v
+				\]
+			% subsection: Fluss (end)
+			\subsection{Divergenzsatz, Satz von Gauss} % (fold)
+				Nützlich um manchmal Rechnung zu vereinfachen.
+				\[
+					\Phi = \iint_{\partial B} \vec{v} \cdot \vec{n} \ud O
+					     = \iiint_B \divergenz \vec{v} \ud V
+				\]
+			% subsection: Divergenzsatz, Satz von Gauss (end)
+			\subsection{Arbeit} % (fold)
+				\ldots auf einem Weg $W$ durch ein Vektorfeld $\vec{v}$.
+				\begin{gather*}
+					A = \int_W \vec{v}(\vec{r}(t)) \cdot \ud \vec{r}\, \left(= \int_W \ud A\right) \\
+					\ud A = \vec{v}(\vec{r}(t)) \cdot \ud \vec{r}\ ,\, \ud \vec{r} = \dot{\vec{r}}(t) \ud t
+				\end{gather*}
+			% subsection: Arbeit (end)
+			\subsection{Satz von Stokes} % (fold)
+				Arbeit des Vektorfeldes $\vec{v}$ längs Randweg $C$ $=$ Fluss von $\rot \vec{v}$ in Richtung $\vec{n}$ durch Fläche $S$
+				
+				\[
+					\int_C \vec{v} \cdot \ud \vec{r} = \iint_S \rot \vec{v} \cdot \vec{n} \cdot \ud O
+				\]
+				
+				Wenn $\rot \vec{v} \cdot \vec{n} = 1$ $\Rightarrow$ $\iint_S \ud O$ \\ $\Rightarrow$ Arbeit längs $C$ $=$ Fläche $S$
+			% subsection: Satz von Stokes (end)
+			\subsection{Potentialfelder} % (fold)
+				Vektorfeld heisst \emph{konservativ}, wenn für alle $P,Q \in D(\vec{v})$ gilt, dass die Arbeit von $\vec{v}$ längs allen Wegen von $P$ nach $Q$ gleich gross ist.
+				
+				$\Rightarrow$ geschlossener Weg $\Rightarrow$ Arbeit $= 0$
+				
+				\subsubsection{Zusammenhang mit $\grad$} % (fold)
+					$\vec{v} = \grad f$ $\Rightarrow$ $f$ heisst Potential
+					
+					Vektorfeld $\vec{v}$ ist genau dann konservativ, wenn es ein $f$ gibt mit $\vec{v} = \grad f$.
+					
+					Arbeit von $P_1$ nach $P_2$ ist dann gleich \[
+						A = f(P_2) - f(P_2)
+					\]
+				% subsubsection: Zusammenhang mit $\grad$ (end)
+				
+				\subsubsection{Zusammenhang mit $\rot$} % (fold)
+					Ist $\vec{v}$ Potentialfeld, so ist $\vec{v}$ wirbelfrei.
+					\[
+						\Rightarrow \rot \vec{v} = (0,0,0)
+					\]
+					
+					Ist $\rot \vec{v} \neq (0,0,0)$ $\Rightarrow$ $\vec{v}$ kein Potentialfeld
+					
+					Ist $\rot \vec{v} = (0,0,0)$ $\Rightarrow$ $\vec{v}$ ist Potentialfeld, wenn $D(\vec{v})$ einfach zusammenhängend ist
+					$\Rightarrow$ Jeder geschlossene Weg lässt sich auf ein Punkt reduzieren.
+				% subsubsection: Zusammenhang mit $\rot$ (end)
+			% subsection: Potentialfelder (end)
+		% section: Vektoranalysis (end)
+		\section{Differentialgleichungen} % (fold)
+			\subsection{Separierbare DGL 1. Ordnung} % (fold)
+				\begin{gather*}
+					y' = \frac{h(x)}{g(y)} \\
+					\int g(y) \ud y = \int h(x) \ud x
+				\end{gather*}
+			% subsection: Separierbare DGL 1. Ordnung (end)
+			\subsection{Lineare DGL} % (fold)
+				Allgemeine Lösung ist Summe der allgemeinen homogenen Lösung $y_h$
+				und einer partikulären Lösung $y_p$:
+				\begin{empheq}[box=\shadowbox]{equation*}
+					y(x) = y_h(x) + y_p(x)
+				\end{empheq}
+				
+				$q(x)$ ist inhomogenes Glied oder Störglied.
+				Ist $q(x) = 0$, so ist die DGL homogen, andernfalls inhomogen.
+				
+				\subsubsection{1. Ordnung} % (fold)
+					\[
+						y' = p(x) \cdot y + q(x)
+					\]
+					
+					\paragraph{Bestimmung von $y_h$} % (fold)
+						\[
+							y' = p(x) \cdot y
+						\]
+						ist die zur DGL gehörigen homogene DGL. Diese ist separierbar:
+						\begin{gather*}
+							\frac{y'}{y} = p(x) \\
+							\int \frac{\ud y}{y} = \int p(x) \ud x \\
+							\ln |y| = \int p(x) \ud x + C
+						\end{gather*}
+						Man erhält die homogene Lösung $y_h$ der DGL.
+					% paragraph: Bestimmung von $y_h$ (end)
+					
+					\paragraph{Bestimmung von $y_p$} % (fold)
+						
+						\mbox{}
+						\vspace{8pt}
+						
+						\begin{tabular}{l|l}
+							\textbf{Störfunktion $g(x)$} & \textbf{Lösungsansatz $y_p$} \\
+							\hline
+							$b e^{\lambda x}$ & $c e^{\lambda x}$ \\ [5pt]
+							$b_1 x + b_0$ & $c_1 x + c_0$\\ [5pt]
+							$b_2 x^2 + b_1 x + b_0$ & $c_2 x^2 + c_1 x + c_0$\\ [5pt]
+							\ldots etc. (Polynom) & \ldots etc. (Polynom)\\ [5pt]
+							$A \sin (\omega x)$ & \\
+							oder $A \cos (\omega x)$ & $C_1 \sin (\omega x) + C_2 \cos (\omega x)$
+						\end{tabular}
+						
+						Ansonsten Verfahren von Lagrange
+					% paragraph: Bestimmung von $y_p$ (end)
+				% subsubsection: 1. Ordnung (end)
+				\subsubsection{Mit konstanten Koeffizienten 2. Ordnung} % (fold)
+					\[
+						y'' + ay' + by = g(x)
+					\]
+					
+					Ansatz für den homogenen Fall: $y(x) = e^{\lambda x}$
+					Dies führt zu:
+					\[
+						\lambda^2 + a \lambda + b = 0
+					\]
+					
+					\begin{tabular}{l|l}
+						Fall & homogene Lösung $y_h$ \\
+						\hline
+						$\lambda_1 \neq \lambda_2$ (reel) & $y_h = C_1 e^{\lambda_1 x} + C_2 e^{\lambda_2 x}$ \\ [5pt]
+						$\lambda = \lambda_1 = \lambda_2 = -\frac{a}{2}$ & $y_h = C_1 e^{\lambda x} + x \cdot C_2 e^{\lambda x}$ \\ [5pt]
+						$\lambda_{1,2} = \alpha \pm \ci \omega$ & $y_h = C_1 \sin (\omega x) + C_2 \cos (\omega x)$ \\ [2pt]
+						 & wobei $\alpha = -\frac{a}{2}$ \\ [2pt]
+						 & und $\omega = \frac{\sqrt{4b-a^2}}{2}$
+					\end{tabular}
+					
+				% subsubsection: Mit konstanten Koeffizienten 2. Ordnung (end)
+			% subsection: Lineare DGL (end)
+			\subsection{Verfahren von Lagrange} % (fold)
+				\subsubsection{Für lineare DGL 1. Ordnung} % (fold)
+					\[
+						y_0(x) = \gamma(x) \cdot y_h(x)
+					\]
+					\begin{align*}
+						y_0'(x) &= \gamma'(x) y_h(x) + \gamma(x) y_h'(x) \\
+						&\equiv p(x) \underbrace{\gamma(x) y_h(x)}_{y_0} + q(x)
+					\end{align*}
+					\[
+						\Rightarrow \gamma'(x) = \frac{q(x)}{y_h(x)}
+					\]
+				% subsubsection: Für lineare DGL (end)
+				\subsubsection{Für lineare DGL 2. Ordnung} % (fold)
+					Analoges für höhere Ordnung.
+					\begin{gather*}
+						\gamma_1'(x) y_1 (x) + \gamma_2'(x) y_2(x) \equiv 0 \\
+						\gamma_1'(x) y_1' (x) + \gamma_2'(x) y_2'(x) = q(x)
+					\end{gather*}
+				% subsubsection: Für lineare DGL 2. Ordnung (end)
+			% subsection: Verfahren von Lagrange (end)
+			\subsection{Euler Ansatz} % (fold)
+				Form:
+				\[
+					y^{(n)} + \frac{a_n-1}{x} y^{(n-1)} + \frac{a_n-2}{x^2} y^{(n-2)} + \dots + \frac{a_0}{x^n} y = 0
+				\]
+				Ansatz: $y(x) = x^{\alpha}$
+				\[
+					y(x) = C_1 x^{\alpha_1} + C_2 x^{\alpha_2} + \dots + C_k x^{\alpha k}
+				\]
+				
+				Ist $\alpha$ eine $k$-fache Nullstelle des Indexpolynoms, so sind die Funktionen
+				\[
+					x \to x^\alpha, \ x \to (\ln x)x^\alpha, \dots, x \to (\ln x)^{k-1}x^\alpha
+				\]
+				
+				$C_i$ aus Anfangsbedingungen bestimmen.
+			% subsection: Euler Ansatz (end)
+			\subsection{Tricks} % (fold)
+				Bei DGL der Form $y' = f(\frac{x}{y})$ empfiehlt sich Substitution der Form
+				\[
+					xz(x) = y(x)\ ,\, z' = \frac{1}{x} (f(x) - z)
+				\]
+				welche eine neue separierbare DGL liefert.
+			% subsection: Tricks (end)
+			\subsection{Niveaulinien} % (fold)
+				Niveaulinien einer Funktion gegeben durch $g(x,y) = C$.
+				Ableitung nach $x$ liefert
+				\[
+					y' = - \frac{g_x(x,y)}{g_y(x,y)} = f(x,y)
+				\]
+				Die Lösungskurven von $f$ sind die Niveaulinien von $g$.
+				Durch einen Punkt $(x_0, y_0)$ geht genau eine Lösungskurve von $f$, also eine Niveaulinie von $g$
+			% subsection: Niveaulinien (end)
+			\subsection{Orthogonaltrajektorien} % (fold)
+				Die Feldlinien des Gradientenfeldes verlaufen senkrecht zu den Niveaulinien von $g$, sie bilden die Orthogonaltrajektorien zur Schar der Niveaulinien.
+				
+				Die Steigung der Orthogonaltrajektorien ist
+				\[
+					m = - \frac{1}{f(x,y)}
+				\]
+				Die DGL dazu lautet
+				\[
+					y' = - \frac{1}{f(x,y)}
+				\]
+				Die Orthogonaltrajektorien der Schar $g$ ist gegeben durch $y(x)$
+			% subsection: Orthogonaltrajektorien (end)
+			\subsection{Systeme von DGL} % (fold)
+				\[
+					\dot{\vec{x}} = A \vec{x}
+				\]
+				Eigenwerte bestimmen:
+				\[
+					\det(A - \lambda I) = 0
+				\]
+				Eigenvektoren bestimmen:
+				\[
+					A \cdot v = \underline{0}
+				\]
+				Allgemeine Lösung:
+				\[
+					\vec{x} = \sum_{i=1}^n c_i \vec{v}_i e^{\lambda_i t}
+				\]
+				
+				\subsubsection{Stabilitätsverhalten} % (fold)
+					Eigenwerte berechnen.
+					\begin{description}
+						\item[$\lambda_1 \leq \lambda_2 \leq 0$:]
+						\emph{asymptotisch stabil} \\
+						$x_1$ und $x_2$ von der Form
+						\[
+							C_1 e^{\lambda_1 t} + C_2 e^{\lambda_2 t} \text{ bzw. } C_1 e^{\lambda_1 t} + C_2 t e^{\lambda_2 t}
+						\]
+						\item[$\lambda_1 < 0 < \lambda_2$:] \emph{instabil}
+						\item[$0 < \lambda \leq \lambda_2$:] \emph{instabil}
+						\item[$\lambda_1, \lambda_2$ konjugiert komplex:] 3 Fälle:
+							\begin{description}
+								\item[rein imaginär:] \emph{stabil} (nicht asymptotisch)
+								$\lambda_1 = \ci b, \lambda_2 = - \ci b$ \\
+								harmonische Schwingungen mit Kreisfrequenz $b$
+								\[
+									C_1 \cos (bt) + C_2 \sin (bt)
+								\]
+								\item[positiver Realteil:] \emph{instabil} \\
+								$\lambda_1 = a + \ci b, \lambda_2 = a - \ci b, a > 0$ \\
+								$x_1, x_2$ von der Form
+								\[
+									e^{at}(C_1 \cos(bt) + C_2 \sin (bt)), a > 0
+								\]
+								\item[negativer Realteil:] \emph{asymptotisch stabil} \\
+								$\lambda_1 = a + \ci b, \lambda_2 = a - \ci b, a < 0$ \\
+								$x_1, x_2$ von der Form
+								\[
+									e^{at}(C_1 \cos(bt) + C_2 \sin (bt)), a < 0
+								\]
+							\end{description}
+					\end{description}
+				% subsubsection: Stabilitätsverhalten (end)
+			% subsection: Systeme von DGL (end)
+		% section: Differentialgleichungen (end)
+		\section{Potenzreihen} % (fold)
+			\[
+				\sum_{k=0}^{\infty} a_k x^k = a_0 + a_1 x + a_2 x^2 + \dots
+			\]
+		% section: Potenzreihen (end)
+	\end{multicols*}
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,148 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Thermodynamik/Neue Zusammenfassung/Thermodynamik I - Zusammenfassung.tex
+
+\section{Nutzbarkeit der Energie -- Exergie} % (fold)
+	
+	\subsection{Definition} % (fold)
+		Energie setzt sich aus \textbf{Exergie} und \textbf{Anergie} zusammen:
+		\begin{description}
+			\item[Exergie:] Maximaler Anteil, der mittels eines Prozesses in Arbeit
+				umgewandelt werden kann, wenn das System bis zum vollständigen
+				Gleichgewicht mit der Umgebung betrieben wird.
+			\item[Anergie:] Anteil, der nach dem Erreichen des Gleichgewichtes zurückbleibt.
+		\end{description}
+		
+		Ein System im Gleichgewicht besitzt nur noch Anergie. Es befindet sich in
+		einem ``thermodynamischen toten Zustand'' $\Rightarrow$ Entropie ist maximal
+		
+		\subsubsection{Exergie eines geschlossenen Systems} % (fold)
+			(Index $0$ steht für Umgebung)
+			\begin{align*}
+				E_x &= W_\text{nutz,rev} \\
+				&= U - U_0 + p_0 (V - V_0) - T_0 (S-S_0) + KE + PE \\
+				e_x &= u - u_0 + p_0 (v - v_0) - T_0(s-s_0) + ke + pe
+			\end{align*}
+			Die Exergie ist eine \emph{Zustandsfunktion}. Für die Änderung gilt:
+			\begin{align*}
+				E_{x2} - E_{x1} &= (U_2 - U_1) + p_0(V_2 - V_1) - T_0(S_2 - S_1)\\ &\phantom{=} + (KE_2 - KE_1) + (PE_2 - PE_1) \\[1ex]
+				e_{x2} - e_{x1} &= (u_2 - u_1) + p_0(v_2 - v_1) - T_0(s_2 - s_1)\\ &\phantom{=} + (ke_2 - ke_1) + (pe_2 - pe_1)
+			\end{align*}
+		% subsubsection: Exergie eines geschlossenen Systems (end)
+		
+		\subsubsection{Das Gouy-Stodola-Theorem für geschlossene Systeme} % (fold)
+			Stellt eine Verbindung zwischen der Entropieerzeugung und verlorener Exergie dar.
+			\begin{align*}
+				\dot W_\text{Verlust} = \dot W_\text{rev} - \dot W_0 &= T_0 \cdot \dot S_\text{Erz} \\
+				\dot E_{x\text{,Verlust}} = \dot E_{x\text{,rev}} - \dot E_{x} &= T_0 \cdot \dot S_\text{Erz} \\
+			\end{align*}
+		% subsubsection: Das Gouy-Stodola-Theorem für geschlossene Systeme (end)
+	% subsection: Definition (end)
+	
+	\subsection{Exergiebilanz für geschlossene Systeme} % (fold)
+		Exergie kann durch Wärme oder Arbeit übertragen werden.
+		
+		Exergieänderung des Systems:
+		{\setlength{\mathindent}{0pt}
+		\begin{align*}
+			\Delta E_{x} = 
+			\underbrace{
+				\int_1^2 \parens{ 1- \frac{T_0}{T} } \delta Q
+			}_{\mathclap{\substack{
+				\text{Exergietransfer} \\
+				\text{durch Wärmeübertragung}
+			}}}
+			 - 
+			\overbrace{\vphantom{\int}
+				[W - p_0(V_2 - V_1)]
+			}^{\mathclap{\substack{
+				\text{Exergietransfer durch} \\
+				\text{Übertragung von Arbeit}
+			}}}
+			 - 
+			\underbrace{\vphantom{\int}
+				T_0 \cdot S_\text{Erz}
+			}_{\mathclap{\substack{
+				\text{Exergieverlust durch} \\
+				\text{Entropieerzeugung}
+			}}}
+		\end{align*}}
+		
+		Bilanz für Energieströme:
+		\emphequation{equation*}{
+			\Diff{E_x}{t} = \sum_{i=1}^n \parens{
+				1- \frac{T_0}{T_i}
+			} \dot Q_i - \left[
+				\dot W - p_0 \Diff{V}{t}
+			\right] - T_0 \cdot \dot S_\text{Erz}
+		}
+		
+		\paragraph{Exergieverlust beim Wärmedurchgang durch eine Wand}~\\ % (fold)
+			Wärme $\delta Q$ am Eintritt und Austritt der Wärmetauscherwand ist die selbe.
+			\[
+				E_{xQ1} - E_{xQ2} = T_0 \frac{T_1 - T_2}{T_1 \cdot T_2} \delta Q
+			\]
+		% paragraph: Exergieverlust beim Wärmedurchgang durch eine Wand (end)
+		
+		\paragraph{Exergieverlust in abgeschlossenen (isolierten) Systemen}~\\ % (fold)
+			$Q=W=0$ $\Rightarrow$
+			\[
+				(E_{x2} - E_{x1})_\text{abgeschl.} = - T_0 \cdot S_\text{Erz}
+			\]
+		% paragraph: Abgeschlossene Systeme (end)
+		
+		\subsubsection{Wirkungsgrad irreversibler Kreisprozesse} % (fold)
+			\[
+				\eta = \underbrace{1- \frac{T_\text{C}}{T_\text{H}}}_{\mathclap{\eta_\text{Carnot}}} - \frac{T_\text{C} \cdot E_{x\text{,Verlust}}}{T_0\cdot Q_\text{H}}
+			\]
+		% subsubsection: Wirkungsgrad irreversibler Kreisprozesse (end)
+	% subsection: Exergiebilanz für geschlossene Systeme (end)
+	
+	\subsection{Exergiebilanz für offene Systeme} % (fold)
+		Für \textbf{reversible} Prozesse:
+		\emphequation{align*}{
+			\Diff{E_x}{t} &= \sum_i \dot m_{\text{ein,}i} \cdot e_{x\text{,Str,ein,}i} - 
+			\sum_i \dot m_{\text{aus,}i} \cdot e_{x\text{,Str,aus,}i} \\
+			&\phantom{=} - \dot W_{0\text{,rev,Nutz}} + \sum_i \dot Q_i \parens{
+				1- \frac{T_0}{T_i}
+			}
+		}
+		
+		Für \textbf{irreversible} Prozesse:
+		\emphequation{align*}{
+			\Diff{E_x}{t} &= \sum_i \dot m_{\text{ein,}i} \cdot e_{x\text{,Str,ein,}i} - 
+			\sum_i \dot m_{\text{aus,}i} \cdot e_{x\text{,Str,aus,}i} \\
+			&\phantom{=} + \sum_i \dot Q_i \parens{
+				1- \frac{T_0}{T_i} - T_0 \cdot \dot S_\text{Erz}
+			}
+		}
+		
+		Für beide gilt:
+		\[
+			e_{x\text{,Strömung}} = (h-h_0) - T_0(s-s_0) + \half \cdot w^2 + g\cdot z
+		\]
+		$T_0$ ist die Umgebungstemperatur, $T_i$ die Temperatur am Ort der $Q_i$-Übertragung.
+		
+		Die gesamte Exergie einer strömenden Fluidmasse heisst \textbf{Strömungsexergie}:
+		\[
+			E_{x\text{,Strömung}} = m \cdot e_{x\text{,Strömung}}
+		\]
+		
+		Bei \textbf{stationären Prozessen} gilt $\Diff{E_x}{t} =0$.
+	% subsection: Exergiebilanz für offene Systeme (end)
+	
+	\subsection{Der exergetische Wirkungsgrad} % (fold)
+		Der energetische Wirkungsgrad bewertet die Nutzung der Energie quantitativ während der exergetische Wirkungsgrad diese qualitativ bewertet.
+		\[
+			\epsilon = \frac{\text{genutzter Exergiestrom}}{\text{zugeführter Exergiestrom}} = \frac{\dot Q_N}{\dot Q_Q} \cdot \frac{1-\nicefrac{T_0}{T_N}}{1-\nicefrac{T_0}{T_Q}}
+		\]
+		mit den Inizes $0$ für Umgebung, $N$ für Nutz und $Q$ für Quelle.
+		
+		Um einen hohen exergetischen Wirkungsgrad zu erreichen muss jeder Prozess möglichst einem reversiblen Prozess angenähert werden.
+		
+		\subsubsection{Exergetisscher Wirkungsgrad für ein offenes System mit Arbeitsleistung} % (fold)
+			(z.B.~Turbine)
+			\[
+				\epsilon = \frac{\dot E_{x\text{,Nutz}}}{\dot m (e_{x1\text{,Str}} - e_{x2\text{,Str}})} = \frac{\dot E_{x\text{,Nutz}}}{\dot E_{x\text{,Nutz}} + T_0 \cdot \dot S_\text{Erz}}
+			\]
+		% subsubsection: Exergetisscher Wirkungsgrad für ein offenes System mit Arbeitsleistung (end)
+	% subsection: Der exergetische Wirkungsgrad (end)
+% section: Nutzbarkeit der Energie -- Exergie (end)

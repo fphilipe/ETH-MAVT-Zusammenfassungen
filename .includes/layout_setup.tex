@@ -1,0 +1,141 @@
+%% Memoir layout setup
+
+%% NOTE: You are strongly advised not to change any of them unless you
+%% know what you are doing.  These settings strongly interact in the
+%% final look of the document.
+
+% Dependencies
+\usepackage{array}
+\usepackage{wrapfig}
+\usepackage{multicol}
+\usepackage[thmmarks]{ntheorem}
+
+\columnsep 30pt
+\columnseprule \normalrulethickness
+
+% Define the default sans serif font as the lighter computer modern bright by
+% D. Knuth.
+\renewcommand{\sfdefault}{cmbr}
+
+\makeatletter
+
+% Set the way pages are layed out (headers and page numbering)
+\makepagestyle{mystyle}
+\makeheadrule{mystyle}{\textwidth}{\normalrulethickness}
+\makeoddhead{mystyle}{\textsc{\@title}}{}{\emph{\@author} -- \today{}}
+\makeevenhead{mystyle}{\textsc{\@title}}{}{\emph{\@author} -- \today{}}
+\makeoddfoot{mystyle}{}{\small -- \thepage{} --}{}
+\makeevenfoot{mystyle}{}{\small -- \thepage{} --}{}
+\pagestyle{mystyle}
+
+% Use the newly defined style
+\chapterstyle{VZ14}
+
+% Redefine sectional headings to contain rules
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+{-2\baselineskip}{0.8\baselineskip}%
+{\hrule depth 0.2pt width\columnwidth\hrule depth1.5pt
+width0.25\columnwidth\vspace*{1.2em}\Large\bfseries\sffamily}}
+\makeatother
+
+\makeatletter
+\renewcommand{\subsection}{\@startsection{subsection}{1}{0mm}%
+{-2\baselineskip}{0.8\baselineskip}%
+{\hrule depth 0.2pt width\columnwidth\hrule depth0.75pt
+width0.25\columnwidth\vspace*{1.2em}\large\bfseries\sffamily}}
+\makeatother
+
+\makeatletter
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{1}{0mm}%
+{-2\baselineskip}{0.8\baselineskip}%
+{\hrule depth 0.2pt width\columnwidth\vspace*{1.2em}\normalsize\bfseries\sffamily}}
+
+\renewcommand*{\thesection}{\arabic{section}}
+
+\setparaheadstyle{\normalsize\bfseries\sffamily}
+\setsubparaheadstyle{\normalsize\bfseries\sffamily}
+
+% Set captions to a more separated style for clearness
+\captionnamefont{\sffamily\bfseries\footnotesize}
+\captiontitlefont{\sffamily\footnotesize}
+\setlength{\intextsep}{16pt}
+\setlength{\belowcaptionskip}{1pt}
+
+% Set section and TOC numbering depth to subsection
+\setsecnumdepth{subsection}
+\settocdepth{subsection}
+
+% Turn off american style paragraph indentation and add some space to be
+% printed when a new paragraph starts.
+
+\setlength{\parindent}{0pt}
+\addtolength{\parskip}{1pt}
+
+\setlength{\droptitle}{-2em}
+\renewcommand{\maketitlehookb}{\vspace{-1em}}
+\date{}
+
+% A bit spacier tabulars and lists
+\setlength{\extrarowheight}{4pt}
+\setlength{\itemsep}{10pt}
+% \renewcommand{\arraystretch}{1.2}
+
+% % This provides a frontend to set the lecture date into the header
+% \newcommand{\lecturedate}[1]{\def\@lecdate{#1}}
+% \makeoddhead{Ruled}{\@lecdate}{}{\normalfont\rightmark}
+
+\makeatother
+
+% This defines how theorems should look. Best leave as is.
+\theoremstyle{plain}
+\theoremseparator{:\quad}
+\theoremprework{}
+\theoremindent2em
+\theoremheaderfont{\sffamily\bfseries}
+\theorembodyfont{\normalfont}
+\theoremsymbol{}
+
+% redefine the over/underbrace to get more lightweight braces (borrowed from MnSymbols)
+\makeatletter
+\DeclareSymbolFont{largesymbolsA}{U}{txexa}{m}{n}
+\def\re@DeclareMathSymbol#1#2#3#4{%
+    \let#1=\undefined
+    \DeclareMathSymbol{#1}{#2}{#3}{#4}}
+\re@DeclareMathSymbol{\br@cext}{\mathord}{largesymbolsA}{"20}
+\DeclareSymbolFont{extsymbols}{OMX}{txex}{m}{n}
+\re@DeclareMathSymbol{\braceld}{\mathord}{extsymbols}{"7A}
+\re@DeclareMathSymbol{\bracerd}{\mathord}{extsymbols}{"7B}
+\re@DeclareMathSymbol{\bracelu}{\mathord}{extsymbols}{"7C}
+\re@DeclareMathSymbol{\braceru}{\mathord}{extsymbols}{"7D}
+\def\downbracefill{$\m@th%
+   \braceld\mkern-1mu\cleaders\hbox{$\mkern-.5mu\br@cext\mkern-.5mu$}%
+   \hfill\mkern-1mu%
+   \braceru\bracelu%
+   \mkern-1mu\cleaders\hbox{$\mkern-.5mu\br@cext\mkern-.5mu$}%
+   \hfill\mkern-1mu\bracerd$}
+ \def\upbracefill{$\m@th%
+   \bracelu\mkern-1mu\cleaders\hbox{$\mkern-.5mu\br@cext\mkern-.5mu$}%
+   \hfill\mkern-1mu%
+   \bracerd\braceld%
+   \mkern-1mu\cleaders\hbox{$\mkern-.5mu\br@cext\mkern-.5mu$}%
+   \hfill\mkern-1mu\braceru$}
+\makeatother
+
+% index for multicols
+\makeatletter
+\renewenvironment{theindex}
+  {\if@twocolumn
+      \@restonecolfalse
+   \else
+      \@restonecoltrue
+   \fi
+   \begin{multicols*}{3}[\paragraph*{\indexname}]
+   \markboth{\MakeUppercase\indexname}%
+            {\MakeUppercase\indexname}%
+   \thispagestyle{mystyle}
+   \setlength{\parindent}{0pt}
+   \setlength{\parskip}{0pt plus 0.3pt}
+   \relax
+   \let\item\@idxitem}%
+  {\end{multicols*}\if@restonecol\onecolumn\else\clearpage\fi}
+\makeatother

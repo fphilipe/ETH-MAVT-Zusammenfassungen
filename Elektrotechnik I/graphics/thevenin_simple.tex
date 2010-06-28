@@ -1,0 +1,13 @@
+\begin{circuitikz}[scale=1]\ctikzset{bipoles/length=1cm}
+	\draw [bottom color=black!10,top color=white,draw=black!30]
+	      (-1.2,-.2) rectangle (2,2.7);
+	\draw
+	(0,0) to[voltage source, l=$E_{Th}$] (0,2)
+	      to[R, l=$R_{Th}$] (2,2)
+	      to[short, o-, l=$a$] (2.5,2)
+	      to[R, l=$R_{L}$] (2.5,0)
+	      to[short, -o, l=$b$] (2,0)
+	-- (0,0)
+	;
+	\draw[-stealth,thick] (2.125,0.5) -- (2.875,1.5);
+\end{circuitikz}

@@ -1,0 +1,36 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\section{Complex Numbers} % (fold)
+	Given is a complex number $Z$:
+	\begin{align*}
+		Z &= \frac{a + \iu b}{c + \iu d} = \abs{Z} \angle \arg(Z) \\
+		Z_1 &= a + \iu b = \abs{Z_1} \angle \arg(Z_1) \\
+		Z_2 &= c + \iu d = \abs{Z_2} \angle \arg(Z_2)
+	\end{align*}
+	
+	\paragraph{Multiplication} % (fold)
+		\begin{align*}
+			Z_1\cdot Z_2 &= (a + \iu b)(c + \iu d) = (ac - bd) + \iu (ad + bc) \\
+			&= \abs{Z_1} \abs{Z_2} \angle (\arg(Z_1) + \arg(Z_2))
+		\end{align*}
+	% paragraph: Multiplication (end)
+	
+	\paragraph{Division} % (fold)
+		\begin{align*}
+			\frac{Z_1}{Z_2} &= \frac{a + \iu b}{c + \iu d} = \frac{(a + \iu b)(c - \iu d)}{c^2 + d^2} \\
+			&= \frac{\abs{Z_1}}{\abs{Z_2}} \angle (\arg(Z_1) - \arg(Z_2))
+		\end{align*}
+	% paragraph: Division (end)
+	
+	\paragraph{Absolute Value} % (fold)
+		\[
+			\abs{Z} = \abs{\frac{a + \iu b}{c + \iu d}} = \sqrt{\frac{a^2 + b^2}{c^2 + d^2}}
+		\]
+	% paragraph: Absolute Value (end)
+	
+	\paragraph{Phase} % (fold)
+		\[
+			\arg(Z) = \arctan \frac{bc-ad}{ac+bd}
+		\]
+	% paragraph: Phase (end)
+% section: Complex Numbers (end)

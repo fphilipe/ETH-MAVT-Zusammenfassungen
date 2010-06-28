@@ -1,0 +1,84 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\subsection{Capacitance} % (fold)
+	
+	\begin{wrapfigure}[0]{r}{.5\columnwidth}
+		\vspace{-1.5cm}
+		\hspace{3mm}
+		\circuitw{capacitor_scheme}{.5\columnwidth}
+	\end{wrapfigure}
+		
+	\paragraph{Symbol:} % (fold)
+		\circuitw{capacitor}{1.25cm}
+	% paragraph: Symbol: (end)
+	
+	\begin{gather*}
+		C = \frac{Q}{V_C} = \varepsilon \frac{A}{d} \sunit{\farad} = \unit{\coulomb\per\volt} \\
+		\epsilon = \epsilon_0 \cdot \epsilon_r \tag{$\epsilon_r = 1$ for air/vacuum} \\
+		V = E \cdot d \tag{when $E = \const$} \\
+		i_C = C \cdot \Diff{v_c}{t} = \Diff{Q}{t} \qquad
+		v_C = \frac{1}{C} \int i_C \diff t
+	\end{gather*}
+	
+	\paragraph{Displacement Current:} % (fold)
+		$i_C = \Diff{Q}{t} = C \Diff{V}{t}$
+	% paragraph: Displacement Current: (end)
+	\begin{center}
+		\circuitw{capacitor_charging_discharging}{.4\columnwidth}
+	\end{center}
+	\begin{multicols*}{2}
+		\paragraph{(1) Charging Phase:} % (fold)
+		
+			\begin{gather*}
+				E - i_C \, R - v_C = 0 \\
+				R\,C \cdot \Diff{v_C}{t} + v_C = E \\
+				v_C = E \left(
+					1- \eu^{\nicefrac{-t}{R\,C}}
+				\right) \\
+				i_C = \nicefrac{E}{R} \cdot \eu^{\nicefrac{-t}{R\,C}}
+			\end{gather*}
+		% paragraph: Charging: (end)
+		
+		\paragraph{(2) Discharging Phase:} % (fold)
+		
+			\begin{gather*}
+				i_C \, R + v_C = 0 \\
+				R \, C \cdot \frac{\diff v_C}{\diff t} = -v_C \\
+				v_C = E \cdot \eu^{\nicefrac{-t}{R\,C}} \\
+				i_C = - \nicefrac{E}{R} \cdot \eu^{\nicefrac{-t}{R\,C}} \\
+				\tau = R\,C
+			\end{gather*}
+		% paragraph: Discharging: (end)
+	\end{multicols*}
+	After $5\tau$ less than 1\% of maximum voltage.
+	
+	\begin{multicols*}{2}
+		\paragraph{Capacitors in Series:} % (fold)
+		
+			\begin{gather*}
+				Q_{tot} = Q_1 = Q_2 = Q_3 \\
+				V = \frac{Q_{tot}}{C} = \sum_i \frac{Q_i}{C_i} \\
+				\frac{1}{C_{tot}} = \sum_i \frac{1}{C_i}
+			\end{gather*}
+
+			\circuitw{capacitors_in_series}{\columnwidth}
+		
+		% paragraph: Capacitors in Series: (end)
+		
+		\paragraph{Capacitors in Parallel:} % (fold)
+			\begin{gather*}
+				Q_{tot} = \sum_i Q_i \\
+				C_{tot} = \sum_i C_i
+			\end{gather*}
+			
+			\circuitw{capacitors_in_parallel}{\columnwidth}
+		% paragraph: Capacitors in Parallel: (end)
+	\end{multicols*}
+	
+	\paragraph{Energy Stored in a Capacitor:} % (fold)
+		\[
+			U = \int \diff U = \int_0^Q \frac{q}{C} \diff q = \frac{Q^2}{2\,C} = \frac{1}{2} \,Q\,V = \frac{1}{2}\,C\,V^2
+		\]
+	% paragraph: Energy Stored in a Capacitor: (end)
+	
+% subsection: Capacitance (end)

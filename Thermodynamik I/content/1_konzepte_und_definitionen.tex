@@ -1,0 +1,67 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Thermodynamik/Neue Zusammenfassung/Thermodynamik I - Zusammenfassung.tex
+
+\section{Definitionen \& Grundlagen} % (fold)
+	
+	\subsection{Einheiten} % (fold)
+		\begin{align*}
+			\SI{1}{\BAR} &= \SI{e5}{\pascal} = \SI{760}{\mmHg} \\
+			\SI{1}{\mega\pascal} &= \SI{10}{\BAR} = \SI[fraction=nicefrac]{1}{\newton\per\Square\millimetre} \\
+			\SI{1}{\pascal} &= \SI[fraction=nicefrac]{1}{\newton\per\Square\metre} \\
+			\SI{1}{atm} &= \SI{1.01325}{\BAR}
+		\end{align*}
+	% subsection: Einheiten (end)
+	
+	\subsection{Definitionen} % (fold)
+		\begin{description}
+			\item[Dichte] $\rho = \frac{m}{V} \nicesunit{\kg\per\cubic\metre}$
+			\item[spez. Volumen] $v = \frac{1}{\rho} = \frac{V}{m} \nicesunit{\cubic\metre\per\kg}$
+			\item[mol. Volumen (Molvol)] $\bar{v} = \frac{M}{\rho} = v\cdot M \nicesunit{\cubic\metre\per\kmol}$
+		\end{description}
+	% subsection: Definitionen (end)
+	
+	\subsection{Thermodynamisches System} % (fold)
+		\subsubsection{Begriffe} % (fold)
+			\begin{tabular*}{\textwidth}{@{}r@{\textbf{:}\hspace{2mm}}l@{}}
+				\textbf{Umgebung} & alles ausserhalb des Systems \\
+				\textbf{Systemgrenze} & gedachte oder materielle Begrenzung
+			\end{tabular*}
+		% subsubsection: Begriffe (end)
+		\subsubsection{Arten} % (fold)
+			\paragraph{Bezüglich Massenstrom:} % (fold)
+			(Symbol: \ding{221})
+			
+				\begin{tabular*}{\textwidth}{@{}r@{\hspace{2mm}}l@{}}
+					\textbf{geschlossen:} & kein Massenstrom durch Systemgrenze \\ & $\Rightarrow \text{ Masse} = \text{const.}$ \\
+					\textbf{offen:} & Massenstrom durch Systemgrenze
+				\end{tabular*}
+			% paragraph: Bezüglich Massenstrom: (end)
+			
+			\paragraph{Bezüglich thermischer Energie:} % (fold)
+				(Symbol: $\Rightarrow$)
+				
+				\begin{tabular*}{\textwidth}{@{}r@{\hspace{2mm}}l@{}}
+					\textbf{isoliert:} & keine therm.~E.~durch Systemgrenze \\ & $\Rightarrow$ \emph{adiabat} \\
+					\textbf{nicht isoliert:} & therm.~E.~durch Systemgrenze \\ & $\Rightarrow$ \emph{diatherm} od.~\emph{nicht adiabat}
+				\end{tabular*}
+			% paragraph: Bezüglich thermischer Energie: (end)
+			
+			\paragraph{Bezüglich physikalischer und chemischer Zusammensetzung:} % (fold)
+				\begin{tabular*}{\textwidth}{@{}r@{\hspace{2mm}}l@{}}
+					\textbf{homogenes Sys.:} & phys./chem. Zusammensetzung \\ & überall gleich \\
+					\textbf{heterogenes Sys.:} & analog
+				\end{tabular*}
+			% paragraph: Bezüglich physikalischer und chemischer Zusammensetzung: (end)
+			
+		% subsubsection: Arten (end)
+	% subsection: Thermodynamisches System (end)
+	\subsection{Thermodynamischer Zustand} % (fold)
+		\textbf{Zustandsgrössen} sind thermodyn.~Eigenschaften, die den thermodyn.~Zustand definieren. Dieser hängt \emph{nicht} vom Prozess ab.
+		
+		\begin{tabular*}{\textwidth}{@{}r@{\hspace{2mm}}l@{}}
+			\textbf{intensive:} & unabhängig von Stoffmenge \\
+			\textbf{extensive:} & abhängig von Stoffmenge \\
+			\textbf{spezifische:} & extensive Zustandsgr.~pro Masseneinh. \\ & $\Rightarrow$ \emph{intensiv} \\
+			\textbf{molare:} & Zustandsgr. pro Kilomol $\left(\si[per=reciprocal]{\per\kmol}\right)$ 
+		\end{tabular*}
+	% subsection: Thermodynamischer Zustand (end)
+% section: Definitionen \& Grundlagen (end)

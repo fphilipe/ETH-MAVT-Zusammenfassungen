@@ -1,0 +1,106 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Analysis/Zusammenfassung/LaTeX/Analysis Zusammenfassung.tex
+
+\section{Fourierreihen} % (fold)
+	
+	\begin{definition}
+		Die Funktion
+		\emphequation{equation}{
+			\label{fourier}
+			f(x) = \frac{a_0}{2} + \sum_{n=1}^\infty \left[a_n \cos(nx) + b_n \sin(nx)\right]
+		}
+		heisst \emph{trigonometrische Reihe} ($p=2\pi$).
+	\end{definition}
+	
+	\subsection{Orthogonalitätsrelation} % (fold)
+		Für $k,n \in \N_0$ gilt:
+		\begin{align*}
+			\int_{-\pi}^\pi \cos(kx)\cos(nx) \diff x &= \conditional{
+				2\pi & \text{falls $n=k=0$} \\
+				\pi & \text{falls $n=k\neq0$} \\
+				0 & \text{falls $n\neq0$}
+			}
+			\\[1ex]
+			\int_{-\pi}^\pi \sin(kx)\sin(nx) \diff x &= \conditional{
+				0 & \text{falls $n=k=0$} \\
+				\pi & \text{falls $n=k\neq0$} \\
+				0 & \text{falls $n\neq0$}
+			}
+			\\[1ex]
+			\int_{-\pi}^\pi \cos(kx)\sin(nx) \diff x &= 0
+			\\[1ex]
+			\int_{-\pi}^\pi \eu^{\iu nx}\eu^{-\iu kx} \diff x &= \conditional{
+				0 & \text{falls $n\neq k$} \\
+				2\pi & \text{falls $n=k$}
+			}
+		\end{align*}
+	% subsection: Orthogonalitätsrelation (end)
+	\subsection{Fourierreihe 2\greektext{p}\latintext{}-periodischer Funktionen} % (fold)
+		Die $2\pi$-periodische Funktion $f(x)$ werde durch die Reihe~\eqref{fourier}
+		dargestellt. Dann gilt:
+		\emphequation{align*}{
+			a_n &= \frac{1}{\pi}\int_{-\pi}^\pi f(x) \cos(nx) \diff x \\[1ex]
+			b_n &= \frac{1}{\pi}\int_{-\pi}^\pi f(x) \sin(nx) \diff x
+		}
+		
+		\begin{bemerkung}
+			Anstelle des Intervalls $[-\pi,\pi]$ kann jedes Intervall $[x,x+2\pi]$
+			verwendet werden.
+		\end{bemerkung}
+		
+		Können die Integrale $a_n$ und $b_n$ gebildet werden, so kann man die \emph{formale} Fourierreihe bilden.
+		\[
+			f(x) \approx \frac{a_0}{2} + \sum_{n=1}^\infty \left[a_n \cos(nx) + b_n \sin(nx)\right]
+		\]
+	% subsection: Fourierreihe 2π-periodischer Funktionen (end)
+	\subsection{Fourierreihen gerader und ungerader Funktionen} % (fold)
+		\begin{description}
+			\item[\phantom{un}$\boldsymbol f$ gerade:] $\displaystyle\quad
+				b_n = 0\ ,\quad a_n = \frac{2}{\pi}\int_0^\pi f(x) \cos(nx) \diff x
+			$
+			\item[$\boldsymbol f$ ungerade:] $\displaystyle\quad
+				a_n = 0\ ,\quad b_n = \frac{2}{\pi}\int_0^\pi f(x) \sin(nx) \diff x
+			$
+		\end{description}
+	% subsection: Fourierreihen gerader und ungerader Funktionen (end)
+	\subsection{Komplexe Schreibweise} % (fold)
+		Mit $
+			\eu^{\iu nx} = \cos(nx) + \iu \sin(nx)
+		$
+		lässt sich $f(x)$ umformen zu
+		\emphequation{gather*}{
+			f(x) = \sum_{n=-\infty}^{\infty} c_n\: \eu^{\iu nx}
+			\\[1ex]
+			c_n =
+			\frac{1}{2\pi}\int_{-\pi}^\pi f(x)\: \eu^{-\iu nx} \diff x \quad
+			=\conditional{
+				\frac{a_n-\iu b_n}{2} & \text{falls $n > 0$} \\[1ex]
+				\frac{a_0}{2} & \text{falls $n=0$} \\[1ex]
+				\frac{a_{-n} + \iu b_{-n}}{2} & \text{falls $n<0$}
+			}
+		}
+		
+		\paragraph{Umkehrformel} % (fold)
+			\begin{align*}
+				a_0 &= 2 c_0 \\
+				a_n &= c_n + c_{-n} \qquad n>0\\
+				b_n &= \iu (c_n - c_{-n})
+			\end{align*}
+		% paragraph: Umkehrformel (end)
+	% subsection: Komplexe Schreibweise (end)
+	\subsection{Fourierreihen von Funktionen mit allgemeiner Periode} % (fold)
+		$f(t)$ hat Periode $T$.
+		$\quad \widetilde f(x) := f(\frac{T}{2\pi}x)$ hat Periode $2\pi$.
+		
+		Folglich hat eine periodische Funktion mit Periode $T$ die (formale) Fourierreihe \emphequation{align*}{
+			f(t) &= \frac{a_0}{2} + \sum_{n=1}^\infty \left[a_n \cos\left(n\frac{2\pi}{T}t\right) + b_n \sin\left(n\frac{2\pi}{T}t\right)\right] \\[2ex]
+			a_n &= \frac{2}{T} \int_0^T f(t) \cos\left(n \frac{2\pi}{T} t\right) \diff t \\[1ex]
+			b_n &= \frac{2}{T} \int_0^T f(t) \sin\left(n \frac{2\pi}{T} t\right) \diff t
+		}
+		\emphequation{align*}{
+			f(t) &= \sum_{n=-\infty}^{\infty} c_n\: \eu^{\iu n \frac{2\pi}{T} t}
+			\\[1ex]
+			c_n &=
+			\frac{1}{T}\int_{0}^T f(t)\: \eu^{-\iu n \frac{2\pi}{T} t} \diff x
+		}
+	% subsection: Fourierreihen von Funktionen mit allgemeiner Periode (end)
+% section: Fourrierreihen (end)

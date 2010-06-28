@@ -1,0 +1,337 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Analysis/Zusammenfassung/LaTeX/Analysis Zusammenfassung.tex
+
+\section{Faltung} % (fold)
+	\begin{definition}
+		Faltung der Funktionen $f$ und $g$ ist $f*g$: \[
+			(f*g)(t) = \int_0^t f(t-\tau) \cdot g(\tau) \diff \tau \qquad \text{wobei } t > 0
+		\]
+		
+		Die Faltung ist kommutativ: $f*g=g*f$
+	\end{definition}
+% section: Faltung (end)
+
+\section{Periodische Funktionen} % (fold)
+		\begin{definition}
+		Funktion $f:\R\to\R$ heisst \emph{periodisch} mit Periodenlänge $p$, falls gilt\[
+			f(x+p) = f(x) \quad \forall x \in \R
+		\] wobei $p$ eine konstante, positive Zahl ist.
+	\end{definition}
+
+	\begin{bemerkungen}
+		\item $k\cdot p$ mit $k \in \N$ ist auch eine Periode von $f$.
+		\item Summe und Produkt zweier $p$-periodischen Funktionen sind $p$-periodisch.
+	\end{bemerkungen}
+
+	\begin{definition}
+		Die kleinste Periode von $f$ nennt man \emph{Fundamentalperiode}
+	\end{definition}
+	
+	\begin{regeln}
+		\begin{tightitemize}
+			\item Die \emph{Summe} zweier periodischer Funktionen ist im allgemeinen
+			\emph{nicht} mehr periodisch. Haben allerdings die Perioden $p_1$ und $p_2$ ein
+			rationales Verhältnis, etwa \[
+				\frac{p_1}{p_2}=\frac{n_1}{n_2} \quad \text{mit $n_{1,2} \in \N$,}
+			\] so ist die Summe wieder periodisch mit Periode \[
+				p = n_2 p_1 = n_1 p_2
+			\] wobei die Fundamentalperiode kleiner sein kann.
+		\end{tightitemize}
+	\end{regeln}
+% section: Periodische Funktionen (end)
+
+\section{Gerade und ungerade Funktionen} % (fold)
+	\begin{definition}
+		Eine Funktion heisst
+		\begin{description}
+			\item[\phantom{un}gerade] falls $\phantom{-}f(x) = f(-x) \quad \forall x$ \\[.5ex] (\emph{symmetrisch bez.~$y$-Achse}) z.B.~$\cos$
+			\item[ungerade] falls $f(-x) = -f(x) \quad \forall x$ \\[.5ex]
+			(\emph{punktsymmetrisch}) z.B.~$\sin$
+		\end{description}
+	\end{definition}
+	
+	\begin{regeln}
+		\begin{tightitemize}
+			\item Einzige gerade und ungerade Funktion ist $f(x) = 0$
+			
+			\item $\displaystyle
+				\int_{-a}^a \boldsymbol{f_u}(x) \diff x = 0
+			$
+			\item $\displaystyle
+				\int_{-a}^a \boldsymbol{f_g}(x) \diff x = 2\cdot \int_0^a \boldsymbol{f_g}(x) \diff x
+			$
+			
+			\item Eine beliebige Funktion lässt sich als Summe einer geraden und ungeraden Funktion schreiben:\[
+				f(x) = f_g(x) + f_u(x) = \frac{f(x)+f(-x)}{2} + \frac{f(x)-f(-x)}{2}
+			\]
+			
+			\item Beziehungen:
+		\end{tightitemize}
+		\begin{multicols}{2}
+			\begin{center}
+				\begin{tabular}{c|cc}
+					$\boldsymbol+$&$\boldsymbol {f_g}$&$\boldsymbol {f_u}$\\
+					\midrule
+					$\boldsymbol {f_g}$&g&-\\
+					$\boldsymbol {f_u}$&-&u\\
+				\end{tabular}
+			\end{center}
+			
+			\begin{center}
+				\begin{tabular}{c|cc}
+					$\boldsymbol\cdot$/$\boldsymbol\div$&$\boldsymbol {f_g}$&$\boldsymbol {f_u}$\\
+					\midrule
+					$\boldsymbol {f_g}$&g&u\\
+					$\boldsymbol {f_u}$&u&g\\
+				\end{tabular}
+			\end{center}
+			
+			\begin{center}
+				\begin{tabular}{c|cc}
+					$\boldsymbol\circ$&$\boldsymbol {f_g}$&$\boldsymbol {f_u}$\\
+					\midrule
+					$\boldsymbol {f_g}$&g&g\\
+					$\boldsymbol {f_u}$&g&u\\
+				\end{tabular}
+			\end{center}
+			
+			\begin{center}
+				\[
+					\Diff{}{x} \left\{\begin{array}{@{}l@{\ \longrightarrow\ }l}
+						\boldsymbol{f_g} & \text{u} \\
+						\boldsymbol{f_u} & \text{g}
+					\end{array}\right.
+				\]
+			\end{center}
+		\end{multicols}
+	\end{regeln}
+% section: Gerade und ungerade Funktionen (end)
+
+\section{Lineare Koordinatentransformation} % (fold)
+	\begin{equation}
+		u = u(x,y)
+	\end{equation}
+	
+	Transformation:
+	\begin{align*}
+		\xi &= \alpha x + \beta y \\
+		\eta &= \gamma x + \delta y \\
+		\widetilde u &= \widetilde u(\xi,\eta)
+	\end{align*}
+	
+	Ableitungen:
+	\emphequation{align*}{
+		\widetilde u_x &= \widetilde u_\xi \cdot \Part{\xi}{x} + \widetilde u_\eta \cdot \Part{\eta}{x} = \alpha \cdot \widetilde u_\xi + \gamma \cdot \widetilde u_\eta \\[1ex]
+		\widetilde u_y &= \widetilde u_\xi \cdot \Part{\xi}{y} + \widetilde u_\eta \cdot \Part{\eta}{y} = \beta \cdot \widetilde u_\xi + \delta \cdot \widetilde u_\eta
+	}
+	
+	\begin{bemerkungen}
+		\item Ändert den Typ der PDE \emph{nicht}.
+		\item $\displaystyle \det
+			\begin{bmatrix}
+				\alpha & \beta \\
+				\gamma & \delta
+			\end{bmatrix} \neq 0$
+	\end{bemerkungen}
+% section: Lineare Koordinatentransformation (end)
+
+\section{Differentialgleichungen} % (fold)
+	\subsection{Separierbare DGL 1. Ordnung} % (fold)
+		\begin{gather*}
+			y' = \frac{h(x)}{g(y)} \\
+			\int g(y) \diff y = \int h(x) \diff x
+		\end{gather*}
+	% subsection: Separierbare DGL 1. Ordnung (end)
+	\subsection{Lineare DGL} % (fold)
+		Allgemeine Lösung ist Summe der allgemeinen homogenen Lösung $y_h$
+		und einer partikulären Lösung $y_p$:
+		\begin{empheq}[box=\shadowbox]{equation*}
+			y(x) = y_h(x) + y_p(x)
+		\end{empheq}
+		
+		$q(x)$ ist inhomogenes Glied oder Störglied.
+		Ist $q(x) = 0$, so ist die DGL homogen, andernfalls inhomogen.
+		
+		\subsubsection{1. Ordnung} % (fold)
+			\[
+				y' = p(x) \cdot y + q(x)
+			\]
+			
+			\paragraph{Bestimmung von $y_h$} % (fold)
+				\[
+					y' = p(x) \cdot y
+				\]
+				ist die zur DGL gehörigen homogene DGL. Diese ist separierbar:
+				\begin{gather*}
+					\frac{y'}{y} = p(x) \\
+					\int \frac{\diff y}{y} = \int p(x) \diff x \\
+					\ln |y| = \int p(x) \diff x + C
+				\end{gather*}
+				Man erhält die homogene Lösung $y_h$ der DGL.
+			% paragraph: Bestimmung von $y_h$ (end)
+			
+			\paragraph{Bestimmung von $y_p$} % (fold)
+				
+				\mbox{}
+				\vspace{8pt}
+				
+				\begin{tabular}{l@{$\qquad$}l}
+					\toprule
+					\textbf{Störfunktion $g(x)$} & \textbf{Lösungsansatz $y_p$} \\
+					\midrule
+					$b e^{\lambda x}$ & $c e^{\lambda x}$ \\ [5pt]
+					$b_1 x + b_0$ & $c_1 x + c_0$\\ [5pt]
+					$b_2 x^2 + b_1 x + b_0$ & $c_2 x^2 + c_1 x + c_0$\\ [5pt]
+					\ldots etc. (Polynom) & \ldots etc. (Polynom)\\ [5pt]
+					$A \sin (\omega x)$ & \\
+					oder $A \cos (\omega x)$ & $C_1 \sin (\omega x) + C_2 \cos (\omega x)$ \\
+					\bottomrule
+				\end{tabular}
+				
+				Ansonsten Verfahren von Lagrange
+			% paragraph: Bestimmung von $y_p$ (end)
+		% subsubsection: 1. Ordnung (end)
+		\subsubsection{Mit konstanten Koeffizienten 2. Ordnung} % (fold)
+			\[
+				y'' + ay' + by = g(x)
+			\]
+			
+			Ansatz für den homogenen Fall: $y(x) = e^{\lambda x}$
+			Dies führt zu:
+			\[
+				\lambda^2 + a \lambda + b = 0
+			\]
+			
+			\begin{tabular}{l@{$\qquad$}l}
+				\toprule
+				\textbf{Fall} & \textbf{homogene Lösung} $y_h$ \\
+				\midrule
+				$\lambda_1 \neq \lambda_2$ (reel) & $y_h = C_1 e^{\lambda_1 x} + C_2 e^{\lambda_2 x}$ \\ [5pt]
+				$\lambda = \lambda_1 = \lambda_2 = -\frac{a}{2}$ & $y_h = C_1 e^{\lambda x} + x \cdot C_2 e^{\lambda x}$ \\ [5pt]
+				$\lambda_{1,2} = \alpha \pm \iu \omega$ & $y_h = C_1 \sin (\omega x) + C_2 \cos (\omega x)$ \\ [2pt]
+				 & wobei $\alpha = -\frac{a}{2}$ \\ [2pt]
+				 & und $\omega = \frac{\sqrt{4b-a^2}}{2}$ \\
+				\bottomrule
+			\end{tabular}
+			
+		% subsubsection: Mit konstanten Koeffizienten 2. Ordnung (end)
+	% subsection: Lineare DGL (end)
+	\subsection{Verfahren von Lagrange} % (fold)
+		\subsubsection{Für lineare DGL 1. Ordnung} % (fold)
+			\[
+				y_0(x) = \gamma(x) \cdot y_h(x)
+			\]
+			\begin{align*}
+				y_0'(x) &= \gamma'(x) y_h(x) + \gamma(x) y_h'(x) \\
+				&\equiv p(x) \underbrace{\gamma(x) y_h(x)}_{y_0} + q(x)
+			\end{align*}
+			\[
+				\Rightarrow \gamma'(x) = \frac{q(x)}{y_h(x)}
+			\]
+		% subsubsection: Für lineare DGL (end)
+		\subsubsection{Für lineare DGL 2. Ordnung} % (fold)
+			Analoges für höhere Ordnung.
+			\begin{gather*}
+				\gamma_1'(x) y_1 (x) + \gamma_2'(x) y_2(x) \equiv 0 \\
+				\gamma_1'(x) y_1' (x) + \gamma_2'(x) y_2'(x) = q(x)
+			\end{gather*}
+		% subsubsection: Für lineare DGL 2. Ordnung (end)
+	% subsection: Verfahren von Lagrange (end)
+	\subsection{Euler Ansatz} % (fold)
+		Form:
+		\[
+			y^{(n)} + \frac{a_n-1}{x} y^{(n-1)} + \frac{a_n-2}{x^2} y^{(n-2)} + \dots + \frac{a_0}{x^n} y = 0
+		\]
+		Ansatz: $y(x) = x^{\alpha}$
+		\[
+			y(x) = C_1 x^{\alpha_1} + C_2 x^{\alpha_2} + \dots + C_k x^{\alpha k}
+		\]
+		
+		Ist $\alpha$ eine $k$-fache Nullstelle des Indexpolynoms, so sind die Funktionen
+		\[
+			x \to x^\alpha, \ x \to (\ln x)x^\alpha, \dots, x \to (\ln x)^{k-1}x^\alpha
+		\]
+		
+		$C_i$ aus Anfangsbedingungen bestimmen.
+	% subsection: Euler Ansatz (end)
+	\subsection{Tricks} % (fold)
+		Bei DGL der Form $y' = f(\frac{x}{y})$ empfiehlt sich Substitution der Form
+		\[
+			xz(x) = y(x)\ ,\, z' = \frac{1}{x} (f(x) - z)
+		\]
+		welche eine neue separierbare DGL liefert.
+	% subsection: Tricks (end)
+	\subsection{Niveaulinien} % (fold)
+		Niveaulinien einer Funktion gegeben durch $g(x,y) = C$.
+		Ableitung nach $x$ liefert
+		\[
+			y' = - \frac{g_x(x,y)}{g_y(x,y)} = f(x,y)
+		\]
+		Die Lösungskurven von $f$ sind die Niveaulinien von $g$.
+		Durch einen Punkt $(x_0, y_0)$ geht genau eine Lösungskurve von $f$, also eine Niveaulinie von $g$
+	% subsection: Niveaulinien (end)
+	\subsection{Orthogonaltrajektorien} % (fold)
+		Die Feldlinien des Gradientenfeldes verlaufen senkrecht zu den Niveaulinien von $g$, sie bilden die Orthogonaltrajektorien zur Schar der Niveaulinien.
+		
+		Die Steigung der Orthogonaltrajektorien ist
+		\[
+			m = - \frac{1}{f(x,y)}
+		\]
+		Die DGL dazu lautet
+		\[
+			y' = - \frac{1}{f(x,y)}
+		\]
+		Die Orthogonaltrajektorien der Schar $g$ ist gegeben durch $y(x)$
+	% subsection: Orthogonaltrajektorien (end)
+	\subsection{Systeme von DGL} % (fold)
+		\[
+			\dot{\vec{x}} = A \vec{x}
+		\]
+		Eigenwerte bestimmen:
+		\[
+			\det(A - \lambda I) = 0
+		\]
+		Eigenvektoren bestimmen:
+		\[
+			A \cdot v = \underline{0}
+		\]
+		Allgemeine Lösung:
+		\[
+			\vec{x} = \sum_{i=1}^n c_i \vec{v}_i e^{\lambda_i t}
+		\]
+		
+		\subsubsection{Stabilitätsverhalten} % (fold)
+			Eigenwerte berechnen.
+			\begin{description}
+				\item[$\lambda_1 \leq \lambda_2 \leq 0$:]
+				\emph{asymptotisch stabil} \\
+				$x_1$ und $x_2$ von der Form
+				\[
+					C_1 e^{\lambda_1 t} + C_2 e^{\lambda_2 t} \text{ bzw. } C_1 e^{\lambda_1 t} + C_2 t e^{\lambda_2 t}
+				\]
+				\item[$\lambda_1 < 0 < \lambda_2$:] \emph{instabil}
+				\item[$0 < \lambda \leq \lambda_2$:] \emph{instabil}
+				\item[$\lambda_1, \lambda_2$ konjugiert komplex:] 3 Fälle:
+					\begin{description}
+						\item[rein imaginär:] \emph{stabil} (nicht asymptotisch)
+						$\lambda_1 = \iu b, \lambda_2 = - \iu b$ \\
+						harmonische Schwingungen mit Kreisfrequenz $b$
+						\[
+							C_1 \cos (bt) + C_2 \sin (bt)
+						\]
+						\item[positiver Realteil:] \emph{instabil} \\
+						$\lambda_1 = a + \iu b, \lambda_2 = a - \iu b, a > 0$ \\
+						$x_1, x_2$ von der Form
+						\[
+							e^{at}(C_1 \cos(bt) + C_2 \sin (bt)), a > 0
+						\]
+						\item[negativer Realteil:] \emph{asymptotisch stabil} \\
+						$\lambda_1 = a + \iu b, \lambda_2 = a - \iu b, a < 0$ \\
+						$x_1, x_2$ von der Form
+						\[
+							e^{at}(C_1 \cos(bt) + C_2 \sin (bt)), a < 0
+						\]
+					\end{description}
+			\end{description}
+		% subsubsection: Stabilitätsverhalten (end)
+	% subsection: Systeme von DGL (end)
+% section: Differentialgleichungen (end)

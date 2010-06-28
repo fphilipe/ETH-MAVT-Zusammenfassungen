@@ -1,0 +1,25 @@
+\begin{tikzpicture}[>=latex,scale=.9]
+
+\coordinate (rect) at (-.2,.2);
+\coordinate (rCenter) at (2.3,1.6);
+
+\draw[interface] (-0.3,0) -- (.3,0);
+\draw (0,0) -- (0,.5);
+\fill (0, .5) circle (1pt) node[left] {$O$} ;
+
+\path[draw,scale=1.7,shift={(1.1,1)},rotate=-20, fill=gray!10] (+-0.0274,+-0.9385)
+  .. controls (+-0.5546,+-0.9168) and (+-0.9461,+-0.5249) .. (+-1.0000,+0.0000)
+  .. controls (+-1.0351,+0.3420) and (+-0.8086,+0.5685) .. (+-0.5038,+0.7276)
+  .. controls (+0.0019,+0.9915) and (+0.6206,+1.1733) .. (+0.9573,+0.7128) node[right]{K}
+  .. controls (+1.2297,+0.3403) and (+0.8676,+-0.0341) .. (+0.6102,+-0.4171)
+  .. controls (+0.4309,+-0.6840) and (+0.2939,+-0.9517) .. (+-0.0274,+-0.9385)
+  -- cycle;
+
+\path [draw, fill=gray!30] ($(rCenter) + (rect)$) node[above right,xshift=2pt]{$\diff m$} rectangle ($(rCenter) - (rect)$) ;
+\draw[->] (0,.5) -- (rCenter) node [auto=left, left=30pt,below=1pt] {$\vec{\xi}$};
+
+\draw[->] (rCenter)++ (-80:.5) arc (-80:10:.5) node[right,yshift=-4pt] {$\diff \vec M^a$};
+\draw[->] (rCenter) -- ++ (110:.7) node [above] {$\diff {\vec F}^a$};
+\draw[->] (rCenter) -- ++ (160:1.5) node [above] {$\dot{\vec \xi}\diff m$};
+
+\end{tikzpicture}

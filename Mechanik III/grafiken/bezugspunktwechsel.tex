@@ -1,0 +1,36 @@
+\begin{tikzpicture}[>=latex,scale=.5]
+
+\coordinate (pO) at (-1.5,2.5);
+\coordinate (pC) at (1.4,0);
+\coordinate (pX) at (3,3);
+
+\begin{scope}[shift={(pC)}]
+\draw[interface] (-0.5,-.5) -- (.5,-.5);
+\draw (0,-.5) -- (0,0);
+\fill (0, 0) circle (1pt) node[right] {$C$} ;
+\end{scope}
+
+\begin{scope}[shift={(pO)}]
+\draw[interface] (-0.5,-.5) -- (.5,-.5);
+\draw (0,-.5) -- (0,0);
+\fill (0, 0) circle (1pt) node[left] {$O$} ;
+\end{scope}
+
+\draw[->] (pC) -- (pO) node[midway,auto=left] {$\bVec{r}_{CO}$};
+
+
+\path[draw,scale=1.6,shift={(1.8,1.8)},rotate=-220, fill=gray!10] (+-0.0274,+-0.9385) node[right=5pt]{K}
+  .. controls (+-0.5546,+-0.9168) and (+-0.9461,+-0.5249) .. (+-1.0000,+0.0000)
+  .. controls (+-1.0351,+0.3420) and (+-0.8086,+0.5685) .. (+-0.5038,+0.7276)
+  .. controls (+0.0019,+0.9915) and (+0.6206,+1.1733) .. (+0.9573,+0.7128) 
+  .. controls (+1.2297,+0.3403) and (+0.8676,+-0.0341) .. (+0.6102,+-0.4171)
+  .. controls (+0.4309,+-0.6840) and (+0.2939,+-0.9517) .. (+-0.0274,+-0.9385)
+  -- cycle ;
+
+\fill (pX) circle (1pt);
+\node[right] at (pX) {$x$};
+
+\draw[->] (pO) -- (pX) node [pos=.3, auto=left] {$\bVec{\xi}$};
+\draw[->] (pC) -- (pX) node [pos=.4, auto=right] {$\bVec{\zeta}$};
+
+\end{tikzpicture}

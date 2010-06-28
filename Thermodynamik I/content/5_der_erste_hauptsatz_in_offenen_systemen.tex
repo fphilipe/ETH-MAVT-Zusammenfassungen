@@ -1,0 +1,114 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Thermodynamik/Neue Zusammenfassung/Thermodynamik I - Zusammenfassung.tex
+
+\section{Der erste Hauptsatz in offenen Systemen} % (fold)
+	
+	\subsection{Energiestrom-Bilanz} % (fold)
+		
+		Totale spezifische Energie eines Systems:
+		\[
+			\frac{E}{\Delta m} = e = (u+\frac{1}{2}w^2+g\cdot z)
+		\]
+		wobei $w$ die Geschwindigkeit ist.
+		
+		Energie-Erhaltungsgleichung:
+		\[
+			\Diff{E_{\text{s}}}{t} = \dot{Q} - \dot{W} + \sum_{i=1}^{n} \dot{m}_{i,\text{ein}} \cdot e_{i,\text{ein}} - \sum_{j=1}^k \dot{m}_{j,\text{aus}} \cdot e_{j,\text{aus}}
+		\]
+		
+	% subsection: Energiestrom-Bilanz (end)
+	
+	\subsection{Die Arbeit am System} % (fold)
+		
+		\subsubsection{Die Ein- oder Ausschiebe-Arbeit} % (fold)
+			
+			\begin{align*}
+				W_{\text{e}} &= p_{\text{e}} \cdot \Delta V = p_{\text{e}} \cdot A_{\text{e}} \cdot \Delta s \\
+				\dot W_{\text{e}} &= p_{\text{e}} \cdot \frac{\Delta V}{\Delta t} = p_{\text{e}} \cdot A_{\text{e}} \cdot \frac{\Delta s}{\Delta t} = p_{\text{e}} \cdot A_{\text{e}} \cdot w_{\text{e}} \\
+				\dot W_{\text{a}} &= p_{\text{a}} \cdot A_{\text{a}} \cdot w_{\text{a}}
+			\end{align*}
+			
+		% subsubsection: Die Ein- oder Ausschiebe-Arbeit (end)
+		
+		\subsubsection{Übrige Arbeit} % (fold)
+			
+			Alle möglichen Anteile, die nicht mit Massenfluss verbunden sind. Arbeit, die das System verlässt, wird mit $W_{\text{s}}$ (s für ``shaft'') bezeichnet.
+			
+		% subsubsection: Übrige Arbeit (end)
+		
+		\subsubsection{Gesamtbilanz der Arbeit} % (fold)
+			\begin{align*}
+				\dot W_{\text{tot}} &= \dot W_{\text{s}} + p_{\text{a}} \cdot A_{\text{a}} \cdot w_{\text{a}} - p_{\text{e}} \cdot A_{\text{e}} \cdot w_{\text{e}} \\
+				&= \dot W_{\text{s}} + p_{\text{a}} \cdot \dot m_{\text{a}} \cdot v_{\text{a}} - p_{\text{e}} \cdot \dot m_{\text{e}} \cdot v_{\text{e}}
+			\end{align*}
+		% subsubsection: Gesamtbilanz der Arbeit (end)
+		
+		\subsubsection{Energiebilanz} % (fold)
+			\begin{empheq}[box=\shadowbox*]{equation*}
+				\begin{split}
+				\Diff{E_{\text{s}}}{t} = \dot{Q} + \Bigg\{
+					&-\dot{W}_{\text{s}} \\
+					&+ \sum_{i=1}^{n} \dot{m}_{i,\text{e}} \cdot \left(
+						h_{i,\text{e}} + \frac{w_{i,\text{e}}^2}{2} + g\cdot z_{i,\text{e}}
+					\right) \\
+					&- \sum_{j=1}^{k} \dot{m}_{j,\text{a}} \cdot \left(
+						h_{j,\text{a}} + \frac{w_{j,\text{a}}^2}{2} + g\cdot z_{j,\text{a}}
+					\right) \Bigg\}
+				\end{split}
+			\end{empheq}
+			\[
+				\Rightarrow \dot E_{\text{s}} = \dot{Q} - \dot{W}_{\text{tot}}
+			\]
+			\begin{gather*}
+				\dot m = \rho \cdot A \cdot w = \frac{A\cdot w}{v} \nicesunit{\kg\per\second} \tag{\text{Massenstrom}}\\
+				A \cdot w = \dot m \cdot v \nicesunit{\cubic\metre\per\second} \tag{\text{Volumenstrom}}
+			\end{gather*}
+			
+			\paragraph{Sonderfall:} % (fold)
+				stat. Zustand, nur je ein $m_{\text{ein}}$, $m_{\text{aus}}$ und $\dot{m}_{\text{ein}} = \dot{m}_{\text{aus}} = \dot{m}$ und $ke,\,pe$ vernachlässigbar:
+				\begin{empheq}[box=\shadowbox]{equation*}
+					0 = \dot Q - \dot{W}_{\text{s}} + \dot{m}\cdot(h_{\text{ein}} - h_{\text{aus}})
+				\end{empheq}
+			% paragraph: Sonderfall: (end)
+		% subsubsection: Energiebilanz (end)
+		
+	% subsection: Die Arbeit am System (end)
+	
+	\subsection{Anwendungen} % (fold)
+		\paragraph{Düsen und Diffusoren:} % (fold)
+			
+			% TODO: Düsen und Diffusoren Grafik
+			Bei Düsen:
+			\begin{itemize}
+				\item Fluid wird in der isolierten Düse beschleunigt
+				\item kinetische Energie nimmt zu
+				\item Enthalpie nimmt ab
+				\item innere Energie $u$ bleibt konstant
+				\item Druck nimmt ab
+			\end{itemize}
+			
+			Umgekehrt für Diffusoren.
+		% paragraph: Düsen und Diffusoren (end)
+		
+		\paragraph{Turbinen:} % (fold)
+			Von Fluid durchströmt, welches von einem hohen Druckniveau auf ein tieferes entspannt und dabei Arbeit leistet.
+		% paragraph: Turbinen: (end)
+		
+		\paragraph{Kompressoren und Pumpen:} % (fold)
+			Umgekehrte Funktion von Turbinen. Durch Arbeit wird der Druck eines Fluids erhöht.
+		% paragraph: Kompressoren und Pumpen: (end)
+		
+		\paragraph{Wärmeübertrager:} % (fold)
+			Von einem Fluid durchströmt, wobei keine Arbeit geleistet wird. Wärme wird über die Systemgrenze an die Umgebung übertragen.
+		% paragraph: Wärmeübertrager: (end)
+		
+		\paragraph{Drosselelemente:} % (fold)
+			Fluid wird von einem hohen Druckniveau auf ein tieferes entspannt, ohne dass dabei Arbeit geleistet wird.
+			\begin{itemize}
+				\item keine Wärme wird übertragen
+				\item kinetische Energie vor- und nachher vernachlässigbar
+				\item Enthalpie bleibt konstant
+			\end{itemize}
+		% paragraph: Drosselelemente: (end)
+	% subsection: Anwendungen (end)
+	
+% section: Der erste Hauptsatz in offenen Systemen (end)

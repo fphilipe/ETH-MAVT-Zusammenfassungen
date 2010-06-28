@@ -1,0 +1,80 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\section{Operational Amplifiers} % (fold)
+	
+	The op-amp measures the voltage difference \[
+		v_{\text{d}} = v_+ - v_-
+	\] and outputs it amplified by $A$:
+	
+	\vspace{-1.5cm}
+	\hspace{.6\columnwidth}
+	\circuitw{op_amp}{.45\columnwidth}
+	\vspace{-2.25cm}
+	
+	\[
+		v_{\text{o}} = A \cdot v_{\text{d}}
+	\]
+	Properties of an ideal op-amp:
+	\begin{tightitemize}
+		\item \emph{no current} enters the op-amp ($R_{\text{i}} \to \infty$)
+		\item there is \emph{no connection} between the inputs ($R_{\text{o}} \to 0$)
+		\item any current may flow in/out of the output
+		\item $A \to \infty$
+		\item without negative feedback: \[
+			v_{\text{o}} = \left\{
+				\begin{array}{@{}l@{\quad}l}
+					-\infty & v_{\text{d}} < 0 \\
+					\text{undef.} & v_{\text{d}} = 0 \\
+					\infty & v_{\text{d}} > 0
+				\end{array}
+			\right.
+		\]
+	\end{tightitemize}
+	
+	Further:
+	\begin{tightitemize}
+		\item the op-amp needs power to fulfill his functionality
+		\item thus an op-amp has an additional voltage source connected (usually not shown)
+		\item the output voltage is limited to the power supplying voltage source \[
+			v_0 \in [V_{\text{S}-}, V_{\text{S}+}]
+		\]
+	\end{tightitemize}
+	
+	\subsection{Feedback} % (fold)
+		Because of the negative feedback $v_{\text{d}}$ will be held at $0$, i.e., $v_+ = v_-$.
+		
+		This fixation of $v_-$ without a connection to $v_+$ is called \emph{virtual ground}.
+		
+		To calculate $v_o$ apply KCL at the junction between $Z_1$ and $Z_2$ (no current enters the Op-Amp):
+			\begin{align*}
+				0 &= \frac{v_{\text{i}-}-v_-}{Z_1} + \frac{v_\text{o} - v_-}{Z_2}
+				v_{\text{o}} = -v_{\text{i}-} \frac{Z_2}{Z_1} + v_+ \cdot \left(1+ \frac{Z_2}{Z_1}\right)
+			\end{align*}
+
+		\begin{wrapfigure}[0]{r}{.5\columnwidth}
+			\vspace{-8.5mm}
+			\circuitw{op_amp_virtual_ground}{.55\columnwidth}
+		\end{wrapfigure}
+
+		Inverting:\[
+			\left.\frac{v_{\text{o}}}{v_{\text{i}-}}\right|_{v_+ = 0} = -\frac{Z_2}{Z_1}
+		\]
+		Non-inverting:\[
+			\left.\frac{v_{\text{o}}}{v_+}\right|_{v_{\text{i}-} = 0} = 1 + \frac{Z_2}{Z_1}
+		\]
+	% subsection: Feedback (end)
+	
+	\subsection{Configurations} % (fold)
+		\paragraph{Non-Inverting Amplifier:} % (fold)
+			Amplifies $v_+$ by $K$.
+			\begin{gather*}
+				\left.\frac{v_{\text{o}}}{v_+}\right|_{v_{\text{i}-} = 0} = 1 + \frac{Z_2}{Z_1} = 1 + \frac{(K-1)\cdot \cancel{R}}{\cancel{R}} = 1 + K - 1 = K
+			\end{gather*}
+			
+			\begin{center}
+				\circuitw{op_amp_not_inverting_amp}{\columnwidth}
+				Simplification of the circuit.
+			\end{center}
+		% paragraph: Not-Inverting Amplifier (end)
+	% subsection: Configurations (end)
+% section: Operational Amplifiers (end)

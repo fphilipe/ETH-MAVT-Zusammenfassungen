@@ -1,0 +1,161 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Analysis/Zusammenfassung/LaTeX/Analysis Zusammenfassung.tex
+
+\section{Laplace-Transformation} % (fold)
+	Methode, um lineare Differentialgleichungen zu lösen.
+
+	\begin{definition}
+		Laplace-Transformierte $F(s)$ einer für $t > 0$ definierten Funktion $f(t)$:
+		\emphequation{equation}{
+			F(s) = \int_{0}^{\infty} f(t) \eu^{-st} \diff t \ . \label{laplace}
+		}
+	\end{definition}
+
+	\begin{notation}
+		$
+			F(s) = \laplace{f}
+		$
+	\end{notation}
+
+	\begin{bemerkung}
+		$F(s)$ ist für jene $s$ definiert, für die das Integral in~\eqref{laplace} existiert.
+	\end{bemerkung}
+	
+	\subsection{Eigenschaften} % (fold)
+		\begin{description}
+			\item[Linearität:]
+			$
+				\laplace{a f + b g} = a \cdot F(s) + b \cdot G(s)
+			$ \\[1ex]
+			wobei $f$, $g$ Funktionen und $a$, $b$ Konstanten sind.
+
+			\item[Verschiebungssatz:]
+			$
+				\laplace{\eu^{-at}f}(s) = F(s+a)
+			$
+
+			\item[Ableitungsregel:]
+			\begin{align*}
+				\laplace{\frac{\diff f}{\diff t}} &= s \cdot F(s) - f(0) \\
+				\laplace{\frac{\diff^2 f}{\diff t^2}} &= s^2 \cdot F(s) - s \cdot f(0) - f'(0) \\
+				\laplace{\frac{\diff^n f}{\diff t^n}} &= s^n \cdot F(s) - \sum_{j=0}^{n-1} s^{n-1-j} \cdot  \frac{\diff^j f}{\diff t^j} \bigg|_0
+			\end{align*}
+			
+			\item[Skalierungssatz:] $\laplace{f(at)} = \frac{1}{a} F \left(\frac{s}{a}\right)$
+			
+			\item[Faltung:] $\laplace{f*g} = \laplace f \cdot \laplace g$
+		\end{description}
+
+		\begin{center}
+			\begin{tabular}{l@{$\qquad$}l}
+				\toprule
+				Zeitraum & Frequenzraum \\
+				\midrule
+				$\displaystyle
+				(-t)^n f(t)\,,\ n\in\N
+				$ & $\displaystyle
+				\frac{\diff^n}{\diff s^n} F(s)
+				$ \\
+				$\displaystyle
+				\int_0^t f(u) \diff u
+				$ & $\displaystyle
+				\frac{1}{s} F(s)
+				$ \\
+				$\displaystyle
+				\frac{1}{t} f(t)
+				$ & $\displaystyle
+				\int_s^\infty F(u) \diff u
+				$ \\
+				$\displaystyle
+				f(t-a) H(t-a)
+				$ & $\displaystyle
+				e^{-as} F(s)
+				$ \\
+				\bottomrule
+			\end{tabular}
+		\end{center}
+	% subsection: Eigenschaften (end)
+	
+	\subsection{Korrespondenztabelle} % (fold)
+		\begin{center}
+			\begin{tabular}{l@{$\qquad$}l}
+				\toprule
+				Zeitraum & Frequenzraum \\
+				\midrule
+				$\displaystyle
+				\delta(t-a)\,,\ a\geq 0
+				$ & $\displaystyle
+				\eu^{-as}
+				$ \\
+				$\displaystyle
+				 H(t - a)\,,\ a\geq 0 
+				$ & $\displaystyle
+				 \frac{\eu^{-as}}{s} 
+				$ \\
+				$\displaystyle
+				 t^n\,,\ n\in\N_0 
+				$ & $\displaystyle
+				 \frac{n!}{s^{n+1}} 
+				$ \\
+				$\displaystyle
+				 \eu^{-at} 
+				$ & $\displaystyle
+				 \frac{1}{s+a} 
+				$ \\
+				$\displaystyle
+				1- \eu^{-at}
+				$ & $\displaystyle
+				 \frac{a}{s(s+a)} 
+				$ \\
+				$\displaystyle
+				\sin(at)
+				$ & $\displaystyle
+				\frac{a}{s^2+a^2}
+				$ \\
+				$\displaystyle
+				\cos(at)
+				$ & $\displaystyle
+				\frac{s}{s^2+a^2}
+				$ \\
+				$\displaystyle
+				\sinh(at)
+				$ & $\displaystyle
+				\frac{a}{s^2-a^2}
+				$ \\
+				$\displaystyle
+				\cosh(at)
+				$ & $\displaystyle
+				\frac{s}{s^2-a^2}
+				$ \\
+				\bottomrule
+			\end{tabular}
+		\end{center}
+	% subsection: Tabelle (end)
+
+	\subsection{Die Inverse Laplace-Transformation} % (fold)
+		\begin{notation}
+			$
+				f = \invlaplace{F}
+			$
+		\end{notation}
+
+		\begin{bemerkungen}
+			\item Es gibt Funktionen, die keine Inverse haben.
+			\item Es gibt eine Umkehrformel, die in $\C$ operiert:\[
+				f(t) = \frac{1}{2\pi\iu} \int_\Gamma \eu^{st} F(s) \diff s
+			\] über den Integrationsweg $\Gamma$ im Komplexen.
+			\item In den Fällen wo die Laplace-Transformation nützlich ist, findet
+			man die Inverse durch Zurückführen auf Funktionen von denen die Inverse
+			bekannt ist.
+		\end{bemerkungen}
+		
+		\paragraph{Vorgehen bei der Rücktransformation} % (fold)
+			% TODO: Vorgehen bei Rücktransformation verbessern
+			\begin{tightitemize}
+				\item Suche nach Verschiebungssatz
+				\item Zerlege Faktoren durch Partialbruchzerlegung
+				\item Quadratisch ergänzen, so dass Therme geklammert werden können
+				\item Bei Rücktransformation mit dem Verschiebungssatz muss oft zwischen $t<a$ und $t>a$ unterschieden werden.
+			\end{tightitemize}
+		% paragraph: Vorgehen bei der Rücktransformation (end)
+	% subsection: Die Inverse (end)
+% section: Laplace-Transformation (end)

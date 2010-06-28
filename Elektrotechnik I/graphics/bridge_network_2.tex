@@ -1,0 +1,20 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+\begin{circuitikz}[scale=1]\ctikzset{bipoles/length=.6cm}
+	\draw
+	(.5,2) to[R, l_=$A_1$, *-] (.5,1)
+	      to[R, l_=$B_1$, -*] (.5,0)
+	      -- (2,0)
+	      to[R, l_=$B_2$] (2,1)
+	      to[R, l_=$A_2$] (2,2)
+	      -- (.5,2)
+	(.5,1) to[R, l=$Z_{\text B}$, *-*] (2,1)
+	;
+	\draw[dashed]
+	(0,2) -- (.2,2)
+	(0,0) -- (.2,0)
+	;
+	\draw
+	(.25,2) -- (.5,2)
+	(.25,0) -- (.5,0)
+	;
+\end{circuitikz}

@@ -1,0 +1,53 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\subsection{Superposition} % (fold)
+	
+	In a network with multiple sources
+	\begin{tightitemize}
+		\item the potential in each node
+		\item the current in each branch
+	\end{tightitemize}
+	equals the sum of the individual contributions of all sources.
+	
+	To calculate the contribution of each source, all other sources have to be replaced as follows:
+	\begin{tightitemize}
+		\item current sources become open circuits
+		\item voltage sources become short circuits
+	\end{tightitemize}
+	
+% subsection: Superposition (end)
+
+\subsection{Network Equivalents} % (fold)
+	
+	\resizebox{\columnwidth}{!}{
+	\circuit{thevenin_simple}
+	\circuit{norton_simple}
+	}
+	
+	\begin{enumerate}
+		\item remove the external load $R_L$
+		\item mark the terminals with $a$ and $b$ (or $+/-$)
+		\item 
+			\begin{description}
+				\item[Thévenin:] calculate $E_{Th}$ by finding the open-circuit voltage between $a$ and $b$
+				\item[Norton:] calculate $I_N$ by finding the short-circuit current between $a$ and $b$
+			\end{description}
+		\item calculate $R_{Th} \equiv R_N$ by replacing voltage sources with short circuits and current sources with open circuits
+	\end{enumerate}
+	
+	\paragraph{Conversion Between Norton and Thévenin:} % (fold)
+		\begin{gather*}
+			E_{Th} = I_N \cdot R_N \qquad
+			I_N = \frac{E_{Th}}{R_N} \qquad R_N = R_{Th}
+		\end{gather*}
+	% paragraph: Conversion Between Norton and Thévenin (end)
+	
+	\paragraph{Maximum Power Transfer:} % (fold)
+		$R_L$ will receive maximum power when it equals $R_{Th}$ or $R_N$.
+
+		\[
+			P_{L,max} = \frac{E_{Th}^2}{4 R_{Th}} = \frac{I_N^2 \, R_N}{4}
+		\]
+	% paragraph: Maximum Power Transfer: (end)
+	
+% subsection: Network Equivalents (end)

@@ -1,0 +1,110 @@
+%% See the TeXed file for more explanations
+
+\usepackage{babel}
+
+\usepackage[utf8]{inputenc}
+\usepackage[sc]{mathpazo}
+\usepackage[thmmarks]{ntheorem}
+\usepackage[nice]{nicefrac}
+\usepackage[load={prefixed,prefix,abbr,named,synchem,addn},per=frac,fraction=frac]{siunitx}
+\usepackage{tikz}
+
+%% Math related packages
+
+%% The AMS-LaTeX extensions for mathematical typesetting.
+\usepackage{amsmath,amssymb,amsfonts,mathrsfs}
+
+\renewcommand{\arraystretch}{0.8}
+% import content
+\newcommand{\content}[1]{
+	\input{content/#1.tex}
+}
+% Macro for units
+\newcommand{\sunit}[1]{\ensuremath{ \quad \left[ \si{#1} \right] } }
+\newcommand{\nicesunit}[1]{\ensuremath{ \quad \left[ \si[fraction=nicefrac]{#1} \right] } }
+\newcommand{\unit}[1]{\ensuremath{ \left[ \si{#1} \right] } }
+\newcommand{\niceunit}[1]{\ensuremath{ \left[ \si[fraction=nicefrac]{#1} \right] } }
+
+%% [OPT] Multi-rowed cells in tabulars
+%\usepackage{multirow}
+
+%% [REC] Intelligent cross reference package. This allows for nice
+%% combined references that include the reference and a hint to where
+%% to look for it.
+\usepackage{varioref}
+% \labelformat{equation}{(#1)} % keine gute idee
+
+%% [OPT] Easily changeable quotes with \enquote{Text}
+% \usepackage[german=swiss]{csquotes}
+
+%% [REC] Format dates and time depending on locale
+% \usepackage{datetime}
+
+%% [OPT] Provides a \cancel{} command to stroke through mathematics.
+\usepackage{cancel}
+
+%% [ADV] This allows for additional typesetting tools in
+%% mathmode. \mathclap{} will allow you to take away the width of a
+%% mathematical statement seen by LaTeX.
+\usepackage{mathtools}
+
+%% [ADV] Conditional commands
+%% (note that this is included by macrosetup.tex anyway)
+%\usepackage{ifthen}
+
+%% [OPT] Manual large braces or other delimiters.
+%\usepackage{bigdelim, bigstrut}
+
+%% [REC] Alternate vector arrows. Use the command \vv{} to get scaled
+%% vector arrows.
+\usepackage[h]{esvect}
+
+%% [NEED] Some extensions to tabulars and array environments.
+\usepackage{array}
+
+%% [OPT] Provides \unit[1]{N} as a means to facilitate unit
+%% typesetting as well as \nicefrac{}{} command that prints a fraction
+%% in text-height. Very useful for fractions inside matrices.
+%\usepackage{units}
+
+%% [NEED] Allows to rotate elements
+\usepackage{rotating}
+
+%% [OPT] LaTeX epic/eepic graphics format support.
+%\usepackage{epic,eepic}
+
+%% [OPT] Postscript support via pstricks graphics package. Very
+%% diverse applications.
+%\usepackage{pstricks,pst-all}
+
+%% [?] This seems to allow us to define some additional counters.
+%\usepackage{etex}
+
+%% [ADV] XY-Pic to typeset some matrix-style graphics
+%\usepackage[all]{xy}
+
+\usepackage{booktabs}
+% \usepackage{tabulary}
+
+% \usepackage[caption=false,format=hang]{subfig}
+
+% \usepackage[pdftex,bookmarksopen]{hyperref}
+
+\makeatletter
+
+\def\@pdfborder{0 0 0}%
+\let\@pdfborderstyle\@empty
+
+\makeatother
+
+\usepackage{longtable}
+
+\usepackage{etex}
+
+\usepackage{fancybox}
+\setlength\shadowsize{1pt}
+\usepackage{empheq}
+
+\usepackage[setpagesize=false]{hyperref}
+
+\usepackage{multirow}

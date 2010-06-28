@@ -1,0 +1,194 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Thermodynamik/Neue Zusammenfassung/Thermodynamik I - Zusammenfassung.tex
+
+\section{Eigenschaften reiner kompressibler Substanzen} % (fold)
+	
+	\subsection{Thermodynamische Zustandsdaten} % (fold)
+	
+		\subsubsection{Das Zustandsprinzip für einfache Systeme} % (fold)
+		
+			sagt aus, dass dessen thermodynamischer Zustand durch genau \textbf{zwei unabhängige Zustandsvariablen} bestimmt wird.
+			
+		% subsubsection: Zustandsprinzip für einfache Systeme (end)
+		
+		\subsubsection{Die Enthalpie} % (fold)
+			In einem Gas unter Druck steckt die Enthalpie, eine extensive Zustandsgrösse:
+			\[
+				H = U + p\cdot V
+			\]
+			
+			\begin{align*}
+				\text{pro Masse: } h &= \frac{H}{m} = u + p\cdot v \\
+				\text{pro Mol: } \overline{h} &= \frac{H}{\text{Mol}} = \overline{u} + p\cdot \overline{v}
+			\end{align*}
+			
+			Die \textbf{Verdampfungsenthalpie} oder -wärme ist die Energiemenge um ein Fluid bei konstantem Druck und Temperatur vom flüssigen in den gasförmigen Zustand überzuführen:
+			\[
+				h_{\text{fg}} = h_{\text{g}} - h_{\text{f}}
+			\]
+			
+		% subsubsection: Die Enthalpie (end)
+		
+		\subsubsection{Die Wärmemenge und der Begriff der spezifischen Wärme} % (fold)
+			
+			Hauptgleichung der Kalorik:
+			\[
+				\Delta Q = m \cdot c \cdot \Delta T
+			\]
+			
+			\paragraph{Wärmezufuhr bei konstantem Volumen:} % (fold)
+				
+				Keine Arbeit durch Volumenänderung geleistet. Zugeführte Wärme ändert nur innere Energie $u = u(v,T)$.
+				\[
+					\diff u = \left(\frac{\partial u}{\partial v}\right)_T \diff v + \left(\frac{\partial u}{\partial T}\right)_v \diff T
+				\]
+				Da $\diff v = 0$ ist die \textbf{spezifische Wärmekapazität bei konstantem Volumen}:
+				\[
+					c_{v} = \left(\frac{\partial u}{\partial T}\right)_v \sunit{\joule\per\kg\per\kelvin}
+				\]
+				
+			% paragraph: Wärmezufuhr bei konstantem Volumen: (end)
+			
+			\paragraph{Wärmezufuhr bei konstantem Druck:} % (fold)
+				
+				Arbeit gegen den Aussendruck geleistet. Zugeführte Wärme ändert Enthalpie $h = h(T,p)$.
+				\[
+					\diff h = \left(\frac{\partial h}{\partial p}\right)_T \diff p + \left(\frac{\partial h}{\partial T}\right)_p \diff T
+				\]
+				Da $\diff p = 0$ ist die \textbf{spezifische Wärmekapazität bei konstantem Druck}:
+				\[
+					c_{p} = \left(\frac{\partial h}{\partial T}\right)_p \sunit{\joule\per\kg\per\kelvin}
+				\]
+				
+			% paragraph: Wärmezufuhr bei konstantem Druck: (end)
+			
+			\[
+				\kappa = \frac{c_p}{c_v}
+			\]
+			
+		% subsubsection: Die Wärmemenge und der Begriff der spezifischen Wärme (end)
+		
+		\subsubsection{Näherungen für Flüssigkeiten} % (fold)
+			
+			Druckerhöhung bei Flüssigkeit an der Phasengrenze (im Sättigungszustand) ändert $v$, $c_v$, $u$ nur geringfügig.
+			Es können die Werte der flüssigen Phasengrenze verwendet werden:
+			\begin{align*}
+				v(T,p)&\cong v_f(T) \\
+				u(T,p)&\cong u_f(T)
+			\end{align*}
+			
+			Somit wird die Enthalpie bei $p = p_{\text{sätt}} + \Delta p$ zu:
+			\[
+				h(T,P) = h_f(T) + v_f(T) \cdot \Delta p
+			\]
+			Falls $\Delta p$ genügend klein ist:
+			\[
+				h(T,p) \cong h_f(T)
+			\]
+			
+			\paragraph{Inkompressible Medien:} % (fold)
+				
+				Modell für Substanzen mit einem Bereich von Zuständen, wo $v$ nur sehr wenig vom Druck abhängt und $u$ praktisch nur eine Funktion der Zeit ist.
+				\begin{align*}
+					c_v(T) &= \frac{\diff u}{\diff T} \\
+					h(T,p) &= u(T) + p\cdot v \\
+					c_p &= \frac{\diff u}{\diff T} = c_v
+				\end{align*}
+				
+				Differenzen von $u$ und $h$ zwischen zwei Zuständen für inkompressible Fluide:
+				\begin{empheq}[box=\shadowbox*]{align*}
+					u_2 - u_1 &= \int_{T_1}^{T_2} c(T) \diff T \\
+					h_2 - h_1 &= \int_{T_1}^{T_2} c(T) \diff T + \int_{p_1}^{p_2} v \diff p \\ &= \int_{T_1}^{T_2} c(T) \diff T + v\cdot (p_2-p_1)
+				\end{empheq}
+				
+				Falls inkompressibel und $c =$ konstant vereinfacht es sich zu:
+				\begin{align*}
+					u_2 - u_1 &= c \cdot (T_2 - T_1) \\
+					h_2 - h_1 &= c \cdot (T_2 - T_1) + v \cdot (p_2 - p_1)
+				\end{align*}
+				
+			% paragraph: Inkompressible Medien: (end)
+			
+		% subsubsection: Näherungen für Flüssigkeiten (end)
+		
+	% subsection: Thermodynamische Zustandsdaten (end)
+	
+	\subsection{Die p-v-T Beziehung für Gase} % (fold)
+		universelle Gaskonstante:
+		\[
+			\lim_{p\to 0} \frac{p \cdot \overline{v}}{T} = \overline{R} = 8.314 \sunit{\kilo\joule\per\kmol\per\kelvin}
+		\]
+		
+		Realgas-Faktor (englisch: compressibility factor):
+		\[
+			Z(T,p) = \frac{p\cdot \overline{v}}{\overline{R} \cdot T}
+			       = \frac{p\cdot v}{\overline{R} \cdot T} \qquad \text{mit} \quad R = \frac{\overline{R}}{M} \sunit{\kilo\joule\per\kg\per\kelvin}
+		\]
+		\[
+			\Rightarrow p\cdot v = Z(T,p) \cdot R \cdot T
+		\]
+	% subsection: Die p-v-T (end)
+	
+	\subsection{Das Modell idealer Gase} % (fold)
+		Bei Gase, dessen Atome/Moleküle keine elektromagnetische Momente haben, treten (auch bei $p \neq 0$) keine Wechselwirkungskräfte zwischen Atomen/Molekülen auf. $\Rightarrow$ $Z = 1$
+		\begin{align*}
+			p \: v &= R \: T \\
+			p \: V &= m \: R \: T \\
+			p \: \overline{v} &= \overline{R} \: T \\
+			p \: V &= n \: \overline{V} \: T
+		\end{align*}
+		mit $M$ als Molekulargewicht und $n$ als Molzahl.
+		
+		\begin{align*}
+			u &= u(T) \\
+			h &= h(T) = u(T) + R\:T
+		\end{align*}
+		
+		\subsubsection{Polytrope Zustandsänderung} % (fold)
+			\label{subs:polytrope_zustandsaenderung}
+			\begin{gather*}
+				p\cdot v^n = \text{const.} \qquad \text{resp.} \qquad p\cdot V^n = \text{const.} \\
+				\frac{T_2}{T_1} = \left( \frac{p_2}{p_1} \right)^{\frac{n-1}{n}} = \left( \frac{V_1}{V_2} \right)^{n-1}
+			\end{gather*}
+			$n \in (-\infty,\infty)$ heisst \emph{Polytropen-Exponent}
+			
+			\begin{empheq}[box=\shadowbox*]{equation*}
+				W_{12} = \int_{V_1}^{V_2} p(V) \diff V
+			\end{empheq}
+			
+			
+			
+			\begin{description}
+				\item[isobarer Prozess:] ($p=\text{const.}$, $\boldsymbol{n=0}$,\\ $\Delta Q = \Delta H,\, \frac{T_1}{V_1} = \frac{T_2}{V_2}$)
+				\begin{align*}
+					W_{12} = p_1 \cdot (V_2 - V_1) &= m \cdot p_1 \cdot (v_2 - v_1) \\ &= m\cdot R \cdot (T_2 - T_1)
+				\end{align*}
+				
+				\item[isothermer Prozess:] ($T=\text{const.},\, \boldsymbol{n=1},\, \Delta U = 0$)
+				\begin{align*}
+					W_{12} &= p_1 \cdot V_1 \cdot \ln \frac{V_2}{V_1} = m \cdot R \cdot T \cdot \ln \frac{V_2}{V_1} \\
+					&= m\cdot p_1 \cdot v_1 \cdot \ln \frac{V_2}{V_1} = m \cdot R \cdot T \cdot \ln \frac{p_1}{p_2}
+				\end{align*}
+				
+				\item[isochorer Prozess:] ($v=\text{const.},\, \boldsymbol{n=+\infty},\, \frac{p_2}{p_1} = \frac{T_2}{T_1}$)
+				\[
+					W_{12} = 0
+				\]
+				
+				\item[isentroper Prozess:] (adiabatisch)
+				\[
+					n = \kappa = \frac{c_p}{c_v} \quad \left( = \frac{f+2}{f} \text{ für ideale Gase} \right)
+				\]
+				
+				
+				\item[allgemeiner Prozess:] ($n\neq 1$)
+				\begin{align*}
+					W_{12} &= \frac{p_1 \cdot V_1^n}{1-n} \cdot (V_2^{1-n} - V_1^{1-n}) \\
+					\text{(allg.)}\quad &= m \cdot \frac{p_2 \cdot v_2 - p_1 \cdot v_1}{1-n} \\
+					\text{(ideales Gas)}\quad &= \frac{m \cdot R \cdot (T_2 - T_1)}{1-n}
+				\end{align*}
+			\end{description}
+		% subsubsection: Polytrope Zustandsänderung (end)
+		
+	% subsection: Das Modell idealer Gase (end)
+	
+% section: Eigenschaften reiner kompressibler Substanzen (end)

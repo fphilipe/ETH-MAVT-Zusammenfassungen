@@ -1,0 +1,13 @@
+.DS_Store
+*.aux
+*.fdb_latexmk
+*.log
+*.out
+*/*.pdf
+*.gz
+*.thm
+*.toc
+*.idx
+*.ilg
+*.ind
+*.gnuplot

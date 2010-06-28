@@ -1,0 +1,86 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\subsection{Superposition Analysis} % (fold)
+	The current through, or voltage across an elements in a linear network is equal to the algebraic sum of the currents or voltages produced by each independant source.
+	
+	\begin{align*}
+		V &= V_{m1} \cdot \cos(\omega t + \theta_1) + V_{m2} \cdot \cos(\omega t + \theta_2) \\
+		&= V_{m3} \cdot \cos(\omega t + \theta_3)
+	\end{align*}
+	where
+	\begin{align*}
+		V_{m3} &= \sqrt{V_{m1}^2 + V_{m2}^2 + 2 \cdot V_{m1} \cdot V_{m2} \cdot \cos(\theta_1 - \theta_2)} \\
+		\theta_3 &= \arctan \left(
+			\frac{
+				V_{m1} \cdot \sin \theta_1 + V_{m2} \cdot \sin \theta_2
+			}{
+				V_{m1} \cdot \cos \theta_1 + V_{m2} \cdot \cos \theta_2
+			}
+		\right)
+	\end{align*}
+		
+		\paragraph{With Phasors:} % (fold)
+			Generally easier.
+			
+			\begin{gather*}
+				S = V_m \angle \theta = V_m (\cos \theta + \iu \sin \theta) = V_m \cdot \eu^{\iu\theta} \\
+				|S| = \sqrt{\Re^2 + \Im^2} \qquad \angle S = \arctan \frac{\Im}{\Re}
+			\end{gather*}
+			
+			\begin{tabular}{lll}
+				\textbf{Resistor:} & $\theta_R = 0$ & $\frac{V}{I} = R$ \\ [2ex]
+				\textbf{Capacitor:} & $\theta_C = -90\degree$ & $\frac{V}{I} = \frac{1}{\iu\omega C} = -\iu \frac{1}{\omega C}$ \\ [2ex]
+				\textbf{Inductor:} & $\theta_L$ & $\frac{V}{I} = \iu\omega L$ \\
+			\end{tabular}
+		% paragraph: With Phasors: (end)
+% subsection: Superposition (end)
+
+\subsection{Impedance} % (fold)
+	\[
+		Z = \frac{V}{I} \qquad Z = R + \iu X
+	\]
+	
+	\[
+		\Im(Z) \left\{\begin{array}{@{}l@{\quad}l}
+			>0 & \text{inductive} \\
+			= 0 & \text{resistive} \\
+			<0 & \text{capacitive}
+		\end{array}\right.
+	\]
+	
+	Current/voltage divider rule and connections in series/parallel are analogous to resistance.
+	
+	\paragraph{Admittance:} % (fold)
+		$
+			Y = \frac{1}{Z} \sunit{Siemens}
+		$
+	% subsubsection: Admittance (end)
+	
+	\paragraph{Voltage drop across impedance:} % (fold)
+		$V$ is the voltage drop, $I$ the current and $Z$ the impedance consisting of a resistor and an inductor in series.
+		
+		\begin{wrapfigure}[0]{r}{.35\columnwidth}
+			\vspace{-.5cm}
+			\circuitw{voltage_across_impedance}{.35\columnwidth}
+		\end{wrapfigure}
+		
+		\begin{align*}
+			V &= \abs{Z} \cdot I \\
+			V_R &= R \cdot I = V \cdot \cos \theta \\
+			V_L &= \omega L \cdot I = V \cdot \sin \theta
+		\end{align*}
+	% paragraph: Voltage drop across impedance: (end)
+% subsection: Impedance (end)
+
+\subsection{Frequency Response} % (fold)
+	Describes the behaviour of an AC circuit as a function of the signal frequency. Consists of two parts which are plotted in a Bode diagram:
+	
+	\begin{description}
+		\item[Transfer Function:] $\displaystyle
+			H(\iu \omega) = \frac{V_{\text{out}}}{V_{\text{in}}}
+		$
+		\item[Amplitude Response:] $\abs{H(\iu \omega)} \quad$
+		in dB: $\quad 20\cdot \log_{10} \abs{H(\iu \omega)}$
+		\item[Phase Response:] $\angle H(\iu \omega)$
+	\end{description}
+% subsection: Frequency Response (end)

@@ -1,0 +1,16 @@
+\begin{circuitikz}[>=latex,scale=.5,platte/.style={fill=black!10,draw=black}]
+	
+	\draw (3,.5) to[short, -o] (3,-1);
+	
+	\filldraw[platte] (0,0) node[left,below]{$-Q$} -- (4,0) -- (6,1) -- (2,1) -- cycle;
+	\filldraw[platte] (0,.8) node[left,above,yshift=1mm]{$+Q$} -- (4,.8) node[above,xshift=-15,xslant=2,xscale=1.5]{\large A} -- (6,1.8) -- (2,1.8) -- cycle;
+	
+	\draw (3,3.3) to[short, i=$i_C$, o-] (3,1.3);
+	
+	\draw (6.2,1) -- (7.2,1)
+	(6.7,1) -- (6.7,1.8) node[pos=.5,right]{$d$}
+	(6.2,1.8) -- (7.2,1.8);
+	\draw[->] (6.7,.5) -> (6.7,1);
+	\draw[->] (6.7,2.3) -> (6.7,1.8);
+	
+\end{circuitikz}

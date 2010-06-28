@@ -1,0 +1,74 @@
+\documentclass[9pt,fleqn,article]{memoir}
+
+\title{Analysis III -- Zusammenfassung}
+\author{Philipe Fatio}
+
+\usepackage[greek,ngerman]{babel}
+
+\input{../.includes/layout_setup}
+\input{../.includes/page_setup}
+\input{../.includes/extra_packages}
+\input{../.includes/macro_setup}
+
+\numberwithin{equation}{section}
+
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+% laplace transformation macro
+\newcommand{\laplace}[1]{\ensuremath{\mathcal{L}\left\{#1\right\}}}
+\newcommand{\invlaplace}[1]{\ensuremath{\mathcal{L}^{-1}\left\{#1\right\}}}
+
+% Definitions etc.	
+\newenvironment{tightitemize}
+	{
+	\begin{itemize}
+	\setlength{\itemsep}{2pt}
+	\setlength{\parskip}{0pt}
+	\setlength{\parsep}{0pt}
+	}
+	{\end{itemize}}
+
+\newenvironment{definition}
+	{\textsc{Definition:}\ }
+
+\newenvironment{notation}
+	{\textsc{Notation:}\ }
+
+\newenvironment{beispiel}
+	{\textsc{Beispiel:}\ }
+
+\newenvironment{bemerkung}
+	{\textsc{Bemerkung:}\ }
+	
+\newenvironment{bemerkungen}
+	{
+	\textsc{Bemerkungen:}
+	\vspace{-2ex}
+	\begin{tightitemize}
+	}
+	{\end{tightitemize}}
+	
+\newenvironment{folgerung}
+	{\textsc{Folgerung:}\ }
+
+\newenvironment{regeln}
+	{\textsc{Regeln:}\ }
+
+\begin{document}
+\begin{multicols*}{3}
+	\content{laplace-transformation}
+	\content{fourierreihe}
+	\content{pde}
+\end{multicols*}
+
+% ============
+% = Appendix =
+% ============
+\appendix
+\makeatletter
+\def\@seccntformat#1{A.\csname the#1\endcsname\quad}
+\makeatother
+\begin{multicols*}{3}
+	\content{anhang}
+\end{multicols*}
+\end{document}

@@ -1,0 +1,66 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\begin{circuitikz}[scale=1.5,>=latex]
+	\usetikzlibrary{calc}
+	\begin{scope}
+		\draw
+			(opamp) node[op amp] {}
+			(opamp.+) node[above] {$v_+$}
+			(opamp.-) node[below] {$v_-$}
+			(opamp.out) node{}
+		;
+		\coordinate (ground1) at ($(opamp.-) + (-1.5,-1.5)$);
+			
+		\draw
+			(ground1) node[ground]{}
+			-- ($(opamp.-)+(-1.5,0)$)
+			to[R=$R$, -*] (opamp.-)
+		;
+		
+		\draw
+			(opamp.-) -- ++(0,.5)
+			to[R=$(K-1)R$] ($(opamp.out)+(0,.825)$)
+			-- (opamp.out)
+		;
+		
+		\draw
+			(ground1) ++(1,0)
+			node[ground]{}
+			to[V_=$v_{\text{i}+}$] ($(opamp.+)+(-.5,0)$)
+			-- (opamp.+)
+		;
+		
+		\draw
+			(opamp.out) ++(.5,0) to[short, o-*] (opamp.out)
+			(opamp.out) ++(.5,-.5) node[ground]{}
+			to[open, o-] (opamp.out)
+		;
+		
+		\draw[->]
+			(opamp.out) ++(.625,0) arc (45:-45:10pt)
+		;
+		\draw
+			(opamp.out)++(.75,-.25) node[left]{$v_{\text o}$}
+		;
+	\end{scope}
+	
+	\begin{scope}[xshift=2.5cm,scale=.75,yshift=-1cm]
+		\draw
+			(0,0) node[ground]{}
+			to[V_=$v_{\text{i}+}$] (0,1)
+			-- (1,1)
+			(1,.33) -- (1,1.66) -- (2,1) -- cycle
+			(1.5,1) node{K}
+			(2,1) to[short, -o] (3,1)
+			to[open, -o] (3,.25)
+			-- (3,0)
+			node[ground]{}
+		;
+		\draw[->]
+			(3.125,1) arc (45:-45:15pt)
+		;
+		\draw
+			(3.25,.625) node[left]{$v_{\text o}$}
+		;
+	\end{scope}
+\end{circuitikz}

@@ -1,0 +1,669 @@
+% PREAMBLE (fold)
+%&program=xelatex
+\documentclass{article}
+
+\author{Philipe Fatio}
+\title{Informatik Zusammenfassung}
+\date{\today}
+
+\usepackage[
+	a4paper,
+	landscape,
+	left=1.25cm,
+	right=1.25cm,
+	top=0.75cm,
+	bottom=0.75cm,
+	includeheadfoot
+]{geometry}
+
+\usepackage{multicol}
+\setlength{\columnseprule}{.5pt}
+\setlength{\columnsep}{1cm}
+\setlength{\parindent}{0cm}
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+%\usepackage{graphics}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{pdfpages}
+
+\usepackage[all]{xy}
+
+\usepackage{empheq}
+
+\usepackage{fancybox}
+\setlength\shadowsize{1.5pt}
+
+% Wir schreiben hier auf Deutsch
+\usepackage[german]{babel}
+
+% Nice headers
+\usepackage{fancyhdr}
+\fancyhf{}
+\cfoot{-- \emph{\thepage} --}
+\rhead{\textit{Philipe Fatio} -- \today}
+\lhead{\textbf{Informatik Zusammenfassung}}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}
+
+% Use Mathematical Equations
+\usepackage{amsmath}
+
+\usepackage{titlesec}
+\titleformat*{\section}{\large \bf}
+\titleformat*{\subsection}{\normalsize \bf}
+\titleformat*{\subsubsection}{\footnotesize \bf}
+\titleformat*{\paragraph}{\footnotesize \bf}
+\titleformat*{\subparagraph}{\footnotesize \bf}
+
+\usepackage{fontspec}
+\usepackage{xunicode}
+\usepackage{xltxtra}
+\defaultfontfeatures{Scale=MatchLowercase}
+%\setromanfont[Mapping=tex-text]{Garamond}
+%\setsansfont[Mapping=tex-text]{Lucida Grande}
+\setmonofont{Consolas}
+
+\usepackage[usenames,dvipsnames]{color} 
+\usepackage{framed}
+\usepackage{listings}
+\definecolor{shadecolor}{gray}{.67}
+
+\lstdefinestyle{list}{
+	language=C++,
+	% numbering
+	numbers=left,
+	numberstyle=\ttfamily\scriptsize\bfseries\color{White},
+	numbersep=7.5pt,
+	% frame
+	frame=single,
+	framerule=0pt,
+	%framexleftmargin=7.5mm,
+	framexrightmargin=1.85mm,
+	xleftmargin=10pt,
+	% style
+	basicstyle=\ttfamily\normalsize,
+	identifierstyle=\color{BlueViolet}, 
+	commentstyle=\color{ForestGreen}\itshape,
+	stringstyle=\color{RedOrange}\itshape,
+	keywordstyle=\color{RedViolet},
+	morekeywords={string},
+	backgroundcolor=\color{White},
+	showstringspaces=false,
+	tabsize=2,
+	breaklines=true
+}
+
+\lstset{
+	language=C++,
+	basicstyle=\ttfamily\normalsize,
+	identifierstyle=\color{BlueViolet}, 
+	commentstyle=\color{ForestGreen}\itshape,
+	stringstyle=\color{RedOrange}\itshape,
+	keywordstyle=\color{RedViolet},
+	morekeywords={string},
+	showstringspaces=false
+}
+
+\newenvironment{code}
+	{\begin{shaded}\vspace{-2.2mm}} 
+	{\vspace{-5.0mm}\end{shaded}}
+
+\usepackage{hyperref}
+\hypersetup{
+			bookmarks=true,%
+			unicode=true,%
+			pdftitle={Lineare Algebra — Zusammenfassung},%
+			pdfauthor={Philipe Fatio},%
+			colorlinks=true
+			}
+% PREAMBLE (end)
+\begin{document}
+\begin{multicols*}{3}
+
+	\section{Syntax} % (fold)
+		\subsection{Allgemeines} % (fold)
+			Strings müssen mit Doppelten Anführungsstrichen geschrieben werden. Einfache Anführungsstrichen dienen lediglich der Erzeugung von \lstinline!char!.
+			
+			\lstinline!sizeof()! gibt die Grösse in Bytes zurück. Somit kann man die Grösse eine Arrays dynamisch berechnen:
+			\begin{code}
+				\begin{lstlisting}[style=list]
+int a[] = {1, 2, 3}; // 3*8 Bytes
+cout << sizeof(a)/sizeof(int); // (3*8)/8 = 3
+				\end{lstlisting}
+			\end{code}
+			
+			Um Zufahlszahlen zu generieren verwendet man \lstinline!rand()\%n!. Dies gibt eine Zahl zwischen 0 und $n-1$ zurück. Bevor man diese Funktion verwenden kann, muss man \lstinline!srand(time(NULL))! einmal aufrufen. Dazu muss die Bibliothek \textbf{cstdlib} und \textbf{ctime} eingebunden werden.
+		% subsection: Allgemeines (end)
+		\subsection{\lstinline!switch!} % (fold)
+			Nur \lstinline!int! oder \lstinline!char! Daten. Wenn \lstinline!break! nicht vorkommt, wird alles ausgeführt bis zum nächsten \lstinline!break!.
+			
+			\begin{code}
+				\begin{lstlisting}[style=list]
+int x = 1;
+switch(x) {
+	case 0:
+		// code
+		break;
+	case 1:
+		// code
+		break;
+	case 2:
+	case 3:
+		// code
+		break;
+	default:
+		// code
+}
+				\end{lstlisting}
+			\end{code}
+					\subsection{I/O} % (fold)
+						Ganze Zeile einlesen:
+						\begin{code}
+							\begin{lstlisting}[style=list]
+			const int MAX = 256;
+			char a[MAX];
+			cin.getline(a, MAX);
+							\end{lstlisting}
+						\end{code}
+
+						Formatierte Ausgabe möglich mit \lstinline!printf()! welche in \textbf{cstdio} definiert ist.
+
+						\begin{tabular}{l|l|l}
+										\hline
+										Specifier & Output & Beispiel\\
+										\hline
+										\lstinline!c!               & char                     & \lstinline!a! \\
+										\lstinline!d!/\lstinline!i! & signed decimal int       & \lstinline!392! \\
+										\lstinline!e!               & scientific notation      & \lstinline!3.9265e+2! \\
+										\lstinline!E!               & scientific notation      & \lstinline!3.9265E+2! \\
+										\lstinline!f!               & decimal floating point   & \lstinline!392.65! \\
+										\lstinline!o!               & signed octal             & \lstinline!610! \\
+										\lstinline!s!               & string of characters     & \lstinline!sample! \\
+										\lstinline!u!               & unsigned decimal integer & \lstinline!7235! \\
+										\lstinline!x!               & unsigned hexadecimal int & \lstinline!7fa! \\
+										\lstinline!X!               & unsigned hexadecimal int & \lstinline!7FA! \\
+										\lstinline!p!               & Pointer Adresse          & \lstinline!0x101610! \\
+										\lstinline!\%!              & um ein \% auszugeben     & \lstinline!\%! \\
+										\hline
+									\end{tabular}
+
+						asdfasdfasdf
+
+					% subsection: I/O (end)
+		% subsection: \lstinline+switch+ (end)
+		\subsection{Arrays} % (fold)
+			Initialisierung mit 5 Felder ohne Werte zu setzen: \\
+			\lstinline!int a[5];!
+			
+			Initialisierung mit 3 Felder mit Werte: \\
+			\lstinline!int a[] = {1, 2, 3};!
+			
+			Initialisierung mit 5 Felder mit Werte, wobei die nicht angegebenen Felder auf 0 gesetzt werden: \\
+			\lstinline!int a[5] = {1, 2, 3};!
+		% subsection: Arrays (end)
+		\subsection{C-String} % (fold)
+			Ein C-String ist ein Array mit Elemente vom Typ \lstinline!char!. Dieser ist mit \lstinline!\0! (null character) abgeschlossen.
+			
+			Initialisierung mit einem string literal: \\
+			\lstinline!char s[] = "Test";!
+			
+			Initialisierung mit Array: \\
+			\lstinline!char s[] = {'T', 'e', 's', 't', '\0'};!
+		% subsection: Strings (end)
+		\subsection{Structs} % (fold)
+			Structs lassen sich schachteln aber nicht rekursiv, dafür muss man einen Pointer verwenden.
+			
+			Deklaration:
+			\begin{code}
+				\begin{lstlisting}[style=list]
+struct Name {
+	type memberName1;
+	type memberName2;
+};
+				\end{lstlisting}
+			\end{code}
+			
+			Structs erzeugen:
+			\begin{code}
+				\begin{lstlisting}[style=list]
+struct Point {
+	int x;
+	int y;
+};
+Point p, r;
+				\end{lstlisting}
+			\end{code}
+			oder direkt:
+			\begin{code}
+				\begin{lstlisting}[style=list]
+struct Point {
+	int x;
+	int y;
+} p, r;
+				\end{lstlisting}
+			\end{code}
+			
+			Structs initialisieren:
+			\begin{code}
+				\begin{lstlisting}[style=list]
+Point p = {1, 3};
+Point r = {1}; // füllt Rest mit 0
+				\end{lstlisting}
+			\end{code}
+		% subsection: Structs (end)
+		\subsection{Pointers} % (fold)
+			Bei der Deklaration eines Pointers bedeutet \lstinline!asdfasdf! lediglich, dass es sich um einen Pointer handelt.
+			
+			\lstinline!int *a, b;! bedeutet, dass \lstinline!a! ein Pointer auf \lstinline!int! ist und \lstinline!b! lediglich ein \lstinline!int!.
+			
+			Ansonsten ist \lstinline!*! der Dereferenzierungsoperator mit dem man auf den 
+			Inhalt der Speicherzellen, auf die ein Pointer verweist, zugreifen kann.
+			
+			Mit dem Referenzierungsoperator \lstinline!&! kann die Adresse einer Variable ermittelt werden um Beispielsweise in einem Pointer zu speichern.
+			
+			Falls ein Pointer sich nicht verändern soll, d.h. immer auf die gleiche Adresse zeigen soll, kann dieser wie folgt deklariert werden:
+			\lstinline!int * const c;!
+			
+			Wenn man lediglich die Adresse speichern will und über den Pointer keine Modifizierung des Wertes an der Adresse vornehmen will, kann man auch den Typ \lstinline!void! verwenden.
+			
+			Um einfacher auf Members eines Zieles eines Pointers zuzugreifen, kann man anstatt \lstinline!(*pointer).member! auch \lstinline!pointer->member! schreiben.
+		% subsection: Pointers (end)
+		\subsection{Dynamischer Speicher mit \lstinline!new! und \lstinline!delete!} % (fold)
+			Um ein Array mit einer dynamischen Grösse zu erzeugen, sprich mit einer Grösse, die erst zur Laufzeit ermittelt werden kann, ist es sinnvoll dieses per \lstinline!new! zu erzeugen.
+			\begin{code}
+				\begin{lstlisting}[style=list]
+int n;
+cin >> n;
+float *numbers = new float[n];
+				\end{lstlisting}
+			\end{code}
+			Das \lstinline!new type! erzeugt dabei eine neue Variable vom Typ \lstinline!type! und liefert deren Adresse zurück, welche man in einem Pointer speichert.
+			
+			Per \lstinline!delete! kann der Inhalt auf der Adresse, auf welche der Pointer zeigt, gelöscht werden.
+			Sicherheitshalber sollte der Pointer dann auf 0 gesetzt werden.
+			\begin{code}
+				\begin{lstlisting}[style=list]
+int *a = new int(123);
+delete a;
+a = 0;
+int *b = new int[3];
+b[0] = 1; b[1] = 2; b[2] = 3;
+delete[] b;
+b = 0;
+				\end{lstlisting}
+			\end{code}
+		% subsection: Dynamischer Speicher mit \lstinline!new! und \lstinline!delete! (end)
+		\subsection{Funktionsaufruf} % (fold)
+			Man unterscheidet zwischen \emph{call-by-value} und \emph{call-by-reference}.
+			
+			Bei einem call-by-value werden die übergebenen Argumente in lokale Variablen kopiert. Dies kann bei grossen Objekten von Nachteil sein.
+			
+			Bei call-by-reference unterscheidet man zwischen Referenzen und Pointern.
+			Bei Referenzen werden Änderungen an der Variable in der Funktion auch in der übergebenen Variable ausserhalb der Funktion gespeichert. Es handelt sich also um die gleiche Variable.
+			
+			Bei Pointern wird lediglich ein Pointer übergeben. Über diesen kann man mittels dem Dereferenzierungsoperator den Wert lesen und ändern. Es ist im Grunde ein call-by-value, wobei die Adressen übergeben werden und in lokalen Variablen gespeichert werden.
+			
+			\begin{code}
+				\begin{lstlisting}[style=list]
+void byValue(int a){
+	a+=10;
+}
+
+void byRef(int &a){
+	a+=10;
+}
+
+void byRefWithPointer(int *a){
+	(*a)+=10;
+}
+
+int main(){
+	int x=40;
+	byValue(x); // x bleibt 40
+	byRef(x); // x == 50
+	byRefWithPointer(&x); // x == 60
+	return 0;
+}
+				\end{lstlisting}
+			\end{code}
+			
+			\subsubsection{Übergabe von Arrays} % (fold)
+				Arrays werden mit Pointer übergeben.
+				\begin{code}
+					\begin{lstlisting}[style=list]
+void f1(int a[10]);
+void f2(int a[]);
+void f3(int *a);
+					\end{lstlisting}
+				\end{code}
+				
+				Die Funktionen erwarten folgendes:
+				\begin{enumerate}
+					\item Array mit Zehn Elementen, wobei die Zahl absolut keinen Einfluss hat und vielleicht höchstens für das Lesen des Header-Files sinnvoll ist.
+					\item \lstinline!int! Array.
+					\item Pointer auf \lstinline!int!.
+				\end{enumerate}
+				
+				Bei mehrdimensionalen Arrays müssen, wie beim Initialisieren, alle Dimensionen ausser der ersten angegeben sein, da ansonsten die korrekte Speicherstelle nicht ermittelt werden kann.
+				\begin{code}
+					\begin{lstlisting}[style=list]
+void f4(int a[10][3]);
+void f5(int a[][3]);
+void f6(int (*a)[3]);
+					\end{lstlisting}
+				\end{code}
+				
+			% subsubsection: Übergabe von Arrays (end)
+			
+			\subsubsection{Vorbelegte Argumente} % (fold)
+				Argumente können optional sein. Dafür müssen sie aber am Schluss der Aufzählung in der Funktionsdeklaration stehen und einen Default-Wert haben.
+				\begin{code}
+					\begin{lstlisting}[style=list]
+void f(int a, int b=0);
+f(1, 2);
+f(3);
+					\end{lstlisting}
+				\end{code}
+				Beim Aufruf in Zeile 3 wird die lokale Variable den Default-Wert 0 haben.
+			% subsubsection: Vorbelegte Argumente (end)
+		% subsection: Funktionsaufruf (end)
+		
+		\subsection{Überladen von Funktionen} % (fold)
+			Man kann Funktionen überladen, d.h. eine Funktion kann mehrmals deklariert werden mit jeweils unterschiedlicher Anzahl Argumente bzw. Argumenttypen.
+			
+			Jede Funktion hat eine Signatur, welche aus Funktionsnamen und Typen der Argumente besteht. Man kann also die selbe Funktion deklarieren, die einmal ein \lstinline!int! und einmal ein \lstinline!double! erwartet.
+			
+			\begin{code}
+				\begin{lstlisting}[style=list]
+void f(int a);
+void f(double b);
+				\end{lstlisting}
+			\end{code}
+			
+			Man muss dabei achten, dass es nicht zu Doppeldeutigkeiten mit Deklarationen kommt, bei denen Variablen vorbelegt sind.
+		% subsection: Überladen von Funktionen (end)
+		
+		\subsection{Inline-Funktionen} % (fold)
+			Ähnlich wie Makros wobei Inline-Funktionen ein Type-Check durchführen und gegebenenfalls ein -Casting machen.
+			
+			\begin{code}
+				\begin{lstlisting}[style=list]
+inline int min(int a, int b) {
+	return a < b ? a : b;
+}
+int main() {
+	cout << min(2, 10);
+}
+				\end{lstlisting}
+			\end{code}
+		% subsection: Inline-Funktionen (end)
+		
+		\subsection{Klassen} % (fold)
+			\subsubsection{Members} % (fold)
+				Members sind Variablen und Methoden einer Klasse.
+				
+				Bei der Deklaration von Member-Variablen und Methoden sind diese Defaultmässig \lstinline!private!.
+			
+				Typen von Members:
+				\begin{description}
+					\item[public:] Variablen können von aussen gelesen und geändert werden. Methoden können aufgerufen werden.
+					\item[private:] Variablen und Methoden sind von aussen nicht les- bzw. aufrufbar, lediglich von \emph{Friends}.
+					\item[protected:] Wie bei \lstinline!private! mit dem Unterschied, dass in Subklassen die Variablen und Methoden zugreifbar sind. Friends, welche in der Subklasse definiert wurden, können auch auf diese zugreifen.
+				\end{description}
+				
+				Innerhalb einer Klasse können Members direkt über ihren Namen zugegriffen werden oder in Verbindung mit \lstinline!this->!.
+				
+			% subsubsection: Members (end)
+			
+			\subsubsection{Methoden} % (fold)
+				
+				Bei einer Klassendeklaration werden zur Erhöhung der Lesbarkeit lediglich die Methodendeklarationen ohne Funktionsblock geschrieben, ausser wenn diese kurz sind.
+				Die Methoden werden ausserhalb der Klasse wie folgt ausgeschrieben: \\ \lstinline!type KlassenName::funktionsName(...) {...}!
+			
+				Konstruktoren und Destruktoren haben keinen Typ. Sie heissen genau wie die Klasse, wobei beim Destruktor ein Tilde vor dem Namen geschrieben wird. Konstruktoren können ebenfalls überladen werden.
+				
+				Einer Funktion kann nach der Argumentenliste ein \lstinline!const! angehängt werden. Dies führt dazu, dass die Methode read-only wird und Member-Variablen nicht verändern kann.
+				
+				Manchmal ist es auch sinnvoll gewisse Argumente bei call-by-reference als \lstinline!const! zu deklarieren, damit sichergestellt wird, dass das Original nicht verändert wird.
+			% subsubsection: Methoden (end)
+			
+			\subsubsection{Friends} % (fold)
+				Friends sind Funktionen, die auf \lstinline!private! Members zugreifen dürfen.
+				Sie werden in der Klassendeklaration mit dem vorangehendem Keyword \lstinline!friend! aufgeführt.
+			% subsubsection: Friends (end)
+			
+			\subsubsection{Initialisieren} % (fold)
+				Eine Klasse kann auf verschiedene Arten initialisiert werden.
+				\vspace{5mm}
+				\begin{code}
+					\begin{lstlisting}[style=list]
+MyClass a; // ohne Argumente
+a.doSomething();
+MyClass b(1, 4); // mit Argumenten
+// dynamisch, noch nicht initialisiert
+MyClass *c;
+// ohne Argumente initialisiert
+c = new MyClass;
+c->doSomething();
+// dynamisch, mit Argumenten initialisiert
+MyClass *d = new MyClass(3, 1);
+					\end{lstlisting}
+				\end{code}
+				
+				Wenn man einen Pointer auf eine Klasse hat, dann kann man wie bei \lstinline!structs! über \lstinline!->! auf Members zugreifen.
+			% subsubsection: Initialisieren (end)
+		% subsection: Klassen (end)
+		
+		\subsection{Operatorfunktionen} % (fold)
+			Man kann Funktionen schreiben, die über normale Operatorzeichen aufgerufen werden. Die Syntax lautet: \\
+			\verb!Rückgabetyp! \lstinline!operator! \verb!Zeichen (...) {...}!
+			
+			Operatorfunktionen können auch überladen werden.
+			
+			Es ist sinnvoll die Operatorfunktionen in Klassen zu verwenden um logische Operationen einer Klasse zu vereinfachen. Bei Operatorfunktionen in Klassen braucht man lediglich ein Argument, da man z.B. die Instanz mit 3 multiplizieren möchte. Wichtig dabei, die Funktion wird nur aufgerufen, wenn die Instanz der Klasse zuerst steht, also \lstinline!myVar*2! und nicht \lstinline!2*myVar!. Für letzteres müsste man eine Friend-Funktion deklarieren, die diese Operation so implementiert.
+			
+			Ausserhalb von Klassen braucht man zwei Argument, z.B. die eine Zahl, die zur anderen addiert werden soll.
+		% subsection: Operatorfunktionen (end)
+		
+		\subsection{Templates} % (fold)
+			Es gibt Programmabläufe, die gleich für alle Datentypen sind. Dafür kann man ein Template schreiben.
+			
+			Beispielsweise eine Funktion, die zwischen zwei Werten den kleineren zurückgibt:
+			\begin{code}
+				\begin{lstlisting}[style=list]
+template <typename T>
+T min(T a, T b) {
+	return a < b ? a : b;
+}
+				\end{lstlisting}
+			\end{code}
+			
+			Anstatt \lstinline!typename! kann auch \lstinline!class! geschrieben werden. Es besteht dabei absolut kein Unterschied.
+			
+			Man kann auch ganze Klassen als Template definieren.
+			\begin{code}
+				\begin{lstlisting}[style=list]
+template <class T>
+class Stack {
+public:
+	Stack() { s = new T[256]; i = 0; }
+	~Stack() { delete[] s; }
+	bool pop(T*);
+	bool push(T);
+}
+
+int main() {
+	Stack<float> fStack;
+	Stack<int> iStack;
+}
+				\end{lstlisting}
+			\end{code}
+		% subsection: Templates (end)
+		
+		\subsection{Strings} % (fold)
+			Die Klasse \lstinline!string! ist eine Alternative zur Speicherung von Zeichenketten. Sie hat zudem Methoden, die das Arbeiten mit Strings erleichtern. Ein String kann folgendermassen initialisiert werden:
+			\begin{code}
+				\begin{lstlisting}[style=list]
+string s1 = "one";
+string s2("two");
+				\end{lstlisting}
+			\end{code}
+			
+			Einige Methoden zum Arbeiten mit Strings:
+			
+\begin{tabular}{l|p{4.75cm}}
+\hline
+Methode & Funktionsweise\\
+\hline
+\lstinline!s.length()! & gibt Länge zurück\\
+\lstinline!s.insert(n, t)! & fügt String \lstinline!t! an Stelle \lstinline!s! ein\\
+\lstinline!s.erase(p, n)! & entfernt \lstinline!n! Zeichen ab Position \lstinline!p!\\
+\lstinline!s.find(t)! & liefert Position an der sich String   \lstinline!t! befindet; falls nicht gefunden: \lstinline!string::npos!\\
+\lstinline!s.swap(t)! & vertausche Strings \lstinline!s! und \lstinline!t!\\
+\hline
+\end{tabular}
+			
+			Strings definieren die Operationen \lstinline!+! und \lstinline!+=! um Strings zu kombinieren.
+			
+			Man kann durch ein String vorwärts und rückwärts iterieren.
+			
+			Forwärts-Iteration sieht wie folgt aus:
+			\begin{code}
+				\begin{lstlisting}[style=list]
+string s = "Testing123";
+string::iterator i;
+for(i=s.begin(); i!=s.end(); i++)
+	cout << *i;
+				\end{lstlisting}
+			\end{code}
+			
+			\lstinline!i! ist dabei ein Pointer auf ein \lstinline!char!. \lstinline!s.begin()! liefert das erste Zeichen zurück, \lstinline!s.end()! liefert das \lstinline!NULL!-Zeichen zurück.
+			
+			Rückwärts-Iteration:
+			\begin{code}
+				\begin{lstlisting}[style=list]
+string s = "Testing123";
+string::reverse_iterator i;
+for(i=s.rbegin(); i!=s.rend(); i++)
+	cout << *i;
+				\end{lstlisting}
+			\end{code}
+			
+			\lstinline!s.rbegin()! liefert das letzte Zeichen zurück, \lstinline!s.rend()! liefert das erste zurück.
+		% subsection: Strings (end)
+		
+		\subsection{Umwandlung von Zahlen und Zeichenketten} % (fold)
+			Die Klassen \lstinline!istringstream! und \lstinline!ostringstream! bieten die Möglichkeit an, Daten mit den Ein- und Ausgabeoperatoren \lstinline!>>! und \lstinline!<<! in Zeichenketten umzuleiten.
+			
+			\begin{code}
+				\begin{lstlisting}[style=list]
+int i = 123;
+float f;
+string s = "12.34";
+istringstream inStream(s);
+ostringstream outStream;
+
+inStream >> f;
+outStream << i;
+s = outStream.str();
+				\end{lstlisting}
+			\end{code}
+		% subsection: Umwandlung von Zahlen und Zeichenketten (end)
+		
+		\subsection{File I/O} % (fold)
+			Mit den drei Klassen \lstinline!ofstream! (schreiben), \lstinline!ifstream! (lesen) und \lstinline!fstream! (schreiben/lesen) können Files gelesen und geschrieben. Dazu muss die Bibliothek \textbf{fstream} eingebunden werden.
+			
+			Mit der Methode \lstinline!open! wird das File geöffnet. Die drei Klassen haben auch einen Konstruktor, mit dem das Öffnen des Files bei der Erzeugung des Objektes automatisch ausgeführt wird. Falls \lstinline!close! nicht aufgerufen wird, wird dies spätestens im Destructor aufgerufen.
+			
+			\subsubsection{Output in File} % (fold)
+				\begin{code}
+					\begin{lstlisting}[style=list]
+ofstream myFile;
+myFile.open("file.txt");
+/* oder */
+ofstream myFile("file.txt");
+
+if(myFile.is_open()) {
+	myFile << "Text to insert";
+	myFile.close();
+}
+					\end{lstlisting}
+				\end{code}
+			% subsubsection: Output in File (end)
+			
+			\subsection{File lesen} % (fold)
+				\begin{code}
+					\begin{lstlisting}[style=list]
+ifstream myFile("file.txt");
+string line;
+if(myFile.is_open()) {
+	while(!myFile.eof()) {
+		getline(myFile, line);
+		cout << line << endl;
+	}
+	myFile.close();
+}
+					\end{lstlisting}
+				\end{code}
+			% subsection: File lesen (end)
+		% subsection: File I/O (end)
+	% section: Syntax (end)
+	
+	\section{Bibliotheken} % (fold)
+		\begin{tabular}{l|l}
+		\hline
+		Name & Zweck\\
+		\hline
+		iostream & I/O (z.B. \lstinline!cin! \& \lstinline!cout!)\\
+		cstdlib & \lstinline!rand()!\\
+		string & um den Typ \lstinline!string! zu verwenden \\
+		ctime & um \lstinline!time()! aufzurufen \\
+		fstream & Read/Write von Files \\
+		\hline
+		\end{tabular}
+		
+	% section: Bibliotheken (end)
+	
+\end{multicols*}
+	\section{ASCII-Tabelle} % (fold)
+		\begin{tabular}{lrll|lrll|lrll|lrll}
+		\hline
+		Char & Dec & Oct & Hex & Char & Dec & Oct & Hex & Char & Dec & Oct & Hex & Char & Dec & Oct & Hex\\
+		\hline
+		(nul) & 0 & 0000 & 0x00 & (sp) & 32 & 0040 & 0x20 & @ & 64 & 0100 & 0x40 & ` & 96 & 0140 & 0x60\\
+		(soh) & 1 & 0001 & 0x01 & ! & 33 & 0041 & 0x21 & A & 65 & 0101 & 0x41 & a & 97 & 0141 & 0x61\\
+		(stx) & 2 & 0002 & 0x02 & " & 34 & 0042 & 0x22 & B & 66 & 0102 & 0x42 & b & 98 & 0142 & 0x62\\
+		(etx) & 3 & 0003 & 0x03 & \# & 35 & 0043 & 0x23 & C & 67 & 0103 & 0x43 & c & 99 & 0143 & 0x63\\
+		(eot) & 4 & 0004 & 0x04 & \$ & 36 & 0044 & 0x24 & D & 68 & 0104 & 0x44 & d & 100 & 0144 & 0x64\\
+		(enq) & 5 & 0005 & 0x05 & \% & 37 & 0045 & 0x25 & E & 69 & 0105 & 0x45 & e & 101 & 0145 & 0x65\\
+		(ack) & 6 & 0006 & 0x06 & \& & 38 & 0046 & 0x26 & F & 70 & 0106 & 0x46 & f & 102 & 0146 & 0x66\\
+		(bel) & 7 & 0007 & 0x07 & ' & 39 & 0047 & 0x27 & G & 71 & 0107 & 0x47 & g & 103 & 0147 & 0x67\\
+		(bs) & 8 & 0010 & 0x08 & ( & 40 & 0050 & 0x28 & H & 72 & 0110 & 0x48 & h & 104 & 0150 & 0x68\\
+		(ht) & 9 & 0011 & 0x09 & ) & 41 & 0051 & 0x29 & I & 73 & 0111 & 0x49 & i & 105 & 0151 & 0x69\\
+		(nl) & 10 & 0012 & 0x0a & * & 42 & 0052 & 0x2a & J & 74 & 0112 & 0x4a & j & 106 & 0152 & 0x6a\\
+		(vt) & 11 & 0013 & 0x0b & + & 43 & 0053 & 0x2b & K & 75 & 0113 & 0x4b & k & 107 & 0153 & 0x6b\\
+		(np) & 12 & 0014 & 0x0c & , & 44 & 0054 & 0x2c & L & 76 & 0114 & 0x4c & l & 108 & 0154 & 0x6c\\
+		(cr) & 13 & 0015 & 0x0d & - & 45 & 0055 & 0x2d & M & 77 & 0115 & 0x4d & m & 109 & 0155 & 0x6d\\
+		(so) & 14 & 0016 & 0x0e & . & 46 & 0056 & 0x2e & N & 78 & 0116 & 0x4e & n & 110 & 0156 & 0x6e\\
+		(si) & 15 & 0017 & 0x0f & / & 47 & 0057 & 0x2f & O & 79 & 0117 & 0x4f & o & 111 & 0157 & 0x6f\\
+		(dle) & 16 & 0020 & 0x10 & 0 & 48 & 0060 & 0x30 & P & 80 & 0120 & 0x50 & p & 112 & 0160 & 0x70\\
+		(dc1) & 17 & 0021 & 0x11 & 1 & 49 & 0061 & 0x31 & Q & 81 & 0121 & 0x51 & q & 113 & 0161 & 0x71\\
+		(dc2) & 18 & 0022 & 0x12 & 2 & 50 & 0062 & 0x32 & R & 82 & 0122 & 0x52 & r & 114 & 0162 & 0x72\\
+		(dc3) & 19 & 0023 & 0x13 & 3 & 51 & 0063 & 0x33 & S & 83 & 0123 & 0x53 & s & 115 & 0163 & 0x73\\
+		(dc4) & 20 & 0024 & 0x14 & 4 & 52 & 0064 & 0x34 & T & 84 & 0124 & 0x54 & t & 116 & 0164 & 0x74\\
+		(nak) & 21 & 0025 & 0x15 & 5 & 53 & 0065 & 0x35 & U & 85 & 0125 & 0x55 & u & 117 & 0165 & 0x75\\
+		(syn) & 22 & 0026 & 0x16 & 6 & 54 & 0066 & 0x36 & V & 86 & 0126 & 0x56 & v & 118 & 0166 & 0x76\\
+		(etb) & 23 & 0027 & 0x17 & 7 & 55 & 0067 & 0x37 & W & 87 & 0127 & 0x57 & w & 119 & 0167 & 0x77\\
+		(can) & 24 & 0030 & 0x18 & 8 & 56 & 0070 & 0x38 & X & 88 & 0130 & 0x58 & x & 120 & 0170 & 0x78\\
+		(em) & 25 & 0031 & 0x19 & 9 & 57 & 0071 & 0x39 & Y & 89 & 0131 & 0x59 & y & 121 & 0171 & 0x79\\
+		(sub) & 26 & 0032 & 0x1a & : & 58 & 0072 & 0x3a & Z & 90 & 0132 & 0x5a & z & 122 & 0172 & 0x7a\\
+		(esc) & 27 & 0033 & 0x1b & ; & 59 & 0073 & 0x3b & [ & 91 & 0133 & 0x5b & $\{$ & 123 & 0173 & 0x7b\\
+		(fs) & 28 & 0034 & 0x1c & < & 60 & 0074 & 0x3c & $\backslash$ & 92 & 0134 & 0x5c & | & 124 & 0174 & 0x7c\\
+		(gs) & 29 & 0035 & 0x1d & = & 61 & 0075 & 0x3d & ] & 93 & 0135 & 0x5d & $\}$ & 125 & 0175 & 0x7d\\
+		(rs) & 30 & 0036 & 0x1e & > & 62 & 0076 & 0x3e & \verb+^+ & 94 & 0136 & 0x5e & \verb+~+ & 126 & 0176 & 0x7e\\
+		(us) & 31 & 0037 & 0x1f & ? & 63 & 0077 & 0x3f & \_ & 95 & 0137 & 0x5f & (del) & 127 & 0177 & 0x7f\\
+		\hline
+		\end{tabular}
+	% section: ASCII-Tabelle (end)
+\end{document}

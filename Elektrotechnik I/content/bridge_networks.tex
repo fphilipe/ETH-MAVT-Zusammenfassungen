@@ -1,0 +1,26 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\resizebox{\columnwidth}{!}{
+	\circuit{bridge_network_1}
+	\circuit{bridge_network_2}
+	\circuit{bridge_network_3}
+}
+\vspace{1pt}
+
+The bridge is balanced when
+
+\begin{center}
+	\begin{tabular}{c|c|c}
+		\toprule
+		\textbf{type of $\boldsymbol{A_{1,2}}$} & \textbf{type of $\boldsymbol{B_{1,2}}$} & \textbf{Condition} \\
+		\midrule
+		$R$/$L$/$Z$ & $R$/$L$/$Z$ & $\nicefrac{A_1}{B_1} = \nicefrac{A_2}{B_2}$ \\
+		$R$/$L$/$Z$ & $C$ & $A_1 \cdot B_1 = A_2 \cdot B_2$ \\
+		$C$ & $R$/$L$/$Z$ & $A_1 \cdot B_1 = A_2 \cdot B_2$ \\
+		$C$ & $C$ & $\nicefrac{B_1}{A_1} = \nicefrac{B_2}{A_2}$ \\
+		\bottomrule
+	\end{tabular}
+\end{center}
+while $A_1$ and $A_2$ respectively $B_1$ and $B_2$ must be of the same type.
+
+If so, no current flows through $Z_{\text B}$ and it may be replaced by anything else or removed.

@@ -1,0 +1,21 @@
+\begin{tikzpicture}[>=latex]
+
+\def\momAng{80}
+\def\stepW{.6}
+
+\coordinate (P) at (0,0);
+\coordinate (Lp) at (5,.4);
+
+\draw[->] (P) -- ++ (\momAng:3) node[midway,auto=left] {$\vec{M}_P^a$};
+\draw[->,semithick] (P) -- ++ (Lp) node [right] {$\vec{L}_P(t=0)$};
+
+\foreach \x in {1,...,5} {
+	\draw[->,thin] (P) -- ($(P) + (Lp) + (\momAng:\stepW*\x)$) coordinate[midway] (Ml) ;
+	\draw [->,dashed] ($(P) + (Lp) + {\x-1}*(\momAng:\stepW)$)  -- ++ (\momAng:\stepW) ;
+}
+
+\node[above=6pt] at (Ml) {$\vec{L}_P(t)$}; 
+
+\draw[->] (0:2) arc (0:45:2);
+
+\end{tikzpicture}

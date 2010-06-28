@@ -1,0 +1,82 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\section{Power in Reactive Elements} % (fold)
+	The net flow of power to a capacitor/inductor is zero over a full cycle.
+	
+	\paragraph{Capacitor:} % (fold)
+		\begin{align*}
+			P_C &= i_C \cdot v_C = \frac{\omega CV_m^2}{2}\cdot \sin(2\omega t + 2 \theta) \\
+			P_m &= \frac{\omega C V_m^2}{2}
+		\end{align*}
+	% paragraph: Power Transferred to a Capa (end)
+	\paragraph{Inductance:} % (fold)
+		\begin{align*}
+			P_L &= i_L \cdot v_L = - \frac{V_m^2}{2 \omega L} \cdot \sin(2\omega t + 2\theta) \\
+			P_m &= \frac{V_m^2}{2\omega L}
+		\end{align*}
+	% paragraph: paragraph name (end)
+	\subsection{Power in an Impedance} % (fold)
+		\[
+			P_\text{inst} = V_{\text{rms}} \cdot I_{\text{rms}} \cdot \left[\cos\theta - \cos(2\omega t + \theta)\right]
+		\]
+		where the index rms stands for \emph{root mean square} (Effektivwert) which is a value divided by $\sqrt 2$:
+		\[
+			I = I_{\text{rms}} = \frac{I_m}{\sqrt 2} \qquad V = V_{\text{rms}} = \frac{V_m}{\sqrt 2}
+		\]
+		
+		\paragraph{Apparent Power (Scheinleistung):} % (fold)
+			\[
+				S = V_{\text{rms}} \cdot I_{\text{rms}} = \frac{I_m\cdot V_m}{2} = \frac{I_m^2 |Z|}{2} = \frac{V_m^2}{2|Z|} \sunit{\volt\ampere}
+			\]
+		% paragraph: Apparent Power: (end)
+		\paragraph{Average Power (Wirkleistung):} % (fold)
+			\[
+				P = S \cdot \cos \theta \sunit{\watt}
+			\]
+		% paragraph: Average Power (Wirkleistung): (end)
+		\paragraph{Reactive Power (Blindleistung):} % (fold)
+			\[
+				Q = S \cdot \sin\theta \quad [\text{var (Volt-amperes reactive)}]
+			\]
+		% paragraph: Reactive Power (Blindleistung): (end)
+		\paragraph{Power Factor:} % (fold)
+			\[
+				F_P = \cos\theta = \frac{P}{S}
+			\]
+		% paragraph: Power Factor: (end)
+		\paragraph{Power Triangle:} % (fold)
+			\begin{wrapfigure}[0]{r}{.6\columnwidth}
+				\vspace{-.5cm}
+				\circuit{power_triangle}
+			\end{wrapfigure}
+			\[
+				S = \sqrt{P^2 + Q^2}
+			\]
+		% paragraph: Power Triangle: (end)
+	% subsection: Power in an Impedance: (end)
+	\subsection{Power Factor Correction (Blindleistungskompensation)} % (fold)
+		\begin{tightitemize}
+			\item reactive elements cause a constant power exchange between load and source
+			\item increases the current, i.e. more current flows than needed
+			\item leads to power loss: $P_\text{loss} = I^2 R_\text{supply}$
+			\item to compensate this, $F_P$ is increased to almost $1$ (but $< 1$)
+			\item this is done by introducing a parallel capacitor
+		\end{tightitemize}
+		
+		\begin{wrapfigure}[5]{r}{.33\columnwidth}
+			\vspace{-.5cm}
+			\circuit{pfc}
+		\end{wrapfigure}
+		
+		The current $I_C$ through the introduced capacitor is:
+		\begin{equation*}
+			I_C = I_p \parens{\tan \theta - \tan \theta'}
+		\end{equation*}
+		
+		The resulting capacitance $C$:
+		\begin{align*}
+			\abs{I_C} &= \frac{\abs{V_C}}{\abs{Z_C}} = \frac{V}{\abs{\nicefrac{1}{\omega C}}} = V \omega C \\
+			\Rightarrow C &= \frac{I_C}{V \omega}
+		\end{align*}
+	% subsection: Power Factor Correction (Blindleistungskompensation) (end)
+% section: Power in Reactive Elements (end)

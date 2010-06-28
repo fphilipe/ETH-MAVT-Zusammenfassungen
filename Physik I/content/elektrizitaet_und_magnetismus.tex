@@ -1,0 +1,1096 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Physik/Zusammenfassung/Neu/Physik I - Zusammenfassung.tex
+
+\section{Einleitung} % (fold)
+	\subsection{Elektromagnetische Kraft} % (fold)
+		\emphequation{equation*}{
+			\vec F = q (\vec E + \vec v \times \vec B)
+		}
+		\begin{tightitemize}
+			\item[$q$:] Ladung \unit{C}
+			\item[$\vec E$:] elektrisches Feld \niceunit{\volt\per\metre}
+			\item[$\vec v$:] Geschwindigkeit von $q$
+			\item[$\vec B$:] Magnetfeld $\unit{Tesla} = \niceunit{\volt\second\per\Square\metre} = \niceunit{\newton\second\per\coulomb\per\metre}$
+		\end{tightitemize}
+	% subsection: Elektromagnetische Kraft (end)
+	\subsection{Maxwell-Gleichungen} % (fold)
+		\emphequation{align*}{
+			\Div \vec E &= \frac{\rho}{\epsilon_0} \\
+			\rot \vec E &= - \Part{\vec B}{t} \\
+			\Div \vec B &= 0 \\
+			c^2 \rot \vec B &= \Part{\vec E}{t} + \frac{\vec j}{\epsilon_0}
+		}
+		\begin{tightitemize}
+			\item[$\rho$:] elektrische Ladungsdichte \niceunit{\coulomb\per\Square\metre}
+			\item[$\epsilon_0$:] Influenzkonstante \unit{\Square\coulomb\per\newton\per\Square\metre}
+			\item[$c$:] Lichtgeschwindigkeit
+			\item[$\vec j$:] elektrische Stromdichte
+		\end{tightitemize}
+	% subsection: Maxwell-Gleichungen (end)
+% section: Einleitung (end)
+\section{Elektrostatik} % (fold)
+	\begin{bedingung}
+		$\rho = \const$, $\vec j = 0 \quad \Rightarrow$ kein Strom
+	\end{bedingung}
+	\begin{folgerung}
+		$\rot \vec B = \grad \vec B = 0 \quad \Rightarrow \quad \vec B \equiv 0$
+		\emphequation{align*}{
+			\grad \vec E &= \frac{\rho}{\epsilon_0} \\
+			\rot \vec E &= 0
+		}
+		Ein Elektrostatisches Feld ist immer Wirbelfrei.
+	\end{folgerung}
+	\subsection{Elektrisches Feld} % (fold)
+		\paragraph{Im Abstand $r$ einer Punktladung $q$} % (fold)
+			\emphequation{align*}{
+				E &= \frac{1}{4\pi\epsilon_0} \frac{q}{r^2}\ ,\qquad \vec E = E \cdot \frac{\vec r}{r}
+			}
+		% paragraph: Im Abstand $r$ einer Punktladung $q$ (end)
+		\paragraph{Bei bekannter Ladungsvertielung} % (fold)
+			% TODO: make larger \int sign
+			\emphequation{equation*}{
+				\vec E(\vec r) = \frac{1}{4\pi\epsilon_0} \int \frac{\rho(\vec r')}{\abs{\vec r - \vec r'}^2} \cdot \frac{\vec r - \vec r'}{\abs{\vec r - \vec r'}} \diff r'
+			}
+		% paragraph: Bei bekannter Ladungsvertielung (end)
+	% subsection: Elektrisches Feld bei bekannter Ladungsvertielung (end)
+	\subsection{Coulomb'sches Gesetz} % (fold)
+		Kraft von $q_1$ auf $q_2$:
+		\emphequation{equation*}{
+			\vec F_{12} = \frac{1}{4\pi\epsilon_0\vphantom{r^2}} \frac{q_1 q_2}{r_{12}^2} \frac{\vec r_{12}}{r_{12}\vphantom{r^2}}
+		}
+	% subsection: Kraft von $q_1$ auf $q_2$ (end)
+	\subsection{Elektrostatisches Potential} % (fold)
+		Auch als elektrische Spannung bezeichnet.\\Einheit: $\unit{V} = \niceunit{\joule\per\coulomb}$
+		\emphequation{equation*}{
+			\Delta \phi = \phi(b) - \phi(a) = \frac{W}{q} = - \int_a^b \vec E \diff \vec s
+		}
+		wobei
+		\begin{equation*}
+			W = - \int_a^b \vec F \cdot \diff \vec s \sunit{J}
+		\end{equation*}
+		die Arbeit ist, um $q$ von $a$ nach $b$ zu verschieben.
+		
+		\paragraph{Beziehungen} % (fold)
+			\begin{align*}
+				\vec E (\vec r) &= - \grad \phi(\vec r) \\
+				\vec F (\vec r) &= - \grad W(\vec r) \\
+				W(\vec r) &= q \cdot \phi(\vec r)
+			\end{align*}
+		% paragraph: Beziehungen (end)
+		
+		\paragraph{Potential einer Punktladung} % (fold)
+			\emphequation{equation*}{
+				\phi (\vec r) = \frac{q}{4\pi\epsilon_0} \frac{1}{r}
+			}
+		% paragraph: Potential einer Ladungsverteilung (end)
+		
+		\paragraph{Potential einer Ladungsverteilung} % (fold)
+			\emphequation{equation*}{
+				\phi(\vec r) = \frac{1}{4\pi\epsilon_0} \int \frac{\rho(\vec r')}{\abs{\vec r - \vec r'}} \diff r'
+			}
+		% paragraph: Potential einer Ladungsverteilung (end)
+	% subsection: Elektrische Spannung (end)
+	\subsection{Anwendungen des Satzes von Gauss} % (fold)
+		\subsubsection{Feld einer homogenen Kugelladung mit Radius $R$} % (fold)
+			\begin{align*}
+				Q(r \leq R) &= \frac{4\pi}{3}r^3 \rho_0 \\
+				Q(r \geq R) &= \frac{4\pi}{3}R^3 \rho_0 = \const\\
+				E(r \leq R) &= \frac{\rho_0 r}{3 \epsilon_0} \sim r \\
+				E(r \geq R) &= \frac{Q}{4\pi\epsilon_0 r^2} = \frac{R^3\rho_0}{3 \epsilon_0 r^2} \sim \frac{1}{r^2}
+			\end{align*}
+			\begin{tightitemize}
+				\item[$\rho_0$:] Raumladungsdichte \niceunit{\coulomb\per\cubic\metre}
+				\item[$Q$:] Gesamtladung
+			\end{tightitemize}
+		% subsubsection: Feld einer homogenen Kugelladung (end)
+		\subsubsection{Feld einer geladenen Kugelschale mit Radius $R$ und Flächenladungsdichte $\sigma$} % (fold)
+			\begin{align*}
+				Q(r \geq R) &= 4\pi R^2 \sigma = \const \\
+				E(r \geq R) &= \frac{Q}{4\pi\epsilon_0 r^2} = \frac{R^2 \sigma}{\epsilon_0 r^2} \\
+				E(r < R) &= Q(r < R) = 0
+			\end{align*}
+			\begin{tightitemize}
+				\item[$\sigma$:] Flächenladungsdichte \niceunit{\coulomb\per\Square\metre}
+			\end{tightitemize}
+		% subsubsection: Feld einer geladenen Kugelschale (end)
+		\subsubsection{Feld einer geladenen Geraden} % (fold)
+			\begin{equation*}
+				E(r) = \frac{1}{2\pi\epsilon_0} \frac{\lambda}{r} \sim \frac{1}{r}
+			\end{equation*}
+			\begin{tightitemize}
+				\item[$\lambda$:] Linienladungsdichte \niceunit{\coulomb\per\metre}
+			\end{tightitemize}
+		% subsubsection: Feld einer geladenen Geraden (end)
+		\subsubsection{Feld einer homogenen, ebenen Flächenladung} % (fold)
+			\begin{equation*}
+				E = \frac{\sigma}{2\epsilon_0} = \const
+			\end{equation*}
+			\paragraph{Zwischen zwei parallelen, entgegengesetzt geladenen Ebenen} % (fold)
+				\begin{gather*}
+					\begin{array}{@{}r@{\quad E\:=\:}l}
+						\text{innerhalb:} & \displaystyle\frac{\sigma}{\epsilon_0} \\
+						\text{ausserhalb:} & 0
+					\end{array}
+				\end{gather*}
+			% paragraph: Zwischen zwei parallelen, entgegengesetzt geladenen Ebenen (end)
+			\paragraph{Zwischen zwei parallelen, gleich geladenen Ebenen} % (fold)
+				\begin{gather*}
+					\begin{array}{@{}r@{\quad E\:=\:}l}
+						\text{innerhalb:} & 0 \\
+						\text{ausserhalb:} & \displaystyle\frac{\sigma}{\epsilon_0}
+					\end{array}
+				\end{gather*}
+				Übergang zum Leiter mit Hohlraum $\Rightarrow$
+			% paragraph: Zwischen zwei parallelen, entgegengesetzt geladenen Ebenen (end)
+		% subsubsection: Feld einer homogenen, ebenen Flächenladung (end)
+		\subsubsection{Faraday-Käfig} % (fold)
+			Das elektrostatische Feld im Inneren eines leeren Hohlraumes eines Leiters ist $0$.
+			Anders ausgedrückt schirmt der metallische Leiter den Hohlraum vor elektrischen Feldern ab.
+			Gleiches gilt für Felder, die von Ladungen innerhalb erzeugt werden.
+		% subsubsection: Faraday-Käfig (end)
+	% subsection: Anwendungen des Satzes von Gauss (end)
+	\subsection{Laplace- \& Poisson-Gleichung} % (fold)
+		Hilfreich bei unbekannter Ladungsverteilung um das Potential zu berechnen.
+		\paragraph{Poisson-Gleichung} % (fold)
+			\begin{equation*}
+				\laplace\phi - \frac{\rho}{\epsilon_0} = 0
+			\end{equation*}
+		% paragraph: Poisson-Gleichung (end)
+		\paragraph{Laplace-Gleichung} % (fold)
+			Ist $\rho = 0$ in der Poisson-Gleichung, dann muss $\phi$ die Laplace-Gleichung erfüllen:
+			\begin{equation*}
+				\laplace\phi = 0
+			\end{equation*}
+		% paragraph: Laplace-Gleichung (end)
+	% subsection: Laplace-Gleichung (end)
+	\subsection{Methode der Bildladungen} % (fold)
+		\begin{wrapfigure}[10]{r}{.5\columnwidth}
+			\vspace{-1.75cm}
+			\begin{center}
+%				\resizebox{.5\columnwidth}{!}{
+					\input{graphics/bildladung.tex}
+%				}
+			\end{center}
+		\end{wrapfigure}
+		
+		Bringt man in die Symmetrieebene zweier Ladungen $\pm Q$ eine Metallplatte, so
+		influenzieren sich in ihr Ladungen. Entfernt man eine Ladung, so ändern sich die
+		Feldlinien der anderen Ladung \emph{nicht}.
+		
+		Die Ladungsdichte auf der Platte beträgt:
+		\emphequation{equation*}{
+			\sigma(\rho) = - \frac{2aQ}{4\pi(a^2+\rho^2)^{\nicefrac{3}{2}}}
+		}
+		
+		Die Gesamtladung auf der Platte ist:
+		\begin{equation*}
+			\int_{-\infty}^{\infty} \sigma(\rho) \diff \rho = -Q
+		\end{equation*}
+		
+		Die Kraft zwischen Platte und Ladung heisst \textbf{Bildkraft} oder \textbf{Spiegelbildkraft}:
+		\emphequation{equation*}{
+			F = \frac{1}{4\pi\epsilon_0} \cdot \frac{Q^2}{(2a)^2}
+		}
+	% subsection: Methode der Bildladungen (end)
+	\subsection{Hochspannungs-Durchbruch} % (fold)
+		Das Feld eines Leiters ist dort am grössten, wo er den kleinsten Krümmungsradius aufweist.
+	% subsection: Hochspannungs-Durchbruch (end)
+	\subsection{p-n Übergang} % (fold)
+		\begin{description}
+			\item[p-dotiert:] Halbleiter mit Elektronenmangel bzw.~Löcher
+			\item[n-dotiert:] Halbleiter mit Elektronüberschuss
+		\end{description}
+		
+		Beim Kontakt diffundieren Elektronen vom n- in den p-Teil, umgekehrt diffundieren Löcher.
+		Beide Seiten werden elektrisch geladen, allerdings nur in einer gewissen Zone:
+		\begin{itemize}
+			\item Akzeptoren mit Dichte $N_A$ im Bereich $-x_p \leq x \leq 0$
+			\item Donatoren mit Dichte $N_D$ im Bereich $0 \leq x \leq x_n$
+		\end{itemize}
+		Je höher die Dotierung, desto schmaler die Raumladungszone.
+		
+		Die totale negative Ladung auf der p-Seite ist gleich der totalen positiven Ladung auf der n-Seite:
+		\begin{equation*}
+			N_a x_p = N_D x_n
+		\end{equation*}
+		
+		Poisson-Gleichung:
+		\begin{equation*}
+			-\frac{\partial^2 V}{\partial x^2} \equiv \Part{E}{x} = \frac{e}{\epsilon_0 \epsilon} [N_D(x) - N_A(x)]
+		\end{equation*}
+		
+		Maximale Feld herrscht bei $x=0$:
+		\begin{equation*}
+			\abs{E_m} = \frac{e N_D x_n}{\epsilon_0 \epsilon} = \frac{e N_A x_p}{\epsilon_0 \epsilon}
+		\end{equation*}
+		
+		Potentialdifferenz zwischen p- und n-Seite:
+		\begin{equation*}
+			V_{bi} = \frac{1}{2}\abs{E_m} W = \frac{1}{2}\abs{E_m}(x_n+x_p)
+		\end{equation*}
+		wobei $W$ die gesamte Breite der Raumladungszone ist, genannt \textbf{Verarmungsrandschicht}:
+		\begin{equation*}
+			W = \sqrt{
+				\frac{2\epsilon_0\epsilon}{e} \left(
+					\frac{N_A+N_D}{N_A N_D}
+				\right) V_bi
+			}
+		\end{equation*}
+	% subsection: p-n Übergang (end)
+	\subsection{Kapazität und Kondensator} % (fold)
+		Kapazität (hängt nur von der Geometrie ab):
+		\begin{equation*}
+			C = \frac{\abs{Q}}{\abs{\Delta \phi}} \sunit{F\ (Farad)} = \unit{\coulomb\per\volt}
+		\end{equation*}
+		
+		Elektrostatische Energie, die man aufwenden muss, um zwei Punktladungen
+		$Q_1$ und $Q_2$ aus dem Unendlichen auf einen Abstand $r12$ zusammen zu bringen:
+		\begin{equation*}
+			\Delta W = \frac{Q_1 Q_2}{4\pi\epsilon_0 r_{12}}
+		\end{equation*}
+		
+		Kondensatoren bestehen aus zwei Leitern, die so angeordnet sind, dass der Feldfluss auf kurzem Weg von einem auf den anderen gelangt.
+		
+		Arbeit, um einen Kondensator auf die Spannung $V$ aufzuladen:
+		\begin{equation*}
+			W = \int \diff W = \int_0^V C V \diff V = \frac{1}{2} C V^2 = \frac{1}{2} \frac{Q^2}{C}
+		\end{equation*}
+		
+		\paragraph{Plattenkondensator} % (fold)
+			\begin{equation*}
+				C = \epsilon_0 \frac{A}{d}
+			\end{equation*}
+			
+			Energiedichte:
+			\begin{equation*}
+				w = \half \epsilon_0 E^2
+			\end{equation*}
+			
+			Elektrisches Feld:
+			\[
+				E = \frac{\sigma_\text{frei}}{\epsilon_0} = \frac{V}{d}
+			\]
+			
+			Kraft bei konstanter Ladung $\pm Q$:
+			\begin{equation*}
+				F = \frac{Q^2}{2\epsilon_0 A} = \frac{1}{2} Q E
+			\end{equation*}
+		% paragraph: Plattenkondensator (end)
+		
+		\paragraph{Kugelkondensator} % (fold)
+			Kugel mit Radius $R_1$ und konzentrischer Kugelschale mit Radius $R_2$:
+			\begin{equation*}
+				\Delta \phi = \frac{1}{4\pi\epsilon_0} \int_{R_1}^{R_2} \frac{Q}{r^2} \diff r = \frac{Q}{4\pi\epsilon_0} \left(\frac{1}{R_1}-\frac{1}{R_2}\right)
+			\end{equation*}
+		% paragraph: Kugelkondensator (end)
+		
+		\paragraph{Zylinderkondensator} % (fold)
+			Zylinder mit Radius $R_1$ und Länge $L$ umschlossen von einem Hohlzylinder mit Radius $R_2$:
+			\begin{equation*}
+				\Delta \phi = \frac{1}{2\pi\epsilon_0} \frac{Q}{L} \int_{R_1}^{R_2} \frac{\diff r}{r} = \frac{1}{2\pi\epsilon_0} \frac{Q}{L} \ln \parens{\frac{R_2}{R_1}}
+			\end{equation*}
+		% paragraph: Zylinderkondensator (end)
+	% subsection: Kapazität und Kondensator (end)
+	\subsection{Elektrischer Dipol} % (fold)
+		Dipolmoment:
+		\begin{equation*}
+			\vec p = Q \cdot \vec \delta
+		\end{equation*}
+		Polarisation:
+		\begin{equation*}
+			\vec P = N Q \vec \delta \nicesunit{\coulomb\per\Square\metre}
+		\end{equation*}
+		\begin{tightitemize}
+			\item[$\vec \delta$:] Abstand der Ladungen (Vektor von $-Q$ nach $+Q$)
+			\item[$N$:] Atome pro Volumen
+		\end{tightitemize}
+	% subsection: Elektrischer Dipol (end)
+	\subsection{Dielektrika} % (fold)
+		Bringt man ein Dielektrikum in ein elektrisches Feld, so nimmt die Kapazität um den Faktor $\epsilon$ zu. $\epsilon$ heisst \textbf{Dielektrizitätskonstante}.
+		
+		\textbf{Elektrisches Feld im Dielektrikum:}
+		\begin{equation*}
+			E = \frac{\sigma_{\text{frei}} - \sigma_{\text{pol}}}{\epsilon_0}
+		\end{equation*}
+		\begin{tightitemize}
+			\item[$\sigma_{\text{frei}}$:] Oberflächenladungsdichte auf den Kondensatorplatten
+			\item[$\sigma_{\text{pol}}$:] Oberflächenladungsdichte auf dem Dielektrikum
+		\end{tightitemize}
+		
+		\textbf{Elektrisches Feld im Kondensator wird reduziert:}
+		\begin{equation*}
+			E = \frac{\sigma_{\text{frei}}}{\epsilon_0} \frac{1}{1+\chi}
+		\end{equation*}
+		\begin{tightitemize}
+			\item[$\chi$:] (di)elektrische Suszeptibilität (Materialkonstante)
+		\end{tightitemize}
+		
+		Polarisation:
+		\begin{equation}
+			\vec P = \chi \epsilon_0 \vec E \label{eq:dielektrika_polarisation}
+		\end{equation}
+		
+		\textbf{Kapazität nimmt um $\epsilon = 1 + \chi$ zu:}
+		\begin{equation*}
+			C = \frac{\epsilon_0 A(1+\chi)}{d} = \frac{\epsilon \epsilon_0 A}{d}
+		\end{equation*}
+		
+		\paragraph{Inhomogene Polarisation} % (fold)
+			Polarisationsladungsdichte:
+			\begin{equation*}
+				\rho_{\text{pol}} = - \Div \vec P
+			\end{equation*}
+		% paragraph: Inhomogene Polarisation (end)
+		
+		\paragraph{Elektrostatische Gleichungen mit Dielektrika} % (fold)
+			\begin{align*}
+				\Div \parens{
+					(1+\chi)\vec E
+				} &= \Div \parens{\epsilon \vec E} = \frac{\rho_{\text{frei}}}{\epsilon_0} \\
+				\rot \vec E &= 0
+			\end{align*}
+			Ist $\epsilon$ ortsunabhängig, so kann man sie aus der Klammer herausnehmen.
+		% paragraph: Elektrostatische Gleichungen mit Dielektrika (end)
+		
+		\paragraph{Dielektrische Verschiebung} % (fold)
+			\begin{align*}
+				\vec D &= \epsilon_0 \vec E + \vec P \\
+				\Div \vec D &= \rho_{\text{frei}}
+			\end{align*}
+			Wenn~\eqref{eq:dielektrika_polarisation} gilt, dann ist
+			\begin{equation*}
+				\vec D = \epsilon_0(1+\chi) \vec E = \epsilon\epsilon_0 \vec E
+			\end{equation*}
+		% paragraph: Dielektrische Verschiebung (end)
+		
+		\paragraph{Felder und Kräfte bei Dielektrika} % (fold)
+			Kraft zwischen zwei entgegengesetzt geladenen Leitern (z.B. Kondensatorplatten):
+			\begin{equation*}
+				F_x = - \Part{W}{x} = - \frac{Q^2}{2} \Part{}{x} \parens{\frac{1}{C}}
+			\end{equation*}
+			
+			Kraft zwischen zwei Punktladungen $Q_1$ und $Q_2$:
+			\begin{equation*}
+				\abs{\vec F} = \frac{Q_1 Q_2}{4\pi\epsilon_0\epsilon} \cdot \frac{1}{r^2}
+			\end{equation*}
+		% paragraph: Felder und Kräfte bei Dielektrika (end)
+		
+		\begin{bemerkung} Diese Herleitungen gelten nur bei konstanter Ladung $\sigma_{\text{frei}}$.
+			
+		\end{bemerkung}
+	% subsection: Dielektrika (end)
+	\subsection{Piezoelektrische Generatoren und Aktoren} % (fold)
+		Kristalle mit einem \emph{Inversionszentrum} können nicht piezoelektrisch sein.
+		
+		\paragraph{Direkte piezoelektrische Effekt} % (fold)
+			\emph{Piezoelektrika} sind eine Klasse von Materialien, bei denen eine mechanische Spannung zu einer Polarisation führt.
+			
+			\begin{equation*}
+				\begin{bmatrix}
+					P_1 \\ P_2 \\ P_3
+				\end{bmatrix}
+				=
+				\begin{bmatrix}
+					d_{11} & \dots & d_{16} \\
+					d_{21} & \ddots & \vdots \\
+					d_{31} & \dots & d_{36}
+				\end{bmatrix}
+				\cdot
+				\begin{bmatrix}
+					\sigma_1 \\
+					\vdots \\
+					\sigma_6
+				\end{bmatrix}
+			\end{equation*}
+		% paragraph: Direkte piezoelektrische Effekt (end)
+		
+		\paragraph{Inverse piezoelektrische Effekt} % (fold)
+			Legt man an einen piezoelektrischen Kirstall ein elektrisches Feld an, so ändert sich seine Form.
+			
+			\begin{equation*}
+				\begin{bmatrix}
+					e_1 &
+					\dots &
+					e_6
+				\end{bmatrix}
+				=
+				\begin{bmatrix}
+					E_1 & E_2 & E_3
+				\end{bmatrix}
+				\cdot
+				\begin{bmatrix}
+					d_{11} & \dots & d_{16} \\
+					d_{21} & \ddots & \vdots \\
+					d_{31} & \dots & d_{36}
+				\end{bmatrix}
+			\end{equation*}
+		% paragraph: Inverse piezoelektrische Effekt (end)
+		
+		% TODO: [Piezo] Maybe add examples from script
+	% subsection: Piezoelektrische Generatoren und Aktoren (end)
+% section: Elektrostatik (end)
+\section{Magnetostatik} % (fold)
+	\subsection{Magnetfeld} % (fold)
+		Lorentz-Kraft:
+		\begin{equation*}
+			\vec F = q \vec v \times \vec B
+		\end{equation*}
+	% subsection: Magnetfeld (end)
+	\subsection{Elektrische Ströme} % (fold)
+		\begin{definition}
+			Elektrische Ströme sind \emph{bewegte Ladungen}. Der Fluss der Ladung wird auch \emph{Drift} genannt.
+		\end{definition}
+		
+		Elektrische Stromdichte:
+		\begin{equation*}
+			\vec j = \rho \vec v_D \nicesunit{\ampere\per\Square\metre}
+		\end{equation*}
+		\begin{tightitemize}
+			\item[$\rho$:] Ladungsdichte
+			\item[$\vec v_D$:] Driftgeschwindigkeit
+		\end{tightitemize}
+		\begin{bemerkung}
+			Bei negativen Ladungsträgern (z.B.~Elektronen) sind $\vec v_D$ und $\vec j$ entgegengesetzt gerichtet.
+		\end{bemerkung}
+		
+		Elektrischer Strom:
+		\begin{equation*}
+			I = \int_S \vec j \cdot \vec n \diff f \sunit{A}
+		\end{equation*}
+		
+		Kontinuitätsgleichung:
+		\begin{equation*}
+			\Div \vec j = - \Part{\rho}{t}
+		\end{equation*}
+		ist bei \emph{stationären Strömen} gleich $0$.
+		
+		\paragraph{Beweglichkeit $\mu$} % (fold)
+			Driftgeschwindigkeit ist näherungsweise proportional zum Feld:
+			\begin{equation*}
+				\vec v_D = \mu \vec E
+			\end{equation*}
+		% paragraph: Beweglichkeit (end)
+		
+		\paragraph{Leitfähigkeit $\sigma$} % (fold)
+			\begin{equation*}
+				\vec j = n \: q \: \mu \vec E = \sigma \vec E
+			\end{equation*}
+			\begin{tightitemize}
+				\item[$n$:] Teilchendichte
+				\item[$q$:] Ladung
+			\end{tightitemize}
+		% paragraph: Leitfähigkeit (end)
+		
+		\paragraph{Ohm'sches Gesetz} % (fold)
+			\begin{align*}
+				V &= R\:I \\
+				R &= \frac{1}{\sigma} \frac{L}{A} = \rho \frac{L}{A}
+			\end{align*}
+			\begin{tightitemize}
+				\item[$\rho$:] spezifischer Widerstand \niceunit{\ohm\metre}
+			\end{tightitemize}
+		% paragraph: Ohm'sches Gesetz (end)
+		
+		\paragraph{Joul'sche Wärme} % (fold)
+			Joul'sche Wärmeleistung:
+			\begin{equation*}
+				\frac{\Delta W}{\Delta t} = V \cdot \frac{\Delta Q}{\Delta t} = V \cdot I = I^2 \:R
+			\end{equation*}
+		% paragraph: Joul'sche Wärme (end)
+		
+		\paragraph{Homogene Leiter} % (fold)
+			\begin{align*}
+				\sigma &= \const \\
+				\vec E &= -\grad\phi \\
+				\laplace \phi &= 0
+			\end{align*}
+		% paragraph: Homogene Leiter (end)
+		
+		\paragraph{Vierpunktemethode zur Messung der Leitfähigkeit} % (fold)
+			~
+			
+			\begin{bedingungen}
+				\item Abstand $s$ der Kontakte gross im Vergleich zur Dicke $d$ der Probe
+				\item Kontakte befinden sich weit weg vom Rand
+			\end{bedingungen}
+			
+			\begin{equation*}
+				\frac{\rho}{d} = R_\square = \frac{\pi}{\ln 2} \frac{V}{I}
+			\end{equation*}
+			\begin{tightitemize}
+				\item[$R_\square$:] Schichtwiderstand \niceunit{\ohm} (auch bei unbekannter Dicke definiert)
+			\end{tightitemize}
+		% paragraph: Messung der Leitfähigkeit (end)
+	% subsection: Elektrische Ströme (end)
+	\subsection{Van-de-Graaf Generator} % (fold)
+		…ist eine Art Batterie, die eine Spannung $V_0 = RI$ liefert.
+		\begin{equation*}
+			V_0 = \int_+^- \vec E \diff \vec s = \frac{1}{q} \int_+^- \vec F \diff \vec s
+		\end{equation*}
+		$V_0$ ist die Arbeit, welche an einer Einheitsladung geleistet wird, wenn sie \emph{langsam} vom Pluspol zum Minuspol befördert wird.
+	% subsection: Van-de-Graaf Generator (end)
+	\subsection{Elektromotorische Kraft (EMK)} % (fold)
+		\begin{equation*}
+			EMK = \oint \vec E \diff \vec s = \frac{1}{q} \oint \vec F \diff \vec s
+		\end{equation*}
+	% subsection: Elektromotorische Kraft (EMK) (end)
+	\subsection{Magnetfeld} % (fold)
+		Magnetische Feldlinien bilden \emph{immer} geschlossene Wege.
+		
+		Ampère'sche Durchflutungsgesetz:
+		\begin{equation*}
+			\oint_\Gamma \vec B \diff \vec s = \frac{I_{\text{durch $\Gamma$}}}{\epsilon_0 c^2}
+		\end{equation*}
+		genügt im allgemeinen nicht, um das Magnetfeld aus gegebenen Strömen zu bestimmen, man muss ebenso $\Div\vec B = 0$ mitverwenden.
+		
+		\paragraph{Magnetfeld eines langen, geraden Drahtes} % (fold)
+			\begin{align*}
+				B(r) &= \frac{1}{4\pi\epsilon_0 c^2} \frac{2I}{r} \\
+				\vec B(r) &= \frac{1}{4\pi\epsilon_0 c^2} \frac{2\vec I \times \vec e_r}{r}
+			\end{align*}
+			mit
+			\begin{align*}
+				\frac{1}{4\pi\epsilon_0 c^2} &= 10^{-7} \\
+				e_r &= \nicefrac{\vec r}{r} \\
+				\vec I &= \nicefrac{\vec j}{j}
+			\end{align*}
+			
+			Zwischen zwei parallelen Drähten gilt:
+			\begin{description}
+				\item[gleich gerichtet:] anziehende Kraft
+				\item[entgegengesetzt gerichtet:] abstossende Kraft
+			\end{description}
+		% paragraph: Magnetfeld eines langen, geraden Drahtes (end)
+		
+		\paragraph{Magnetfeld einer Spule} % (fold)
+			\begin{equation}
+				B = \frac{N I}{\epsilon_0 c^2 L} = \frac{n I}{\epsilon_0 c^2} \label{eq:magnetfeld_spule}
+			\end{equation}
+			\begin{tightitemize}
+				\item[$n$:] Windungszahl $\parens{\nicefrac{N}{L}}$
+			\end{tightitemize}
+		% paragraph: Magnetfeld einer Spule (end)
+		
+		\paragraph{Magnetischer Dipol} % (fold)
+			Strom $I$ fliesst durch die Schleife mit Fläche $S$. Es besteht ein Magnetfeld in $z$-Richtung.
+			
+			Kraft pro Längeneinheit des Leiters:
+			\begin{equation*}
+				\frac{\Delta \vec F}{\Delta L} = \vec I \times \vec B
+			\end{equation*}
+			Es wirkt keine resultierende Kraft auf die Schleife als ganzes, da sich die Kräfte gegenüberliegender Seiten aufheben, aber ein Drehmoment:
+			\begin{equation*}
+				\tau = I\:S\:B\:sin \Theta
+			\end{equation*}
+			
+			Magnetische Moment:
+			\begin{equation*}
+				\vec \mu = I\:S\:\vec n
+			\end{equation*}
+			daraus folgt
+			\begin{equation*}
+				\vec \tau = \vec \mu \times \vec B
+			\end{equation*}
+			analog für homogenes elektrisches Feld:
+			\begin{equation*}
+				\vec \tau = \vec \mu \times \vec E
+			\end{equation*}
+		% paragraph: Magnetische Dipol (end)
+		
+		\paragraph{Superposition} % (fold)
+			Das Feld, das von zwei verschiedenen stationären Strömen herrührt, ist gleich der Vektorsumme der Felder, die jeder Strom einzeln erzeugt.
+		% paragraph: Superposition (end)
+		
+		% \paragraph{Magnetfeld einer stromdurchflossenen Platte} % (fold)
+		% 	
+		% % paragraph: Magnetfeld einer stromdurchflossenen Platte (end)
+	% subsection: Magnetfeld (end)
+	\subsection{Hall-Effekt} % (fold)
+		…entsteht , wenn in einem Leiter \emph{gleichzeitig} ein elektrisches Feld wirkt (Strom fliesst) und zudem ein \emph{äusseres} Magnetfeld existiert.
+		
+		Es entsteht ein elektrisches Feld quer zur Flussrichtung der Ladungsträger, genannt \textbf{Hall-Feld}:
+		\begin{equation*}
+			E_y = \frac{j_x}{n\:q} \cdot B_z
+		\end{equation*}
+		für \emph{negative} Ladungsträger in die \emph{negative} $y$-Richtung und umgekehrt für positive.
+		
+		\textbf{Hall-Spannung:}
+		\begin{equation*}
+			V_H = w \cdot E_y
+		\end{equation*}
+		
+		\textbf{Hall-Koeffizient:}
+		\begin{equation*}
+			R_H = \frac{E_y}{j_x \cdot B_z} = \frac{1}{n\:q}
+		\end{equation*}
+	% subsection: Hall-Effekt (end)
+	\subsection{Vektorpotential} % (fold)
+		Vektorpotential $\vec A$:
+		\begin{align*}
+			\vec B &= \rot \vec A \\
+			\laplace \vec A &= -\frac{\vec j}{\epsilon_0 c^2}
+		\end{align*}
+		
+		\paragraph{Vektorpotential eines langen, dünnen Drahtes} % (fold)
+			\begin{equation*}
+				\vec A(\vec r) = \frac{1}{4\pi\epsilon_0 c^2} \int \frac{I \diff \vec s'}{\abs{\vec r - \vec r'}}
+			\end{equation*}
+		% paragraph: Vektorpotential eines dünnen Drahtes (end)
+	% subsection: Vektorpotential (end)
+	\subsection{Gesetz von Biot-Savart} % (fold)
+		erlaubt es das Magnetfeld eines beliebig geformten Drahtes am Ort $\vec r$ zu berechnen, indem man längs des ganzen Drahtes integriert.
+		\begin{equation*}
+			\diff \vec B(\vec r) = \frac{I}{4\pi\epsilon_0 c^2} \frac{\diff \vec s \times (\vec r - \vec r')}{\abs{\vec r - \vec r'}^3}
+		\end{equation*}
+		
+		
+	% subsection: Gesetz von Biot-Savart (end)
+	\subsection{Relativität zwischen elektrischen und magnetischen Felder} % (fold)
+		Zwei Platten mit Flächenladungen $\pm\sigma$ auf, einmal in ruhendem Koordinatensystem (KS) $F$ und einmal in mit $v$ in negative $x$-Richtung bewegtem Koordinatensystem $F'$.
+		
+		Die Ladungsdichte $\sigma'$ im bewegten KS ist \emph{grösser}:
+		\begin{equation*}
+			\sigma' = \frac{\sigma}{\sqrt{1-\beta^2}}\,,\quad \beta = \frac{v}{c}
+		\end{equation*}
+		
+		Elektrisches Feld zwischen den Platten erscheint \emph{grösser} für Beobachter im bewegtem KS:
+		\begin{equation*}
+			E_z' = \frac{E_z}{\sqrt{1-\beta^2}}
+		\end{equation*}
+		
+		Die beiden Stromdichten erzeugen zwischen den Platten ein homogenes Magnetfeld in der negativen $y'$-Richtung:
+		\begin{equation*}
+			\vec B' = \frac{1}{c^2}\parens{\vec v' \times \vec E'}
+		\end{equation*}
+		wobei $\vec v'$ die Geschwindigkeit des KS $F$, indem $\vec B$ verschwindet, gemessen vom KS $F'$ aus.
+	% subsection: Relativität zwischen elektrischen und magnetischen Felder (end)
+% section: Magnetostatik (end)
+\section{Elektrodynamik} % (fold)
+	\subsection{Induktionsgesetz von Faraday} % (fold)
+		Zeitlich veränderliche Magnetfelder erzeugen elektrische Felder:
+		\begin{equation*}
+			\rot \vec E = - \Part{\vec B}{t}
+		\end{equation*}
+		
+		Betrachtet wird eine Leiterschleife in einem \emph{homogenen Magnetfeld $B$}, bestehend aus einem festen
+		u-förmigen Teil und einem beweglichen Bügel mit Geschwindigkeit $v$.
+		\begin{center}
+			\input{graphics/EMK}
+		\end{center}
+		Dies erzeugt eine
+		\emphequation{equation*}{
+			EMK = w\:v\:B = w\:B\:\Diff{L}{t}
+			= \oint_\Gamma \vec E \diff \vec s = - \Part{\Phi}{t}
+		}
+		mit dem Magnetischen Fluss:
+		\begin{equation*}
+			\Phi = \int_S \vec B \diff \vec f
+		\end{equation*}
+		
+		\paragraph{Lenz'sche Regel:} % (fold)
+			Das Vorzeichen der $EMK$ ist so gerichtet, dass der induzierte Strom ein Magnetfeld erzeugt, das der Flussänderung entgegenwirkt.
+		% paragraph: Lenz'sche Regel (end)
+		
+		\paragraph{Selbstinduktion} % (fold)
+			\begin{equation*}
+				L = \frac{1}{\epsilon_0 c^2} \frac{S\:N^2}{l}
+			\end{equation*}
+		% paragraph: Selbstinduktion (end)
+	% subsection: Induktionsgesetz von Faraday (end)
+	\subsection{Wechselstromgenerator} % (fold)
+		Betrachtet wird eine flache Drahtspule in einem \emph{homogenen Magnetfeld
+		$B$} mit Fläche $S$ und Winkel $\Theta$ zwischen Flächennormalen und
+		Magnetfeldrichtung. Der Fluss ist:
+		\begin{equation*}
+			\Phi = B\:S\cos\Theta
+		\end{equation*}
+		
+		Es entsteht eine \textbf{Wechselspannung}:
+		\emphequation{align*}{
+			EMK &= - N \Diff{}{t} (B\:S\cos(\omega t))
+			    = N\:B\:S\:\omega\sin(\omega t) \\
+			    &= V_0 \sin(\omega t) = V
+		}
+		\begin{tightitemize}
+			\item[$N$:] Windungszahl der Spule ($1$ für einfache Schlaufe)
+			\item[$\omega$:] \emph{konstante} Rotationsgeschwindigkeit der Spule
+		\end{tightitemize}
+		
+		Bei Belastung mit einem endlichen Widerstand $R$ fliesst Strom:
+		\emphequation{equation*}{
+			I = \frac{EMK}{R} = \frac{V_0}{R}\sin(\omega t)
+		}
+		
+		Gelieferte \textbf{elektrische Leistung}:
+		\emphequation{equation*}{
+			\Diff{W}{t} = EMK \cdot I
+		}
+		
+		Benötigte \textbf{mechanische Leistung}:
+		\emphequation{equation*}{
+			\Diff{W}{t} = \omega \tau = \omega\:N\:I\:S\:B\sin\Theta
+		}
+	% subsection: Wechselstromgenerator (end)
+	\subsection{Induktion} % (fold)
+		Magnetfeld einer Spule ist gegeben durch~\eqref{eq:magnetfeld_spule}.
+		
+		\paragraph{Gegenseitige Induktion} % (fold)
+			\emphequation{equation*}{
+				EMK_2 = - \underbrace{\frac{N_1 N_2 S}{\epsilon_0 c^2 l}}_{L_{12}} \Diff{I_1}{t}
+			}
+			\begin{tightitemize}
+				\item[$L_{12}$:] Koeffizient der gegenseitigen Induktion $(L_{12} \equiv L_{21})$
+			\end{tightitemize}
+			\emphequation{equation*}{
+				EMK_1 = - L_{21} \Diff{I_2}{t}
+			}
+			\begin{equation*}
+				L_{21} = \frac{1}{4\pi\epsilon_0 c^2} \oint\!\!\oint \frac{1}{\abs{\vec r_1 - \vec r_2}} \diff \vec s_2 \diff \vec s_1
+			\end{equation*}
+		% paragraph: Gegenseitige Induktion (end)
+		
+		\paragraph{Selbstinduktion} % (fold)
+			\begin{align*}
+				EMK_1 &= -L_{11} \Diff{I_1}{t} - L_{21}\Diff{I_2}{t} \\
+				EML_2 &= -L_{12} \Diff{I_1}{t} - L_{22}\Diff{I_2}{t}
+			\end{align*}
+			\begin{tightitemize}
+				\item[$L_{ii}$:] Slebstinduktionskoeffizienten $(> 0)$
+			\end{tightitemize}
+			
+			Bei nur einer Spule:
+			\emphequation{equation*}{
+				EMK = -L \Diff{I}{t}
+			}
+			\begin{tightitemize}
+				\item[$L$:] Induktivität $\niceunit{H\ (Henry)}
+				= \niceunit{\volt\second\per\ampere}$
+			\end{tightitemize}
+			\begin{equation*}
+				L\:I =\Phi
+			\end{equation*}
+		% paragraph: Selbstinduktion (end)
+	% subsection: Induktion (end)
+	\subsection{Ein- und Ausschaltvorgänge} % (fold)
+		Bei \emph{idealer Induktivität} gilt:
+		\emphequation{equation*}{
+			V = -EMK = L\Diff I t
+		}
+		
+		% TODO: RL Schaltkreis (S. 99)
+		
+		Betrachtet wird ein $RL$-Stromkreis mit einem Schalter, der
+		\textbf{zur Zeit $\boldsymbol{t=0}$ geschlossen} wird $(I(t=0)=0)$.
+		Es gilt:
+		\emphequation{align*}{
+			V_0 &= L \Diff I t + R\:I \\
+			I(t) &= \frac{V_0}{R} \parens{1-\eu^{-\nicefrac{R}{L}\cdot t}}
+		}
+		
+		Öffnen zur Zeit $t=0$ $(I(t=0)=I_0)$:
+		\emphequation{align*}{
+			0 &= L \diff I t + R\:I \\
+			I(t) &= I_0 \eu^{-\nicefrac{R}{L}\cdot t}
+		}
+		
+		Zeitkonstante:
+		\begin{equation*}
+			\tau = \frac L R
+		\end{equation*}
+	% subsection: Ein- und Ausschaltvorgänge (end)
+	\subsection{Induktion und magnetische Energie} % (fold)
+		Arbeit, die eine \emph{äussere} Quelle leisten muss, um den Strom im
+		$RL$-Stromkreis von $0$ auf $I_0$ zu erhöhen:
+		\emphequation{align*}{
+			U &= -W = \half L\:I^2 \\
+			&= \half \epsilon_0 c^2 B^2
+		}
+		Energiedichte:
+		\begin{equation*}
+			u = \frac U V = \half \epsilon_0 c^2 B^2
+		\end{equation*}
+	% subsection: Induktion und magnetische Energie (end)
+	\subsection{Magnetismus von Materie} % (fold)
+		\begin{description}
+			\item[Diamagnetische Materialien:] Induzierte Dipole stellen sich
+				\emph{antiparallel} zum Magnetfeld ein, werden aus Zonen starken
+				Magnetfeldes hinausgedrängt.
+				\item[Paramagnetische Materialien:] Induzierte Dipole stellen sich
+					\emph{parallel} zum Magnetfeld ein, werden zu Zonen starken
+					Magnetfeldes hingezogen.
+		\end{description}
+		
+		\textbf{Magnetisierung:}
+		\emphequation{equation*}{
+			\vec M = \frac{\sum \vec \mu_i}{\Delta V}
+		}
+		\begin{itemize}
+			\item[$\sum \vec \mu_i$:] Summe aller atomaren Dipole im Volumen $\Delta V$
+		\end{itemize}
+		
+		\textbf{Totale Stromdichte:}
+		\emphequation{equation*}{
+			\vec j = \vec j_{\text{leit}} + \vec j_{\text{pol}} + \vec j_{\text{mag}}
+		}
+		\begin{align*}
+			\vec j_{\text{pol}} &= \Diff{\vec P}{t} \\
+			\vec j_{\text{mag}} &= \rot \vec M
+		\end{align*}
+		
+		\textbf{Magnetische Suszeptibilität:}
+		\emphequation{equation*}{
+			\vec M = \chi_{\text{mag}} \vec H
+		}
+		mit
+		\begin{gather*}
+			\vec H = \frac{\vec B}{\mu_0}-\vec M \\
+			\chi_{\text{mag}} \conditional{
+				< 0 & \text{für diamagnetisches Material} \\
+				> 0 & \text{für paramagnetisches Material}
+			} \\
+			\vec B = \mu_0 (1+\chi_{\text{mag}}) \vec H = \mu\:\mu_0 \vec H
+		\end{gather*}
+		\begin{itemize}
+			\item[$\mu$:] Permeabilität
+		\end{itemize}
+	% subsection: Magnetismus von Materie (end)
+	\subsection{Wechselstromkreise} % (fold)
+		\begin{multicols}{2}
+			\setlength{\mathindent}{.5\mathindent}
+			\paragraph{RL-Kreis} % (fold)
+				\begin{gather*}
+					L \Diff I t + R\:I = V_0 \cos (\omega t) \\
+					I = I_0 \cos(\omega t - \phi) \\
+					\tan\phi = \frac{\omega L}{R} \\
+					I_0 = \frac{V_0}{\sqrt{R^2 + \omega^2 L^2}}
+				\end{gather*}
+			% paragraph: RL-Kreis (end)
+			\paragraph{RC-Kreis} % (fold)
+				\begin{gather*}
+					\frac Q C + R\:I = V_0 \cos(\omega t) \\
+					I = I_0 \cos(\omega t - \phi) \\
+					\tan\phi = - \frac{1}{\omega RC} \\
+					I_0 = \frac{V_0}{\sqrt{R^2 + \frac{1}{(\omega C)^2}}}
+				\end{gather*}
+			% paragraph: RC-Kreis (end)
+		\end{multicols}
+	
+		\paragraph{Komplexe Impedanz} % (fold)
+			\begin{align*}
+				V(t) &= \widehat V \eu^{\iu \omega t} \\
+				\eu^{\iu \omega t} &= \cos(\omega t) + \iu \sin (\omega t) \\
+				\widehat V &= V_0 \\
+				I &= \widehat I \eu^{\iu \omega t} = I_0 \eu^{-\iu \phi}\eu^{\iu \omega t}
+			\end{align*}
+			\emphequation{align*}{
+				z_R &= R \\
+				z_L &= \iu \omega L \\
+				z_C &= \frac{1}{\iu \omega C} = -\iu \frac{1}{\omega C}
+			}
+			\begin{equation*}
+				V = z\:I
+			\end{equation*}
+			Serielle Impedanzen:
+			\begin{equation*}
+				z_{\text{tot}} = \sum_i z_i
+			\end{equation*}
+			Parallele Impedanzen:
+			\begin{equation*}
+				\frac{1}{z_{\text{tot}}} = \sum_i \frac{1}{z_i}
+			\end{equation*}
+		% paragraph: Komplexe Impedanz (end)
+	% subsection: Wechselstromkreise (end)
+	\subsection{Die Kirchhoff'schen Gesetze} % (fold)
+		Summe aller Potentialdifferenzen um den vollständigen Stromkreis:
+		\begin{equation*}
+			\sum_\circ V_n = 0
+		\end{equation*}
+		Summe aller Ströme in einen Knoten:
+		\begin{equation*}
+			\sum_\bullet I_n = 0
+		\end{equation*}
+	% subsection: Kirchhoff'schen Gesetze (end)
+	\subsection{Energieverlust im Wechselstromkreis} % (fold)
+		\begin{description}
+			\item[Nicht-dissipatives Element:] verbraucht keine Leistung (z.B. $C$, $L$)
+			\item[Dissipatives Element:] verbraucht Leistung (z.B. $R$)
+		\end{description}
+		
+		Mittlere Leistung, die ein Generator liefern muss:
+		\emphequation{equation*}{
+			\left<P\right> = \left<\Diff W t\right> = I_0^2 \frac{R}{2} = \half V_0 I_0 \cos\phi
+			= V_{\text{eff}} I_{\text{eff}} \cos \phi
+		}
+		\begin{itemize}
+			\item[$R$:] Realteil der Gesamtimpedanz eines Schaltkreises
+		\end{itemize}
+		\begin{equation*}
+			V_{\text{eff}} = \frac{V_0}{\sqrt 2} \qquad
+			I_{\text{eff}} = \frac{I_0}{\sqrt 2}
+		\end{equation*}
+	% subsection: Energieverlust im Wechselstromkreis (end)
+% section: Elektrodynamik (end)
+\section{Resonanz, Schwingkreise} % (fold)
+	\subsection{RCL-Schwingkreis} % (fold)
+		\begin{align*}
+			z_{\text{tot}} &= R + \iu \parens{
+				\omega L - \frac{1}{\omega C}
+			} = \abs{z_\text{tot}} \eu^{\iu \phi} \\
+			I_0 &= \frac{V_0}{\abs{z_\text{tot}}} \\
+			\tan \phi &= \frac{1}{R} \parens{
+				\omega L - \frac{1}{\omega C}
+			}
+		\end{align*}
+		Strom wird maximal bei Resonanzfrequenz:
+		\begin{equation*}
+			\omega_0 = \frac{1}{\sqrt{LC}} \qquad \Rightarrow \Im(z_\text{tot}) = 0
+		\end{equation*}
+		
+		Spannungsabfälle bei $L$, $C$:
+		\begin{equation*}
+			V_{0_L} = V_{0_C} = \underbrace{\frac{\omega_0 L}{R}}_{\mathclap{\text{Resonanzüberhöhung}}} V_0
+		\end{equation*}
+		
+		\paragraph{Differentialgleichung} % (fold)
+			\begin{equation*}
+				R\:I + \frac{1}{C} \int I \diff t + L \diff I t = V_0 \cos(\omega t)
+			\end{equation*}
+		% paragraph: Differentialgleichung (end)
+		
+		\paragraph{Q-Faktor} % (fold)
+			\begin{equation*}
+				Q = \frac{\omega_0}{\Delta \omega} \cong \frac{\omega_0 L}{R}
+			\end{equation*}
+			\begin{itemize}
+				\item[$\Delta \omega$:] Halbwertsbreite (Breite der Resonanzkurve bei der Hälfte des Maximums)
+			\end{itemize}
+		% paragraph: Q-Faktor (end)
+	% subsection: RCL-Schwingkreis (end)
+% section: Resonanz, Schwingkreise (end)
+\section{Elektromagnetische Wellen} % (fold)
+	\subsection{Magnetfeld nahe beim Kondensator} % (fold)
+		Für einen Kreisförmigen Weg um den Zuleitungsdraht gilt:
+		\begin{equation*}
+			2\pi r B = \frac{I}{\epsilon_0 c^2}
+		\end{equation*}
+	% subsection: Magnetfeld nahe beim Kondensator (end)
+	\subsection{Fortpflanzung von Wellenfeldern} % (fold)
+		Hinter einer \emph{Wellenfront} sind $\vec E$ und $\vec B$ konstant und
+		stehen senkrecht aufeinander, sowie senkrecht auf der Fortpflanzungsrichtung.
+		
+		Die Wellenfront pflanzt sich mit \textbf{Lichtgeschwindigkeit} $c$ $(\SI{3e8}{\metre\per\second})$ fort.
+		
+		Das \textbf{elektrische Feld} am Ort $x$ zur Zeit $t$ wird durch den Strom
+		bestimmt, der in der Quelle zur früheren Zeit $t' = t - \nicefrac x c$ fliesst:
+		\begin{equation*}
+			E_y(x,t) = - \frac{J(t-\nicefrac x c)}{2\epsilon_0 c}
+		\end{equation*}
+	% subsection: Fortpflanzung von Wellenfeldern (end)
+	\subsection{Wellengleichung im leeren Raum} % (fold)
+		\paragraph{Eindimensionale Wellengleichung} % (fold)
+			\begin{align*}
+				\frac{\partial^2 E_y}{\partial x^2} - \frac{1}{c^2} \frac{\partial^2 E_y}{\partial t^2} &= 0 \\
+				\frac{\partial^2 B_z}{\partial x^2} - \frac{1}{c^2} \frac{\partial^2 B_z}{\partial t^2} &= 0 \\
+				\frac{\partial^2 \phi}{\partial x^2} - \frac{1}{c^2} \frac{\partial^2 \phi}{\partial t^2} &= 0
+			\end{align*}
+			mit $\phi$ in der Form
+			\begin{equation*}
+				\phi (x,t)=f(x-ct)
+			\end{equation*}
+			oder
+			\begin{equation*}
+				\phi (x,t)=f(x-ct)+g(x+ct)
+			\end{equation*}
+		% paragraph: Eindimensionale Wellengleichung (end)
+		\paragraph{Dreidimensionale Wellengleichung} % (fold)
+			\begin{equation*}
+				\laplace \vec E - \frac{1}{c^2} \frac{\partial^2 \vec E}{\partial t^2} = 0
+			\end{equation*}
+			Eine beliebige elektromagnetische Welle kann aufgefasst werden als eine
+			Superposition von ebenen Wellen, die sich in allen möglichen Richtungen
+			fortpflanzen.
+		% paragraph: Dreidimensionale Wellengleichung (end)
+		\paragraph{Harmonische Wellen} % (fold)
+			\begin{equation*}
+				f(x-ct) = \cos(kx-\omega t)
+			\end{equation*}
+			mit der Voraussetzung
+			\begin{equation*}
+				\omega^2 = c^2 k^2
+			\end{equation*}
+			
+			Mit Frequenz $\nu$ der Welle, Betrag $k$ des Wellenvektors $\vec k$ und Wellenlänge $\lambda$ gilt:
+			\begin{equation*}
+				\omega = 2\pi \nu \qquad k = \frac{2\pi}{\lambda}
+			\end{equation*}
+			
+			\textbf{Polarisation} der Welle:
+			\begin{equation*}
+				\vec E(\vec r, t) = \vec E_0 \eu^{\iu (\vec k \cdot \vec r - \omega t)}
+			\end{equation*}
+		% paragraph: Harmonische Welle (end)
+		
+		\paragraph{Kugelwellen} % (fold)
+			\begin{gather*}
+				\laplace \psi (r,t) - \frac{1}{c^2} \frac{\partial^2}{\partial t^2} \psi(r,t) = 0 \\
+				\psi(r,t) = \frac{f(t-\nicefrac r c)}{r}
+			\end{gather*}
+		% paragraph: Kugelwellen (end)
+	% subsection: Wellengleichung im leeren Raum (end)
+	\subsection{Energiedichte und Energiefluss im elektromagnetischen Feld} % (fold)
+		\begin{align*}
+			\Part u t &= -\Div \vec S \\
+			u &= \parens{
+				\frac{\epsilon_0 c^2}{2} \vec B \cdot \vec B + \frac{\epsilon_0}{2} \vec E \cdot \vec E
+			} \\
+			\vec S &= \epsilon_0 c^2 \vec E \times \vec B
+		\end{align*}
+		\begin{tightitemize}
+			\item[$u$:] Energiedichte
+			\item[$\vec S$:] Energieflussvektor, genannt \textbf{Poynting-Vektor}
+		\end{tightitemize}
+		
+		\paragraph{Intensität} % (fold)
+			Mittlere Energie, die pro Sekunde durch eine Einheitsfläche hindurchtritt:
+			\begin{equation*}
+				I = \left<S\right> = \half \epsilon_0 c E_0^2
+			\end{equation*}
+			mit
+			\begin{equation*}
+				S = \epsilon_0 c E^2 = \epsilon_0 c^2 E B
+			\end{equation*}
+			Die Intensität ist proportional zum Amplitudenquadrat der Welle.
+		% paragraph: Intensität (end)
+	% subsection: Energiedichte und Energiefluss im elektromagnetischen Feld (end)
+	\subsection{Hertz'sche Dipol} % (fold)
+		Auch elektrischer Dipolstrahler, erzeugt elektromagnetische \emph{Kugelwellen} im Ursprung:
+		\begin{equation*}
+			E(r,t) = \frac{-q\:a(\overbrace{t-\nicefrac r c}^{t'}) \sin \Theta}{4\pi\epsilon_0 c^2 r}
+		\end{equation*}
+		\begin{tightitemize}
+			\item[$q$:] Ladung
+			\item[$a(t')$:] Beschleunigung der Ladung zur Zeit $t'$
+		\end{tightitemize}
+		Dabei erzeugt nur die Komponente der Beschleunigung senkrecht zur
+		Blickrichtung des vom Beobachter zur Quelle ein elektrisches Feld.
+		
+		Harmonische Bewegung in $z$-Richtung:
+		\begin{align*}
+			z(t) &= z_0 \cos(\omega t) \\
+			a(t) &= -\omega^2 z_0 \cos (\omega t)\\
+			a(t') &= -\omega^2 z_0 \cos (\omega t') \\
+			p_\perp(t') &= q\:z_0 \cos(\omega t') \sin \Theta \\
+			I&\sim \omega^4 \\
+			E(r,t) &= \frac{\omega^2 p_\perp(t')}{4\pi \epsilon_0 c^2 r} \\
+			S(\Theta) &= \frac{\omega^4 [q\:z_0 \cos(\omega t')]^2 \sin^2 \Theta}{(4\pi)^2 \epsilon_0 c^3 r^2} \\
+			p_0 &= q z_0
+		\end{align*}
+		Die \emph{maximale Leistung} wird in der Äquatorebene abgestrahlt, denn
+		dort ist die Projektion des Dipolmoments auf eine Ebene senkrecht zur
+		Beobachtungsrichtung gleich dem Dipolmoment selbst.
+		
+		Mittlere zeitliche abgestrahlte Gesamtleistung:
+		\begin{equation*}
+			\left<\frac{\Delta W}{\Delta t}\right>_t = \frac{\omega^4 p_0^2}{12 \pi \epsilon_0 c^3}
+		\end{equation*}
+	% subsection: Hertz'sche Dipol (end)
+% section: Elektromagnetische Wellen (end)

@@ -1,0 +1,108 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Thermodynamik/Neue Zusammenfassung/Thermodynamik I - Zusammenfassung.tex
+
+\section{Der Erste Hauptsatz} % (fold)
+	\subsection{Energieformen} % (fold)
+		\begin{tabular}{@{}ll@{}}
+			$KE$ & kinetische Energie\\
+			$PE$ & potentielle Energie\\
+			$U$  & innere Energie (Wärme, chem.~Bindungsenergie)\\
+			$u$  & spezifische innere Energie $\left(u=\nicefrac{U}{m}\right)$\\
+			$E$  & gesamt Energie\\
+			$Q$  & Wärme\\
+			$W$  & Arbeitsleistung
+		\end{tabular}
+		
+		\[
+			\begin{array}{r@{:\:}l@{\quad}r@{:\:}l@{\quad\text{\dots}}l}
+				Q<0 & \text{\textbf{vom} Sys.} & Q>0 & \text{\textbf{zum} Sys.} & \text{transferiert}\\
+				W<0 & \text{\textbf{am} Sys.} & W>0 & \text{\textbf{vom} Sys.} & \text{verrichtet}\\
+			\end{array}
+		\]
+		
+		\begin{align*}
+			E &= KE + PE + U
+		\end{align*}
+		\begin{empheq}[box=\shadowbox*]{equation*}
+			\Delta E = \Delta KE + \Delta PE + \Delta U
+		\end{empheq}
+		\begin{align*}
+			E_2 &= E_1 + \underbrace{Q_{12}}_{\mathclap{\substack{
+				\text{zugeführte} \\ \text{Wärme}
+			}}} - \overbrace{W_{12}}^{\mathclap{\substack{
+				\text{abgeführte} \\ \text{Arbeitsleistung}
+			}}}
+		\end{align*}
+	% subsection: Energieformen (end)
+	\subsection{1. Hauptsatz} % (fold)
+		\begin{empheq}[box=\shadowbox*]{align*}
+			\Delta E &= Q-W \\
+			\Delta U &= Q-W
+		\end{empheq}
+		
+		$\Delta U = \Delta E$ nur wenn $\Delta KE$ und $\Delta PE$ vernachlässigbar sind!
+		
+		Falls $Q = 0$ $\Rightarrow$ \emph{adiabater} Prozess $\Rightarrow$ $\Delta E = -W$
+		
+		Prozess $1 \longrightarrow 2$:
+		\[
+			\begin{array}{r@{\:}c@{\:}l@{\quad}l}
+				Q_1 & \xrightarrow{\Delta Q} & Q_2 & \text{$\Delta Q$ \emph{Weg abhängig!}} \\ & & & \Rightarrow \text{ keine Zustandsgrösse} %\\
+				% W_1 & \xrightarrow{\Delta W} & W_2 & \text{$\Delta W$ Weg unabhängig}
+			\end{array}
+		\]
+		
+	% subsection: 1. Hauptsatz (end)
+	
+	\subsection{Wärmeübertragung} % (fold)
+		\begin{tabular*}{\textwidth}{@{}r@{\hspace{2mm}}l@{}}
+			\textbf{Wärmeübertragungs-} & \\ \textbf{leistung:} & $\dot{Q} \nicesunit{\joule\per\second} = \unit{\watt}$ \\
+			\textbf{Wärmefluss:} & $\dot{Q}''$ oder $\dot{q} \nicesunit{\joule\per\second\per\Square\metre} = \niceunit{\watt\per\Square\metre}$
+		\end{tabular*}
+	% subsection: Wärmeübertragung (end)
+	
+	\subsection{Die Leistungsbilanz} % (fold)
+		\[
+			\frac{\diff E}{\diff t} = \dot{E} = \dot{Q} - \dot{W}
+		\]
+		
+		stationärer Zustand $\Leftrightarrow$ keine Zeitabhängigkeit $\Leftrightarrow$ $\dot{E} = 0$
+		\[
+			\Rightarrow \ \dot{W} = \dot{Q}
+		\]
+	% subsection: Die Leistungsbilanz (end)
+	
+	\subsection{Kreisprozesse} % (fold)
+		\[
+			\Delta E_{\text{KP}} = 0 \quad \Rightarrow \quad W_{\text{KP}} = Q_{\text{KP}}
+		\]
+		
+		\subsubsection{Thermische Wirkungsgrade} % (fold)
+			
+			\paragraph{Bei thermischen Arbeitsmaschinen:} % (fold)
+				\[
+					W_{\text{KP}} = Q_{\text{zu}} - Q_{\text{ab}}
+				\]
+				
+				\[
+					\eta_{\text{th}} = \frac{W_{\text{KP}}}{Q_{\text{zu}}} = 1 - \frac{Q_{\text{ab}}}{Q_{\text{zu}}}
+					= \frac{Q_{\text{zu}} - Q_{\text{ab}}}{Q_{\text{zu}}}
+				\]
+				
+				$\eta_{\text{th}}$ theoretisch maximal $1$, da $Q_{\text{ab}}$ immer $> 0$ ist, muss $\eta_{\text{th}} < 1$ sein.
+			% paragraph: Bei thermischen Arbeitsmaschinen: (end)
+			
+			\paragraph{Bei Kältemaschinen und Wärmepumpen:} % (fold)
+				\begin{align*}
+					-W_{\text{KP}} &= Q_{\text{zu}} - Q_{\text{ab}} \\
+					\Rightarrow W_{\text{KP}} &= Q_{\text{ab}} - Q_{\text{zu}}
+				\end{align*}
+				
+				\begin{align*}
+					\varepsilon_{\text{K}} &= \frac{Q_{\text{zu}}}{W_{\text{KP}}} = \frac{Q_{\text{zu}}}{Q_{\text{ab}} - Q_{\text{zu}}} \\
+					\varepsilon_{\text{W}} &= \frac{Q_{\text{ab}}}{W_{\text{KP}}} = \frac{Q_{\text{ab}}}{Q_{\text{ab}} - Q_{\text{zu}}} = \varepsilon_{\text{K}}+1
+				\end{align*}
+			% paragraph: Bei Kältemaschinen und Wärmepumpen: (end)
+			
+		% subsubsection: Thermische Wirkungsgrade (end)
+	% subsection: Kreisprozesse (end)
+% section: Erste Hauptsatz (end)

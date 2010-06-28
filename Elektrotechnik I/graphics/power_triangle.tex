@@ -1,0 +1,16 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\begin{circuitikz}[>=latex,scale=.75]
+	\draw[->] (0,0) -- (3,0) node[pos=.5,below]{$P$};
+	\draw[->] (0,0) -- (3,1) node[pos=.5,above]{$S$};
+	\draw[->] (3,0) -- (3,1) node[pos=.5,left]{$Q_L$};
+	\draw[xshift=1cm] (0,0) arc (0:18.435:1cm) node[right,yshift=-.825mm]{$\theta$};
+	
+	\begin{scope}[yshift=1cm,xshift=3.5cm]
+		\draw[->] (0,0) -- (3,0) node[pos=.5,above]{$P$};
+		\draw[->] (0,0) -- (3,-1) node[pos=.5,below]{$S$};
+		\draw[->] (3,0) -- (3,-1) node[pos=.5,left]{$Q_C$};
+		\draw[xshift=1cm] (0,0) arc (0:-18.435:1cm) node[right,yshift=.825mm]{$\theta$};
+		
+	\end{scope}
+\end{circuitikz}

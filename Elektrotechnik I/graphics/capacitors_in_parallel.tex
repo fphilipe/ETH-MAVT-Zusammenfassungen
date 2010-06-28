@@ -1,0 +1,14 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\begin{circuitikz}[scale=.6]\ctikzset{bipoles/length=1cm}
+	\draw
+	(0,-2)
+	to[voltage source=$E$] (0,1)
+	to[short, i=$Q_{tot}$] (1,1)
+	-- (9,1)
+	(9,-2) -- (0,-2)
+	(3,-2) to[C, v>=$V_1$, l=$Q_1$] (3,1)
+	(6,-2) to[C, v>=$V_2$, l=$Q_2$] (6,1)
+	(9,-2) to[C, v>=$V_3$, l=$Q_3$] (9,1)
+	;
+\end{circuitikz}

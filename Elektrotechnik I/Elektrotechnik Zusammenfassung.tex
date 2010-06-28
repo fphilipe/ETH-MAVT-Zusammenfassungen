@@ -1,0 +1,122 @@
+\documentclass[9pt,fleqn,english,article]{memoir}
+
+\title{Elektrotechnik I -- Summary}
+\author{Philipe Fatio}
+
+\input{../.includes/layout_setup}
+\input{../.includes/page_setup}
+\input{../.includes/extra_packages}
+\input{../.includes/macro_setup}
+
+% The imaginary unit
+\renewcommand*{\iu}%
+{\ensuremath{\mathrm{j}}}
+
+\usepackage[european resistor]{circuitikz}
+
+%% Math related packages
+
+% import a circuit
+\newcommand{\circuit}[1]{
+	\input{graphics/#1.tex}
+}
+\newcommand{\circuitw}[2]{
+	\resizebox{#2}{!} {
+		\circuit{#1}
+	}
+}
+
+\newenvironment{tightitemize}
+	{
+	\begin{itemize}
+	\setlength{\itemsep}{2pt}
+	\setlength{\parskip}{0pt}
+	\setlength{\parsep}{0pt}
+	}
+	{\end{itemize}}
+
+\begin{document}
+\content{titelseite}
+\begin{multicols*}{3}
+	
+	\section{Definitions} % (fold)
+		\content{definitions}
+	% section: Definitions (end)
+	
+	\section{Networks} % (fold)
+	
+		Networks are collections of \emph{nodes} and \emph{branches}.
+		
+		\begin{description}
+			\item[Node:] connection between multiple branches; has a distinct potential (colored)
+			\item[Branch:] connection between two nodes; consist of one component e.g.~resistance, source, capacitor or inductance
+		\end{description}
+		
+		\circuitw{network}{\columnwidth}
+		
+		\content{voltage_source}
+		\content{current_source}
+		\content{resistance}
+	% section: Networks (end)
+
+	\section{DC Circuits} % (fold)
+		
+		Current with constant direction and magnitude.
+		
+		\begin{description}
+			\item[short circuit:] may have voltage but current is \SI{0}{A}
+			\item[open circuit:] may have current but voltage is \SI{0}{V}
+		\end{description}
+		
+		\content{kirchhoffs_voltage_law}
+		\content{kirchhoffs_current_law}
+		\content{voltage_divider_rule}
+		\content{current_divider_rule}
+		
+		
+	% section: DC Circuits (end)
+	
+	\section{Network Analysis} % (fold)
+	
+		Simplify the network if needed before applying any of the following methods.
+		
+		\content{network_analysis}
+	% section: Network Analysis (end)
+
+	\section{Bridge Networks} % (fold)
+		\content{bridge_networks}
+	% section: Bridge Networks (end)
+	
+	\section{Network Theorems} % (fold)
+		\content{network_theorems}
+	% section: Network Theorems (end)
+	
+	\section{Fields} % (fold)
+		
+		\content{electric_field}
+		\content{capacitance}
+		\content{magnetic_field}
+		\content{inductance}
+		
+	% section: Fields (end)
+	
+	\section{AC Circuits} % (fold)
+		\content{ac_definitions}
+		\content{relationship_for_circuit_elements}
+		\content{ac_circuits}
+	% section: AC Circuits (end)
+	
+	\content{power_in_reactive_elements}
+	\content{resonant_circuits}
+	\content{op_amp}
+	\content{filters}
+	
+	% ============
+	% = Appendix =
+	% ============
+\end{multicols*}
+\appendix
+\begin{multicols*}{3}[\chapter{Appendix}]
+	\content{complex_numbers}
+\end{multicols*}
+\end{document}

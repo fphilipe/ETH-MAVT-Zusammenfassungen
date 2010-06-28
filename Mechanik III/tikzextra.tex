@@ -1,0 +1,55 @@
+\usetikzlibrary{decorations}
+\usetikzlibrary{arrows}
+
+\usetikzlibrary{%
+    decorations.pathreplacing,%
+    decorations.pathmorphing%
+}
+
+\usetikzlibrary{calc}
+
+\makeatletter
+\pgfarrowsdeclare{smo}{smo}
+{
+  \pgfarrowsleftextend{+-.5\pgflinewidth}
+  \pgfutil@tempdima=0.2pt%
+  \advance\pgfutil@tempdima by.2\pgflinewidth%
+  \pgfutil@tempdimb=9\pgfutil@tempdima\advance\pgfutil@tempdimb by.5\pgflinewidth
+  \pgfarrowsrightextend{+\pgfutil@tempdimb}
+}
+{
+  \pgfutil@tempdima=0.2pt%
+  \advance\pgfutil@tempdima by.2\pgflinewidth%
+  \pgfsetdash{}{+0pt}
+  \pgfpathcircle{\pgfqpoint{4.5\pgfutil@tempdima}{0bp}}{4.5\pgfutil@tempdima}
+  \pgfusepathqstroke
+}
+
+\makeatother
+
+\tikzset{interface/.style={
+        % The border decoration is a path replacing decorator. 
+        % For the interface style we want to draw the original path.
+        % The postaction option is therefore used to ensure that the
+        % border decoration is drawn *after* the original path.
+        postaction={draw,decorate,decoration={border,angle=-45,
+                    amplitude=0.3cm,segment length=2mm}}},
+	feder/.style={
+		decorate,decoration={coil,post length=.15cm, pre length=.15cm},segment length=4pt
+	}
+}
+
+\newcommand{\kreisel}[3]{
+\def\ellAdj{.43}
+\path[draw,fill=gray!20] (#2/2/#3,0) ellipse (\ellAdj*#1*#3 and #1) ;
+\path[draw,shade,bottom color=gray!40,top color=gray!30,middle color=gray!5] (#2/2/#3, #1) -- ++ (-#2/#3,0) arc (90:270:\ellAdj*#1*#3 and #1) -- ++ (#2/#3,0) arc (270:90:\ellAdj*#1*#3 and #1);
+}
+
+\newcommand{\measurement}[4][]{%
+\def\ruleInset{3pt}
+
+\draw #2 -- ++ #4 coordinate(tmpa) ++ ($(0,0)!1!90:#4$) coordinate(tmpb);
+\draw #3 -- ($(tmpa)!#3!(tmpb)$) coordinate(tmpc);
+
+\draw[<->] (tmpa) ++ ($(0,0)!-\ruleInset!#4$) -- ($(tmpc) + (0,0)!-\ruleInset!#4$) node[midway,sloped,below]{#1};
+}

@@ -1,0 +1,28 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\subsection{I-V Relationship for Circuit Elements} % (fold)
+	\paragraph{Resistor:} % (fold)
+		\begin{align*}
+			v_R &= E_m \sin (\omega t + \theta) \\
+			i_R &= \frac{E_m}{R} \sin (\omega t + \theta)
+		\end{align*}
+		Both have same phase.
+	% paragraph: Resistor: (end)
+	\paragraph{Capacitor:} % (fold)
+		\begin{align*}
+			v_C &= E_m \sin(\omega t + \theta) \\
+			i_C &= C \cdot \Diff{v_C}{t} \\
+			&= \omega\:C\:E_m\:\cos (\omega t + \theta) \\
+			&= \omega\:C\:E_m\:\sin (\omega t + \theta + 90\degree)
+		\end{align*}
+		Voltage is \SI{90}{\degree} behind current.
+	% paragraph: Capacitor: (end)
+	\paragraph{Inductor:} % (fold)
+		\begin{align*}
+			v_L &= L \cdot \Diff{i_L}{t} \\
+			i_L &= -\frac{E_m}{\omega L} \cdot \cos(\omega t + \theta) \\
+			&= \frac{E_m}{\omega L} \cdot \sin(\omega t + \theta - 90\degree)
+		\end{align*}
+		Current is \SI{90}{\degree} behind voltage.
+	% paragraph: Inductor: (end)
+% subsection: I-V Relationship for Circuit Elements (end)

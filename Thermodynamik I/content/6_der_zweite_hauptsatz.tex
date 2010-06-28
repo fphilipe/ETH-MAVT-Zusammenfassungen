@@ -1,0 +1,470 @@
+ %!TEX root = /Users/philipe/Documents/ETH/3. Semester/Thermodynamik/Neue Zusammenfassung/Thermodynamik I - Zusammenfassung.tex
+
+\section{Der zweite Hauptsatz} % (fold)
+	\subsection{Formulierungen des zweiten Hauptsatzes} % (fold)
+		\paragraph{Clausius:} % (fold)
+			Wärme kann nicht von selbst (spontan) von einem Körper mit tieferer Temperatur auf einen Körper mit höherer Temperatur übertragen werden.
+		% paragraph: Clausius: (end)
+		
+		\paragraph{Kelvin-Planck:} % (fold)
+			Es ist unmöglich eine Maschine zu bauen, welche in einem thermischen
+			Kreisprozess kontinuierlich Arbeit an die Umgebung abgibt und dabei nur
+			in Kontakt mit einem einzigen Wärmereservoir steht, aus welchem es diese
+			Wärme bezieht.
+		% paragraph: Kelvin-Planck: (end)
+	% subsection: Formulierungen des zweiten Hauptsatzes (end)
+	
+	\subsection{Reversible und Irreversible Prozesse} % (fold)
+		Ein Prozess ist reversibel, wenn ein Ausgangszustand im System und allen Teilen der Umgebung wieder hergestellt werden kann, \emph{ohne dass eine Ver\-än\-de\-rung zu\-rück\-bleibt}. Arbeit wird ab\-ge\-führt und ohne Verlust gespeichert.
+		
+		In der Natur treten grundsätzlich nur \emph{irreversible Prozesse} auf. Irreversible Prozesse können im Grenzfall als einen reversiblen Prozess verstanden werden.
+		
+		Irreversibilitäten verursachen unerwünschte Verluste und verkleinern den Wirkungsgrad von Prozessen. Irreversibilitäten müssen erkannt und minimiert werden.
+	% subsection: Reversible und Irreversible Prozesse (end)
+	
+	\subsection{Energiebilanz des irreversiblen Prozesses} % (fold)
+		Reversible und irreversible Prozesse sind im $p$-$V$-Diagramm identisch. Es gilt in beiden Fällen:
+		\begin{gather*}
+			\Delta U_{\text{rev}} = Q_{\text{rev}} - W_{\text{rev}} \qquad
+			\Delta U_{\text{irr}} = Q_{\text{irr}} - W_{\text{irr}} \\
+			\Delta U_{\text{rev}} = \Delta U_{\text{irr}}
+		\end{gather*}
+		\begin{multicols}{2}
+			\subsubsection{Expansion} % (fold)
+				\begin{gather*}
+					\abs{Q_{\text{irr}}} < \abs{Q_{\text{rev}}} \\
+					\abs{W_{\text{irr}}} < \abs{W_{\text{rev}}}
+				\end{gather*}
+				\paragraph{Reversibel:} % (fold)
+					\[
+						W_{\text{rev}} = \int_{V_1}^{V_2} p \cdot \diff V
+					\]
+				% paragraph: Reversible Expansion: (end)
+				\paragraph{Irreversibel:} % (fold)
+					\[
+						W_{\text{irr}} = \underbrace{\eta_{\text{i}}}_{\mathclap{\text{innerer Wirkungsgrad }< 1}} \cdot W_{\text{rev}}
+					\]
+				% paragraph: Irreversible Expansion: (end)
+			% subsubsection: Expansion (end)
+			\subsubsection{Kompression} % (fold)
+				\begin{gather*}
+					\abs{Q_{\text{irr}}} > \abs{Q_{\text{rev}}} \\
+					\abs{W_{\text{irr}}} > \abs{W_{\text{rev}}}
+				\end{gather*}
+				\paragraph{Reversibel:} % (fold)
+					\[
+						W_{\text{rev}} = \int_{V_1}^{V_2} p \cdot \diff V < 0
+					\]
+				% paragraph: Reversible Kompression: (end)
+				\paragraph{Irreversibel:} % (fold)
+					\[
+						W_{\text{irr}} = \frac{W_{\text{rev}}}{\eta_{\text{i}}} < 0 \vphantom{\underbrace{\eta_{\text{i}}}_{\mathclap{\text{innerer Wirkungsgrad }< 1}}}
+					\]
+				% paragraph: Irreversible Kompression: (end)
+			
+			% subsubsection: Kompression (end)
+		\end{multicols}
+	% subsection: Energiebilanz des irreversiblen Prozesses (end)
+	
+	\subsection{Der Kreisprozess nach Carnot} % (fold)
+		Der Carnot-Prozess ist ein idealisierter reversibler Kreisprozess, der zwischen zwei Temperaturen $T_\text{C},\,T_\text{H}$ arbeitet, und dient als \emph{Definition des theoretisch maximalen Wirkungsgrades eines reversiblen Prozesses}.
+		
+		% TODO: Carnot-Prozess Grafik
+		
+		Die geleistete Arbeit ist die eingeschlossene Flä\-che. Der Durchlauf im Gegenuhrzeigersinn entspricht einer Wär\-me\-pum\-pe.
+		
+		Der Prozess besteht aus \emph{4 reversiblen Teilprozessen}:
+		\begin{description}
+			\item[$\mathbf{1 \to 2}$:] System thermisch isoliert, \textbf{adiabate Kompression} \\ $\Rightarrow$ Temperatur steigt von $T_\text{C}$ auf $T_\text{H}$
+			\item[$\mathbf{2 \to 3}$:] System mit Wärmereservoir $T_\text{H}$ verbunden, \textbf{isotherme Expansion} \\ $\Rightarrow$ Wärme aus Reservoir bezogen
+			\item[$\mathbf{3 \to 4}$:] System thermisch isoliert, \textbf{adiabate Expansion} \\ $\Rightarrow$ Temperatur sinkt von $T_\text{H}$ auf $T_\text{C}$
+			\item[$\mathbf{4 \to 1}$:] System mit Wärmereservoir $T_\text{C}$ verbunden, \textbf{isotherme Kompression} \\ $\Rightarrow$ Wärme an Reservoir abgegeben
+		\end{description}
+		
+		\paragraph{Beim idealen Gas:} % (fold)
+			% \begin{align*}
+			% 	1 \xrightarrow{Q=0} 2 \xrightarrow{Q=W} 3 \xrightarrow{Q=0} 4 \xrightarrow{Q=W} 1
+			% \end{align*}
+			\begin{align*}
+				Q_{12} &= 0 \qquad W_{12} = m(u_{T_\text{C}} - u_{T_\text{H}}) = -W_{34} \boldsymbol{ < 0} \\
+				Q_{23} &= W_{23} = (\eta - 1)^{-1} \cdot Q_{41} \\
+				Q_{34} &= 0 \qquad W_{34} = m(u_{T_\text{H}} - u_{T_\text{C}}) = -W_{12} \\
+				Q_{41} &= W_{41} = (\eta - 1) \cdot Q_{23}  \boldsymbol{ < 0}
+			\end{align*}
+			\[
+				u_1 = u_4 = u_{T_\text{C}} \qquad 
+				u_2 = u_3 = u_{T_\text{H}}
+			\]
+			
+		% paragraph: Beim idealen Gas: (end)
+		\paragraph{Schlussfolgerungen:} % (fold)
+			\[
+				\eta_\text{th} = \frac{W_\text{KP,th}}{Q_\text{H}} = \frac{Q_\text{H} - Q_\text{C}}{Q_\text{H}} = 1 - \frac{Q_\text{C}}{Q_\text{H}} < 1
+			\]
+			\begin{itemize}
+				\item Es ist \emph{unmöglich} durch einen Kreisprozess Wärme vollständig in Arbeit umzuwandeln.
+				\item Alle reversiblen Wärmekraft-Prozesse, die zwischen zwei identischen thermischen Reservoirs arbeiten, haben gleiches $\eta_\text{th}$.
+				\item $\eta_\text{th}$ eines irreversiblen Wärmekraft-Prozesses ist immer kleiner als das eines reversiblen zwischen den gleichen thermischen Reservoirs.
+			\end{itemize}
+		% paragraph: Schlussfolgerungen: (end)
+	% subsection: Der Kreisprozess nach Carnot (end)
+	\subsection{Maximale Wirkungsgrade von Kreisprozessen} % (fold)
+		\[
+			\frac{Q_\text{C}}{Q_\text{H}} = \frac{T_\text{C}}{T_\text{H}}
+		\]
+		\subsubsection{Wärmekraftprozesse (Wirkungsgrad)} % (fold)
+			Der \emph{Carnot-Wirkungsgrad} stellt das \emph{theoretische Maximum} dar, welches ein Kreisprozess erreichen kann.
+			\begin{gather*}
+				\eta_{\text{Carnot}} = 1 - \frac{Q_\text{C}}{Q_\text{H}} = 1 - \frac{T_\text{C}}{T_\text{H}} = \frac{T_\text{H} - T_\text{C}}{T_\text{H}}
+			\end{gather*}
+		% subsubsection: Wärmekraftprozesse (end)
+		\subsubsection{Kältemaschinen und Wärmepumpen (Leistungsziffer)} % (fold)
+			Bei der Kältemaschine ist man an der Wärmemenge $Q_\text{C}$ interessiert, die dem kalten Reservoir entzogen wird:
+			\[
+				\epsilon_{\text{KM}} = \frac{Q_\text{C}}{W_{\text{KP}}} = \frac{Q_\text{C}}{Q_\text{H} - Q_\text{C}} = \frac{T_\text{C}}{T_\text{H} - T_\text{C}}
+			\]
+			Bei der Wärmepumpe ist man an der Wärmemenge $Q_\text{H}$ interessiert, die auf der heissen Seite abgegeben wird:
+			\[
+				\epsilon_{\text{WP}} = \frac{Q_\text{H}}{W_{\text{KP}}} = \frac{Q_\text{H}}{Q_\text{H} - Q_\text{C}} = \frac{T_\text{H}}{T_\text{H} - T_\text{C}} = 1 + \epsilon_{\text{KM}}
+			\]
+		% subsubsection: Kältemaschinen und Wärmepumpen (end)
+	% subsection: Maximale Wirkungsgrade von Kreisprozessen (end)
+	
+	\subsection{Die Clausius-Ungleichung und der Entropiebegriff} % (fold)
+		Die \textbf{Entropie} ist
+		\begin{itemize}
+			\item ein Mass für die Irreversibilität
+			\item \emph{keine} Erhaltungsgrösse
+			\item eine Zustandsfunktion (thermodynamisches Potential)
+			\item in der mikroskopischen Betrachtung ein Mass für die Unordnung
+		\end{itemize}
+		Die Entropieänderung ist \emph{unabhängig} vom Weg.
+		
+		\begin{gather*}
+			\text{Irreversibilität} = \text{Entropiezuwachs } \Delta S \\
+			= \frac{\text{dem Reservoir zugeführte Wärmemenge}}{\text{Temperatur des Reservoirs}} \\
+			\Delta S = \frac{\Delta Q}{T} = S_2 - S_1 \nicesunit{\kilo\joule\per\kelvin} \qquad
+			s = \nicefrac{S}{m} \nicesunit{\kilo\joule\per\kg\per\kelvin}
+		\end{gather*}
+		
+		\paragraph{Clausius-Ungleichung:} % (fold)
+			\[
+				\oint_{\mathclap{\text{\raisebox{-2mm}{Kreisprozess}}}} \frac{\delta Q}{T} \leq 0 \qquad \Rightarrow \quad
+				\frac{Q_\text{H}}{T_\text{H}} \leq \frac{Q_\text{C}}{T_\text{C}}
+			\]
+			wobei das Gleichheitszeichen nur für reversible Prozesse gilt.
+			Der Betrieb einer Maschine ist mit einer Entropiezunahme verbunden.
+			\emph{Die Maschine kann keine Entropie vernichten.}
+		% paragraph: Clausius-Ungleichung: (end)
+		
+		\paragraph{Zusammenfassend:} % (fold)
+			Ein Prozess wird spontan immer in der Richtung ablaufen, sodass die Entropie zunimmt.
+			
+			Die Entropie ist ein Mass dafür, wieviel von der potentiellen Arbeitsmöglichkeit einer thermischen Energiemenge schon verloren/verbraucht) ist.
+		% paragraph: Zusammenfassend: (end)
+	% subsection: Die Clausius-Ungleichung und der Entropiebegriff (end)
+	
+	\subsection{Entropie einer reinen einfachen Substanz} % (fold)
+		Absolutwert der Entropie für einen Zustand $y$ mit Referenzzustand $x$:
+		\[
+			S_y = S_x + \int_x^y \frac{\delta Q_{\text{rev}}}{T}
+		\]
+	
+		\subsubsection{Tabellenwerte:} % (fold)
+			\begin{center}
+				\begin{tabular}{ll}
+					\toprule
+					Gebiet & Entropie $s$ \\
+					\midrule
+					überhitzter Dampf & $s(T,p)$ \\
+					Sättigungslinie & $s(T_{\text{sat}})$ oder $s(p_{\text{sat}})$ \\
+					Nassdampfgebiet & $s(x,T) = s_f + x \cdot (s_g - s_f)$ \\
+					unterkühlte Flüssigkeit & $s(T,p) \approx s_f(T)$ \\
+					\bottomrule
+				\end{tabular}
+			\end{center}
+		% subsubsection: Tabellenwerte: (end)
+	
+		\subsubsection{TdS-Gleichungen} % (fold)
+			Gelten auch für irreversible Prozesse.
+			%\setlength{\mathindent}{.5\mathindent}
+			\begin{multicols}{2}
+				\paragraph{1. TdS-Gleichung:} % (fold)
+					\setlength{\mathindent}{.5\mathindent}
+					\begin{empheq}[box=\shadowbox]{align*}
+						T\cdot \diff S &= \diff U + p \cdot \diff V \\
+						T\cdot \diff s &= \diff u + p \cdot \diff v \\
+						T\cdot \diff \overline{s} &= \diff \overline{u} + p \cdot \diff \overline{v}
+					\end{empheq}
+				% paragraph: 1. TdS-Gleichung: (end)
+				\paragraph{2. TdS-Gleichung:} % (fold)
+					\begin{empheq}[box=\shadowbox]{align*}
+						T\cdot \diff S &= \diff H - V \cdot \diff p \\
+						T\cdot \diff s &= \diff h - v \cdot \diff p \\
+						T\cdot \diff \overline{s} &= \diff \overline{h} - \overline{v} \cdot \diff p
+					\end{empheq}
+				% paragraph: 2. TdS-Gleichung: (end)
+			\end{multicols}
+			%\setlength{\mathindent}{2\mathindent}
+		% subsubsection: TdS-Gleichungen (end)
+	
+		\subsubsection{Entropieänderung idealer Gase} % (fold)
+		
+			\begin{align*}
+				s(T_2,v_2) - s(T_1,v_1) &= c_v \cdot \ln \frac{T_2}{T_1} + R \cdot \ln \frac{v_2}{v_1} \\
+				s(T_2,p_2) - s(T_1,p_1) &= c_p \cdot \ln \frac{T_2}{T_1} - R \cdot \ln \frac{p_2}{p_1} \\
+				&= \underbrace{s_2\!\!\degree - s_1\!\!\degree}_{\mathclap{\text{aus Tabellen}}} - R \cdot \ln \frac{p2}{p1}
+			\end{align*}
+	
+			% \begin{gather*}
+			% 	\diff s = c_v(T) \cdot \frac{\diff T}{T} + R \cdot \frac{\diff v}{v} \qquad
+			% 	\diff s = c_p(T) \cdot \frac{\diff T}{T} - R \cdot \frac{\diff p}{p}
+			% \end{gather*}
+			% Zwischen zwei Zuständen integriert:
+			% \begin{align*}
+			% 	
+			% \end{align*}
+		% subsubsection: Entropieänderung idealer Gase (end)
+	
+		\subsubsection{Entropieänderung inkompressibler Stoffe} % (fold)
+			\begin{align*}
+				v = \const \quad \Rightarrow \  & c_p = c_v = c(T) \\
+				& \diff u = \diff h = c(T) \cdot \diff T \\
+				& \diff s = c(T) \cdot \frac{\diff T}{T}
+			\end{align*}
+			\begin{empheq}[box=\shadowbox]{align*}
+				s_2 - s_1 &= \int_{T_1}^{T_2} c(T) \cdot \frac{\diff T}{T} \\
+				&\stackrel{\mathclap{c = \const}}{=} \quad c \cdot \ln \frac{T_2}{T_1}
+			\end{empheq}
+		% subsubsection: Entropieänderung inkompressibler Stoffe (end)
+	% subsection: Entropie einer reinen einfachen Sunstan (end)
+	
+	\subsection{Entropiebilanz für geschlossene Systeme} % (fold)
+		
+		\subsubsection{Entropieänderung bei reversiblen Prozessen} % (fold)
+			\emph{Ein reversibler adiabatischer Prozess ist gleichzeitig ein isentroper Prozess.}
+			
+			Bei Wärmezufuhr nimmt die Entropie des Systems zu, bei Wär\-me\-ab\-fuhr ab.
+			\[
+				\diff S = \left(
+					\frac{\delta Q}{T}
+				\right)_{\text{rev}} \qquad S_{\text{erz}} = 0
+			\]
+		% subsubsection: Entropieänderung bei reversiblen Prozessen (end)
+		
+		\subsubsection{Entropie-Produktion} % (fold)
+			\begin{empheq}[box=\shadowbox*]{equation*}
+				S_{\text{erz}} = S_2 - S_1 - \sum_{j=1}^n \frac{Q_j}{T_j}
+			\end{empheq}
+			
+			\paragraph{Achtung:} % (fold)
+				$S_{\text{erz}}$ ist \emph{keine Zustandsgrösse}.
+			% paragraph: Achtung: (end)
+			
+			\paragraph{Bei Kreisprozessen} % (fold)
+				ist $S_1 = S_2$ und somit
+				\begin{empheq}[box=\shadowbox*]{equation*}
+					S_{\text{erz,KP}} = - \sum_{j=1}^n \frac{Q_j}{T_j}
+				\end{empheq}
+			% paragraph: Bei Kreisprozesse (end)
+			
+			% \paragraph{Differentielle Betrachtung:} % (fold)
+			% 	\[
+			% 		S_{\text{erz}} = S_2 - S_1 - \int_1^2 \left(
+			% 			\frac{\delta Q}{T}
+			% 		\right)_{\text{G}}
+			% 	\]
+			% % paragraph: Differentielle Betrachtung: (end)
+		% subsubsection: Entropie-Produktion (end)
+		
+	% subsection: Entropiebilanz für geschlossene Systeme (end)
+	
+	\subsection{Entropiebilanz für offene Systeme} % (fold)
+		\begin{empheq}[box=\shadowbox]{equation*}
+			\underbrace{\vphantom{\sum_j^l}
+				\dot S_{\text{erz}}
+			}_{\text{\ding{172}}}
+			=
+			\underbrace{\vphantom{\sum_j^l}
+				\Diff{S}{t}
+			}_{\text{\ding{173}}}
+			-
+			\underbrace{\vphantom{\sum_j^l}
+				\sum_{i=1}^l \frac{\dot Q_i}{T_i}
+			}_{\text{\ding{174}}}
+			+
+			\underbrace{\vphantom{\sum_j^l}
+				\sum_{j=1}^m \dot m_{j,a} \cdot s_{j,a}
+			}_{\text{\ding{175}}}
+			-
+			\underbrace{\vphantom{\sum_j^l}
+				\sum_{k=1}^n \dot m_{k,e} \cdot s_{k,e}
+			}_{\text{\ding{176}}}
+		\end{empheq}
+		\begin{enumerate}
+			\item Erzeugungsrate im System
+			\item Zunahme des Entropieinhaltes des Systems
+			\item Entropietransport über Systemgrenze durch Wär\-me\-lei\-tung
+			\item mit Masse ausströmender Entropiestrom
+			\item mit Masse einströmender Entropiestrom
+		\end{enumerate}
+		
+		\paragraph{Bei stationären Prozessen:} % (fold)
+			\begin{empheq}[box=\shadowbox]{equation*}
+				\dot S_{\text{erz}}
+				=
+				-\sum_{i=1}^l \frac{\dot Q_i}{T_i}
+				+
+				\dot m \cdot (
+					s_a - s_e
+				)
+			\end{empheq}
+		% paragraph: Bei stationären Prozessen (end)
+	% subsection: Entropiebilanz für offene Systeme (end)
+	
+	\subsection{Isentrope Prozesse} % (fold)
+		Prozess bei \emph{konstanter Entropie} ($\Delta S = 0$). Es darf keine Wärme übertragen werden und der Prozess muss reversibel sein $\Rightarrow$ \emph{adiabatischer reversibler Prozess}
+		
+		\subsubsection{Der isentrope Prozess beim idealen Gas} % (fold)
+			\begin{empheq}[box=\shadowbox]{equation*}
+				\frac{p_2}{p_1} = \left(
+					\frac{v_1}{v_2}
+				\right)^{\kappa}
+			\end{empheq}
+			Vgl.~Abschnitt~\emph{\ref{subs:polytrope_zustandsaenderung}~\nameref{subs:polytrope_zustandsaenderung}} auf Seite~\pageref{subs:polytrope_zustandsaenderung} mit $\boldsymbol{n = \kappa = }\nicefrac{\boldsymbol{c_p}}{\boldsymbol{c_v}}$
+		% subsubsection: Der isentrope Prozess beim idealen Gas: (end)
+		
+		\subsubsection{Der isentrope Wirkungsgrad} % (fold)
+			\[
+				\eta_{\text{isentrop}} = \frac{\text{Arbeitleistung des realen Prozesses}}{\text{Arbeitsleistung des ideal reversiblen Prozesses}}
+			\]
+			wobei die Arbeitsleistung des ideal reversiblen Prozesses bezüglich identischer Ein-/Austrittsbedingungen ist.
+			
+			\paragraph{Turbine:} % (fold)
+				\[
+					\eta_{\text{T},s} = \frac{h_1 - h_2}{h_1 - h_{2,s}} = \frac{\nicefrac{\dot W}{\dot m}}{\nicefrac{\dot W_{\text{max}}}{\dot m}}
+				\]
+			% paragraph: Turbine: (end)
+			\paragraph{Düse:} % (fold)
+				\[
+					\eta_{\text{D},s} = \frac{h_2 - h_1}{h_{2,s} - h_1} = \frac{\nicefrac{w_2^2}{2}}{\nicefrac{w_{2\text{,max}}^2}{2}}
+				\]
+			% paragraph: Düse: (end)
+			\paragraph{Kompressor/Pumpe:} % (fold)
+				\[
+					\eta_{\text{K/P},s} = \frac{h_{2,s} - h_1}{h_2 - h_1} = \frac{\nicefrac{\dot W_{\text{min}}}{\dot m}}{\nicefrac{\dot W}{\dot m}}
+				\]
+			% paragraph: Kompressor/Pumpe: (end)
+			
+			\paragraph{Berechnung der isentropen Enthalpie:}~\\ % (fold)
+				Es gilt $s_1 = s_\text{$2$,s}$.
+				
+				\textbf{$\boldsymbol{(v_1 \approx v_2)}$:}
+				\[
+					h_\text{$2$,s} - h_1 = \int \diff h = \int \parens{ T \diff s + v \diff p} = \cancelto{0}{T\Delta s} + v \Delta p
+				\]
+				
+				\textbf{Sonst:}
+				$h_\text{$2$,s}$ dort entnehmen, wo die Entropie gleich $s_1 = s_\text{$2$,s}$ ist.
+			% paragraph: Berechnung der isentropen Enthalpie: (end)
+		% subsubsection: Der isentrope Wirkungsgrad (end)
+		
+		\subsubsection{Arbeit und Wär\-me\-über\-tra\-gung bei sta\-tio\-nä\-ren, intern-reversiblen Prozessen} % (fold)
+			\paragraph{Isotherme reversible Prozesse:} % (fold)
+				$\mathbold{\dot S_{\text{erz}} = 0}$
+				Über\-tra\-ge\-ne Wär\-me\-men\-ge (pro Masseneinheit):
+				\[
+					\frac{\dot Q}{\dot m} = T(s_2 - s_1)
+				\]
+				Somit lautet der 1.~Hauptsatz für dieses offene System mit $\mathbold{\Delta u = 0}$:
+				%\begin{nomathindent}
+					\begin{empheq}[box=\shadowbox]{equation*}
+						\frac{\dot W_{\text{rev}}}{\dot m}
+						=
+						\underbrace{\vphantom{\bigg(}
+							T(s_2-s_1)
+						}_{\nicefrac{\dot Q}{\dot m}}
+						\!-\!
+						\underbrace{\vphantom{\bigg(}
+							\!\left(
+								p_2 \frac{\dot V_2}{\dot m} \!-\! p_1 \frac{\dot V_1}{\dot m}
+							\right)
+						}_{=\:0 \text{ für IG}}
+						\!-\!
+						\underbrace{\vphantom{\bigg(}
+							\frac{w_2^2-w_1^2}{2}
+						}_{\nicefrac{\Delta KE}{\dot m}}
+						\!-\!
+						\underbrace{\vphantom{\bigg(}
+							g(z_2 - z_1)
+						}_{\nicefrac{\Delta PE}{\dot m}}
+					\end{empheq}
+				%\end{nomathindent}
+			% paragraph: Isotherm: (end)
+			\paragraph{Allgemein reversible Prozesse:} % (fold)
+				Wärmeübertragung:
+				\[
+					\frac{\dot Q_{\text{rev}}}{\dot m} = \int_1^2 T \cdot \diff s
+				\]
+				1. Hauptsatz mit $\mathbold{\Delta u \neq 0}$:
+				\begin{empheq}[box=\shadowbox]{equation*}
+					\frac{\dot W_{\text{rev}}}{\dot m}
+					=
+					-
+					\int_1^2 v \cdot \diff p
+					-
+					\frac{w_2^2-w_1^2}{2}
+					-
+					g(z_2 - z_1)
+				\end{empheq}
+			% paragraph: Allgemein reversible Prozesse: (end)
+			
+			\paragraph{Anwendungen} % (fold)
+				\subparagraph{Düsen und Diffusoren:} % (fold)
+					$\dot W = 0,\, \Delta PE = 0$
+					\[
+						\frac{w_2^2-w_1^2}{2} = - \int_1^2 v \cdot \diff p
+					\]
+				% subparagraph: Düsen und Diffusoren: (end)
+				\subparagraph{Turbinen, Kompressoren und Pumpen:} % (fold)
+					$\Delta KE = \Delta PE = 0$
+					\[
+						\frac{\dot W_{\text{rev}}}{\dot m} = - \int_1^2 v \cdot \diff p
+					\]
+				% subparagraph: Turbinen, Kompressoren und Pumpen: (end)
+			% paragraph: Anwendungen: (end)
+			\paragraph{Ausführung des Integrals} % (fold)
+				$\int_1^2 v \cdot \diff p$
+				\[
+					-\int_1^2 v \cdot \diff p = -(\const)^{\nicefrac{1}{n}} \int_1^2 \frac{\diff p}{p^{\nicefrac{1}{n}}}
+				\]
+				\subparagraph{für $\mathbold{n\neq 1}$:} % (fold)
+					\[
+						-\int_1^2 v \cdot \diff p = \frac{n}{n-1} (p_2 \cdot v_2 - p_1 \cdot v_1)
+					\]
+				% subparagraph: $\mathbold{n\neq 1}$ (end)
+				\subparagraph{für $\mathbold{n = 1}$ (isotherm):} % (fold)
+					\[
+						-\int_1^2 v \cdot \diff p = -p_1 \cdot v_1 \cdot \ln \frac{p_2}{p_1}
+					\]
+				% subparagraph: für $\mathbold{n = 1}$: (end)
+				\subparagraph{für ideales Gas mit $\mathbold{n\neq 1}$:} % (fold)
+					\begin{align*}
+						-\int_1^2 v \cdot \diff p &= -\frac{n}{n-1} \cdot R \cdot (T_2 - T_1) \\
+						&= -\frac{n}{n-1} \cdot R \cdot T_1 \cdot \left[
+							\left(
+								\frac{p_2}{p_1}
+							\right)^{\frac{n-1}{n}}
+							-1
+						\right]
+					\end{align*}
+				% subparagraph: $\mathbold{n\neq 1}$ (end)
+				\subparagraph{für ideales Gas mit $\mathbold{n = 1}$ (isotherm):} % (fold)
+					\[
+						-\int_1^2 v \cdot \diff p = -R \cdot T_1 \cdot \ln \frac{p_2}{p_1}
+					\]
+				% subparagraph: für $\mathbold{n = 1}$: (end)
+			% paragraph: Ausführung des Integrals $\int_1^2 v \cdot \diff p$ (end)
+		% subsubsection: Arbeit und Wärmeübertragung bei stationären, intern-reversiblen Prozessen (end)
+	% subsection: Isentrope Prozesse (end)
+% section: Der zweite Hauptsatz (end)

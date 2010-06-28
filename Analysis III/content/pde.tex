@@ -1,0 +1,251 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Analysis/Zusammenfassung/LaTeX/Analysis Zusammenfassung.tex
+
+\section{Partielle Differentialgleichungen} % (fold)
+	\subsection{Klassifizierung der PDE} % (fold)
+		\begin{description}
+			\item[Ordnung:] Die höchste vorkommende Ableitung der unbekannten
+			Funktion, z.B.~$u_{xyz} = u_{xy}$ wäre 3.~Ordnung.
+			\item[Linearität:]
+			~
+			\begin{tightitemize}
+				\item Bei linearen PDEs kommen die Unbekannte und deren Ableitungen
+				nur linear vor, entweder mit konstanten oder variablen Koeffizienten.
+				\item Bei \emph{quasilinearen} PDEs tritt die \emph{höchste} Ableitung
+				der Unbekannten linear auf und der Koeffizient darf nur von der
+				Unbekannten und niedrigeren Ableitungen abhängen.
+			\end{tightitemize}
+		\end{description}
+	% subsection: Klassifizierung der PDE (end)
+	\subsection{Quasilineare PDE 1.~Ordnung} % (fold)
+		\subsubsection{PDE-System} % (fold)
+			\begin{align*}
+				f_1 &= a_1 u_x + b_1 u_y + c_1 v_x + d_1 v_y \\
+				f_2 &= a_2 u_x + b_2 u_y + c_2 v_x + d_2 v_y
+			\end{align*}
+			\[
+				D = (a_1 d_2 - a_2 d_1 + b_1 c_2 - b_2 c_1)^2 -
+				4(a_1 c_2 - a_2 c_1)(b_1 d_2 - b_2 d_1)
+			\]
+		% subsubsection: PDE-System (end)
+	% subsection: Quasilineare PDE 1.~Ordnung (end)
+	\subsection{Quasilineare PDE 2.~Ordnung} % (fold)
+		\emphequation{equation*}{
+			au_{xx} + bu_{xy} + cu_{yy} = f
+		}
+		Diskriminante: $\displaystyle D=b^2-4ac$
+		\begin{description}
+			\item[$D < 0\!:$] \textbf{elliptische PDE} \\
+			keine reelle Lösung, keine charakteristische Richtung
+			\item[$D = 0\!:$] \textbf{parabolische PDE} \\
+			1 reelle Lösung, 1 charakteristische Richtung
+			\item[$D > 0\!:$] \textbf{hyperbolische PDE} \\
+			2 reelle Lösungen, 2 charakteristische Richtungen
+		\end{description}
+	% subsection: Quasilineare PDE 2.~Ordnung (end)
+	\subsection{Separation} % (fold)
+		Ansatz:
+		\emphequation{equation*}{
+			u(x,t) = X(x) \cdot T(t)
+		}
+		
+		Eingesetzt in die PDE $u_t = u_{xx}$ ergibt:
+		\begin{gather*}
+			X(x) \cdot \dot T(t) = X''(x) \cdot T(t) \\[1ex]
+			\frac{\dot T(t)}{T(t)} = -\frac{X''(x)}{X(x)} = \const = k
+		\end{gather*}
+		
+		Dies ergibt ein System homogener ODE:
+		\begin{align*}
+			\dot T &= k\cdot T \\
+			X'' &= k \cdot X
+		\end{align*}
+	% subsection: Separation (end)
+	\subsection{Laplace-Gleichung} % (fold)
+		Die Laplace-Gleichung
+		\emphequation{equation*}{
+			\Delta u = \nabla^2 u = 0
+		}
+		ist eine elliptische Differentialgleichung 2.~Ordnung.
+		Die Lösungen sind harmonisch.
+		
+		Die Laplace-Gleichung in \textbf{ebenen Polarkoordinaten} lautet:
+		\emphequation{equation*}{
+			\nabla^2 u = u_{rr} + \frac{1}{r} u_r + \frac{1}{r^2} u_{\phi\phi}
+		}
+	% subsection: Laplace-Gleichung (end)
+	\subsection{Harmonische Funktionen} % (fold)
+		Harmonische Funktionen erfüllen zwei wichtige Sätze:
+		
+		\paragraph{Mittelwertsatz:} % (fold)
+			Sei $p = (x_0,y_0)$ eine Stelle einer harmonischen Funktion $u$.
+			$u(x_0,y_0)$ ist der Mittelwert eines Kreises mit Mittelpunkt $p$ und
+			beliebigem Radius $r$:
+			\[
+				u(x_0, y_0) = \frac{1}{2\pi} \int_0^{2\pi} u(x_0 + r\cos r, y_0 + r\sin t) \diff t
+			\]
+		% paragraph: Mittelwertsatz: (end)
+		
+		\paragraph{Minimum-/Maximumprinzip} % (fold)
+			Das Maximum einer harmonischen Funktion $u$ liegt auf dem Rand ihres
+			Definitionsbereiches. Nimmt $u$ im Inneren ihres Definitionsbereiches
+			ein Maximum an, so ist $u = \const$.
+		% paragraph: Minimum-/Maximumprinzip (end)
+	% subsection: Harmonische Funktionen (end)
+	\subsection{Dirichlet-Problem} % (fold)
+		Die Allgemeine Lösung der Laplace-Gleichung in ebenen Koordinaten ist:
+		\[
+			u(r,\phi) = \sum_{\substack{n=-\infty\\ n\neq 0}}^{+\infty} \parens{
+				A_n r^n + B_n r^{-n}
+			} \eu^{\iu n \phi} + C_0 + D_0 \log r
+		\]
+		\subsubsection{Kreisscheibe} % (fold)
+			Gegeben sei eine Kreisscheibe mit Radius $a$.
+			Das Problem lautet:
+			\begin{equation*}
+				\begin{array}{r@{\:=\:}l@{\qquad}l}
+					\Delta u(r,\phi) & 0 & r < a \\
+					u(a,\phi) & f(\phi) & 
+				\end{array}
+			\end{equation*}
+
+			Die Lösung ist von der Form
+			\[
+				u(r,\phi) = \sum_{n=-\infty}^{+\infty} A_n \eu^{\iu n \phi} r^{\abs{n}}
+			\]
+
+			Die Koeffizienten $A_n$ bestimmt man aus der Randbedingung:
+			\[
+				\sum_{n=-\infty}^{+\infty} A_n \eu^{\iu n \phi} a^{\abs{n}} = f(\phi)
+			\]
+			bzw.
+			\[
+				\sum_{n=1}^{+\infty} \parens{
+					A_n \eu^{\iu n \phi} + A_{-n} \eu^{-\iu n \phi}
+				} a^n + A_0 = f(\phi)
+			\]
+		% subsubsection: Kreisscheibe (end)
+		\subsubsection{Komplement der Kreisscheibe} % (fold)
+			Gegeben sei eine Kreisscheibe mit Radius $a$.
+			Das Problem lautet:
+			\begin{equation*}
+				\begin{array}{r@{\:}l@{\qquad}l}
+					\Delta u (r,\phi) &= 0 & r > a \\
+					u(a,\phi) &= f(\phi) \\
+					u(r,\phi) &\text{ist beschränkt für $r\to\infty$}
+				\end{array}
+			\end{equation*}
+			
+			Die Lösung ist von der Form
+			\[
+				u(r,\phi) = \sum_{n=-\infty}^{+\infty} A_n \eu^{\iu n \phi} r^{-\abs{n}}
+			\]
+
+			Die Koeffizienten $A_n$ bestimmt man aus der Randbedingung:
+			\[
+				\sum_{n=-\infty}^{+\infty} A_n \eu^{\iu n \phi} a^{-\abs{n}} = f(\phi)
+			\]
+			bzw.
+			\[
+				\sum_{n=1}^{+\infty} \parens{
+					A_n \eu^{\iu n \phi} + A_{-n} \eu^{-\iu n \phi}
+				} a^{-n} + A_0 = f(\phi)
+			\]
+		% subsubsection: Komplement der Kreisscheibe (end)
+		\subsubsection{Kreisring (Annulus)} % (fold)
+			Gegeben sei eine Kreisring mit den Radien $R_2 > R_1 > 0$.
+			Das Problem lautet:
+			\begin{equation*}
+				\begin{array}{r@{\:=\:}l@{\qquad}l}
+					\Delta u(r,\phi) & 0 & R_1 < r < R_2 \\
+					u(R_1,\phi) & f_1(\phi) \\
+					u(R_2,\phi) & f_2(\phi)
+				\end{array}
+			\end{equation*}
+			
+			Die Koeffizienten bestimmt man aus
+			\begin{align*}
+				\sum_{\substack{n=-\infty\\ n\neq 0}}^{+\infty} \parens{
+					A_n R_1^n + B_n R_1^{-n}
+				} \eu^{\iu n \phi} + C_0 + D_0 \log R_1 &= f_1(\phi) \\
+				\sum_{\substack{n=-\infty\\ n\neq 0}}^{+\infty} \parens{
+					A_n R_2^n + B_n R_2^{-n}
+				} \eu^{\iu n \phi} + C_0 + D_0 \log R_2 &= f_1(\phi)
+			\end{align*}
+		% subsubsection: Kreisring (Annulus) (end)
+	% subsection: Dirichlet-Problem (end)
+	\subsection{Anwendungen} % (fold)
+		\subsubsection{Wärmeleitungs-/Diffusionsgleichung} % (fold)
+			\emphequation{equation*}{
+				u_t = a^2 \nabla^2 u
+			}
+			\begin{tightitemize}
+				\item[$a^2$:] Temperaturleitfähigkeit/Diffusionskoeffizient
+				\begin{equation*}
+					a^2 = \frac{k}{c \rho}
+				\end{equation*}
+				\item[$c$:] Wärmekapazität
+				\item[$\rho$:] spezifische Wärme
+				\item[$k$:] Wärmeleitfähigkeit
+			\end{tightitemize}
+		% subsubsection: Wärmeleitungsgleichung (end)
+		
+		\subsubsection{Wellengleichung} % (fold)
+			\emphequation{equation*}{
+				u_{tt} - c^2 u_{xx} = 0
+			}
+			
+			Anfangsbedingungen:
+			\begin{align*}
+				u(x,0) &= f(x) \\
+				u_t(x,0) &= g(x)
+			\end{align*}
+			
+			Allgemeine Lösung:
+			\[
+				u(x,t) = \phi(x+ct) + \psi(x-ct)
+			\]
+			was mit den Anfangsbedingungen direkt lösbar ist:
+			\[
+				u(x,t) = \half \left[
+					f(x+ct) + f(x-ct)
+				\right]
+				+ \frac{1}{2c} \int_{x-ct}^{x+ct} g(\tau) \diff \tau
+			\]
+		% subsubsection: Wellengleichung (end)
+	% subsection: Anwendungen (end)
+	\subsection{Anfangsrandwertaufgaben} % (fold)
+		Aufgaben, mit \textbf{Anfangsbedinungen} und \textbf{Randbedingungen}.
+		
+		Anfangsbedinungen sind Bedingungen zur Zeit $t = 0$:
+		\begin{equation*}
+			u(x,0) = \cdots
+		\end{equation*}
+		
+		Beispiel für Randbedingungen:
+		\begin{align*}
+			u(0,t) &= u(2\pi,t) \\
+			u(x,t) &= u(x+2\pi,t)
+		\end{align*}
+	% subsection: Anfangsrandwertaufgaben (end)
+	\subsection{Hyperbolische Differentialgleichungen} % (fold)
+		\subsubsection{Methode der Charakteristiken} % (fold)
+			Reduziert das Lösen einer PDE auf das einer ODE.
+			Charakteristiken sind Kurven in der $(x,t)$ Ebene, entlang welcher sich
+			die Lösung einfach verhält.
+			
+			Form:
+			\begin{gather*}
+				u_t + c(x,t,u) u_x = d(x,t,u) \qquad t \geq 0 \\
+				u(x,0) = f(x) \\
+			\end{gather*}
+			
+			\begin{align*}
+				\Diff{z}{t} &= d \\
+				\Diff{x}{t} &= c \\
+				z_0 &= z(0) = f(x_0) \\
+				x_0 &= x(0) \\
+				u(x(t), t) &= z(t)
+			\end{align*}
+		% subsubsection: Methode der Charakteristiken (end)
+	% subsection: Hyperbolische Differentialgleichungen (end)
+% section: Partielle Differentialgleichungen (end)

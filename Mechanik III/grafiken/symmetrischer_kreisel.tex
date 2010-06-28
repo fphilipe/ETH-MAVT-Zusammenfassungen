@@ -1,0 +1,39 @@
+\begin{tikzpicture}[>=latex,scale=.8]
+
+\def\coordScale{3.5}
+\def\coordF{1.85}
+\def\tDA{225}
+\def\cylRad{2.4};
+\def\cylTh{.5}
+
+%\draw[->] (0,0) -- (225:\coordScale/1.85) ;
+
+\kreisel{\cylRad}{\cylTh}{1}
+
+\coordinate (O) at (0,0,0);
+
+\draw[color=gray!80] (O) -- ++(.25,0);
+\draw[color=gray!80] (O) -- ++(0,2.4);
+\draw[color=gray!80] (O) -- ++(0,0,\cylRad);
+\draw[->] (O) ++ (.25,0) -- (\coordScale*.6,0,0) node[right] {$\vec{e}_z^R$};
+\draw[->] (O) ++ (0,2.4) -- (0,\coordScale*.9,0) node[above] {$\vec{e}_x^R$};
+\draw[->] (O) ++ (0,0,\cylRad) -- (0,0,\coordScale*1.2) node[below] {$\vec{e}_y^R$};
+
+\draw [->] (\cylTh/2,0) ++ (-110:\cylRad*.6) arc (-142:-20:\cylRad*.43*.6 and \cylRad*.6);
+\node at (-78:1.4) {$\Omega$};
+
+\draw[->] (0,\cylRad+.3) node[left,xshift=-2.5mm]{$\omega_{\text{pr}}$} ++ (.3,0)  arc(0:-250:.3 and .1);
+
+\fill[color=gray!80] (O) circle (1pt);
+
+\draw[color=gray!80] (O) +(-.3,-.5) -- (O) -- + (.3,-.5);
+\draw[color=gray!80,interface] (O) ++ (-.3,-.5) -- + (.6,0);
+
+\draw[->] (\tDA:1.9) ++ (-50:.3) arc (-50:150:.3 ) node[above,yshift=1mm]{$M$};
+
+\begin{scope}[thick,->,color=gray]
+	\draw (-2,-2.4) -- (-.5,-2.4) node[pos=.25,below,color=black]{$F$};
+	\draw (2,2.4) -- (.5,2.4) node[pos=.25,above,color=black]{$F$};
+\end{scope}
+
+\end{tikzpicture}

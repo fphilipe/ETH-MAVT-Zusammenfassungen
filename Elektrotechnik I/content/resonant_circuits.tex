@@ -1,0 +1,106 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\section{Resonant Circuits} % (fold)
+	
+	A resonant circuit at resonant frequency has no energy beeing exchanged between the source and the reactive elements, i.e., the reactive elements are ``invisible'' to the source. The power factor $F_P$ becomes $1$.
+	
+	\subsection{Concepts} % (fold)
+		\paragraph{Bandwidth:} % (fold)
+			\begin{align*}
+				BW \niceunit{\rad\per\second} &= \frac{\omega}{Q} = \frac{2\pi\cdot f}{Q} = 2\pi \cdot BW\unit{\hertz} \\
+				BW \unit{\hertz} &= \frac{f}{Q}
+			\end{align*}
+		% paragraph: Bandwidth: (end)
+		\paragraph{Quality Factor:} % (fold)
+			\[
+				Q = 2\pi \cdot \frac{\text{reactive power}}{\text{average power}}
+			\]
+		% paragraph: Quality Factor: (end)
+	% subsection: Concepts (end)
+
+	\subsection{Series Resonant Circuit} % (fold)
+		The resonant frequency
+		\[
+			f_S = \frac{\omega_S}{2\pi} = \frac{1}{2\pi\sqrt{LC}} \sunit{\hertz}
+		\]
+		is the frequency, at which the imaginary parts of the impedance and the admittance vanish:
+		\[
+			\Im(Z) = \Im(Y) = 0
+		\]
+		$\Rightarrow$ Impedance is at minimum, admittance at maximum value.
+		\[
+			Z = R_S + \iu \left(
+				\omega L - \frac{1}{\omega C}
+			\right)
+		\]
+		\begin{align*}
+			Q &= \frac{1}{R_S}\cdot \sqrt{\frac{L}{C}} = \frac{\omega_S L}{R_S} \\
+			BW_{\SI{-3}{\deci\bel}} &= \frac{R_S}{L} = \frac{\omega_S}{Q} \sunit{\rad\per\second}
+		\end{align*}
+	% subsection: Series Resonant Circuit (end)
+	\subsection{Parallel Resonant Circuit} % (fold)
+		\[
+			f_P = \frac{\omega_P}{2\pi} = \frac{1}{2\pi\sqrt{LC}} \sunit{\hertz}
+		\]
+		\[
+			\Im(Z) = \Im(Y) = 0
+		\]
+		\[
+			Z = \frac{\iu \omega R L}{R - \omega^2 RLC + \iu \omega L}
+		\]
+		$\Rightarrow$ Impedance is at maximum, admittance at minimum value.
+		\begin{gather*}
+			Y = \frac{1}{R_P} + \iu \left(
+				\omega C - \frac{1}{\omega L}
+			\right)
+		\end{gather*}
+		\begin{align*}
+			Q &= \frac{R_P}{\omega_P L} = R_P \cdot \omega_P \cdot C \\
+			BW_{\SI{-3}{\deci\bel}} &= \frac{1}{C\cdot R_P} = \frac{\omega_P}{Q} \sunit{\rad\per\second}
+		\end{align*}
+	% subsection: Parallel Resonant Circuit (end)
+	
+	\subsection{Real Inductor} % (fold)
+		\begin{wrapfigure}{r}{.3\columnwidth}
+			\vspace{-7mm}
+			\circuitw{real_inductor}{.35\columnwidth}
+		\end{wrapfigure}
+		A real inductor can be modelled by an inductor $L$ in series with a resistor $R_L$.
+		
+
+		\paragraph{Quality Factor (Spulengüte):} % (fold)
+			\[
+				Q_L = \frac{\omega \cdot L}{R_L}
+			\]
+		% paragraph: Quality Factor (Spulengüte): (end)
+		
+		\begin{wrapfigure}[0]{r}{.3\columnwidth}
+			\circuitw{real_inductor_replacement}{.35\columnwidth}
+		\end{wrapfigure}
+		\paragraph{To Parallel Transformation:} % (fold)
+			\begin{align*}
+				R_L' &= R_L (1+ Q_L^2) \stackrel{\text{if $Q_L \gg 1$}}{\approx} R_L \cdot Q_L^2\\
+				L' &\approx L
+			\end{align*}
+			
+		% paragraph: Replacement Circuit: (end)
+	% subsection: Real Inductance (end)
+	
+	\subsection{Procedure} % (fold)
+		\begin{enumerate}
+			\item simplify the circuit as much as possible
+				\begin{tightitemize}
+					\item combine capacitors, resistors and inductors
+					\item eventually, redraw the circuit
+				\end{tightitemize}
+			\item When replacing resistors in parallel resonant circuits, the reactive elements should all be in parallel. \emph{Do not actually replace them!}
+			\item calculate $f_P$
+			\item calculate $Q_L$ (eventually at resonant frequency)
+			\item calculate $R_L'$
+			\item calculate the total parallel resistance $R_P$
+			\item calculate $Q$
+			\item calculate $BW$
+		\end{enumerate}
+	% subsection: Procedure (end)
+	
+% section: Resonant Circuits (end)

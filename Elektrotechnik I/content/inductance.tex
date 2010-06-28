@@ -1,0 +1,67 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\subsection{Inductance} % (fold)
+	
+	\paragraph{Symbol:} % (fold)
+		\circuitw{inductor}{3.125cm}
+	% paragraph: Symbol: (end)
+	\paragraph{Unit:} % (fold)
+		$\si{Henry} = \si{\volt\second\per\ampere}$, very big, usually $\si{\micro\henry}$
+	% paragraph: Unit: (end)
+	
+	\begin{gather*}
+		v_L = L \cdot \Diff{i_L}{t} \qquad i_L = \frac{1}{L} \cdot \int v_L \diff t
+	\end{gather*}
+	\begin{center}
+		\circuitw{inductance_storage_decay}{.4\columnwidth}
+	\end{center}
+	\begin{multicols*}{2}
+		\paragraph{(1) Storage Phase:} % (fold)
+		
+			\begin{gather*}
+				E - i\:R - L \Diff{i_L}{t} = 0 \\
+				i_L(t) = \frac{E}{R} \cdot \left(
+					1 - \eu^{-t\frac{L}{R}}
+				\right) \\
+				V_L(0) = E \\ V_L(\infty) = 0
+			\end{gather*}
+		% paragraph: Charging: (end)
+		
+		\paragraph{(2) Decay Phase:} % (fold)
+		
+			\begin{gather*}
+				i_L (t) = \frac{E}{R} \cdot \eu^{-t\frac{L}{R}} \\
+				i_L(0) = \frac{E}{R} \\
+				i_L(\infty) = 0 \\
+				\tau = \frac{L}{R}
+			\end{gather*}
+		% paragraph: Discharging: (end)
+	\end{multicols*}
+	
+	\begin{multicols*}{2}
+		\paragraph{Inductors in Series:} % (fold)
+			\[
+				L = \sum_i L_i
+			\]
+			\phantom{Two Inductors:
+			\[
+				L = \frac{L_1 \cdot L_2}{L_1 + L_2}
+			\]}
+		% paragraph: Inductors in Series: (end)
+		\paragraph{Inductors in Parallel:} % (fold)
+			\[
+				\frac{1}{L} = \sum_i \frac{1}{L_i}
+			\]
+			Two Inductors:
+			\[
+				L = \frac{L_1 \cdot L_2}{L_1 + L_2}
+			\]
+		% paragraph: Inductors in Parallel: (end)
+	\end{multicols*}
+	
+	\paragraph{Energy Stored in an Inductor:} % (fold)
+		\[
+			U_B = \int_0^t P \diff t = \int_0^I i \:L \diff i = \frac{1}{2} L\:I^2
+		\]
+	% paragraph: Energy Stored in an Inductor: (end)
+% subsection: Inductance (end)

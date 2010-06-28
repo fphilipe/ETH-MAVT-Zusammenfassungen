@@ -1,0 +1,12 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\begin{circuitikz}[scale=1]
+	\draw
+		(0,0) node[op amp] (opamp) {}
+		(opamp.+) node[left] {$v_+$}
+		(opamp.-) node[left] {$v_-$}
+		(opamp.out) node[right] {$v_{\text{o}}$}
+		(opamp.down) ++ (0,-.5) node[below,color=gray] {$v_{\text{S}-}$} to[short,color=gray] (opamp.down)
+		(opamp.up) ++ (0,.5) node[above,color=gray] {$v_{\text{S}+}$} to[short,color=gray] (opamp.up)
+	;
+\end{circuitikz}

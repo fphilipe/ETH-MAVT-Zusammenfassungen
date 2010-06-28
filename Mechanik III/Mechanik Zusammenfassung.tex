@@ -1,0 +1,1433 @@
+\documentclass[9pt,fleqn,ngerman,article]{memoir}
+
+\title{Mechanik III -- Zusammenfassung}
+\author{Philipe Fatio}
+
+\input{../.includes/layout_setup}
+\input{../.includes/page_setup}
+\input{../.includes/extra_packages}
+\input{../.includes/macro_setup}
+
+\input{tikzextra}
+
+% \setlength{\parindent}{5pt}
+
+\renewcommand{\vec}{\ensuremath{\mathbold}}
+% vector in another system
+\newcommand{\vecin}[2]{\ensuremath{{}_{#2}\vec{#1}}}
+\newcommand{\mtrx}{\ensuremath{\mathbold}}
+% transformation matrix
+\newcommand{\trafo}[2]{\ensuremath{\mtrx{#1}_{#2}}}
+% Winkelgeschwindigkeit zwischen Systemen im System:
+\newcommand{\momegain}[2]{\ensuremath{{}_{#2}\trafo{\widetilde \omega}{#1}}} % matrix
+\newcommand{\omegain}[2]{\ensuremath{{}_{#2}\trafo{\omega}{#1}}}
+\newcommand{\highdot}{\ensuremath{\dot{\!\!\phantom{I}}}}
+
+% nicer tables
+%\usepackage{booktabs}
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=true,          % non-Latin characters in Acrobat’s bookmarks
+%    pdftoolbar=true,        % show Acrobat’s toolbar?
+%    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=true,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Mechanik III -- Zusammenfassung},    % title
+    pdfauthor={Philipe Fatio},     % author
+%    pdfsubject={Zusammenfassung},   % subject of the document
+%    pdfcreator={Creator},   % creator of the document
+%    pdfproducer={Producer}, % producer of the document
+%    pdfkeywords={keywords}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=black           % color of external links
+}
+
+\begin{document}
+	\frontmatter
+	\thispagestyle{empty}
+	\begin{center}
+		\begin{minipage}{0.3\linewidth}
+			\vskip 1cm
+
+			\begin{flushleft}
+				\HUGE\textsc{Mechanik III}
+			\end{flushleft}
+			\vspace{-9.5mm}
+			\begin{flushright}
+				\today
+			\end{flushright}
+			\vspace{-5mm}
+			\hbox to \hsize{\hfill
+			\vrule height 1pt width\hsize
+			\hfill}%
+			\vspace{-3.75mm}
+			\begin{flushleft}
+				\Large\textsc{Zusammenfassung}
+			\end{flushleft}
+			\vspace{-9.55mm}
+			\begin{flushright}
+				\emph{Philipe Fatio}
+			\end{flushright}
+			\vspace{1cm}
+
+			\vskip 4cm
+			\tableofcontents*
+		\end{minipage}
+	\end{center}
+	\thispagestyle{empty}
+	\clearpage
+	\mainmatter
+	\begin{multicols*}{3}
+		\section{Grundlegende Konzepte} % (fold)
+			\subsection{Impuls \& Drall} % (fold)
+				
+				\paragraph{Impuls:} % (fold)
+					$
+						\vec{p} := m \cdot \vec{r}_{OS} \sunit{\kilogram\metre\per\second} = \unit{\newton\second}
+					$
+				% paragraph: Impuls: (end)
+				\paragraph{Drall:} % (fold)
+					$
+						L_O := \underbrace{ m \cdot \vec{r}_{OS} \diamond \dot{\vec{r}}_{OS} }_{\mathclap{\text{Impulsmoment}}} + \underbrace{ \theta_S \dot{\varphi} }_{\mathclap{\text{Spin}}} \sunit{\newton\second\metre}
+					$ \\
+					wobei $\theta_S$ Massenträgheitsmoment bez. $S$ ist.
+					
+					Drall ist additiv bei gemeinsamen Bezugspunkt.
+				% paragraph: Drall: (end)
+			% subsection: Impuls \& Drall (end)
+			
+			\subsection{Massenträgheitsmoment} % (fold)
+				Massenträgheitsmoment eines Körpers $B$
+				\begin{description}
+					\item[bezüglich Punkt $P$:]
+					\begin{align*}
+						\theta_P &= \int_B (x^2 + y^2) \diff m \\
+						&= \iiint_B (x^2 + y^2) \rho(x,y) \diff x \diff y \diff z
+					\end{align*}
+					
+					\item[bezüglich Schwerpunkt $S$:]
+					Mit Hilfe eines Koordinatensystems mit $O$ in $S$:
+					\[
+						\theta_S = \int_B (\widetilde{x}^2 + \widetilde{y}^2) \diff m
+					\]
+					
+					\item[Additivität:]
+					Mehrere Trägheitsmomente bezüglich eines Punktes verhalten sich additiv.
+				\end{description}
+				
+				\subsubsection{Satz von Steiner} % (fold)
+					\[
+						\theta_P = \theta_S + m \cdot a^2
+					\]
+					wobei $a$ der Abstand zwischen $P$ und $S$ ist.
+				% subsubsection: Satz von Steiner (end)
+				
+				\subsection{Allgemeine Massenträgheitsmomente} % (fold)
+				
+					$\rho = \text{const}.$
+					
+					\begin{center}
+						\includegraphics[width=\columnwidth]{grafiken/massentraegheitsmomente}
+					\end{center}
+					
+				% subsection: Allgemeine Massenträgheitsmomente (end)
+			% subsection: Massenträgheitsmoment (end)
+			\subsection{Impuls- \& Drallsatz} % (fold)
+				\paragraph{Impulssatz} % (fold)
+					
+					\emphequation{equation*}{
+						\dot{\vec p} = m \cdot \ddot{\vec{r}}_{OS} = \sum_i \vec{F}_{P_i} \sunit{N}
+					}
+					
+				% paragraph: Impulssatz (end)
+				
+				\paragraph{Drallsatz} % (fold)
+					
+					\emphequation{equation*}{
+						\dot{\vec L}_S = \theta_S \ddot{\varphi} = \vec{r}_{SP} \diamond \vec{F}_P + \mtrx{M} \sunit{\newton\metre}
+					}
+					
+				% paragraph: Drallsatz (end)
+				
+				Greifen keine äusseren Kräfte und/oder Momente an einem Starrkörper an, bleiben Impuls und Drall und somit auch $\dot{\vec{r}}_{OS}$ und $\dot{\varphi}$ konstant.
+			% subsection: Impuls- \& Drallsatz (end)
+			
+			\subsection{Kraftgesetze äusserer Kräfte} % (fold)
+				\begin{center}
+					\includegraphics[width=\columnwidth]{grafiken/aeussere_kraefte}
+				\end{center}
+				
+			% subsection: Kraftgesetze äusserer Kräfte (end)
+			
+			\subsection{Energie} % (fold)
+				
+				\subsubsection{Kinetische Energie} % (fold)
+					\begin{align*}
+						T &= \frac{1}{2} m \cdot \langle \dot{\vec{r}}_{OS}, \dot{\vec{r}}_{OS} \rangle + \frac{1}{2} \theta_S \dot{\varphi}^2 \sunit{\newton\metre} = \unit{\joule}\\
+						&= \underbrace{\frac{1}{2} m \cdot (\dot{x}^2 + \dot{y}^2)}_{\mathclap{\text{Translationsanteil}}} + \overbrace{\frac{1}{2} \theta_S \dot{\varphi}^2}^{\mathclap{\text{Rotationsanteil}}}
+					\end{align*}
+				% subsubsection: Kinetische Energie (end)
+				
+				\subsubsection{Potentielle Energie} % (fold)
+					\paragraph{Feder:} % (fold)
+						\[
+							V = \frac{1}{2} c \cdot (z - z_0)^2 \qquad V = \frac{1}{2} c \cdot (\varphi - \varphi_0)^2
+						\]
+					% paragraph: Feder (end)
+					
+					\paragraph{Körper im Gravitationsfeld:} % (fold)
+						\[
+							V = mgz
+						\]
+					% paragraph: Körper im Gravitationsfeld: (end)
+				% subsubsection: Potentielle Energie (end)
+				
+				\subsubsection{Additivität} % (fold)
+					Kinetische und potentielle Energien sind additiv auch wenn sie von unterschiedlichen Typen sind.
+					
+					\[
+						T_{\text{ges}} = \sum_{i=1} T_i
+						 \qquad V_{\text{ges}} = \sum_{i=1} V_i
+					\]
+				% subsubsection: Additivität (end)
+				
+				\subsubsection{Konservative Systeme} % (fold)
+					Ein autonomes System aus Starrkörpern heisst \emph{konservativ}, falls alle an den einzelnen Starrkörpern angreifenden äusseren Kräfte \emph{Potentialkräfte} sind.
+					
+					Es gilt die Energieerhaltung:
+					\[
+						T_{\text{ges}} + V_{\text{ges}} = \text{const}.
+					\]
+					
+					Systeme mit dissipativen Elementen (z.B.~Dämpfer) sind \emph{keine} konservative Systeme, da Energie verloren geht.
+				% subsubsection: Konservative Systeme (end)
+				
+			% subsection: Energie (end)
+			
+			\subsection{Vorgehen bei Aufgaben} % (fold)
+				\begin{enumerate}
+					\item System freischneiden
+					\item Koordinatensystem einführen
+					\item Schwerkraft berechnen
+					\item Impuls- und Drallsätze aufstellen
+					\item kinematische Relationen aufstellen
+					\item unbekannte Bindungskräfte eliminieren
+					\item Gewichtskräfte berechnen
+				\end{enumerate}
+			% subsection: Vorgehen bei Aufgaben (end)
+		% section: Grundlegende Konzepte (end)
+		\section{Lineare Schwingungen mit einem Freiheitsgrad} % (fold)
+			\paragraph{Kraftanregung} % (fold)
+				\[
+					m \ddot{y} + d \dot{y} + c y = F(t)
+				\]
+			% paragraph: Kraftanregung (end)
+			\paragraph{Weganregung} % (fold)
+				\[
+					m \ddot{y} + d \dot{y} + c y = -m \ddot{e}(t)
+				\]
+				
+				Lassen sich durch $F := -m \ddot{e}$ ineinander überführen.
+			% paragraph: Weganregung (end)
+			
+			\paragraph{Matrixform} % (fold)
+				\[
+					\begin{array}{c@{\ =\ }c@{\cdot}c@{+}c}
+					\begin{bmatrix}
+						\dot{y} \\
+						\ddot{y}
+					\end{bmatrix}
+					&
+					\begin{bmatrix}
+						0 & 1 \\
+						-\frac{c}{m} & -\frac{d}{m}
+					\end{bmatrix}
+					&
+					\begin{bmatrix}
+						y \\
+						\dot{y}
+					\end{bmatrix}
+					&
+					\begin{bmatrix}
+						0 \\
+						\frac{F(t)}{m}
+					\end{bmatrix}
+					\\ [10pt]
+					\dot{\vec{x}} & \mtrx{A} & \vec{x} & \vec{b}
+					\end{array}
+				\]
+			% paragraph: Matrixform (end)
+			\subsection{Darstellungsformen} % (fold)
+				\begin{description}
+					\item[Dämpfungswert:] $\delta := \frac{d}{2m} \nicesunit{\per\second}$
+					\item[Eigenfrequenz:] $\omega_0 = \sqrt{\frac{c}{m}} \nicesunit{\per\second}$
+				\end{description}
+				
+				\begin{empheq}[box=\shadowbox*]{equation*}
+					\ddot{y} + 2 \delta \dot{y} + \omega_0^2 y = \frac{F(t)}{m}
+				\end{empheq}
+			
+				Zeitunabhängig mit $\tau(t) = \omega_0 t$:
+				\begin{empheq}[box=\shadowbox*]{equation*}
+					\omega_0^2 y'' + 2 \delta \omega_0 y' + \omega_0^2 y = \frac{1}{m}F\left(\frac{\tau}{\omega_0}\right)
+				\end{empheq}
+			
+				Dimensionslos mit:
+				\begin{description}
+					\item[Lehr'sche Dämpfung:] $D := \frac{\delta}{\omega_0} = \frac{1}{2} d \sqrt{\frac{1}{mc}} \sunit{1}$
+					\item[normierte Erregerfkt:] $f(\tau) := \frac{1}{m \omega_0^2} F\left( \frac{\tau}{\omega_0} \right) \sunit{1}$
+				\end{description}
+				\begin{empheq}[box=\shadowbox*]{equation*}
+					y'' + 2Dy' + y = f(\tau)
+				\end{empheq}
+			% subsection: Darstellungsformen (end)
+			
+			\subsection{Eigenwerte} % (fold)
+				\begin{align*}
+					\lambda_{1,2} &= \frac{1}{2m}\left( -d \pm \sqrt{d^2 - 4mc} \right) \\
+					              &= -\frac{d}{2m} \pm \sqrt{ \left( \frac{d}{2m} \right)^2 - \frac{m}{c} } \\
+					\lambda_{1,2} &= -\delta \pm \sqrt{\delta^2 - \omega_0^2} \\
+					              &= \omega_0 \left( - \frac{\delta}{\omega_0} \pm \sqrt{ \left( \frac{\delta}{\omega_0} \right)^2 - 1} \right) \\
+					\lambda_{1,2} &= \omega_0 \left( -D \pm \sqrt{D^2 -1} \right)
+				\end{align*}
+			% subsection: Eigenwerte (end)
+			
+			\subsection{Dämpfung} % (fold)
+				\label{subsec:daempfung}
+				\subsubsection{Ungedämpfte Schwingung $(D = 0)$} % (fold)
+					\begin{empheq}[box=\shadowbox*]{equation*}
+						\lambda_{1,2} = \pm \iu \omega_0 = \pm \iu \sqrt{\frac{c}{m}}
+					\end{empheq}
+					
+					\[
+						y_h = A \sin (\omega_0 t + \varphi) \qquad
+						\dot{y}_h = \omega_0 A \cos (\omega_0 t + \varphi)
+					\]
+					
+					\begin{description}
+						\item[Frequenz:] $f_0 := \frac{\omega_0}{2\pi} \sunit{\hertz}$
+						\item[Periode:] $T_0 := \frac{1}{f_0} = \frac{2\pi}{\omega_0} \sunit{s}$
+					\end{description}
+					
+					\begin{center}
+						\includegraphics[width=\columnwidth]{grafiken/daempfung_d_0}
+					\end{center}
+					
+				% subsubsection: Ungedämpfte Schwingung (D=0) (end)
+				
+				\subsubsection{Unterkritisch gedämpfte Schwingung $(D \in (0,1))$} % (fold)
+				
+					\begin{empheq}[box=\shadowbox*]{equation*}
+						\lambda_{1,2} = - \delta \pm \iu \omega
+					\end{empheq}
+					\emph{\textbf{Achtung:}}
+					\[
+						\omega^2 := \omega_0^2 - \delta^2 = \omega_0^2 (1 - D^2) \qquad \omega \in (0, \omega_0)
+					\]
+					
+					\[
+						y_h = e^{-\delta t} \left( A_1 e^{\iu \omega t} + A_2 e^{-\iu \omega t} \right)
+						\qquad
+						\dot{y}_h = A e^{-\delta t} \cos (\omega t + \varphi)
+					\]
+					
+					\begin{description}
+						\item[Pseudofrequenz:] $f := \frac{\omega}{2\pi}$
+						\item[Pseudoperiode:] $T := \frac{1}{f} = \frac{2\pi}{\omega}$
+					\end{description}
+					
+					\begin{center}
+						\includegraphics[width=\columnwidth]{grafiken/daempfung_d_0_1_1}
+						$D = 0.17$
+						\includegraphics[width=\columnwidth]{grafiken/daempfung_d_0_1_2}
+						$D = 0.5$
+					\end{center}
+					
+					\paragraph{Logarithmisches Dekrement} % (fold)
+						\[
+							\Lambda := \delta T = \delta \frac{2 \pi}{\omega} = 2 \pi \frac{\delta}{\omega} = 2\pi \sqrt{\frac{D^2}{1-D^2}} = \ln \frac{y(t)}{y(t+T)}
+						\]
+						
+						\[
+							D = \sqrt{\frac{\Lambda^2}{\Lambda^2 + 4\pi^2}}
+						\]
+					% paragraph: Logarithmisches Dekrement (end)
+				% subsubsection: Unterkritisch gedämpfte Schwingung $(D \in (0,1))$ (end)
+				
+				\subsubsection{Kritische Dämpfung $(D = 1)$} % (fold)
+					
+					\begin{empheq}[box=\shadowbox*]{equation*}
+						\lambda_{1,2} = - \delta
+					\end{empheq}
+					
+					\[
+						y_h = t e^{\lambda t}
+						\quad
+						\dot{y}_h = \lambda t e^{\lambda t} + e^{\lambda t}
+						\quad
+						\ddot{y}_h = \lambda^2 t e^{\lambda t} + 2 \lambda e^{\lambda t}
+					\]
+					
+					\begin{center}
+						\includegraphics[width=\columnwidth]{grafiken/daempfung_d_1}
+					\end{center}
+				% subsubsection: Kritische Dämpfung (D=1) (end)
+				
+				\subsubsection{Überkritische Dämpfung $(D > 1)$} % (fold)
+					
+					\begin{empheq}[box=\shadowbox*]{equation*}
+						\lambda_{1,2} = - \delta \pm \psi
+					\end{empheq}
+					wobei
+					\[
+						\psi^2 := \delta^2 - \omega_0^2 = \omega_0^2 (D^2 - 1) \qquad 0 < \psi < \delta
+					\]
+					
+					\begin{align*}
+						y_h(t) &= e^{-\delta t} (A_1 e^{\psi t} + A_2 e^{-\psi t}) \\
+						&= e^{-\delta t} (B_1 \cosh \psi t + B_2 \sinh \psi t)
+					\end{align*}
+					wobei $B_{1,2} = \frac{1}{2}(A_1 \pm A_2)$
+					
+					\begin{center}
+						\includegraphics[width=\columnwidth]{grafiken/daempfung_d_g1}
+						$D = 1.3$
+					\end{center}
+					
+					\paragraph{Grenzfall $(D \to \infty)$} % (fold)
+						
+						\[
+							\frac{\delta}{\omega_0} = 0 \qquad \frac{\psi}{\omega_0} = \sqrt{D^2 - 1} \qquad \psi \to \delta
+						\]
+						
+						\begin{center}
+							\includegraphics[width=\columnwidth]{grafiken/daempfung_d_infty}
+						\end{center}
+					% paragraph: Grenzfall (D $\to \infty$) (end)
+				% subsubsection: Überkritische Dämpfung $\mathbf{}$ (end)
+				
+			% subsection: Dämpfung (end)
+			
+			\subsection{Lösung der inhomogenen Gleichung} % (fold)
+				
+				\subsubsection{Partikuläre Lösung} % (fold)
+					
+					\[
+						m \ddot{y}_p + d \dot{y}_p + c y_p = \hat{F} \cos \Omega t \quad \forall t
+					\]
+					
+					\begin{empheq}[box=\shadowbox*]{equation*}
+						y_p (t) = \hat{y} \cos (\Omega t - \varphi)
+					\end{empheq}
+					
+					\begin{gather*}
+						\varphi = \psi \qquad \hat{y} = \hat{F} \cdot \frac{1}{r} \\
+						r = m \cdot \omega_0^2 \cdot \sqrt{(1-\eta^2)^2 + (2D \eta)^2} \\
+						\tan(\psi) = \frac{2D\eta}{1-\eta^2} \qquad \eta = \frac{\Omega}{\omega_0}
+					\end{gather*}
+					
+					\begin{empheq}[box=\shadowbox*]{equation*}
+						y_p (t) = \frac{\hat{F}}{m \omega_0^2} V \cos (\Omega t - \varphi)
+					\end{empheq}
+					
+					\[
+						V = \frac{1}{\sqrt{(1- \eta^2)^2 + (2D \eta)^2}} \qquad \varphi = \arctan \left(\frac{2D\eta}{1-\eta^2}\right)
+					\]
+				% subsubsection: Partikuläre Lösung (end)
+				
+				\subsubsection{Homogene Lösung} % (fold)
+				
+					Vgl.~\nameref{subsec:daempfung} auf Seite~\pageref{subsec:daempfung}.
+					
+					\begin{tabular}{ll@{}}
+						\textbf{asymptotisch stabil} falls & $D > 0$ \\
+						\textbf{grenzstabil} falls & $D = 0$
+					\end{tabular}
+				% subsubsection: Homogene Lösung (end)
+				
+			% subsection: Lösung der inhomogenen Gleichung (end)
+		% section: Lineare Schwingungen mit einem Freiheitsgrad (end)
+		\section{Lineare Schwingungen mit $f$ Freiheitsgraden} % (fold)
+			\subsection{Vorbemerkungen} % (fold)
+				\begin{tabular}{lll}
+				\toprule
+				Eigenschaft & Bedingung & Eigenwerte\\
+				\midrule
+				symmetrisch & $\mtrx{A}=\mtrx{A}^\transp$ & immer reel \\
+				schiefsymmetrisch & $\mtrx{A}=-\mtrx{A}^\transp$ & rein imaginär \\
+				positiv definit & $\vec{x}^\transp \mtrx{A} \vec{x} > 0 \quad \forall \vec{x} \neq 0$ & immer positiv \\
+				positiv semidefinit & $\vec{x}^\transp \mtrx{A} \vec{x} \geq 0 \quad \forall \vec{x}$ & positiv oder 0\\
+				\bottomrule
+				\end{tabular}
+				
+			% subsection: Vorbemerkungen (end)
+			
+			\subsection{Struktur} % (fold)
+				\begin{empheq}[box=\shadowbox*]{equation*}
+					\mtrx{M} \ddot{\vec{y}} + \mtrx{B} \dot{\vec{y}} + \mtrx{C} \vec{y} = \vec{f}(t)
+				\end{empheq}
+				
+				$\mtrx{M},\mtrx{B},\mtrx{C} \in \R^{f \times f}$ sind konstant.
+				
+				\subsubsection{M-D-G-K-N-System} % (fold)
+					\begin{empheq}[box=\shadowbox*]{equation*}
+						\mtrx{M} \ddot{\vec{y}} + (\mtrx{D}+\mtrx{G}) \dot{\vec{y}} + (\mtrx{K}+\mtrx{N}) \vec{y} = \vec{f}(t)
+					\end{empheq}
+					
+					\begin{center}
+						\begin{tabular}{ll}
+						\toprule
+						$\mtrx{M} = \mtrx{M}^\transp$ & Massenmatrix \\
+						\vspace{2mm}
+						 & (invertierbar) \\
+						\vspace{2mm}
+						$\mtrx{D} = \mtrx{D}^\transp := \frac{1}{2} (\mtrx{B}+\mtrx{B}^\transp)$ & Dämpfungsmatrix \\
+						$\mtrx{G} = -\mtrx{G}^\transp := \frac{1}{2} (\mtrx{B}-\mtrx{B}^\transp)$ & Gyro-Matrix \\
+						\vspace{2mm}
+						 & (Coriolistherme) \\
+						\vspace{2mm}
+						$\mtrx{K} = \mtrx{K}^\transp :=\frac{1}{2} (\mtrx{C}+\mtrx{C}^\transp)$ & Stefigkeitsmatrix \\
+						$\mtrx{N} = -\mtrx{N}^\transp := \frac{1}{2} (\mtrx{C}-\mtrx{C}^\transp)$ & Matrix der \\ & zirkulierenden Kräfte \\
+						\bottomrule
+						\end{tabular}
+					\end{center}
+					
+					\paragraph{Zustandsraumdarstellung} % (fold)
+						\begin{align*}
+							\begin{bmatrix}
+								\vec{\dot{y}} \\ \ddot{\vec{y}}
+							\end{bmatrix}
+							= &
+							\begin{bmatrix}
+								0 & \mtrx{I} \\
+								-\mtrx{M}^{-1} (\mtrx{K}+\mtrx{N}) & -\mtrx{M}^{-1} (\mtrx{D}+\mtrx{G})
+							\end{bmatrix}
+							\cdot
+							\begin{bmatrix}
+								\vec{y} \\ \dot{\vec{y}}
+							\end{bmatrix}
+							\\ &+
+							\begin{bmatrix}
+								0 \\ \mtrx{M}^{-1} \vec{f}(t)
+							\end{bmatrix}
+						\end{align*}
+					% paragraph: Zustandsraumdarstellung (end)
+				% subsubsection: M-D-G-K-N-System (end)
+			% subsection: Struktur (end)
+			
+			\subsection{M-K-System} % (fold)
+				\[
+					\mtrx{D}=\mtrx{G}=\mtrx{N}=0 \ \Rightarrow \ \mtrx{M} \ddot{\vec{y}} + \mtrx{K} \vec{y} = \vec{f}(t)
+				\]
+				\begin{empheq}[box=\shadowbox*]{equation*}
+					\vec{y}_h = \vec{u} \cdot e^{\lambda t} \qquad 
+					\dot{\vec{y}}_h = \lambda \cdot \vec{u} \cdot e^{\lambda t} \qquad
+					\ddot{\vec{y}}_h = \lambda^2 \cdot \vec{u} \cdot e^{\lambda t}
+				\end{empheq}
+				\[
+					(\mtrx{M} \lambda^2 + \mtrx{K}) \cdot \vec{u} = 0
+				\]
+				
+				\subsubsection{Semipositiv definite Matrix K} % (fold)
+				
+					\begin{description}
+						\item[falls $\lambda_{1,2} = \pm \iu \omega_0 \ (\omega_0 > 0)$:]
+						\[
+							\vec{y}_1 = \vec{u}_1 e^{\iu \omega_0 t} \qquad \vec{y}_2 = \vec{u}_2 e^{-\iu \omega_0 t}
+						\]
+						
+						\item[falls $\lambda_{1,2} = 0$:]
+						\[
+							\vec{y}_1 = \vec{u}_1 \ , \quad \vec{y}_2 = t \vec{u}_1
+						\]
+					\end{description}
+					
+				% subsubsection: Semipositiv definite Matrix $\mathbf{}$ (end)
+				
+				\subsubsection{Positiv definite Matrix K} % (fold)
+					
+					$\mtrx{U} \in \R^{f \times f}$ ist die Matrix der Pseudoeigenvektoren.
+					
+					\[
+						\mtrx{U}^\transp \mtrx{M}\mtrx{U} =: \diag{\{\mu_i\}} \qquad \mtrx{U}^\transp \mtrx{K}\mtrx{U} =: \diag{\{\kappa_i\}}
+					\]
+					
+					\paragraph{Modale Koordinaten} % (fold)
+						\[
+							\vec{\xi}(t) = \mtrx{U}^{-1} \vec{y}(t) \, , \quad \ddot{\vec{y}} = \mtrx{U} \ddot{\vec{\xi}} = \sum \vec{u}_i \ddot{\xi}_i (t)
+						\]
+						führt zu
+						\begin{gather*}
+							\mu_i \ddot{\xi}_1 + \kappa_i \xi_i = \beta_i (t) \qquad \ddot{\xi}_i + \omega_{0_i}^2 \xi_i = \frac{\beta_i (t)}{\mu_i}
+						\end{gather*}
+					% paragraph: Modale Koordinaten (end)
+					
+				% subsubsection: Positiv definite Matrix $\mathbf{}$ (end)
+			% subsection: M-K-System (end)
+			\subsection{M-K-System mit Dämpfung nach Bequemlichkeit} % (fold)
+				\[
+					\mtrx{M} \ddot{\vec{y}} + \mtrx{D} \dot{\vec{y}} + \mtrx{K} \vec{y} = \vec{f}(t)
+				\]
+				
+				\begin{align*}
+					\mu_i \ddot{\xi}_i + (\alpha \mu_i + \beta \kappa_i) \dot{\xi_i} + \kappa_i \xi_i &= \beta_i(t) \\
+					\ddot{\xi}_i + 2\delta_i \dot{\xi_i} +\omega_{0_i}^2 \xi_i &= \frac{\beta_i(t)}{\mu_i}
+				\end{align*}
+				mit $\omega_{0_i}^2 = \frac{\kappa_i}{\mu_i}$ und $\delta_i = \frac{1}{2} (\alpha + \beta \omega_{0_i}^2)$.
+				
+				\paragraph{Bequemlichkeitshypothese:} % (fold)
+					\[
+						\mtrx{D}:= \alpha \mtrx{M} + \beta \mtrx{K} \qquad \alpha,\beta \in \R \quad (\text{oft }\alpha = 0)
+					\]
+				% paragraph: Bequemlichkeitshypothese: (end)
+			% subsection: M-K-System mit Dämpfung nach Bequemlichkeit (end)
+			\subsection{Stabilität des MDGKN-Systems} % (fold)
+				\begin{tabular}{@{}ll@{}}
+					\vspace{2mm}
+					\textbf{asymptotisch stabil} falls & $\Re(\lambda_i) < 0 \quad \forall i$ \\
+					\textbf{grenzstabil} falls & $\exists \Re(\lambda_i) > 0$
+				\end{tabular}
+				
+			% subsection: Stabilität des MDGKN-Systems (end)
+		% section: Lineare Schwingungen mit $f$ Freiheitsgraden (end)
+		\section{Die Wellengleichung} % (fold)
+			\subsection{Bewegungsgleichung spezieller 1-D Kontinua} % (fold)
+				\paragraph{Wellengleichung:} % (fold)
+					(PDGL 2. Ordnung)
+					\[
+						u_{tt}(x,t) = c^2 u_{xx} (x,t)
+					\]
+					mit konstanter \emph{Wellengeschwindigkeit} $c \unit{\metre\per\second}$ und
+					\begin{align*}
+						u&: \text{ Auslenkung} \\
+						u_x&: \text{ Spannung/Dehnung} \\
+						u_t&: \text{ Geschwindigkeit}
+					\end{align*}
+				% paragraph: Wellengleichung: (end)
+			% subsection: Bewegungsgleichung spezieller 1-D Kontinua (end)
+			\subsection{Allgemeine Lösung der Wellengleichung} % (fold)
+				\[
+					u(x,t) = \underbrace{f(\overbrace{\vphantom{\frac{1}{2}} x-ct}^{\xi})}_{u_f: \text{ Rechtswelle}} + \underbrace{g(\overbrace{\vphantom{\frac{M}{2}} x+ct}^{\eta})}_{u_g: \text{ Linkswelle}}
+				\]
+				
+				\paragraph{Umrechnung von Spannung und Geschwindigkeiten} % (fold)
+					\[
+						u_{f,t} = -c \, u_{f,x} \qquad u_{g,t} = c \, u_{g,x}
+					\]
+				% paragraph: Umrechnung von Spannung und Geschwindigkeiten (end)
+				
+				\begin{center}
+					\includegraphics[width=\columnwidth]{grafiken/wellenausbreitung}
+				\end{center}
+			% subsection: Allgemeine Lösung der Wellengleichung (end)
+			
+			\subsection{Randbedingungen} % (fold)
+				\paragraph{Eingespanntes Ende:} % (fold)
+					$u(x=0,t) \equiv 0 \quad \forall t \in \R$
+					
+					\begin{itemize}
+						\item Rechtswelle $\Longleftrightarrow$ Linkswelle
+						\item Druckwelle $\Longleftrightarrow$ Druckwelle
+					\end{itemize}
+					
+					\begin{center}
+						\includegraphics[width=\columnwidth]{grafiken/reflexion_eingespanntes_ende}
+					\end{center}
+				% paragraph: Eingespanntes Ende: (end)
+				
+				\paragraph{Freies Ende:} % (fold)
+					$u_x(x=0,t) \equiv 0$
+					
+					\begin{itemize}
+						\item Rechtswelle $\Longleftrightarrow$ Rechtswelle
+						\item Druckwelle $\Longleftrightarrow$ Zugwelle
+					\end{itemize}
+					
+					\begin{center}
+						\includegraphics[width=\columnwidth]{grafiken/reflexion_freies_ende}
+					\end{center}
+				% paragraph: Freies Ende: (end)
+			% subsection: Randbedingungen (end)
+			\subsection{Stehende Wellen} % (fold)
+				\[
+					u(x,t) = u_f(\xi) + u_g(\eta) = 
+					\underbrace{w(x)\vphantom{\frac{M}{2}}}_{\mathclap{\text{Ortsfunktion}}} \cdot \overbrace{q(t) \vphantom{\frac{M}{2}}}^{\mathclap{\text{Zeitfunktion}}}
+				\]
+				\emph{Ortsfunktion} (auch Amplitudenfunktion) beschreibt die Form der stehenden Welle. \emph{Zeitfunktion} ist das zeitliche pulsieren der stehenden Welle.
+				
+				\paragraph{Separation der Variablen:} % (fold)
+					\[
+						\frac{\ddot{q}(t)}{q(t)} = c^2 \, \frac{w''(x)}{w(x)} = -\omega^2
+					\]
+				% paragraph: Separation der Variablen: (end)
+				
+				\paragraph{Lösen der Gleichung:} % (fold)
+					
+					\[
+						u(x,t) = \sum_j \underbrace{
+							\widetilde A_j \sin \left(
+								\frac{\omega_j}{c} \xi + \varphi_j
+							\right)
+						}_{f_j(\xi)} + \underbrace{
+							\widetilde B_j \sin \left(
+								\frac{\omega_j}{c} \eta + \psi_j
+							\right)
+						}_{g_j(\eta)}
+					\]
+				
+					wobei $\widetilde A,\, \widetilde B,\, \varphi,\, \psi$ und $\omega$ beliebige Konstanten sind, die durch \emph{Anfangs- und Randbedingungen} bestimmt werden.
+				% paragraph: Lösen der Gleichung: (end)
+				\paragraph{Wellenzahl:} % (fold)
+					$k:= \frac{\omega}{c}$
+				% paragraph: Wellenzahl: (end)
+				\paragraph{Wellenlänge:} % (fold)
+					$\lambda := \frac{2 \pi}{k}$
+				% paragraph: Wellenlänge: (end)
+			% subsection: Stehende Wellen (end)
+		% section: Die Wellengleichung (end)
+		\section{Kinematik} % (fold)
+			\subsection{Koordinaten \& Vektoren} % (fold)
+				\begin{description}
+					\item[Inertialsysteme:] bezeichnet mit $I$, \emph{unbeschleunigt}
+					\item[Körperfeste Koordinatensysteme] bezeichnet mit $K$, erhält man, indem man Koordinatenachsen an einen Starrkörper festbindet
+				\end{description}
+				Alle Koordinatensysteme entstehen durch Drehung von $I$.
+				
+				Strikte Unterscheidung zwischen dem ``Pfeil'' $\vec{c} \in V$ (koordinatenfrei) und der koordinatenbehafteten Darstellung $\vecin{c}{B} \in \R^3$.
+				
+				\paragraph{Koordinatenabbildung:} % (fold)
+					\begin{empheq}[box=\shadowbox*]{equation*}
+						\vecin{c}{B} = \trafo{K}{B} (\vec{c}) \qquad \vec c = \trafo{K}{B}^{-1} (\vecin{c}{B})
+					\end{empheq}
+				% paragraph: Koordinatenabbildung: (end)
+			% subsection: Koordinatensysteme, Vektoren und Koordinaten (end)
+			
+			\subsection{Koordinatentransformation} % (fold)
+				\begin{empheq}[box=\shadowbox*]{equation*}
+					\vecin{c}{D} = \trafo{K}{D} \trafo{K}{B}^{-1} \vecin{c}{B} \qquad
+					\vecin{c}{D} = \trafo{A}{DB} \cdot \vecin{c}{B}
+				\end{empheq}
+				$\trafo{A}{DB}$ ist die Transformationsmatrix von $B \to D$.
+				\[
+					\trafo{A}{DB} = \left[
+						\vecin{e}{D}_x^B \quad \vecin{e}{D}_y^B \quad \vecin{e}{D}_z^B
+					\right]
+				\]
+				\begin{empheq}[box=\shadowbox*]{equation*}
+					\trafo{A}{DB}^\transp = \trafo{A}{DB}^{-1} = \trafo{A}{BD} \qquad \trafo{A}{BD} \cdot \trafo{A}{DB} = \mtrx{I}
+				\end{empheq}
+				
+				\subsubsection{Elementardrehungen} % (fold)
+					\begin{gather*}
+						\trafo{A}{DB} = \begin{bmatrix}
+							1 & 0 & 0 \\
+							0 & \operatorname c \alpha & \operatorname s \alpha \\
+							0 & -\operatorname s \alpha & \operatorname c \alpha
+						\end{bmatrix}
+						\quad
+						\trafo{A}{DB} = \begin{bmatrix}
+							\operatorname c \beta & 0 & -\operatorname s \beta \\
+							0 & 1 & 0 \\
+							\operatorname s \beta & 0 & \operatorname c \beta
+						\end{bmatrix} \\
+						\trafo{A}{DB} = \begin{bmatrix}
+							\operatorname c \gamma & \operatorname s \gamma & 0 \\
+							-\operatorname s \gamma & \operatorname c \gamma & 0 \\
+							0 & 0 & 1
+						\end{bmatrix}
+					\end{gather*}
+					\[
+						\trafo{A}{14} = \trafo{A}{12} \cdot \trafo{A}{23} \cdot \trafo{A}{34}
+					\]
+				% subsubsection: Elementardrehungen (end)
+			% subsection: Koordinatentransformation (end)
+			\subsection{Drehgeschwindigkeit zwischen zwei Koordinatensystemen} % (fold)
+				\label{subsec:drehgeschwindigkeit_zwischen_zwei_koordinatensystemen}
+				\[
+					\vec{a} = \begin{pmatrix}
+						a_1 \\ a_2 \\ a_3
+					\end{pmatrix},
+					\quad
+					\widetilde{\mtrx{a}} := \begin{bmatrix}
+						0 & -a_3 & a_2 \\
+						a_3 & 0 & -a_1 \\
+						-a_2 & a_1 & 0
+					\end{bmatrix},
+					\quad
+					\vec{a} \times \vec{b} \equiv \widetilde{\mtrx{a}}\cdot \vec{b}
+				\]
+				
+				\paragraph{Winkelgeschwindigkeit:} % (fold)
+					\momegain{BD}{B} ist die Winkelgeschwindigkeit von $B$ gegenüber $D$ bezüglich dem System $B$:
+					\[
+						\momegain{BD}{B} = \trafo{\dot A}{BD} \cdot \trafo{A}{BD}^\transp \qquad \trafo{\widetilde \omega}{DB} = -\trafo{\widetilde \omega}{BD}
+					\]
+				% paragraph: Winkelgeschwindigkeit: (end)
+				
+				\paragraph{Elementargeschwindigkeiten} % (fold)
+					\[
+						\omegain{BD}{B} = \begin{pmatrix}
+							\dot \alpha \\ 0 \\ 0
+						\end{pmatrix},
+						\quad
+						\omegain{BD}{B} = \begin{pmatrix}
+							0 \\ \dot \beta \\ 0
+						\end{pmatrix},
+						\quad
+						\omegain{BD}{B} = \begin{pmatrix}
+							0 \\ 0 \\ \dot \gamma
+						\end{pmatrix}
+					\]
+				% paragraph: Elementargeschwindigkeiten (end)
+				
+				\paragraph{Transformation von Drehgeschwindigkeiten:} % (fold)
+					\[
+						\momegain{BD}{D} = \trafo{A}{DB} \cdot \momegain{BD}{B} \cdot \trafo{A}{DB}^\transp \qquad
+						\omegain{BD}{D} = \trafo{A}{DB} \cdot \omegain{BD}{B}
+					\]
+				% paragraph: Transformation von Drehgeschwindigkeiten (end)
+				
+				\paragraph{Gesamtwinkelgeschwindigkeit:} % (fold)
+					$\trafo{\omega}{14} = \trafo{\omega}{12} + \trafo{\omega}{23} + \trafo{\omega}{34}$
+				% paragraph: Gesamtwinkelgeschwindigkeit (end)
+			% subsection: Drehgeschwindigkeit zwischen zwei Koordinatensystemen (end)
+			
+			\subsection{Ableitungen von Vektoren in bewegten Systemen} % (fold)
+				\begin{align*}
+					\vec{c} &: \text{ ``Pfeil''} \\
+					\dot{\vec{c}} &: \text{ zeitliche Ableitung von } \vec{c} \\
+					_B (\dot{\vec{c}}) &: \text{ Koordinaten von } \dot{\vec{c}} \text{ in der Basis } B \\
+					(\vecin{c}{B})\highdot \equiv \vecin{\dot c}{B} &: \text{ zeitliche Ableitung von } \vecin{c}{B}
+				\end{align*}
+				Im Inertialsystem gilt:  $_{I}(\dot{\vec{c}}) \equiv \vecin{\dot c}{I} \equiv (\vecin{c}{I})\highdot$
+				
+				\paragraph{Eulersche Differentiationsregel:} % (fold)
+					\begin{empheq}[box=\shadowbox*]{equation*}
+						_B(\dot{\vec c}) = {}_B\dot{\vec c} + \omegain{IB}{B} \times \vecin{c}{B}
+					\end{empheq}
+					wobei \omegain{IB}{B} die Drehgeschwindigkeit des Systems $B$ relativ zu $I$, dargestellt in $B$, ist.
+				% paragraph: Eulersche Differentiationsregel: (end)
+			% subsection: Ableitungen von Vektoren in bewegten Systemen (end)
+			
+			\subsection{Kinematische Grössen von Starrkörpern} % (fold)
+				\begin{center}
+					\begin{tabular}{r@{$\:$}c@{$\:$}ll}\toprule
+					\multicolumn{3}{c}{Symbol} & Geometrische Bedeutung \\\midrule
+					$\bVec{r}_{AB}$&$\in$&$V$& Ortsvektor vom Punkt $A$ zum Punkt $B$ \\
+					$\bVec{v}_B $&$\in$&$V$& (absolute) Geschwindigkeit des Punktes $B$ \\
+					$\bVec{a}_B $&$\in$&$V$&  (absolute) Beschleunigung des Punktes $B$ \\
+					$\bVec{\Omega}$&$\in$&$V$&  (absolute) Drehgeschwindigkeit des Körpers \\
+					$\bVec{\Psi} $&$\in$&$V$&  (absolute) Drehbeschleunigung des Körpers
+					\\\bottomrule
+					\end{tabular}
+				\end{center}
+				\[
+					\ddot{\vec r}_{AB} = \dot{\vec v}_B - \dot{\vec v}_A = \vec a_B - \vec a_A \quad , \qquad \dot{\vec \Omega} = \vec{\Psi}
+				\]
+			% subsection: Kinematische Grössen von Starrkörpern (end)
+			
+			\subsection{Berechnung von Geschwindigkeiten} % (fold)
+				\begin{align*}
+					\vec v_P       &= \vec v_A + \dot{\vec r}_{AP} \\
+					\vecin{v}{B}_P &= \vecin{v}{B}_A + {}_B(\dot{\vec r}_{AP})
+				\end{align*}
+				$\Rightarrow$ Geschwindigkeit von $P$ in der Basis $B$:
+				\begin{empheq}[box=\shadowbox*]{equation*}
+					\vecin{v}{B}_P = \vecin{v}{B}_A + {}_B\dot{\vec r}_{AP} + \omegain{IB}{B} \times \vecin{r}{B}_{AP}
+				\end{empheq}
+				
+				\paragraph{Starrkörperformel für Geschwindigkeiten:} % (fold)
+					Es gilt ${}_K \dot{\vec r}_{PQ} \equiv 0$ und $\omegain{IK}{K} \equiv \vecin{\Omega}{K}$ und somit
+					\begin{empheq}[box=\shadowbox*]{equation*}
+						\vec v_Q = \vec v_P + \vec \Omega \times \vec r_{PQ}
+					\end{empheq}
+				% paragraph: Starrkörperformel: (end)
+			% subsection: Berechnung von Geschwindigkeiten (end)
+			
+			\subsection{Berechnung von Beschleunigungen} % (fold)
+				\begin{empheq}[box=\shadowbox*]{equation*}
+					\vecin{\Psi}{B} = {}_B \dot{\vec \Omega} + \omegain{IB}{B} \times \vecin{\Omega}{B}
+					%\Longleftrightarrow
+					%{}_B(\dot{\vec c})\highdot = {}_B \ddot{\vec c} + \omegain{IB}{B} \times {}_B\dot{\vec c}
+				\end{empheq}
+				\paragraph{Spezialfälle:} % (fold)
+					$
+						\vecin{\Psi}{I} = {}_I \dot{\vec \Omega}
+						\quad, \qquad
+						\vecin{\Psi}{K} = {}_K \dot{\vec \Omega}
+					$
+				% paragraph: Spezialfälle: (end)
+				
+				\paragraph{Starrkörperformel für Beschleunigungen:} % (fold)
+					\begin{empheq}[box=\shadowbox*]{equation*}
+						\vec a_Q = \vec a_P + \vec \Psi \times \vec r_{PQ} + \vec \Omega \times (\vec \Omega \times \vec r_{PQ})
+					\end{empheq}
+				% paragraph: Starrkörperformel für Beschleunigungen: (end)
+			% subsection: Berechnung von Beschleunigungen (end)
+		% section: Kinematik (end)
+		\section{Allgemeine Kinetik} % (fold)
+			\subsection{Resultierende Kräfte/Trägheitsterme} % (fold)
+				
+				Resultierende äussere Kraft:\[
+					\vec F^a := \int_K \diff \vec F^a
+				\]
+				
+				Resultierendes äusseres Moment bezüglich $O$:\[
+					\vec M_O^a := \int_K \vec \xi \times \diff \vec F^a + \diff \vec M^a
+				\]
+					\hspace{.5\columnwidth}
+					\resizebox{.5\columnwidth}{!}{
+						\input{grafiken/allgemeine_kinetik.tex}
+					}
+					\vspace{-3cm}
+					
+				Impuls des Systems:\[
+					\vec p := \int_K \dot{\vec \xi} \diff m
+				\]
+				Impulsmoment bezüglich $O$:\[
+					\vec L_O := \int_K \vec \xi \times \dot{\vec \xi} \diff m
+				\]
+				
+				Absolute zeitliche Änderung des Impulses:\[
+					\dot{\vec p} = \left(
+						\int_K \dot{\vec \xi} \diff m
+					\right)\highdot
+					= \int_K \ddot{\vec \xi} \diff m
+					\stackrel{(m = \const)}{=} \vec F^a
+				\]
+				Absolute zeitliche Dralländerung:\[
+					\dot{\vec L}_O = \left(
+						\int_K \vec \xi \times \dot{\vec \xi} \diff m
+					\right)\highdot
+					= \int_K \vec \xi \times \ddot{\vec \xi} \diff m
+					\stackrel{(m = \const)}{=} \vec M_O^a
+				\]
+				
+				\emphequation{equation*}{
+					\vphantom{\half}\quad\text{Falls $\vec F^a \equiv 0$ und $\vec M_O^a \equiv 0$: $\quad \vec{p} = \const \quad, \quad \vec{L}_O = \const$}\quad
+				}
+				
+				\paragraph{Kinetische Energie:} % (fold)
+					\begin{empheq}[box=\shadowbox*]{equation*}
+						T = \frac{1}{2} \int_K \dot{\vec \xi}^\transp \, \dot{\vec \xi} \diff m
+					\end{empheq}
+				% paragraph: Kinetische Energie: (end)
+			% subsection: Resultierende Kräfte/Trägheitsterme (end)
+			
+			\subsection{Bezugspunktwechsel} % (fold)
+				\begin{wrapfigure}{r}{4cm}
+				\vspace{-5mm}
+				\scalebox{.8}{
+				\input{grafiken/bezugspunktwechsel.tex}
+				}
+				\vspace{-3.2cm}
+				\end{wrapfigure}
+				
+				\begin{align*}
+					\vec \zeta &= \vec r_{CO} + \vec \xi\\
+					\dot{\vec \zeta} &= \cancelto{0}{\dot{\vec r}_{CO}} + \dot{\vec\xi} = \dot{\vec\xi}
+				\end{align*}
+
+				\begin{empheq}[box=\shadowbox*]{align*}
+					\vec M_C^a &= \vec r_{CO} \times \vec F^a + \vec M_O^a \\
+					\vec L_C &= \vec r_{CO} \times \vec p + \vec L_O \\
+					\dot{\vec L}_C &= \vec r_{CO} \times \dot{\vec p} + \dot{\vec L}_O
+				\end{empheq}
+			% subsection: Bezugspunktwechsel (end)
+		% section: Allgemeine Kinetik (end)
+		\section{Kinetik des starren Körpers} % (fold)
+			Die \emph{schiefsymmetrische} Matrix $\widetilde{\vec a}$ wurde bereits unter Kapitel~\ref{subsec:drehgeschwindigkeit_zwischen_zwei_koordinatensystemen} auf Seite~\pageref{subsec:drehgeschwindigkeit_zwischen_zwei_koordinatensystemen} eingeführt. Des Weiteren gilt:
+			\[
+				\widetilde{\vec a} = -\widetilde{\vec a}^\transp \qquad
+				-\widetilde{\vec a}^2 = -\widetilde{\vec a} \widetilde{\vec a} = \widetilde{\vec a} \widetilde{\vec a}^\transp \qquad
+				\left(\widetilde{\vec a} \widetilde{\vec a}^\transp\right)^\transp = \widetilde{\vec a}\widetilde{\vec a}^\transp
+			\]
+			wobei $-\widetilde{\vec a}$ \emph{symmetrisch} und \emph{positiv semidefinit} ist.
+			
+			\subsection{Nomenklatur} % (fold)
+			
+				\paragraph{Starrkörperformeln:} % (fold)
+				
+					\begin{empheq}[box=\shadowbox*]{align*}
+						\vec\xi &= \vec r_{OP} + \vec\rho \\
+						\dot{\vec \xi} &= \vec v_P + \vec\Omega \times \vec\rho \\
+						\ddot{\vec\xi} &= \vec a_P + \vec\Psi \times \vec\rho + \vec\Omega \times (\vec\Omega \times \vec\rho)
+					\end{empheq}
+				% paragraph: Starrkörperformeln: (end)
+				
+				\vspace{-2cm}
+				\hspace{5cm}
+				\resizebox{.45\columnwidth}{!}{
+				\input{grafiken/kinetik_nomenklatur.tex}
+				}
+				\vspace{-2cm}
+				\paragraph{Integrale:} % (fold)
+					\begin{align*}
+						\int_K \diff m &= m \\
+						\int_K \vec\rho \diff m &= m \cdot \vec r_{PS} \\
+						\int_K \widetilde{\vec\rho} \cdot \widetilde{\vec\rho}^\transp \diff m &= \overline{\mtrx{\Theta}}_P \tag{Trägheitstensor bezüglich $P$}
+					\end{align*}
+				% paragraph: Integrale: (end)
+				
+			% subsection: Nomenklatur (end)
+			
+			\subsection{Kinetische Energie des Starrkörpers} % (fold)
+				
+				\begin{empheq}[box=\shadowbox*]{equation*}
+					T = 
+					\underbrace{
+						\frac{1}{2} m \cdot {}_B\vec v_P^\transp {}_B\vec v_P
+					}_{\mathclap{\text{Translationsterm}}} +
+					\underbrace{
+						\vphantom{\frac{1}{2}}
+						m\cdot {}_C\vec v_P ({}_C\vec \Omega \times {}_C\vec r_{PS})
+					}_{\mathclap{\text{Koppelterm}}} +
+					\underbrace{
+						\frac{1}{2} {}_D\vec \Omega^\transp \cdot {}_D\overline{\mtrx\Theta}_P \cdot {}_D\vec\Omega
+					}_{\mathclap{\text{Rotationstherm}}}
+				\end{empheq}
+				\begin{itemize}
+					\item 5 mal derselbe Bezugspunkt $P$
+					\item unterschiedliche Bezugspunkte liefern selbe Energie
+					\item jeder Summand in einem beliebigen Koordinatensystem
+				\end{itemize}
+				\paragraph{Sonderfälle} % (fold)
+					\begin{align*}
+						P=S \ (\vec r_{PS} \equiv 0)&: \quad T = \frac{1}{2} \, m \, \vec v_S^\transp \, \vec v_S + \frac{1}{2} \, \vec \Omega^\transp \, \overline{\mtrx{\Theta}}_S \, \vec\Omega \\
+						P \text{ ruhend} \ (\vec v_P = 0)&: \quad T = \frac{1}{2} \, \vec \Omega^\transp \, \overline{\mtrx{\Theta}}_S \, \vec\Omega \\
+					\end{align*}
+				% paragraph: Sonderfälle (end)
+			% subsection: Kinetische Energie des Starrkörpers (end)
+			
+			\subsection{Transformationsregeln für den Trägheitstensor} % (fold)
+				\paragraph{Wechsel der Koordinatensystems:} % (fold)
+					\begin{empheq}[box=\shadowbox*]{equation*}
+						{}_C\overline{\mtrx\Theta}_P = \trafo{A}{CB} \cdot {}_B\overline{\mtrx\Theta}_P \cdot \trafo{A}{CB}^\transp
+					\end{empheq}
+				% paragraph: Wechsel der Koordinatensystems: (end)
+				\paragraph{Bezugspunktwechsel:} % (fold)
+					\begin{empheq}[box=\shadowbox*]{equation*}
+						\overline{\mtrx\Theta}_P = \overline{\mtrx\Theta}_S + \underbrace{m\cdot \widetilde{\vec r}_{PS} \cdot \widetilde{\vec r}_{PS}^\transp}_{\text{Steiner-Anteil}}
+					\end{empheq}
+					Falls keine der Punkte der Schwerpunkt ist, muss man \emph{immer zuerst über den Schwerpunkt gehen}.
+				% paragraph: Bezugspunktwechsel: (end)
+			% subsection: Transformationsregeln für den Trägheitstensor (end)
+			
+			\subsection{Eigenschaften von Trägheitstensor und Massenmatrix} % (fold)
+				Sei $R$ ein körperfestes Koordinatensystem.
+				\begin{align*}
+					{}_R\overline{\mtrx\Theta}_P &= \begin{bmatrix}
+						A & -F & -E \\
+						-F & B & -D \\
+						-E & -D & C
+					\end{bmatrix} \qquad A\dots E = \const
+				\end{align*}
+				$A,\,B,\,C$ sind die \emph{Massenträgheitsmomente}
+				
+				$D,\,E,\,F$ sind die \emph{Massendeviationsmomente}
+				
+				\[
+					\rho = \frac{m}{V} \quad \Rightarrow \quad \diff m = \rho \diff V
+				\]
+				
+				\begin{align*}
+					A &= \int_K (y^2+z^2)\diff{m} \\
+					B &= \int_K (x^2+z^2)\diff{m} \\
+					C &= \int_K (x^2+y^2)\diff{m}\\
+					D &= \int_K yz \diff{m}\\
+					E &= \int_K xz \diff m\\
+					F &= \int_K xy\diff{m}
+				\end{align*}
+				
+				\[
+					\int_0^{2\pi} \cos^2\!\phi \diff \phi = \int_0^{2\pi} \sin^2\!\phi \diff \phi = \pi
+				\]
+				
+				\subsubsection{Diagonalform} % (fold)
+					Es existiert ein körperfestes Koordinatensystem, indem der Trägheitstensor Diagonalform hat:
+					\[
+						{}_K\overline{\mtrx\Theta}_P = \diag (A_0,B_0,C_0)
+					\]
+					$A_0,\,B_0,\,C_0$ sind die \emph{Hauptträgheitsmomente} welche alle $\geq 0$ sind.
+					
+					\paragraph{Vorgehen:} % (fold)
+						\begin{enumerate}
+							\item Berechne ${}_R\overline{\mtrx\Theta}_S$ aus ${}_R\overline{\mtrx\Theta}_P$
+							\item Diagonalisiere ${}_R\overline{\mtrx\Theta}_S$ zu ${}_K\overline{\mtrx\Theta}_S$
+						\end{enumerate}
+					% paragraph: Vorgehen: (end)
+				% subsubsection: Diagonalform: (end)
+				
+				\subsubsection{Massenmatrix des Starrkörpers} % (fold)
+					\[
+						\mtrx{M} = \Mx{
+							m \cdot \I & m \cdot \widetilde{\vec r}^\transp_{PS} \\
+							m \cdot \widetilde{\vec r}_{PS} & \overline{\mtrx\Theta}_P
+						}
+					\]
+					
+					\paragraph{Eigenschaften:} % (fold)
+						\begin{itemize}
+							\item $\mtrx M = \mtrx{M}^\transp$ ist symmetrisch
+							\item $\mtrx M$ ist mindestens positiv semidefinit
+						\end{itemize}
+					% paragraph: Eigenschaften: (end)
+				% subsubsection: Massenmatrix des Starrkörpers (end)
+				
+			% subsection: Eigenschaften von Trägheitstensor und Massenmatrix (end)
+
+			\subsection{Auswertung des Impulses} % (fold)
+				\emphequation{equation*}{
+					\vec p = m \cdot \underbrace{(\vec{v}_P + \vec \Omega \times \vec{r}_{PS})}_{\vec{v}_S}
+				}
+			
+				\subsubsection{Auswertung der Impulsänderung} % (fold)
+					\emphequation{equation*}{
+						\dot{\vec p} = m \cdot \underbrace{(\vec{a}_P + \vec \Psi \times \vec{r}_{PS} + \vec \Omega \times (\vec \Omega \times \vec{r}_{PS}))}_{\vec{a}_S}
+					}
+					\[
+						\dot{\vec p} = \vec F^a
+					\]
+				% subsubsection: Auswertung der Impulsänderung (end)
+			% subsection: Auswertung des Impuls (end)
+			
+			\subsection{Auswertung des Dralls} % (fold)
+				\emphequation{equation*}{
+					\vec{L}_O = \vec{r}_{OP} \times \vec p + \overline{\mtrx{\Theta}}_P \cdot \vec \Omega + m \cdot \vec{r}_{PS} \times \vec{v}_P
+				}
+				
+				\subsubsection{Auswertung der Dralländerung} % (fold)
+					\emphequation{equation*}{
+						\dot{\vec{L}}_O = \vec{r}_{OP} \times \dot{\vec p} + \overline{\mtrx{\Theta}}_P \cdot \vec \Psi + \vec \Omega \times \overline{\mtrx \Theta}_P \cdot \Omega + \underbrace{m \cdot \vec{r}_{PS} \times \vec{a}_P}_{\mathclap{= 0 \text{ falls } P \equiv S}}
+					}
+					\[
+						\dot{\vec L}_O = \vec M_O^a
+					\]
+				% subsubsection: Auswertung der Dralländerung (end)
+			% subsection: Auswertung des Dralls (end)
+			
+			\subsection{Vorgehen bei der Rechnung von Hand} % (fold)
+				\paragraph{Schwerpunkt ruhend:} % (fold)
+					Wähle $O$ und $P$ auf $S$:
+					\begin{gather*}
+						O \equiv P \equiv S \\
+						\vec{r}_{OP} = \vec{r}_{PS} = 0 \\
+						\vec{L}_S = \overline{\mtrx \Theta}_S \cdot \vec \Omega
+					\end{gather*}
+				% paragraph: Schwerpunkt ruhend: (end)
+				
+				\paragraph{Körper mit Fixpunkt P:} % (fold)
+					Wähle $O$ in $P$:
+					\begin{gather*}
+						O \equiv P \\
+						\vec{r}_{OP} = 0\,, \quad \vec{v}_P = 0 \\
+						\vec{L}_O = \overline{\mtrx \Theta}_P \cdot \vec \Omega
+					\end{gather*}
+				% paragraph: Körper mit Fixpunkt: (end)
+			% subsection: Vorgehen bei der Rechnung von Hand (end)
+
+			\subsection{Impuls- und Drallerhaltung am Starrkörper} % (fold)
+				Greifen an einem Körper keine äusseren Kräfte und Momente an ($\vec{F}^a = 0,\, \vec{M}^a = 0$), dann ist der Impuls $\vec p$ und der Drall $\vec{L}_O$ wie auch der Spin $\vec{N}_S$ des Körpers konstant.
+				
+				\paragraph{Folgerungen:} % (fold)
+					\begin{itemize}
+						\item $\vec{v}_S = \const$
+						\item $\vec{N}_S = \overline{\mtrx\Theta}_S \cdot \vec\Omega = \const$ bedeutet im allgemeinen \emph{nicht}, dass $\vec\Omega = \const$.
+					\end{itemize}
+				% paragraph: Folgerungen (end)
+				
+				Seien $A_0 < B_0 < C_0$ Hauptträgheitsmomente:
+				\begin{itemize}
+					\item Drehung um $A_0$ oder $C_0$ ist (grenz)stabil
+					\item Drheung um $B_0$ ist instabil
+				\end{itemize}
+			% subsection: Impuls- und Drallerhaltung am Starrkörper (end)
+		% section: Kinetik des starren Körpers (end)
+		\section{Der Kreisel} % (fold)
+			\subsection{Einführung} % (fold)
+				Ein Kreisel ist ein \emph{starrer Körper} mit \emph{Fixpunkt $P$} ($\vec{v}_P = \vec{a}_P = 0$) und \emph{ungehinderter Drehung}.
+				
+				Für $O \equiv P$ gilt:
+				\emphequation{gather*}{
+					\vec{L}_P = \overline{\mtrx \Theta}_P \cdot \vec\Omega \\
+					\dot{\vec{L}}_P = \overline{\mtrx\Theta}_P \cdot \vec\Psi + \vec\Omega \times \overline{\mtrx\Theta}_P \cdot \vec\Omega = \vec{M}_P^a \\
+					T = \frac{1}{2} \cdot \vec\Omega^\transp \cdot \underbrace{\overline{\mtrx\Theta}_P \cdot \vec\Omega}_{\vec{L}_P}
+				}
+				
+				\paragraph{Bezeichnungen} % (fold)
+					\begin{gather*}
+						{}_K\vec{L}_P =: \begin{pmatrix}
+							L_x \\ L_y \\ L_z
+						\end{pmatrix}
+						\qquad
+						{}_K\vec{M}_P^a =: \begin{pmatrix}
+							M_x \\ M_y \\ M_z
+						\end{pmatrix}
+						\qquad
+						{}_K\vec{\Omega} =: \begin{pmatrix}
+							\omega_x \\ \omega_y \\ \omega_z
+						\end{pmatrix}
+						\\
+						\vecin{\Psi}{K} = {}_K(\dot{\vec \Omega}) = {}_K\dot{\vec\Omega} = \begin{pmatrix}
+							\dot \omega_x \\ \dot\omega_y \\ \dot\omega_z
+						\end{pmatrix}
+						\qquad
+						{}_K\overline{\mtrx\Theta}_P := \Mx{A&0&0 \\ 0&B&0 \\ 0&0&C}
+					\end{gather*}
+				% paragraph: Bezeichnungen (end)
+				
+				\paragraph{Euler'sche Kreiselgleichungen:} % (fold)
+					\emphequation{align*}{
+						A \: \dot{\omega}_x - (B-C) \: \omega_y \: \omega_z &= M_x \\
+						B \: \dot{\omega}_y - (C-A) \: \omega_z \: \omega_x &= M_y \\
+						C \: \dot{\omega}_z - (A-B) \: \omega_x \: \omega_y &= M_z
+					}
+				% paragraph: Euler'sche Kreiselgleichungen: (end)
+			% subsection: Einführung (end)
+			
+			\subsection{Bewegung des momentenfreien Kreisels} % (fold)
+				Sei $\vec{M}_P^a = 0$ $(M_x = M_y = M_z = 0)$, dann gilt:
+				\begin{gather*}
+					\dot{\vec L}_P = 0 \quad \Rightarrow \vec{L}_P = \const \\
+					\vec{\Omega}^\transp \cdot \vec{L}_P = \const \:(= 2T) \quad \Rightarrow \vec\Omega = \const
+				\end{gather*}
+			% subsection: Bewegung des momentenfreien Kreisels (end)
+			
+			\subsection{Nutation beim symmetrischen Kreisel (A=B)} % (fold)
+				\begin{equation*}
+					\begin{array}{l@{\:=\:}l}
+						A \: \dot{\omega}_x - (A-C) \: \omega_y \: \omega_z & 0 \\
+						A \: \dot{\omega}_y - (C-A) \: \omega_z \: \omega_x & 0 \\
+						C \: \dot{\omega}_z & 0 \quad \Rightarrow \omega_z = \const = \Omega
+					\end{array}
+				\end{equation*}
+				
+				Die ersten zwei Gleichungen führen zu einem Differentialgleichungssystem:
+				\begin{gather*}
+					\ddot{\omega}_x + \mu^2 \omega_x = 0 \qquad \text{mit} \quad \mu^2 = \frac{\Omega^2}{A^2}(A-C)^2
+				\end{gather*}
+				Lösungen:
+				\begin{gather*}
+					\omega_x (t) = \widehat{\omega} \sin(\mu t + \phi) \\
+					\omega_y (t) = \widehat{\omega} \cos(\mu t + \phi)
+				\end{gather*}
+				
+				Diese Lösung als Vektor dargestellt umläuft einen Kreisel mit Radius $\widehat\omega$ in der $\vec{e}_x^K$-$\vec{e}_y^K$-Ebene.
+				
+				\begin{gather*}
+					{}_K\vec{L}_P = \begin{pmatrix}
+						A\omega_x(t) \\ A\omega_y(t) \\ C\Omega
+					\end{pmatrix}
+					\qquad
+					\vecin{\Omega}{K} = \begin{pmatrix}
+						\omega_x(t) \\ \omega_y(t) \\ \Omega
+					\end{pmatrix}
+					\qquad
+					\vecin{e}{K}_z^K = \begin{pmatrix}
+						0\\0\\1
+					\end{pmatrix}
+				\end{gather*}
+				
+				$\vecin{L}{K}_P$, $\vecin{\Omega}{K}$ und $\vecin{e}{K}_z^K$ sind \emph{linear abhängig} und somit \emph{in einer Ebene}.
+				
+				\emphequation{equation*}{
+					\vec\Omega =
+					\underbrace{
+						\frac{1}{A} \cdot \vecin{L}{K}_P
+					}_{\vec\Omega_N}
+					+
+					\underbrace{
+						(1-\frac{C}{A}) \cdot \Omega \cdot \vecin{e}{K}_z^K
+					}_{\vec\Omega_F}
+				}
+				
+				\begin{wrapfigure}{r}{.5\columnwidth}
+					\vspace{-2mm}
+					\hspace{-.075\columnwidth}
+					\resizebox{.6\columnwidth}{!}{
+						\input{grafiken/kreisel_kegel.tex}
+					}
+				\end{wrapfigure}
+				
+				$\Omega_F$ ist der Anteil von $\Omega$, mit der sich der Kreisel um Figurenachse dreht.
+				
+				$\Omega_N$ ist die Nu\-ta\-tions-Win\-kel\-ge\-schwin\-dig\-keit, mit der sich die Figurenachse um die raumfeste Drallachse dreht.
+				
+				\emph{Körperfester Polkegel} rollt auf \emph{raumfesten Spurkegel} ab. Auf der \emph{Berührungslinie} liegt $\vec\Omega$. Die Figurenachse $\vec{e}_z^K$ beschreibt Bewegung auf \emph{Nutationskegel}.
+				
+				\paragraph{Nutationsgeschwindigkeit:} % (fold)
+					\[
+						||\vec\Omega_N|| = \sqrt{\vecin{\Omega}{K}_N^T \cdot \vecin{\Omega}{K}_N} = \sqrt{\widehat{\omega}^2 + \left(\frac{C}{A} \Omega\right)^2}
+					\]
+					Für kleine $\widehat\omega$:
+					$
+						\frac{C}{A} \Omega \sim \Omega
+					$
+				% paragraph: Nutationsgeschwindigkeit: (end)
+				
+				\paragraph{Für unsymetrische Kreisel} % (fold)
+					($A \neq B$) liegen $\vec{L}_P$, $\vec{e}_z^K$ und $\vec\Omega$ nicht mehr in einer Ebene und die Kreiskegel werden zu elliptischen Kegeln.
+				% paragraph: Für unsymetrische Kreisel (end)
+			% subsection: Nutation beim symmetrischen Kreisel (A=B) (end)
+			
+			\subsection{Erzwungene Bewegung eines Kreisels} % (fold)
+				Aussagen über Kreisel mit äusseren Momenten.
+				
+				\paragraph{Gleichsinniger Parallelismus:} % (fold)
+					\[
+						\dot{\vec L}_P (t) = \vec M_P^a (t) \quad \Rightarrow \ \vec L_P (t + \Delta t) \approx  \vec L_P (t) + \vec M_P^a (t) \cdot \Delta t
+					\]
+					
+					Der Drallvektor eines sich drehenden Körpers hat die Tendenz, sich gleichsinnig in Richtung des äusseren Moments einzustellen, dieses aber nie ganz erreichen. Ausserdem wird der Drallvektor sehr schnell gross.
+					
+					\begin{center}
+						%\resizebox{\columnwidth}{!}{
+							\input{grafiken/gleichsinniger_parallelismus}
+						%}
+					\end{center}
+					
+					Falls das Moment nicht raumfest ist, wird der Drallvektor permanent versuchen, den sich wegdrehenden Momentenvektor einzuholen. Man nennt die entstehende Bewegung \emph{Präzessionsbewegung}.
+				% paragraph: Gleichsinniger Parallelismus: (end)
+				
+				\subsubsection{Beispiel Symmetrischer Kreisel} % (fold)
+					
+					\begin{center}
+						\input{grafiken/symmetrischer_kreisel}
+					\end{center}
+					
+					Moment ist senkrecht zum Drallvektor: $\vec M_P^a \perp \vec L_P$
+					
+					Trägheitstensor des Kreisels, Drehgeschwindigkeit und angreifendes Moment:
+					\begin{gather*}
+						\overline{\mtrx\Theta}_P = \Mx{A&0&0\\0&A&0\\0&0&C}
+						\quad
+						\vecin{\Omega}{R} = \begin{pmatrix}
+							\omega_{\text{pr}} \\ 0 \\ \Omega
+						\end{pmatrix}
+						\quad
+						\vecin{M}{R}_P^a = \begin{pmatrix}
+							0\\M\\0
+						\end{pmatrix}
+					\end{gather*}
+					
+					Drehung des körperfesten Systems:
+					\[
+						\vecin{\omega}{R}_{IR} = \begin{pmatrix}
+							\omega_{\text{pr}} \\ 0 \\ 0
+						\end{pmatrix}
+					\]
+					
+					Drall des Systems:
+					\[
+						\vecin{L}{R}_P = {}_R\overline{\mtrx\Theta}_P \cdot \vecin{\Omega}{R} = \begin{pmatrix}
+							A\:\omega_{\text{pr}} \\ 0 \\ C\:\Omega
+						\end{pmatrix}
+					\]
+					
+					Drallsatz auswerten:
+					\[
+						{}_R(\dot{\vec L}_P) = \begin{pmatrix}
+							A\:\dot\omega_{\text{pr}} \\ -C\:\Omega\:\omega_{\text{pr}} \\ C\:\dot\Omega
+						\end{pmatrix} \stackrel{!}{=}
+						\vecin{M}{R}_P^a = \begin{pmatrix}
+							0\\M\\0
+						\end{pmatrix}
+					\]
+					
+					Folgerungen:
+					\begin{itemize}
+						\item $\dot\omega_{\text{pr}} = 0 \quad \Rightarrow \quad \omega_{\text{pr}} = \const$
+						\item $\dot\Omega = 0 \quad \Rightarrow \quad \Omega = \const$
+						\item Man bezeichnet \[
+							\omega_{\text{pr}} = - \frac{M}{C\:\Omega}
+						\] als \emph{Präzessionsfrequenz}
+					\end{itemize}
+					
+					\paragraph{Merkregel:} % (fold)
+						Man dreht das Kräftepaar $F$, welches das Moment erzeugt, um $\ang{90}$ im Sinn von $\Omega$. Das neue Kräftepaar zeigt die Ausweichrichtung von $\omega_{\text{pr}}$ an.
+					% paragraph: Merkregel: (end)
+				% subsubsection: Beispiel Symmetrischer Kreisel (end)
+			% subsection: Erzwungene Bewegung eines Kreisels (end)
+		% section: Der Kreisel (end)
+	\end{multicols*}
+	% ============
+	% = Appendix =
+	% ============
+	\appendix
+	\begin{multicols*}{3}
+		\chapter{Anhang}
+		\subsection*{Trigonometrie} % (fold)
+			\begin{center}
+			\begin{tabular}{r|ccccc}
+				\toprule
+				& $\mathbf{0^{\circ}}$ & $\mathbf{30^{\circ}}$ & $\mathbf{45^{\circ}}$ & $\mathbf{60^{\circ}}$ & $\mathbf{90^{\circ}}$\\
+				\midrule
+				$\boldsymbol{\sin}$ & $0$ & $\nicefrac{1}{2}$ & $\nicefrac{\sqrt{2}}{2}$ & $\nicefrac{\sqrt{3}}{2}$ & $1$\\
+				$\boldsymbol{\cos}$ & $1$ & $\nicefrac{\sqrt{3}}{2}$ & $\nicefrac{\sqrt{2}}{2}$ & $\nicefrac{1}{2}$ & $0$\\
+				$\boldsymbol{\tan}$ & $0$ & $\nicefrac{\sqrt{3}}{3}$ & $1$ & $\sqrt{3}$ & $\infty$\\
+				\bottomrule
+			\end{tabular}
+			\end{center}
+			
+			\begin{gather*}
+				\sin x \cos y \pm \sin y \cos x = \sin(x \pm y) \\
+				\cos x \cos y \pm \sin y \sin x = \cos(x \mp y)
+			\end{gather*}
+		% Trigonometrische Funktionen (end)
+		\subsection*{Koordinatensysteme} % (fold)
+			\begin{multicols}{2}
+				\setlength{\mathindent}{.5\mathindent}
+				\paragraph{Zylindrische:} % (fold)
+				\begin{align*}
+					x &= r \cos{\varphi} \\
+					y &= r \sin{\varphi} \\
+					z &= z \\
+					r &= \sqrt{x^2 + y^2} \\
+					\varphi &= \arctan{\frac{y}{x}}
+				\end{align*}
+				
+				\phantom{x}
+				% paragraph: Zylindrische: (end)
+				\paragraph{Sphärische:} % (fold)
+					\begin{align*}
+						x &= r \cos{\varphi} \sin{\theta} \\
+						y &= r \sin{\varphi} \sin{\theta} \\
+						z &= r \cos{\theta} \\
+						r &= \sqrt{x^2 + y^2 + z^2} \\
+						\varphi &= \arctan{\frac{y}{x}} \\
+						\theta &= \arctan{\frac{\sqrt{x^2 + y^2}}{z}} 
+					\end{align*}
+				% paragraph: Sphärische: (end)
+			\end{multicols}
+		% Zylindrische Koordinaten (end)
+		
+		\subsection*{Schwerpunkt} % (fold)
+			\[
+				x_s = \frac{1}{m} \int_K x \: \rho \diff V \qquad \text{mit} \quad
+				m=\int_K \rho \diff V
+			\]
+		% section: Schwerpunkt (end)
+		
+		\subsection*{Kreuzprodukt in der Ebene} % (fold)
+			\[
+				\vec{a} \diamond \vec{b} = a_x b_y - a_y b_x
+			\]
+		% section: Kreuzprodukt in der Ebene (end)
+
+		\subsection*{Kinematik} % (fold)
+			
+			\begin{description}
+				\item[Inertialsystem:]
+				raumfestes System $(\vec{e}_x^I, \vec{e}_y^I)$ mit unbewegtem Ursprung $O$
+				
+				\item[Orientierung:] absolute Winkelauslenkung $\varphi(t) \unit{\radian}$
+			\end{description}
+			
+		% section: Kinematik (end)
+	\end{multicols*}
+\end{document}

@@ -1,0 +1,70 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\subsection{Branch Current Analysis} % (fold)
+	\begin{enumerate}
+		\item assign a current to each branch
+		\item apply KVL around each closed loop
+		\item apply KCL at nodes which inlcude all the currents
+		\item solve the linear equations
+	\end{enumerate}
+	
+	\begin{wrapfigure}[0]{r}{.5\columnwidth}
+		\vspace{-5mm}
+		\circuitw{branch_current_analysis}{.55\columnwidth}
+	\end{wrapfigure}
+	
+	\begin{gather*}
+		E_1 - R_1 \, I_1 - I_3\, R_3 = 0 \\
+		E_2 + R_2 \, I_2 - I_3 \, R_3 = 0 \\
+		I_1 - I_2 - I_3 = 0
+	\end{gather*}
+% subsection: Branch Current Analysis (end)
+
+\subsection{Mesh Analysis} % (fold)
+	
+	\begin{enumerate}
+		\item assign a current to each branch
+		\item apply KVL around each closed loop
+		\item solve the linear equations
+	\end{enumerate}
+
+	\begin{wrapfigure}[0]{r}{.425\columnwidth}
+		\vspace{-7.5mm}
+		\circuitw{mesh_analysis}{.5\columnwidth}
+	\end{wrapfigure}
+	\begin{gather*}
+		E_1 - R_1 \, I_1 - R_3 (I_1-I_2) = 0 \\
+		-R_2 \, I_2 - E_2 - R_3(I_2 - I_1) = 0
+	\end{gather*}
+	
+	If the circuit contains \emph{current sources}:
+	\begin{enumerate}
+		\item assign meshes that go through at most one current source
+		\item if the mesh passes a current source, this current will be the mesh current, otherwise assign a distinct current.
+		\item apply KVL around each closed loop
+		\item solve the linear equations
+	\end{enumerate}
+	
+% subsection: Mesh Analysis (end)
+
+\subsection{Nodal Analysis} % (fold)
+	
+	\begin{enumerate}
+		\item determine the number of nodes within the network
+		\item pick a reference node and label the other nodes with a voltage
+		\item apply KCL at each node except the reference
+		\item solve the linear equations
+	\end{enumerate}
+	
+	\begin{wrapfigure}[0]{r}{.45\columnwidth}
+		\vspace{-1.2cm}
+		\circuitw{nodal_analysis}{.45\columnwidth}
+	\end{wrapfigure}
+	
+	\begin{gather*}
+		\frac{V_1 - E}{R_1} + I + \frac{V_1-V_2}{R_2} = 0 \\
+		\frac{V_2 - V_1}{R_2} - I + \frac{V_2}{R_3} = 0
+	\end{gather*}
+	
+	\hspace{2pt}
+% subsection: Nodal Analysis (end)

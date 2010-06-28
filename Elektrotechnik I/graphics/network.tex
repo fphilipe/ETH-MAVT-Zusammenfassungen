@@ -1,0 +1,33 @@
+%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+
+\begin{circuitikz}[scale=1]
+	\begin{scope}[line cap=rect,draw opacity=.3,line width=10pt]
+		\draw[draw=green] (0,1.4) -- (0,0) -- (4,0) -- (4,1.4) -- (4,0) -- (6,0) -- (6,.4) -- (6,0) -- (10,0) -- (10,1.4);
+		\draw[draw=red] (0,2.6) -- (0,4) -- (1.2,4);
+		\draw[draw=blue] (2.8,4) -- (4,4) -- (4,2.6) -- (4,4) -- (6,4) -- (6,3.6) -- (6,4) -- (7.2,4);
+		\draw[draw=yellow] (8.7,4) -- (10,4) -- (10,2.6);
+		\draw[draw=purple] (6,1.8) -- (6,2.2);
+	\end{scope}
+
+	\begin{scope}
+		\filldraw
+		(0,0) to[voltage source] (0,4)
+		      to[R] (4,4)
+		      to[short, *-*] (6,4)
+		      to[R] (10,4);
+		\filldraw
+		(0,0) to[short] (4,0)
+		      to[short, *-*] (6,0)
+		      to[short] (10,0)
+		      to[current source] (10,4);
+		\filldraw (4,0) to[R] (4,4);
+		\filldraw (6,0) to[R] (6,2) to[R] (6,4);
+	\end{scope}
+
+	\begin{scope}[dashed, line width=1pt, rounded corners=10pt]
+		\draw(.5,.5) rectangle (3.5,3.5);
+		\draw(-.5,-.5) rectangle (10.5,4.5);
+		\draw(4.5,.5) rectangle (5.5,3.5);
+		\draw(6.5,.5) rectangle (9.5,3.5);
+	\end{scope}
+\end{circuitikz}
