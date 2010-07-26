@@ -41,6 +41,7 @@
 \DeclareMathOperator{\Kern}{Kern}
 \DeclareMathOperator{\diag}{diag}
 \DeclareMathOperator{\arccot}{arccot}
+\DeclareMathOperator{\Adj}{Adj}
 \DeclareMathOperator{\arsinh}{arsinh}
 \DeclareMathOperator{\arcosh}{arcosh}
 \DeclareMathOperator{\artanh}{artanh}
@@ -157,3 +158,23 @@ FIX+}}{\Include[TP]{#2}{#3}{#4}}{\lecturedate{\formatdate{#2}{#3}{20#4}}\input{l
 % 1/2 fractions
 \newcommand{\half}{\ensuremath{\frac{1}{2}}}
 \newcommand{\nicehalf}{\ensuremath{\nicefrac{1}{2}}}
+
+%% tighter itemize
+\newenvironment{tightitemize}
+	{
+	\begin{itemize}
+	\setlength{\itemsep}{2pt}
+	\setlength{\parskip}{0pt}
+	\setlength{\parsep}{0pt}
+	}
+	{\end{itemize}}
+
+%% tighter enumerate
+\newenvironment{tightenumerate}
+	{
+	\begin{enumerate}
+	\setlength{\itemsep}{2pt}
+	\setlength{\parskip}{0pt}
+	\setlength{\parsep}{0pt}
+	}
+	{\end{enumerate}}
