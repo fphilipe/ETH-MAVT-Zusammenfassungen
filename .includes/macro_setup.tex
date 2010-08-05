@@ -178,3 +178,49 @@ FIX+}}{\Include[TP]{#2}{#3}{#4}}{\lecturedate{\formatdate{#2}{#3}{20#4}}\input{l
 	\setlength{\parsep}{0pt}
 	}
 	{\end{enumerate}}
+
+%% Handy Envs
+\newenvironment{definition}
+	{\textsc{Definition:}\ }
+
+\newenvironment{theorem}
+	{\textsc{Theorem:}\ }
+
+\newenvironment{notation}
+	{\textsc{Notation:}\ }
+
+\newenvironment{beispiel}
+	{\textsc{Beispiel:}\ }
+
+\newenvironment{satz}
+	{\textsc{Satz:}\ }
+
+\newenvironment{bedingung}
+	{\textsc{Bedingung:}\ }
+
+\newenvironment{bedingungen}
+	{
+	\textsc{Bedingungen:}
+	\vspace{-2ex}
+	\begin{tightitemize}
+	}
+	{\end{tightitemize}}
+
+\newenvironment{bemerkung}
+	{\textsc{Bemerkung:}\ }
+	
+\newenvironment{bemerkungen}
+	{
+	\textsc{Bemerkungen:}
+	\vspace{-2ex}
+	
+	\begin{tightitemize}
+	}
+	{\end{tightitemize}}
+
+\newenvironment{folgerung}
+	{\textsc{Folgerung:}\ }
+
+\newenvironment{regeln}
+	{\textsc{Regeln:}\ }
+
