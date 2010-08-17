@@ -198,6 +198,9 @@ FIX+}}{\Include[TP]{#2}{#3}{#4}}{\lecturedate{\formatdate{#2}{#3}{20#4}}\input{l
 \newenvironment{bedingung}
 	{\textsc{Bedingung:}\ }
 
+\newenvironment{achtung}
+	{\textsc{Achtung:}\ }
+
 \newenvironment{bedingungen}
 	{
 	\textsc{Bedingungen:}
@@ -212,7 +215,6 @@ FIX+}}{\Include[TP]{#2}{#3}{#4}}{\lecturedate{\formatdate{#2}{#3}{20#4}}\input{l
 \newenvironment{bemerkungen}
 	{
 	\textsc{Bemerkungen:}
-	\vspace{-2ex}
 	
 	\begin{tightitemize}
 	}
@@ -221,6 +223,21 @@ FIX+}}{\Include[TP]{#2}{#3}{#4}}{\lecturedate{\formatdate{#2}{#3}{20#4}}\input{l
 \newenvironment{folgerung}
 	{\textsc{Folgerung:}\ }
 
-\newenvironment{regeln}
-	{\textsc{Regeln:}\ }
+\newenvironment{algo}
+	{\textsc{Algorithmus:}\ }
 
+\newenvironment{folgerungen}
+	{
+	\textsc{Folgerungen:}
+	
+	\begin{tightitemize}
+	}
+	{\end{tightitemize}}
+
+\newenvironment{regeln}
+	{
+	\textsc{Regeln:}
+	
+	\begin{tightitemize}
+	}
+	{\end{tightitemize}}
