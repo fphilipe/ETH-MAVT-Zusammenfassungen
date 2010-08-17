@@ -1,0 +1,131 @@
+%!TEX root = ../Numerische Mathematik.tex
+
+\section{Spektralradius}
+	\begin{lstlisting}[style=list]
+D = diag(diag(M));
+R = triu(M) - D;
+L = tril(M) - D;
+T = D\(-L-R);
+max(abs(eig(T)));
+	\end{lstlisting}
+
+\section{Jacobi-Verfahren} 
+	\begin{lstlisting}[style=list]
+while ( iter < maxIter )
+	iter = iter + 1;
+	x_old = x;
+	x = D\((-L-R)*x + b); % Jacobi iteration without inverse
+	if ( norm(x-x_old)/norm(x) < tol ) break; end % converged
+end
+	\end{lstlisting}
+
+\section{Newton-Verfahren} 
+	\begin{lstlisting}[style=list]
+function[x_new, iter] = my_newton(x0,tol,maxit)
+x_old = x0;
+for iter=1:maxit
+	Delta = -Df(x_old)\f(x_old);
+	x_new = x_old + Delta;
+	if ( norm(x_new-x_old) < tol*norm(x_new) )
+		return
+	end
+	x_old = x_new
+end
+	\end{lstlisting}
+	
+\section{Quasi-Newton-Verfahren} 
+	\begin{lstlisting}[style=list]
+function[x_new,iter] = my_quasi_newton(x0,tol,maxit)
+x_old = x0;
+J = Df(x_old);
+for iter=1:maxit
+	Delta = -J\f(x_old);
+	x_new = x_old + Delta;
+	if ( norm(x_new-x_old) < tol*norm(x_new) )
+		return;
+	end
+	x_old = x_new;
+end
+	\end{lstlisting}
+
+\section{Fourier-Transform} 
+	\begin{lstlisting}[style=list]
+% Plotten der diskreten Funktionswerte
+plot(x_k,f_k,'*');
+hold on
+% Berechnen der komplexen Koeffizienten
+c = fft(f_k/N);
+
+% Einfuegen von M-N Nullen
+c_star = [c(1:N/2), zeros(1,M-N), c(N/2+1:end)];
+% Auswertung des trigonometrischen Polynoms auf feinem Gitter
+x_star = 2*pi/M*[0:M-1];
+f_star = M*ifft(c_star);
+	\end{lstlisting}
+
+\section{Runge-Kutta-Verfahren -- Butcher-Tableau} 
+	\begin{lstlisting}[style=list]
+A = [0 0 0; .5 0 0; -1 2 0];
+c = [0 .5 1]';
+b = 1/6*[1 4 1]';
+s = length(c); % Anzahl Stufen des RK Verfahrens
+K = zeros(n,s); % Matrix mit K = [k_1,...,k_s]
+
+% k Schritte
+for j=1:k
+	x_alt = x_hist(:,j);
+	% s Stufen
+	for i=1:s
+		% Achtung: so nur falls Verfahren explizit, sonst Gl.sys. nach K(:,i) loesen.
+		K(:,i) = f(t+c(i)*h, x_alt+h*K*A(i,:)');
+	end
+	x_hist(:,j+1) = x_alt+h*K*b;
+	t = t+h;
+end
+	\end{lstlisting}
+
+\section{Implizite Mittelpunktsregel}
+	\begin{lstlisting}[style=list]
+function[y_neu] = impl_mp_schritt(fct,t,y,h)
+% Parameter fuer Fixpunktiter.
+tol = 1e-6;
+maxit = 100;
+% Startwert fuer Fixpunktiteration
+y_neu = y+h*fct(t,y);
+y_vorh_schritt = y_neu;
+for i=1:maxit
+	y_neu = y+h*fct(t+h/2,(y+y_neu)/2);
+	% Abbruchkriterium
+	if ( norm(y_neu-y_vorh_schritt) < tol+tol*norm(y_neu) )
+		return
+	end
+	y_vorh_schritt = y_neu;
+end
+disp('Fixpunktiteration hat nicht konvergiert')
+	\end{lstlisting}
+
+\section{Verfahren von Heun}
+	\begin{lstlisting}[style=list]
+function[t,y] = simple_heun(f,t0,y0,h,T)
+%---------------------------------------
+% Verfahren von Heun zum Loesen der ODE
+%    y'=f(t,y), y(t0)=y0
+%  f: Funktionshandle auf f(t,y)
+% y0: Anfangswerte
+% t0: Anfangszeit
+%  h: Schrittweite
+%  T: Endzeitpunkt
+%  t: Zeitpunkte t_k in [t0, T]
+%  y: Approximationen zu Zeitpunkten t
+%---------------------------------------
+t = t0;
+y = y0;
+ct = 1;
+while ( t(ct) < T )
+	f_ = f(t(ct), y(:,ct));
+	y_temp = y(:,ct) + h*f_;
+	y(:ct+1) = y(:,ct) + h/2*(f_ + f(t(ct) + h, y_temp));
+	t(ct+1) = t(ct) + h;
+	ct = ct+1;
+end
+	\end{lstlisting}

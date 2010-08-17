@@ -1,0 +1,82 @@
+\documentclass[9pt,fleqn,article,ngerman]{memoir}
+
+\usepackage[usenames,dvipsnames]{color}
+
+\title{Numerische Mathematik -- Zusammenfassung}
+\date{\today}
+\author{Philipe Fatio}
+
+\input{../.includes/layout_setup}
+\input{../.includes/page_setup}
+\input{../.includes/extra_packages}
+\input{../.includes/macro_setup}
+
+\hypersetup{
+    pdffitwindow=true,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Numerische Mathematik -- Zusammenfassung},    % title
+    pdfauthor={Philipe Fatio},     % author
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links
+    citecolor=black,        % color  of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=black           % color of external links
+}
+
+\numberwithin{equation}{section}
+
+\newcommand{\vek}{\ensuremath{\underline}}
+\settocdepth{section}
+
+% Code Listings
+\usepackage[formats]{listings}
+\lstdefinestyle{list}{
+	language=Matlab,
+	% numbering
+	numbers=left,
+	numberstyle=\ttfamily\scriptsize\bfseries\color{black},
+	numbersep=7.5pt,
+	% frame
+	frame=single,
+	framerule=0pt,
+	framexleftmargin=7.5mm,
+	framexrightmargin=1.85mm,
+	xleftmargin=15pt,
+	% style
+	basicstyle=\ttfamily\footnotesize,
+	identifierstyle=\color{NavyBlue}, 
+	commentstyle=\color{ForestGreen},
+	stringstyle=\color{RedOrange},
+	keywordstyle=\color{RedViolet},
+	morekeywords={string},
+	backgroundcolor=\color{White},
+	showstringspaces=false,
+	tabsize=2,
+	breaklines=true
+}
+\lstset{
+	language=Matlab,
+	basicstyle=\ttfamily\normalsize,
+	identifierstyle=\color{NavyBlue}, 
+	commentstyle=\color{ForestGreen}\itshape,
+	stringstyle=\color{RedOrange}\itshape,
+	keywordstyle=\color{RedViolet},
+	morekeywords={string},
+	showstringspaces=false
+}
+
+\begin{document}
+\content{titelseite}
+\footnotesize{
+\begin{multicols*}{3}
+	\content{inhalt}
+\end{multicols*}
+\appendix
+\begin{multicols*}{3}
+	\chapter{MATLAB}
+	\settocdepth{chapter}
+	\content{anhang}
+\end{multicols*}
+}
+\end{document}
