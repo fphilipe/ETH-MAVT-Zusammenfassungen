@@ -1,0 +1,98 @@
+%!TEX root = ../Thermodynamik II (LTNT).tex
+
+\section{Grundlagen der Konvektion} % (fold)
+	Konvektion ist der Wärmestransport durch die Bewegung eines Fluids.
+	
+	\subsection{Einführung in den konvektiven Wärmeübergang} % (fold)
+		Mittlerer $\alpha$-Wert:
+		\emphequation{equation*}{
+			\overline\alpha = \frac{1}{A_0} \int_{A_0} \alpha \diff A_0
+		}
+		Für den Fall einer ebenen Platte:
+		\emphequation{equation*}{
+			\overline\alpha = \frac{1}{L} \int_{0}^L \alpha(x) \diff x
+		}
+		
+		Die Berechnung des konvektiven Wärmeübergangs erfordert die Kenntnis der lokalen und mittleren Wärmeübergangskoeffizienten, welche von den lokalen der sich ausbildenden Grenzschicht abhängen.
+		
+		\textbf{Einflussfaktoren:}
+		\begin{itemize}
+			\item Geometrie und Rauhigkeit der Oberfläche
+			\item Zustand der Strömung (laminar oder turbulent)
+			\item Eigenschaften der Flüssigkeit (Viskosität, spezifische Wärme)
+		\end{itemize}
+	% subsection einführung_in_den_konvektiven_wärmeübergang (end)
+	
+	\subsection{Erhaltungsgleichung für 2D-Konvektion} % (fold)
+		\subsubsection{Die Kontinuitätsgleichung} % (fold)
+			Im stationären Fall für ein inkompressibles Fluid ($\rho = \const$):
+			\emphequation{equation*}{
+				\frac{\partial u}{\partial x} + \frac{\partial v}{\partial y} = 0
+			}
+			Allgemein in Vektorform:
+			\[
+				\Div(\rho \cdot \vec v) = 0
+			\]
+		% subsubsection die_kontinuitätsgleichung (end)
+		\subsubsection{Impulserhaltungsgleichung} % (fold)
+			 Die Änderung des \textbf{Impulsstromes} im Kontrollvolumen ist gleich den wirkenden \textbf{Oberflächenkräften} und der \textbf{Volumenkraft}.
+			
+			Durch Umformung der \emph{Navier-Stokes-Gleichung} erhält man für konstante Stoffeigenschaften:
+			\emphequation{align*}{
+				\rho \parens{
+					u \frac{\partial u}{\partial x} + v \frac{\partial u}{\partial y}
+				} &= - \frac{\partial P}{\partial x} + \mu \parens{
+					\frac{\partial^2 u}{\partial x^2} + v \frac{\partial^2 u}{\partial y^2}
+				} + \rho g_x \\
+				\rho \parens{
+					u \frac{\partial v}{\partial x} + v \frac{\partial v}{\partial y}
+				} &= - \frac{\partial P}{\partial y} + \mu \parens{
+					\frac{\partial^2 v}{\partial x^2} + v \frac{\partial^2 v}{\partial y^2}
+				} + \rho g_y
+			}
+			
+			In Vektorform:
+			\[
+				\rho \parens{\vec V \cdot \nabla} \vec V = - \vec V P + \mu \nabla^2 \cdot \vec V + \rho \vec g
+			\]
+			wobei:
+			$
+				\vec V = \vec i \cdot u + \vec j \cdot v
+			$
+		% subsubsection impulserhaltungsgleichung (end)
+		\subsubsection{Die Energieerhaltungsgleichung} % (fold)
+			Vollständige Form der Energiegleichung:
+			\emphequation{equation*}{
+				\rho c \parens{
+					u \frac{\partial T}{\partial x} + v \frac{\partial T}{\partial y}
+				} = \frac{\partial}{\partial x} \parens{\lambda \frac{\partial T}{\partial x}} + 
+				\frac{\partial}{\partial y} \parens{\lambda \frac{\partial T}{\partial y}} + 
+				\mu\Phi + \dot Q_\text{Quellen}'''
+			}
+			wobei: \[
+				\Phi = \parens{
+					\frac{\partial u}{\partial y} + \frac{\partial v}{\partial x}
+				}^2 - 4 \parens{
+					\frac{\partial u}{\partial x} \cdot \frac{\partial v}{\partial y}
+				}
+			\]
+			
+			Vorausgesetzt, dass die \emph{Wärmeleitfähigkeit konstant} ist und \emph{keine Wärmequellen} vorhanden sind, vereinfacht sich die Gleichung zu:
+			\emphequation{equation*}{
+				\parens{
+					u \cdot \frac{\partial T}{\partial x} + v \cdot \frac{\partial T}{\partial y}
+				} = a \parens{
+					\frac{\partial^2 T}{\partial x^2} + \frac{\partial^2 T}{\partial y^2}
+				}
+			}
+			In Vektorform:
+			\[
+				\vec V \cdot \grad T = a\cdot \nabla^2T
+			\]
+			
+			\paragraph{Anmerkung:} % (fold)
+				Der Term $\Phi$ beinhaltet nicht lineare Terme, die das chaotische Verhalten der Turbulenz beschreiben. Dessen Weglassung bedeutet, dass wir uns auf laminare Strömungen beschränken.
+			% paragraph anmerkung_ (end)
+		% subsubsection die_energieerhaltungsgleichung (end)
+	% subsection erhaltungsgleichung_für_2d_konvektion (end)
+% section grundlagen_der_konvektion (end)
