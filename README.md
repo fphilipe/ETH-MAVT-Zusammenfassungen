@@ -4,6 +4,8 @@ Alle Zusammenfassungen, die ich während meines Studiums an der ETH Zürich im S
 
 Hier sind auch alle Source-Files als Git Repository zu finden. Du kannst also die Zusammenfassungen nach belieben bearbeiten.
 
+Bei Fragen kannst du mich unter meiner ETH Email fatiop@... erreichen.
+
 ## Anleitung zum Download der Source-Files
 
 1. Installiere Git ([Anleitung](http://help.github.com/git-installation-redirect))
@@ -25,7 +27,7 @@ Ich verwende zur Erstellung meiner Zusammenfassungen den Editor [TextMate](http:
 * Mit ⌘R wird das Dokument kompiliert und im Default PDF Programm angezeigt.
 * Mit ⌃⌘W wird das Dokument beobachtet, d.h. bei jedem Speichern wird das Dokument kompiliert und das PDF Programm lädt die aktuelle Version automatisch (funktioniert nicht in allen PDF Viewers, daher empfehle ich [Skim](http://skim-app.sourceforge.net/)).
 
-## Rechtlich
+## Kleingedrucktes
 
 Alle Zusammenfassungen wurden von mir (Philipe Fatio) erstellt. Sie basieren meistens auf den Skripts der jeweiligen Vorlesungen. Einige Zusammenfassungen basieren auf ältere Zusammenfassungen von Studenten aus früheren Jahrgängen oder sind in Zusammenarbeit mit Mitstudenten entstanden und sind dementsprechend gekennzeichnet.
 
