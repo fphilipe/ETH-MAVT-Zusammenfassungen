@@ -1,0 +1,173 @@
+%!TEX root = ../Physik II.tex
+
+\section{Konstanten} % (fold)
+	{
+		\setlength{\mathindent}{0pt}
+		\begin{equation*}
+			\begin{array}{@{}l@{\quad}r@{\:=\:}l}
+				\text{Lichtgeschwindigkeit:} & c & \SI{3.00e8}{\metre\per\second} \\
+				\text{Influenzkonstante:} & \epsilon_0 & \frac{10^7}{4\pi c^2} = \SI{8.85e-12}{\ampere\second\per\volt\per\metre} \\
+				\text{Induktionskonstante:} & \mu_0 & \num[numaddn=\pi,mathsrm=mathnormal]{4\pi e-7}\SI{}{\volt\second\per\ampere\per\metre} \\
+				\text{Elementarladung:} & e & \SI{1.60e-19}{\ampere\second} \\
+				\text{Bolzmannkonstante:} & k_B & \SI{1.38e-23}{\joule\per\kelvin} \\
+				\text{Avogadrozahl:} & N_A & \SI{6.02e23}{\per\mole} \\
+				\text{Gaskonstante:} & R & k_B N_A = \SI{8.31}{\joule\per\kelvin\per\mole} \\
+				\text{Erdbeschleunigung:} & g & \SI{9.81}{\metre\per\Square\second} \\
+				\text{Plank'sches Wirkungsquantum:} & h & \SI{6.62e-34}{\joule\sec}
+			\end{array}
+		\end{equation*}
+	}
+% section: Konstanten (end)
+
+\section{Mathematische Grundlagen} % (fold)
+	
+	\subsection{Der Feldbegriff} % (fold)
+		
+		\begin{description}
+			
+			\item[Skalarfeld]
+			weist jedem Punkt $(x,y,z)$ eine skalare Grösse (zur Zeit $t$) zu.
+			
+			\item[Vektorfeld]
+			weist jedem Punkt $(x,y,z)$ einen Vektor (zur Zeit $t$) zu.
+			
+		\end{description}
+		
+	% subsection: Der Feldbegriff (end)
+	
+	\subsection{Einführung in die Vektoranalysis} % (fold)
+		
+		\subsubsection{Differentiation von skalaren Feldern -- der Gradient} % (fold)
+			
+			\begin{definition}
+				\textbf{Gradient} $\grad$ vom skalaren Feld $T(x,y,z)$ ist
+				\[
+					\gradient T = \grad T = (\grad_x T, \grad_y T, \grad_z T) = \left( \frac{\partial T}{\partial x}, \frac{\partial T}{\partial y}, \frac{\partial T}{\partial z} \right)
+				\]
+			\end{definition}
+			
+			Die Differenz von zwei Punkten eines Skalarfeldes ist
+			\[
+				\Delta T = \grad T \cdot \overrightarrow{P_1 P_2}
+			\]
+			
+			\begin{satz}
+				Der Gradient eines Feldes $F(x,y,z)$ steht senkrecht auf den Flächen $F(x,y,z) = \const$.
+			\end{satz}
+			
+		% subsubsection: Differentiation von skalaren Feldern -- der Gradient (end)
+		
+		\subsubsection{Der Operator $\grad$} % (fold)
+			
+			\paragraph{Vektoroperator} % (fold)
+				\[
+					\grad = \left( \frac{\partial}{\partial x}, \frac{\partial}{\partial y}, \frac{\partial}{\partial z} \right)
+				\]
+			% paragraph: Vektoroperator (end)
+			
+			\[
+				\begin{array}{r@{\ =\ }l@{\ \rightarrow \ }l}
+					\grad T & \gradient T & \text{Vektor} \\
+					\Div \vec{h} & \divergenz \vec{h} & \text{Skalar} \\
+					\rot \vec{h} & \rotation \vec{h} & \text{Vektor}
+				\end{array}
+			\]
+			
+			\paragraph{Beziehungen} % (fold)
+				\begin{gather*}
+					\rotation(\gradient T) = \rot (\grad T) = 0 \\
+					\divergenz(\rotation \vec{h}) = \Div (\rot \vec{h}) = 0
+				\end{gather*}
+				
+				\begin{theorem}
+					Wenn die Rotation eines Vektorfeldes $\vec{A}$ verschwindet ($\rot \vec{A} = 0$), dann ist $\vec{A}$ immer der Gradient eines skalaren Feldes $\phi$, so dass $\vec{A} = \grad \phi$.
+				\end{theorem}
+				
+				\begin{theorem}
+					Wenn die Divergenz eines Vektorfeldes verschwindet ($\Div \vec{D} = 0$), dann existiert immer ein Vektorfeld $\vec{C}$, so dass gilt $\vec{D} = \rot \vec{C}$.
+				\end{theorem}
+				
+				\subparagraph{Laplace-Operator} % (fold)
+					
+					\[
+						\grad^2 T = T_{xx} + T_{yy} + T_{zz}
+					\]
+					
+					Kann auch auf ein Vektorfeld angewendet werden, wobei sich wieder ein Vektorfeld ergibt.
+					
+				% subparagraph: Laplace-Operator (end)
+			% paragraph: Beziehungen (end)
+			
+		% subsubsection: Der Operator $\grad$ (end)
+		
+	% subsection: Einführung in die Vektoranalysis (end)
+	
+	\subsection{Wichtige Vektorintegrale} % (fold)
+		
+		\subsubsection{Das Linienintegral von $\grad \phi$} % (fold)
+			
+			\[
+				\phi(2) - \phi(1) = \int_{\mathrlap{
+					\footnotesize{\begin{array}{@{}l@{}}
+						(1) \\[-1ex]
+						\text{längs } \Gamma
+					\end{array}}}
+				}^{(2)} (\grad \phi) \cdot \diff \vec{s}
+			\]
+			
+		% subsubsection: Das Linienintegral von $\grad \phi$ (end)
+		
+		\subsubsection{Die Zirkulation eines Vektorfeldes} % (fold)
+			
+			Das Integral eines beliebigen Vektorfeldes $\vec{C}$ um einen \emph{geschlossenen} Weg $\Gamma$ nennt man Zirkulation des Vektorfeldes $\vec{C}$ um $\Gamma$:
+			\[
+				\oint_{\Gamma} \vec{C} \cdot \diff \vec{s} = \oint_{\Gamma} C_t \diff s
+			\]
+			wobei $C_t$ die Tangentialkomponente von $C$ ist.
+			
+		% subsubsection: Die Zirkulation eines Vektorfeldes (end)
+		
+		\subsubsection{Der Satz von Stokes} % (fold)
+			
+			\[
+				\oint_{\Gamma} \vec{C} \cdot \diff \vec{s} = \int_S (\rot \vec{C} ) \cdot \vec{n} \diff f = \int_S (\rot \vec{C} ) \cdot \diff \vec{f}
+			\]
+			wobei $S$ \emph{irgendeine} von $\Gamma$ berandete Fläche ist und $\vec{n}$ ein Vektor, der senkrecht auf dem Flächenelement $\diff f$ steht und die Länge $\diff f$ hat.
+			
+		% subsubsection: Der Satz von Stokes (end)
+		
+		\subsubsection{Der Fluss eines Vektorfeldes} % (fold)
+			
+			Fluss von $\vec{h}$ durch die Fläche $S$:
+			\[
+				\int_S \vec{h} \cdot \diff \vec{f}
+			\]
+			wobei $\diff \vec{f}$ vom Volumen heraus zeigt.
+			
+		% subsubsection: Der Fluss eines Vektorfeldes (end)
+		
+		\subsubsection{Der Satz von Gauss} % (fold)
+			
+			\[
+				\int_S \vec C \cdot \diff \vec f = \int_V \Div \vec C \diff V
+			\]
+			wobei $S$ \emph{irgendeine} geschlossene Fläche und $V$ das von ihr umschlossene Volumen ist.
+			
+		% subsubsection: Der Satz von Gauss (end)
+		
+	% subsection: Wichtige Vektorintegrale (end)
+	
+	\subsection{Fourier-Transformation} % (fold)
+		\paragraph{Orts- $\rightarrow$ Impulsraum} % (fold)
+			\[
+				A(k_y) = \sqrt{\frac{1}{2\pi}} \int_{-\infty}^{\infty} f(y) \, \eu^{-\iu k_y y} \diff y
+			\]
+		% paragraph orts_rightarrow_impulsraum (end)
+		\paragraph{Impuls- $\rightarrow$ Ortsraum} % (fold)
+			\[
+				f(y) = \sqrt{\frac{1}{2\pi}} \int_{-\infty}^{\infty} A(k_y) \, \eu^{\iu k_y y} \diff k_y
+			\]
+		% paragraph impuls_rightarrow_ortsraum (end)
+	% subsection fourier_transformation (end)
+	
+% section: Mathematische Grundlagen (end)
