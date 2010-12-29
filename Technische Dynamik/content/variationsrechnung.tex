@@ -1,0 +1,213 @@
+%!TEX root = ../Technische Dynamik Zusammenfassung.tex
+
+\section{Variationsrechnung} % (fold)
+	
+	\subsection{Vorbemerkungen} % (fold)
+		
+		\begin{definition}
+			Eine Menge $V$ heisst \emph{Vektorraum über $\R$}, wenn 
+			\begin{tightitemize}
+				\item für beliebige $a, b, c \in V$ gilt:
+					\begin{gather*}
+						a + b = b + a \tag{kommutativ} \\
+						a + (b + c) = (a + b) + c \tag{assoziativ} \\
+						a + 0 = 0 + a = a \tag{neutrales Element} \\
+						a + (-a) = (-a) + a = 0 \tag{inverses Element}
+					\end{gather*}
+				\item eine Skalarmultiplikation $V \ni a \to \alpha \cdot a \in V$ mit $a \in \R$ definiert ist, dass
+					\begin{gather*}
+						\alpha (a + b) = \alpha a + \alpha b \\
+						(\alpha + \beta) a = \alpha a + \beta a \tag{distributiv} \\
+						\alpha \cdot \beta) \cdot a = \alpha \cdot (\beta \cdot a) \tag{assoziativ}
+					\end{gather*}
+			\end{tightitemize}
+			
+			Handelt es sich bei den Vektoren um \emph{Funktionen} $\vec{f}: \R^{n} \supseteq D \to \R^{m}$, dann spricht man von einem (reellen) \emph{Funktionenraum}.
+		\end{definition}
+		
+		\begin{definition}
+			Sei $V$ Vektorraum über $\R$ und $D \subseteq V$. Eine Abbildung $I: D \to \R$, die jeden Vektor $v \in D$ eine reelle Zahl $I(v)$ zuordnet, heisst \emph{Funktional} auf $D$.
+		\end{definition}
+		
+	% subsection vorbemerkungen (end)
+	
+	\subsection{Die Euler-Gleichung der Variationsrechnung} % (fold)
+		Finde $y(x)$ mit $y(x_0) = y_0$, $y(x_1) = y_1$ so, dass $I(y) = \int_{x_0}^{x_1} \underbrace{F(x,y(x),y'(x))}_\text{Lagrange-Funktion} \diff x \stackrel{!}{\longrightarrow}$ minimal oder stationär. \\
+		Betrachte dazu \emph{beliebige} Kurvenscharen $\eta(\epsilon,x)$, wobei $\eta(\epsilon_0,x) = y(x)$ die gesuchte Kurve ist und $\eta(\epsilon \neq \epsilon_0,x) = y(x)$ Vergleichskurven sind und alle $\epsilon$ die Randbedingungen erfüllen:
+		\begin{gather*}
+			\eta(\epsilon,x_0) = y_0 \ \Rightarrow \ \eta_\epsilon(\epsilon,x_0) \equiv 0 \\
+			\eta(\epsilon,x_1) = y_1 \ \Rightarrow \ \eta_\epsilon(\epsilon,x_1) \equiv 0
+		\end{gather*}
+		\emphequation{equation*}{
+			h(\epsilon) := I(\eta(\epsilon,\cdot)) = \int_{x_0}^{x_1} F(x,
+				\underbrace{\eta(\epsilon,x)}_{y},
+				\underbrace{\eta_x(\epsilon,x)}_{y'}
+			) \diff x \stackrel{!}{\longrightarrow} \text{stationär}
+		}
+		Ist $y(x) = \eta(\epsilon_0, x)$ eine Lösung des Variationsproblems, dann muss $h'(\epsilon_0) \stackrel{!}{=} 0$ sein.
+
+		\paragraph{Fundamental-Lemma der Variationsrechnung} % (fold)
+			Gilt für eine stetige Funktion $F: [a, b] \to \R$, dass $\int_a^b f(x) \cdot g(x) \diff x = 0$ für jede glatte Funktion $g(x)$ mit $g(a) = g(b) = 0$, dann ist $f \equiv 0$.
+		% paragraph Fundamental-Lemma der Variationsrechnung (end)
+		
+		\paragraph{Euler-Gleichung} % (fold)
+			ist eine notwendige Bedingung für ein Minimum und ist eine gewöhnliche Dgl. 2. Ordnung.
+			\emphequation{equation*}{
+				\frac{\partial F}{\partial y} - \frac{\diff}{\diff x}\parens{\frac{\partial F}{\partial y'}} = 0
+			}
+			\subparagraph{Sonderfälle} % (fold)
+				\begin{enumerate}[a)]
+					\item $\boldsymbol{F = F(x,y')}$
+						$
+							\Rightarrow \ F_{y'}(x,y'(x)) = \const
+						$ \\
+						Löse nach $y'$ auf; integriere $\Rightarrow \ y(x)$.
+						
+					\item $\boldsymbol{F = F(x,y)}$
+						$
+							\Rightarrow \ F_y(x,y(x)) = 0
+						$
+						
+					\item $\boldsymbol{F = F(y,y')}$
+						$
+							\Rightarrow \ F - F_{y'} \cdot y' = \const
+						$ \\
+						Löse nach $y'(x) = \Phi(y(x))$ auf; integriere $\Rightarrow \ y(x)$.
+				\end{enumerate}
+			% subparagraph Sonderfälle (end)
+		% paragraph Euler-Gleichung (end)
+	% subsection (end)
+	
+	\subsection{Variationsprobleme und gewöhnliche Differentialgleichungen} % (fold)
+		\begin{description}
+			\item[Gegeben] sei eine Dgl der Form
+				\begin{equation}\label{eq:selbstadj}
+					a_2(x) y'' + a_1(x) y' + a_0(x) y = f(x) \ .
+				\end{equation}
+				
+			\item[Gesucht] ist nun das zugehörige Variationsproblem.
+		
+			\item[Schritt 1:] Stelle ``selbstadjungierte Form'' von \eqref{eq:selbstadj} her:
+				\[
+				 p(x) y'' + \underbrace{p(x) \frac{a_1(x)}{a_2(x)}}_{=: p'(x)} y' + \underbrace{p(x) \frac{a_0(x)}{a_2(x)}}_{=: q(x)} y = \underbrace{p(x) \frac{f(x)}{a_2(x)}}_{=:h(x)}
+				\]
+				\begin{gather*}
+					\Rightarrow p(x) = e^{\frac{a_1}{a_2} \cdot x} \\
+					(p(x) y')' - (h(x) - q(x) y) = 0 = \frac{\diff}{\diff x}(F_{y'}) - F_y
+				\end{gather*}
+			
+			\item[Schritt 2:] Finde Lagrange-Funktion:
+				\begin{align*}
+					F_{y'} &= p(x) y' \\
+					\Rightarrow F(x,y,y') &= \half p(x) y'^2 - \half q(x) y^2 + h(x) y
+				\end{align*}
+				
+		\end{description}
+	% subsection Variationsprobleme und gewöhnliche Differentialgleichungen (end)
+	
+	\subsection{Randbedingungen} % (fold)
+		\begin{description}
+			\item[Natürliche Randbedingungen:]
+				Gesucht $y(x)$ mit $y(x_0) = y_0$ und $y(x_1)$ frei, so dass 
+				\[
+					I(y) = \int_{x_0}^{x_1} F(x,y,y') \diff x \longrightarrow \text{stationär.}
+				\]
+			
+				\begin{enumerate}[(i)]
+					\item Betrachte zuerst $\eta$, für die $\eta_\epsilon(\epsilon_0, x_1) = 0$
+						\[
+							\Rightarrow F_y - \frac{\diff}{\diff x} F_{y'} = 0
+						\]
+					\item Betrachte jetzt alle anderen
+						\[
+							\Rightarrow F_{y'}(x_1, y(x_1), y'(x_1)) = 0
+						\]
+				\end{enumerate}
+			
+			\item[Transversalitätsbedingungen:]
+				Gesucht ist $y(x)$ mit $y(x_0) = y_0$ und $y(b) = f(b)$ mit gegebenem $f(x)$ und noch \emph{unbekanntem} $b$ so, dass
+				\[
+					I(y) = \int_{x_0}^b F(x,y,y') \diff x \longrightarrow \text{stationär.}
+				\]
+				
+				$\eta(\epsilon,b(\epsilon)) = f(b(\epsilon))$ nach $\epsilon$ abgeleitet und nach $b_\epsilon$ aufgelöst, ergibt
+				\[
+					b_\epsilon(\epsilon) = \frac{\eta_\epsilon(\epsilon,b(\epsilon))}{f'(b(\epsilon)) - \eta_x(\epsilon,b(\epsilon))} 
+				\]
+				
+				\textbf{Resultat:}
+				\begin{align*}
+					\text{(i)}\quad &F_y - \Diff{}{x} (F_{y'}) = 0 \\
+					\text{(ii)}\quad &F_{y'}(b, y(b), y'(b)) + \frac{F((b),y(b),y'(b))}{f'(b) - y'(b)} = 0
+				\end{align*}
+			
+			\item[Modifizierte Randbedingungen:]
+				Gesucht $y(x)$ mit $y(x_0) = y_0$ und $y(x_1)$ frei so, dass
+				\[
+					I(y) = \int_{x_0}^{x_1} F(x,y,y') \diff x - H(y(x_1)) \longrightarrow \text{stationär}
+				\]
+				für gewisse gegebene Funktion $H(y)$.
+				
+				\textbf{Stationaritätsbedingung:}
+				\begin{align*}
+					\text{(i)}\quad &F_y - \Diff{}{x} (F_{y'}) = 0 \\
+					\text{(ii)}\quad &F_{y'}(x, y(x_1), y'(x_1)) = H'(y(x_1))
+				\end{align*}
+		\end{description}
+	% subsection Randbedingungen (end)
+	
+	\subsection{Variation mit höheren Ableitungen} % (fold)
+		Gesucht ist $y(x)$ so, dass
+		\[
+			I(y) = \int_{x_0}^{x_1} F \left( x, y(x), y'(x),y''(x), \ldots, y^{(n)}(x) \right) \diff x \rightarrow \text{ stat.}
+		\]
+		unter den $2n$ Randbedingungen
+		\begin{align*}
+		 y(x_0) &= y_0 & y'(x_0) &= y_0^1, &\ldots,& &y^{(n-1)}(x_0) &= y_0^{n-1} \\
+		 y(x_1) &= y_1 & y'(x_1) &= y_1^1, &\ldots,& &y^{(n-1)}(x_1) &= y_1^{n-1} 
+		\end{align*}
+		Euler-Gleichung für Gewöhnliche Differentialgleichungen $2n$-ter Ordnung (braucht $2n$ Randbedingungen):
+		\emphequation{equation*}{
+			F_y - \Diff{}{x} F_{y'} + \Diff{}{x^2} F_{y''} - \Diff{}{x^3} F_{y'''} + \ldots + (-1)^{n} \Diff{}{x^{n}} F_{y^n} = 0
+		}
+	% subsection Variation mit höheren Ableitungen (end)
+	
+	\subsection{Variation mit Funktionen mehrerer Variablen} % (fold)
+		Gesucht ist $x(x,y,z)$ so, dass
+		\[
+			I(w) = \iiint_G F(x,y,z,w,w_x,w_y,w_z) \diff V \longrightarrow \text{stationär}
+		\]
+		für gegebenes $w(x,y,z) = w_0(x,y,z)$ auf $\delta G$.
+		
+		Vergleichsfelder $\eta(\epsilon,x,y,z)$ so, dass für $(x,y,z) \in \delta G$
+		\begin{align*}
+			\eta(\epsilon,x,y,z) &= w_0(x,y,z) \\
+			\Rightarrow \eta_\epsilon(\epsilon,x,y,z) &= 0
+		\end{align*}
+		
+		Euler-Gleichung für mehrere Variablen:
+		\emphequation{equation*}{
+			F_w - \frac{\partial}{\partial x} F_{w_x} - \frac{\partial}{\partial y} F_{w_y} - \frac{\partial}{\partial z} F_{w_z} = 0
+		}
+	% subsection Variation mit Funktionen mehrerer Variablen (end)
+	
+	\subsection{Variation mit mehreren Funktionen} % (fold)
+		Gesucht ist $\vec q(t) = (q_1(t),\dots,q_n(t))^\transp$ so, dass
+		\[
+			I(\vec q) = \int_{t_0}^{t_1} L(t,\vec q, \dot{\vec q}) \diff t \longrightarrow \text{stationär}
+		\]
+		mit $\vec q(t_0) = \vec q_0$, $\vec q(t_1) = \vec q_1$.
+		
+		Vergleichskurven $\vec \eta(\epsilon,t)$ so, dass $\vec \eta(\epsilon_0, t) = \vec q(t)$.
+		
+		Euler-Gleichung:
+		\emphequation{equation*}{
+			\frac{\partial L}{\partial \vec q} - \frac{\diff}{\diff t}\parens{\frac{\partial L}{\partial \dot{\vec q}}} = 0 
+		}
+		
+		Sonderfall c) ($L$ hängt nicht von $t$ ab) ist wichtig für die Dynamik:
+		\emphequation{equation*}{
+			L - \parens{\frac{\partial L}{\partial \vec q} } \dot{\vec q} =: - H_0 = \const
+		}
+	% subsection Variation mit mehreren Funktionen (end)
+% section variationsrechnung (end)

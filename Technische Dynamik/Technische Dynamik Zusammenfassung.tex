@@ -1,0 +1,89 @@
+\documentclass[9pt,fleqn,ngerman,article]{memoir}
+
+\title{Technische Dynamik -- Zusammenfassung}
+\author{Philipe Fatio}
+
+\input{../.includes/layout_setup}
+\input{../.includes/page_setup}
+\input{../.includes/extra_packages}
+\input{../.includes/macro_setup}
+
+% \setlength{\parindent}{5pt}
+
+\renewcommand{\vec}{\ensuremath{\mathbold}}
+% vector in another system
+\newcommand{\vecin}[2]{\ensuremath{{}_{#2}\vec{#1}}}
+\newcommand{\mtrx}{\ensuremath{\mathbold}}
+% transformation matrix
+\newcommand{\trafo}[2]{\ensuremath{\mtrx{#1}_{#2}}}
+% Winkelgeschwindigkeit zwischen Systemen im System:
+\newcommand{\momegain}[2]{\ensuremath{{}_{#2}\trafo{\widetilde \omega}{#1}}} % matrix
+\newcommand{\omegain}[2]{\ensuremath{{}_{#2}\trafo{\omega}{#1}}}
+\newcommand{\highdot}{\ensuremath{\dot{\!\!\phantom{I}}}}
+\setlength{\parskip}{1em}
+
+% nicer tables
+%\usepackage{booktabs}
+
+\hypersetup{
+    bookmarks=true,         % show bookmarks bar?
+    unicode=true,          % non-Latin characters in Acrobat’s bookmarks
+%    pdftoolbar=true,        % show Acrobat’s toolbar?
+%    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=true,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Technische Dynamik -- Zusammenfassung},    % title
+    pdfauthor={Philipe Fatio},     % author
+%    pdfsubject={Zusammenfassung},   % subject of the document
+%    pdfcreator={Creator},   % creator of the document
+%    pdfproducer={Producer}, % producer of the document
+%    pdfkeywords={keywords}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links
+    citecolor=black,        % color of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=black           % color of external links
+}
+
+\begin{document}
+	\frontmatter
+	\thispagestyle{empty}
+	\begin{center}
+		\begin{minipage}{0.375\linewidth}
+			\vskip 1cm
+
+			\begin{flushleft}
+				\HUGE\textsc{Technische Dynamik}
+			\end{flushleft}
+			\vspace{-9.5mm}
+			\begin{flushright}
+				\today
+			\end{flushright}
+			\vspace{-5mm}
+			\hbox to \hsize{\hfill
+			\vrule height 1pt width\hsize
+			\hfill}%
+			\vspace{-3.75mm}
+			\begin{flushleft}
+				\Large\textsc{Zusammenfassung}
+			\end{flushleft}
+			\vspace{-9.55mm}
+			\begin{flushright}
+				\emph{Philipe Fatio}
+			\end{flushright}
+			\vspace{1cm}
+
+			\vskip 4cm
+			\tableofcontents*
+		\end{minipage}
+	\end{center}
+	\thispagestyle{empty}
+	\clearpage
+	\mainmatter
+	\begin{multicols*}{3}
+		\content{variationsrechnung}
+		\content{lagrangesche_dynamik}
+		\content{approximation_kontinuierlicher_schwinger}
+	\end{multicols*}
+\end{document}
