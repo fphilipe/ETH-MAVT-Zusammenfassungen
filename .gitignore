@@ -12,3 +12,8 @@
 *.ind
 *.gnuplot
 *.table
+*.watcher_pid
+*.fls
+*.fmt
+*.ini
+*/.*.tex

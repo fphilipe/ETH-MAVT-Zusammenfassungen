@@ -1,4 +1,4 @@
-%!TEX root = /Users/philipe/Documents/ETH/3. Semester/Elektrotechnik/Zusammenfassung/Neu/Elektrotechnik Zusammenfassung.tex
+%!TEX root = ../Elektrotechnik I.tex
 
 \subsection{Inductance} % (fold)
 	
@@ -21,7 +21,7 @@
 			\begin{gather*}
 				E - i\:R - L \Diff{i_L}{t} = 0 \\
 				i_L(t) = \frac{E}{R} \cdot \left(
-					1 - \eu^{-t\frac{L}{R}}
+					1 - \eu^{-t\frac{R}{L}}
 				\right) \\
 				V_L(0) = E \\ V_L(\infty) = 0
 			\end{gather*}
@@ -30,7 +30,7 @@
 		\paragraph{(2) Decay Phase:} % (fold)
 		
 			\begin{gather*}
-				i_L (t) = \frac{E}{R} \cdot \eu^{-t\frac{L}{R}} \\
+				i_L (t) = \frac{E}{R} \cdot \eu^{-t\frac{R}{L}} \\
 				i_L(0) = \frac{E}{R} \\
 				i_L(\infty) = 0 \\
 				\tau = \frac{L}{R}
