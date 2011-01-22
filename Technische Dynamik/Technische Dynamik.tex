@@ -8,6 +8,10 @@
 \input{../.includes/extra_packages}
 \input{../.includes/macro_setup}
 
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{decorations.shapes}
+
 % \setlength{\parindent}{5pt}
 
 \renewcommand{\vec}{\ensuremath{\mathbold}}
@@ -51,7 +55,7 @@
 	\thispagestyle{empty}
 	\begin{center}
 		\begin{minipage}{0.375\linewidth}
-			\vskip 1cm
+			\vskip 4cm
 
 			\begin{flushleft}
 				\HUGE\textsc{Technische Dynamik}
@@ -72,9 +76,9 @@
 			\begin{flushright}
 				\emph{Philipe Fatio}
 			\end{flushright}
-			\vspace{1cm}
 
-			\vskip 4cm
+			\vskip 1cm
+			\settocdepth{section}
 			\tableofcontents*
 		\end{minipage}
 	\end{center}

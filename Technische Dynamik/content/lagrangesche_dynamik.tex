@@ -1,4 +1,4 @@
-%!TEX root = ../Technische Dynamik Zusammenfassung.tex
+%!TEX root = ../Technische Dynamik.tex
 
 \section{Lagrange'sche Dynamik} % (fold)
 	\subsection{Vorbemerkungen} % (fold)
@@ -192,24 +192,24 @@
 				\begin{enumerate}[(i)]
 					\item Kraft $\vec F$, die im Punkt $Q$ am Körper angreift. Schreibe $\vec v_Q$ in der Form
 						\[
-							{}_B \vec v_Q = {}_B \bar{\mtrx{J}}_Q \: \dot{\vec q} + {}_B \vec \nu_Q
+							{}_B \vec v_Q = {}_B \overline{\mtrx{J}}_Q \: \dot{\vec q} + {}_B \vec \nu_Q
 						\]
 						Dann ist
 						\[
-							\vec f^\text{NP} = {}_B \bar{\mtrx{J}}_Q^\transp \: {}_B \vec F
+							\vec f^\text{NP} = {}_B \overline{\mtrx{J}}_Q^\transp \: {}_B \vec F
 						\]
 					
 					\item Freies Moment $\vec M$, das am Körper angreift. Schreibe $\vec\Omega$ in der Form
 						\[
-							{}_B \vec\Omega = {}_B \bar{\mtrx{J}}_R \: \dot{\vec q} + {}_B \vec v_R
+							{}_B \vec\Omega = {}_B \overline{\mtrx{J}}_R \: \dot{\vec q} + {}_B \vec \nu_R
 						\]
 						Dann ist
 						\[
-							\vec f^\text{NP} = {}_B \bar{\mtrx{J}}_R^\transp \: {}_B \vec M
+							\vec f^\text{NP} = {}_B \overline{\mtrx{J}}_R^\transp \: {}_B \vec M
 						\]
 				\end{enumerate}
 				
-				$\bar{\mtrx{J}}_Q$ und $\bar{\mtrx{J}}_R$ heissen Jacobi-Matrizen der Translation bzw. der Rotation.
+				$\overline{\mtrx{J}}_Q$ und $\overline{\mtrx{J}}_R$ heissen Jacobi-Matrizen der Translation bzw. der Rotation.
 				
 				\item[Lagrange II:] Bilde
 					\[
@@ -261,23 +261,23 @@
 	% subsection Lösung nichtlinearer Bewegungsgleichungen (end)
 	
 	\subsection{Linearisierung von Lösungen} % (fold)
-		Spalte $\vec q$ auf in Lösung $\vec q_0$ und Störung $\bar{\vec q}$. \\
-		Annahme: $\bar{\vec q}$, $\dot{\bar{\vec q}}$, $\ddot{\bar{\vec q}}$, $\bar{\vec\tau}$ klein
+		Spalte $\vec q$ auf in Lösung $\vec q_0$ und Störung $\overline{\vec q}$. \\
+		Annahme: $\overline{\vec q}$, $\dot{\overline{\vec q}}$, $\ddot{\overline{\vec q}}$, $\overline{\vec\tau}$ klein
 		\begin{align*}
-			\vec q(t) &= \vec q_0 + \bar{\vec q}(t) \\
-			\dot{\vec q}(t) &= \dot{\vec q}_0 + \dot{\bar{\vec q}}(t) \\
-			\ddot{\vec q}(t) &= \ddot{\vec q}_0 + \ddot{\bar{\vec q}}(t) \\
-			\vec \tau(t) &= \vec \tau_0(t) + \bar{\vec \tau}(t)
+			\vec q(t) &= \vec q_0 + \overline{\vec q}(t) \\
+			\dot{\vec q}(t) &= \dot{\vec q}_0 + \dot{\overline{\vec q}}(t) \\
+			\ddot{\vec q}(t) &= \ddot{\vec q}_0 + \ddot{\overline{\vec q}}(t) \\
+			\vec \tau(t) &= \vec \tau_0(t) + \overline{\vec \tau}(t)
 		\end{align*}
 		
 		Taylorentwicklung:
 		\begin{align*}
-			0 &= \vec a(\ddot{\vec q}_0(t), \dot{\vec q}_0(t), \vec q_0(t), t, \vec\tau_0(t)) \\
-			&= \cancel{\vec{a_0}} + \Part{\vec a}{\ddot{\vec q}} \bigg|_0 \cdot \ddot{\bar{\vec q}} + \Part{\vec a}{\dot{\bar{\vec q}}} \bigg|_0 \cdot \dot{\bar{\vec q}} + \Part{\vec a}{\vec q} \bigg|_0 \cdot \bar{\vec q} + \Part{\vec a}{\vec\tau} \bigg|_0 \cdot \vec\tau
+			0 &= \vec a(\ddot{\vec q}(t), \dot{\vec q}(t), \vec q(t), t, \vec\tau(t)) \\
+			&= \cancelto{0}{\vec{a_0}} \quad + \Part{\vec a}{\ddot{\vec{q}}} \bigg|_{q_0} \cdot \ddot{\vec{\overline q}} + \Part{\vec a}{\dot{\vec q}} \bigg|_{q_0} \cdot \dot{\overline{\vec q}} + \Part{\vec a}{\vec q} \bigg|_{q_0} \cdot \vec{\overline q} + \Part{\vec a}{\vec\tau} \bigg|_{q_0} \cdot \vec{\overline \tau}
 		\end{align*}
 		Vereinfacht dargestellt:
 		\[
-			0 = \mtrx M \ddot{\overline{\vec q}} + \mtrx B \dot{\overline{\vec q}} + \mtrx \overline{\vec q} - \vec b(t)
+			0 = \mtrx M \ddot{\overline{\vec q}} + \mtrx B \dot{\overline{\vec q}} + \mtrx C \overline{\vec q} - \vec b(t)
 		\]
 		Vgl. M-D-G-K-N-System in \emph{Mechanik III 3.2.1}.
 	% subsection Linearisierung von Lösungen (end)
