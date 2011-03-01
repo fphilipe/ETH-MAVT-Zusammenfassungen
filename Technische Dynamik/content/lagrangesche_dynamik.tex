@@ -1,0 +1,352 @@
+%!TEX root = ../Technische Dynamik.tex
+
+\section{Lagrange'sche Dynamik} % (fold)
+	\subsection{Vorbemerkungen} % (fold)
+		Übersetzung in die Dynamik:
+		\begin{center}
+			\begin{tabular}{l@{\quad$\Leftrightarrow$\quad}l}
+				$x$ & $t$ \\
+				$y(x)$ & $\vec q(t)$ \\
+				$\eta(\epsilon, x)$ & $\hat{\vec q}(\epsilon, t)$ \\
+				$\eta(\epsilon_0, x) = y(x)$ & $\hat{\vec q}(\epsilon_0, t) = \vec q(t)$ \\
+			\end{tabular}
+		\end{center}
+	% subsection Vorbemerkungen (end)
+	
+	\subsection{Virtuelle Verschiebungen} % (fold)
+		\begin{definition}
+			Virtuelle Verschiebungen sind Differenz zwischen \emph{beliebig benachbarter} Lage $\vec q^*$ und tatsächlicher Lage $\vec q$ bei \emph{festgehaltener} Zeit $t$:
+			\begin{align*}
+				\underbrace{\hat{\vec{q}}(\epsilon, t)}_{= \vec{q}^*(t)} - \underbrace{\hat{\vec{q}}(\epsilon_0, t)}_{\vec{q}(t)}  &=  \underbrace{\hat{\vec{q}}_\epsilon(\epsilon_0, t)\overbrace{(\epsilon - \epsilon_0)}^{=:\delta \epsilon}}_{:=\delta \vec{q}(t)} + O\left( (\epsilon - \epsilon_0) \right) \\
+				\Rightarrow \ \vec{q}^*(t) - \vec{q}(t) &\approx \delta \vec{q}(t) \\
+				\delta \vec q(t) :&= \hat{\vec q}_\epsilon(\epsilon_0, t) \delta \epsilon
+			\end{align*}
+		\end{definition}
+		
+		\begin{description}
+			\item[Eigenschaften] der virtuellen Arbeit:
+				\begin{enumerate}[(i)]
+					\item infinitesimal \emph{klein}
+					\item bei \emph{festgehaltener} Zeit
+					\item \emph{beliebig} in ihrer Richtung (auch geometrisch \emph{unverträglich})
+				\end{enumerate}
+			
+			\item[Unterschied] zu $\diff \vec q$:
+				\begin{align*}
+					\delta \vec q(t) &= \hat{\vec q}_\epsilon(\epsilon_0,t)\delta\epsilon \\
+					\diff \vec q(t) &= \hat{\vec q}_t(\epsilon_0,t)\diff t = \dot{\vec q}(t) \diff t
+				\end{align*}
+			
+			\item[Berechnung] induzierter virtueller Verschiebung und Geschwindigkeiten:
+		
+				neue Lagekoordinaten: $\vec\xi = \vec\xi(\epsilon,t)$ \\
+				induziertes Variationsfeld: $\hat{\vec\xi}(\epsilon,t) = \vec\xi\!\parens{\hat{\vec q}(\epsilon,t),t}$
+				\begin{align*}
+					\delta\vec\xi &= \frac{\partial\vec\xi}{\partial\vec q}\delta\vec q \\
+					\dot{\vec \xi} &= \frac{\partial \vec\xi}{\partial\vec q}\dot{\vec q} + \frac{\partial \vec \xi}{\partial t}  
+				\end{align*}
+		\end{description}
+	% subsection Virtuelle Verschiebungen (end)
+	
+	\subsection{Virtuelle Arbeit} % (fold)
+		Vergleich tatsächlicher und virtueller Arbeit:
+		\[
+			\diff W = \vec F^\transp \diff \vec r \quad, \qquad \delta W = \vec F^\transp \delta \vec r
+		\]
+		Virtuelle Arbeit ist \emph{die} invariante Grösse (unter Koordinatenwechsel) in der Mechanik.
+	% subsection Virtuelle Arbeit (end)
+	
+	\subsection{Das Prinzip der virtuellen Arbeit} % (fold)
+		Sei $S$ mechanisches System.
+		\begin{gather*}
+			\delta W := \int_S \delta \vec\xi^\transp (
+				\underbrace{
+					\ddot{\vec\xi}\diff m
+				}_{\mathclap{\text{Trägheitskräfte}}}
+				-
+				\overbrace{ \vphantom{\ddot{\vec\xi}}
+					\diff \vec F
+				}^{\mathclap{\text{andere Kräfte}}}
+			) \\
+			\text{mit} \quad \diff \vec F(x) = \underbrace{
+				\diff \vec F^\text{a}(x)
+			}_{\mathclap{\text{äussere Kräfte}}}
+			+
+			\overbrace{
+				\diff \vec F^\text{i}(x)
+			}^{\mathclap{\text{innere Kräfte}}}
+		\end{gather*}
+		
+		PdvA erfordert äussere und innere Kräfte für $S$! Innere Kräfte haben keine Resultierende nach aussen.
+		
+		\begin{satz}
+			Ist $\delta W = 0$ $\forall \delta \vec \xi$, so gilt Impuls- und Drallsatz für $S$ und für jedes seiner Subsysteme. Damit ist $S$ im dynamischen Gleichgewicht.
+		\end{satz}
+	% subsection Das Prinzip der virtuellen Arbeit (end)
+	
+	\subsection{Die Zentralgleichung} % (fold)
+		Kinetische Energie des Systems:
+		\[
+			T = \half \int_S \dot{\vec\xi}^\transp \diff m \: \dot{\vec\xi}
+		\]
+		
+		Durch Manipulation des Trägheitsterms der virtuellen Arbeit erhält man die \emph{Lagrange'sche Zentralgleichung}:
+		\emphequation{equation*}{
+			\delta W = \parens{
+				\int_S \delta \vec\xi^\transp \dot{\vec\xi} \diff m
+			}^\bullet - \delta T - \int_S \delta \vec\xi^\transp \diff \vec F
+		}
+	% subsection Die Zentralgleichung (end)
+	
+	\subsection{Minimalkoordinaten und Lagrange II} % (fold)
+		Bindungen in System $S$ limitieren dessen Beweglichkeit auf $f$ Richtungen.
+		
+		\begin{definition}
+			$f$ heisst \emph{Freiheitsgrade} des Systems
+		\end{definition}
+		
+		\begin{definition}
+			Ein minimaler Satz von $f$ Koordinaten $\vec q(t) \in \R^f$, mit dem die Lage \emph{aller} Punkte $\vec\xi$ im System \emph{eindeutig} beschrieben werden können, heisst \emph{Minimalkoordinaten} von $S$.
+		\end{definition}
+		
+		\begin{definition}
+			Die durch $\delta\vec q$ induzierten virtuellen Verschiebungen $\delta \vec \xi_\text{vert} \subset \delta\vec\xi$ sind die mit den Bindungen \emph{verträglichen} virtuellen Verschiebungen.
+		\end{definition}
+		
+		Folgerung aus dem PdvA: $\delta W \stackrel{!}{=} 0$ $\forall \delta\vec\xi_\text{vert}$ ist notwendig für das dynamische Gleichgewicht von $S$.
+		
+		\begin{definition}
+			Kräfte heissen \emph{passiv} (bez. $\vec q$), wenn sie \emph{keine} virtuelle Arbeit einbringen für beliebige \emph{verträgliche} virtuelle Verschiebungen.
+			\[
+				\delta \vec q^\transp \vec f^\text{P} = \delta \vec q^\transp \int_S \parens{
+					\frac{\partial \vec \xi}{\partial \vec q} 
+				}^\transp \diff \vec F \equiv 0 \quad \forall \delta\vec q
+			\]
+			Alle anderen Kräfte heissen \emph{aktiv}.
+		\end{definition}
+		
+		\begin{definition}
+			Eine (aktive) Kraft heisst \emph{Potentialkraft}, falls (für jede Feste Zeit $t$) gilt:
+			\[
+				- \vec f^\text{P} = \parens{\Diff{V}{\vec q}}^\transp
+			\]
+			wobei $V$ die potentielle Energie ist. Alle anderen aktiven Kräfte heissen \emph{Nichtpotentialkräfte} $\vec f^\text{NP}$.
+		\end{definition}
+		
+		Dies ergibt die \emph{Lagrange'sche Gleichung 2. Art}:
+		\emphequation{gather*}{
+			\frac{\diff}{\diff t}\! \parens{\frac{\partial T}{\partial \dot{\vec q}} }^\transp
+			- \parens{\frac{\partial T}{\partial \vec q}}^\transp
+			+ \parens{\frac{\partial V}{\partial \vec q}}^\transp = \vec f^\text{NP} \\
+			T_{\dot{\vec q}, t} - T_{\vec q} + V_{\vec q} = \vec f^\text{NP}
+		}
+	% subsection Minimalkoordinaten und Lagrange II (end)
+	
+	\subsection{Prinzip von Hamilton} % (fold)
+		Definiere
+		\[
+			L(t,\vec q, \dot{\vec q}) = T(t,\vec q, \dot{\vec q}) - V(t,\vec q) \ .
+		\]
+		Zum Variationsproblem
+		\[
+			I(\vec q) = \int_{t_0}^{t^1} L(t,\vec q, \dot{\vec q}) \diff t \longrightarrow \text{stationär} \quad + \text{RB}
+		\]
+		lauten die Euler-Gleichungen
+		\[
+			\Part{L}{\vec q} - \Diff{}{t}\parens{\Part{L}{\dot{\vec q}}}
+		\]
+		was der Lagrange'schen Gleichung 2. Art entspricht. Somit kann man Lagrange 2. Art als Variationsproblem formulieren.
+		
+		\begin{definition}
+			Eine Koordinate heisst \emph{zyklisch}, wenn
+			\[
+				\Part{T}{q_k} = \Part{V}{q_k} = \vec f^{\text{NP}_k} = 0 \ .
+			\]
+		\end{definition}
+	% subsection Prinzip von Hamilton (end)
+	
+	\subsection{Konservative Systeme} % (fold)
+		\begin{definition}
+			Ein System heisst \emph{konservativ}, wenn
+			\begin{itemize}
+				\item keine Nichtpotentialkräfte angreifen ($\vec f^\text{NP} \equiv 0$) und
+				\item $T$ und $V$ nicht explizit von der Zeit abhängen (Sonderfall (c) ).
+			\end{itemize}
+			
+			\begin{satz}
+				Für konservative Systeme gilt Energieerhaltung:
+				\[
+					T + V = H_0
+				\]
+			\end{satz}
+		\end{definition}
+	% subsection Konservative Systeme (end)
+	
+	\subsection{Anwendung auf Mehrkörpersysteme} % (fold)
+		Ziel ist das Aufstellen der Bewegungsgleichungen mit Lagrange II. Siehe dazu auch \emph{Mechanik III Skript}, speziell \emph{Kap. 5} (Kinematik) und \emph{Kap. 7} (Kinetik des starren Körpers).
+		
+		\begin{description}
+			\item[Schwerepotential:] $\displaystyle V = -m \: \vec r_{OS}^\transp \: \vec g \quad$ mit $\ \vec g = (0,-g)^\transp$
+			\item[Federpotential (linear):] $\displaystyle V = \half c (\norm{\vec r_{OB}} - \norm{\vec r_{OA}})^2$
+			\item[Nichtpotentialkräfte] Kochrezepte:
+				\begin{enumerate}[(i)]
+					\item Kraft $\vec F$, die im Punkt $Q$ am Körper angreift. Schreibe $\vec v_Q$ in der Form
+						\[
+							{}_B \vec v_Q = {}_B \overline{\mtrx{J}}_Q \: \dot{\vec q} + {}_B \vec \nu_Q
+						\]
+						Dann ist
+						\[
+							\vec f^\text{NP} = {}_B \overline{\mtrx{J}}_Q^\transp \: {}_B \vec F
+						\]
+					
+					\item Freies Moment $\vec M$, das am Körper angreift. Schreibe $\vec\Omega$ in der Form
+						\[
+							{}_B \vec\Omega = {}_B \overline{\mtrx{J}}_R \: \dot{\vec q} + {}_B \vec \nu_R
+						\]
+						Dann ist
+						\[
+							\vec f^\text{NP} = {}_B \overline{\mtrx{J}}_R^\transp \: {}_B \vec M
+						\]
+				\end{enumerate}
+				
+				$\overline{\mtrx{J}}_Q$ und $\overline{\mtrx{J}}_R$ heissen Jacobi-Matrizen der Translation bzw. der Rotation.
+				
+				\item[Lagrange II:] Bilde
+					\[
+						T = \sum_i T_i \qquad V = \sum_j V_j \qquad \vec f^\text{NP} = \sum_l \vec f^\text{NP}_l
+					\]
+					und führe für jede Koordinate aus:
+					\emphequation{equation*}{
+						\Diff{}{t}\!\parens{\Part{T}{\dot q_k}} - \Part{T}{q_k} + \Part{V}{q_k} - f^\text{NP}_k = 0 = \underbrace{
+							a_k(\ddot{\vec q}, \dot{\vec q}, \vec q, t, \vec \tau)
+						}_{\mathclap{\substack{\text{nichtlin. Dgl.}\\\text{2. Ordnung}}}}
+					}
+		\end{description}
+	% subsection Anwendung auf Mehrkörpersysteme (end)
+	
+	\subsection{Struktur der Bewegungsgleichung} % (fold)
+		Aus Lagrange II erhält man $f$ Differentialgleichungen
+		\[
+			\mtrx M(\vec q, t) \ddot{\vec q} + \underbrace{
+				\vec g(\vec q, \dot{\vec q}, t) - \vec f(\vec q, \dot{\vec q}, t, \vec \tau)
+			}_{= -\vec h(\vec q, \dot{\vec q}, t, \vec \tau)} = 0
+		\]
+		\begin{tabular}{r@{:\quad}l}
+			$\mtrx M \in \R^{f \times f}$ & symmetrische, positiv definite Massenmatrix \\
+			$\vec g \in \R^f$ & ``gyroskopische Beschleunigung'' \\
+			$\vec f \in \R^f$ & generalisierte Kräfte mit $\vec \tau$ als ``Stellgrösse''
+		\end{tabular}
+		
+		\paragraph{Zustandsraumdarstellung} % (fold)
+			Sei $\dot{\vec q} = \vec u$
+			\begin{align*}
+				\begin{pmatrix}
+					\vec q \\ \vec u
+				\end{pmatrix} &= 
+				\begin{pmatrix}
+					\vec u \\ \mtrx M^{-1}(\vec q, t) \cdot \vec h(\vec q, \dot{\vec q}, t, \vec \tau)
+				\end{pmatrix} \\
+				\dot{\vec x} &= \vec b(\vec x, t, \vec \tau)
+			\end{align*}
+		% paragraph Zustandsraumdarstellung (end)
+	% subsection Struktur der Bewegungsgleichung (end)
+	
+	\subsection{Lösung nichtlinearer Bewegungsgleichungen} % (fold)
+		\begin{definition}
+			Eine Bewegung $\vec q_0(t)$, $\dot{\vec q}_0(t)$, $\ddot{\vec q}_0(t)$, $\vec\tau_0(t)$ heisst Lösung, falls sie die Bewegungsgleichungen erfüllt, falls also
+			\[
+				\mtrx M\Big(\vec q_0(t), t\Big) \ddot{\vec q}_0(t) - \vec h\Big(\vec q_0(t),\dot{\vec q}_0(t), t, \vec\tau_0(t)\Big) = 0
+			\]
+		\end{definition}
+	% subsection Lösung nichtlinearer Bewegungsgleichungen (end)
+	
+	\subsection{Linearisierung von Lösungen} % (fold)
+		Spalte $\vec q$ auf in Lösung $\vec q_0$ und Störung $\overline{\vec q}$. \\
+		Annahme: $\overline{\vec q}$, $\dot{\overline{\vec q}}$, $\ddot{\overline{\vec q}}$, $\overline{\vec\tau}$ klein
+		\begin{align*}
+			\vec q(t) &= \vec q_0 + \overline{\vec q}(t) \\
+			\dot{\vec q}(t) &= \dot{\vec q}_0 + \dot{\overline{\vec q}}(t) \\
+			\ddot{\vec q}(t) &= \ddot{\vec q}_0 + \ddot{\overline{\vec q}}(t) \\
+			\vec \tau(t) &= \vec \tau_0(t) + \overline{\vec \tau}(t)
+		\end{align*}
+		
+		Taylorentwicklung:
+		\begin{align*}
+			0 &= \vec a(\ddot{\vec q}(t), \dot{\vec q}(t), \vec q(t), t, \vec\tau(t)) \\
+			&= \cancelto{0}{\vec{a_0}} \quad + \Part{\vec a}{\ddot{\vec{q}}} \bigg|_{q_0} \cdot \ddot{\vec{\overline q}} + \Part{\vec a}{\dot{\vec q}} \bigg|_{q_0} \cdot \dot{\overline{\vec q}} + \Part{\vec a}{\vec q} \bigg|_{q_0} \cdot \vec{\overline q} + \Part{\vec a}{\vec\tau} \bigg|_{q_0} \cdot \vec{\overline \tau}
+		\end{align*}
+		Vereinfacht dargestellt:
+		\[
+			0 = \mtrx M \ddot{\overline{\vec q}} + \mtrx B \dot{\overline{\vec q}} + \mtrx C \overline{\vec q} - \vec b(t)
+		\]
+		Vgl. M-D-G-K-N-System in \emph{Mechanik III 3.2.1}.
+	% subsection Linearisierung von Lösungen (end)
+	
+	\subsection{Nachtrag: Einschränkung der Bewegungsfreiheit} % (fold)
+		Betrachtet werden zweiseitig zeitabhängige Bindungen auf Lageebene (bilateral rheonom geometrisch $\subset$ holonom).
+		
+		\begin{definition}
+			Eine Bindung in der Mechanik ist
+			\begin{itemize}
+				\item eine \emph{geometrische} Einschränkung der Bewegungsfreiheiten;
+				\item \emph{zusammen} mit Kräften, die diese unter allen Umständen realisieren können. Diese Kräfte heissen \emph{Bindungskräfte}.
+			\end{itemize}
+		\end{definition}
+		
+		\begin{definition}
+			Eine Bindung heisst \emph{ideal}, wenn die Bindungskräfte unter allen \emph{geometrischen verträglichen} virtuellen Verschiebungen \emph{keine} virtuelle Arbeit erbringen. Die Bindungskräfte idealer Bindungen heissen \emph{Zwangskräfte}.
+		\end{definition}
+		
+		\begin{folgerung}
+			Zwangskräfte sind passiv und brauchen deswegen nicht in den Bewegungsgleichungen berücksichtigt zu werden. Dies wird als das Prinzip von d'Alembert/Lagrange bezeichnet.
+		\end{folgerung}
+		
+		Hinreichend ist, die äusseren eingeprägten Kräfte zu berücksichtigen.
+	% subsection Nachtrag: Einschränkung der Bewegungsfreiheit (end)
+	
+	\subsection{Vorgehen beim idealen Sperren von Freiheitsgraden} % (fold)
+		\begin{description}
+			\item[Gegeben:] Bewegungsgleichung in Minimalkoordinaten $\vec z$
+				\begin{equation}\label{eq:sperren}
+					\mtrx M(\vec z, t) \ddot{\vec z} - \vec h(\vec z, \dot{\vec z}) = 0
+				\end{equation}
+			
+			\item[Gesucht:] Bewegungsgleichung in \emph{neuen} Minimalkoordinaten $\vec q$
+				\[
+					\overline{\overline{\mtrx M}}(\vec q, t) \ddot{\vec q} - \vec{\overline h}(\vec q, \dot{\vec q}, t) = 0
+				\]
+			
+			\item[Vorgehen:]
+				\begin{enumerate}[(i)]
+					\item Drücke alte Koordinaten über neue aus:
+						\begin{gather*}
+							 \vec z = \vec z(\vec q, t), \quad \dot{\vec z} = Q(\vec q, t) \, \dot{\vec q} + \vec K(\vec q, t) \\
+						 \delta \vec z_\text{vert} = Q(\vec q, t) \delta \vec q, \quad \ddot{\vec z} = Q(\vec q, t) \ddot{\vec q} + \vec\nu(\vec q, \dot{\vec q}, t)
+						\end{gather*}
+					
+					\item Berücksichtige in \eqref{eq:sperren} die durch die zusätzliche Bindungen entstandenen Zwangskräfte $\vec f^\text{Z}$:
+						\[
+							\mtrx M(\vec z, t) \ddot{\vec z} - \vec h(\vec q, \dot{\vec q}, t) - \vec f^\text{Z} = 0
+						\]
+					
+					\item Transformiere virtuelle Arbeit:
+						\begin{gather*}
+							0 \stackrel{!}{=} \delta \vec z^\transp(\vec z, t) \parens{
+								\mtrx M \ddot{\vec z} - \vec h(\vec z, \dot{\vec z}, t) - \vec f^\text{Z}
+							} \quad \forall \delta \vec z_\text{vert} \\
+							\Rightarrow \quad 0 = \underbrace{
+								Q^\transp \mtrx M Q \vphantom{\parens{Q^\transp}}
+							}_{\overline{\overline{\mtrx M}}} \ddot{\vec q}
+							- \underbrace{
+								\parens{
+									Q^\transp \vec h - Q^\transp \mtrx M \vec\nu
+								}
+							}_{\vec{\overline h}}
+						\end{gather*}
+				\end{enumerate}
+				\begin{bemerkung}
+					Vorgehen gilt auch, wenn keine Freiheitsgrade gesperrt werden, d.h. bei Koordinatenwechsel.
+				\end{bemerkung}
+		\end{description}
+	% subsection Vorgehen beim idealen sperren von Freiheitsgraden (end)
+% section lagrange_sche_dynamik (end)
