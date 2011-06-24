@@ -101,6 +101,8 @@
 		mit dem Wärmeleitwiderstand
 		\emphequation{equation*}{
 			R = \frac{\ln \nicefrac{r_2}{r_1}}{2\pi\cdot\lambda\cdot L}
+			\qquad \text{bzw.} \qquad
+			R = \frac{1}{2\pi \cdot L \cdot r \cdot \alpha} 
 		}
 		
 		\paragraph{Rohrkonstruktion aus mehreren Schichten} % (fold)
@@ -131,7 +133,7 @@
 			mit \textbf{$\boldsymbol{k_\text{L}}$ unabhängig von $\boldsymbol r$}:
 			\emphequation{align*}{
 				k_\text{L} &= k(r) \cdot 2\pi \cdot r = \frac{\dot Q_r}{L \cdot \Delta T} \\
-				&= \frac{1}{\displaystyle{
+				&= \frac{2\pi}{\displaystyle{
 					\frac{1}{r_\text{H} \cdot \alpha_\text{H}} +
 					\sum_{i=1}^n \frac{\ln \nicefrac{r_{i+1}}{r_i}}{\lambda_i} +
 					\frac{1}{r_\text{K} \cdot \alpha_\text{K}}
