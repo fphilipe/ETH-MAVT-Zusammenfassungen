@@ -1,8 +1,6 @@
 %!TEX root = ../Thermodynamik II (LTNT).tex
 
 \section{Instationäre Wärmeleitung} % (fold)
-	Vorgänge mit Änderungen in den Randbedingungen.
-	
 	\subsection{Instationäre, vom Raum un\-ab\-hängige Wärme\-leitung} % (fold)
 		Voraussetzung, damit die innere Temperaturverteilung eines Körpers vernachlässigt werden kann:
 		\emphequation{equation*}{
@@ -13,65 +11,35 @@
 			\alpha \cdot L \ll 1 \text{ (kleine Körper)} \quad \text{oder} \quad \lambda \gg 1 \text{ (metallische Körper)}
 		}
 		$\Rightarrow$ \textbf{Temperatur hängt nur von der Zeit ab}
-		
+
 		\paragraph{Abkühlung eines heissen Körpers} % (fold)
-			wird dargestellt durch einen exponentiellen Zerfall:
 			\emphequation{equation*}{
 				\frac{T - T_\infty}{T_\text{i} - T_\infty} = \exp\parens{- \frac{\alpha \cdot A}{M \cdot c} \cdot t}
 				 = \exp\parens{- \frac t \tau}
 			}
 			mit Zeitkonstante $\tau$, in der der ursprüngliche Wert auf $1/\eu$ abfällt:
 			\[
-				\tau = \frac{M\cdot c}{\alpha \cdot A} \sunit{\per\second}
+				\frac{1}{\tau} = \frac{\alpha \: A}{M\: c} \sunit{\per\second}
 			\]
-			
+			wobei $M\:c$ ein ``lumped parameter'' sein kann:
+			\[
+				(M\:c) = \sum_i (m\:c)_i
+			\]
+
 			Nach dem vollständigen Ausgleich beträgt die Übertragene Wärmemenge:
 			\emphequation{equation*}{
-				Q_\text{tot} = M \cdot c \cdot (T_\text{i} - T_\infty)
+				Q_\text{tot} = M \: c \cdot (T_\text{i} - T_\infty)
 			}
 		% paragraph: Abkühlung eines heissen Körpers (end)
 	% subsection: Instationäre, vom Raum unabhängige Wärmeleitung (end)
-	% \subsection{Eindimensionale instationäre Wärmeleitung} % (fold)
-	% 	\[
-	% 		\mathrm{Bi} \not \!\ll 1 \ ,\quad L \gg b
-	% 	\]
-	% 	\emphequation{equation*}{
-	% 		\frac{1}{a}\Part{\theta}{t} = \frac{\partial^2 \theta}{\partial x^2}
-	% 	}
-	% 	Ursprung in der Mitte der Platte (erstreckt sich von $-b$ bis $b$)
-	% 	
-	% 	\paragraph{Anfangsbedingung} % (fold)
-	% 		~
-	% 		
-	% 		homogene Temperatur:
-	% 		\[
-	% 			\theta(t=0,|x| < b) = T_0 - T_\infty = \theta_0
-	% 		\]
-	% 	% paragraph: Anfangsbedingung (end)
-	% 	\paragraph{Randbedingungen} % (fold)
-	% 		~
-	% 		
-	% 		\begin{itemize}
-	% 			\item Symmetrie in der Mitte \\ $\Rightarrow$ kein Wärmefluss durch $x=0$:
-	% 				\[
-	% 					\left.\Part \theta x \right|_{x=0} = 0
-	% 				\]
-	% 			\item konvektiver Wärmeübergang an beiden Rändern:
-	% 				\[
-	% 					-\lambda \cdot \left.\Part \theta x \right|_{x=b} = \alpha \cdot \theta(t,b)
-	% 				\]
-	% 		\end{itemize}
-	% 	% paragraph: Randbedingungen (end)
-	% % subsection: Eindimensionale instationäre Wärmeleitung (end)
+
 	\subsection{Instationäre Wärmeleitung in der halbunendlichen Wand} % (fold)
 		Erhaltungsgleichung für den eindimensionalen zeit\-ab\-hängigen Fall:
 		\[
 			\frac{1}{a} \Part T t = \frac{\partial^2 T}{\partial x^2}
 		\]
-		
+
 		\paragraph{Plötzlicher Temperatursprung an der Oberfläche} % (fold)
-			~
-			
 			Anfangs- und Randbedingungen:
 			\begin{align*}
 				T_\text{i} &= T(t<0,x \ge 0) \\
@@ -83,24 +51,20 @@
 			\emphequation{equation*}{
 				\frac{T - T_\text{S}}{T_\text{i} - T_\text{S}} = \frac{2}{\sqrt \pi} \int_0^\eta \eu^{-u^2} \diff u \equiv \erf(\eta) \equiv 1-\erfc(\eta)
 			}
-			mit 
+			mit
 			\emphequation{equation*}{
 				\eta = \frac{x}{\sqrt{4\cdot a \cdot t}}
 			}
-			\begin{itemize}
-				\item[$a$:] materialspezifisch \sunit{\Square\metre\per\second}
-			\end{itemize}
-		
 			Diffusionslänge:
 			\emphequation{equation*}{
 				x_\text{D}(t) = \sqrt{a \cdot t}
 			}
-		
 			Wärmestrom:
 			\emphequation{equation*}{
 				\dot q_\text{S}'' = \frac{\lambda \cdot (T_\text{S} - T_\text{i})}{\sqrt{\pi\cdot a \cdot t}} \sim \frac{1}{\sqrt t}
 			}
 		% paragraph: Plötzlicher Temperatursprung an der Oberfläche (end)
+
 		\paragraph{Konstanter Wärmestrom auf der Oberfläche} % (fold)
 			\[
 				\dot q_\text{S}'' (t) = \dot q_0'' = \const
@@ -112,6 +76,7 @@
 				\right]
 			}
 		% paragraph: Konstanter Wärmestrom auf der Oberfläche (end)
+
 		\paragraph{Konvektiver Wärmeübergang auf der Oberfläche} % (fold)
 			\emphequation{gather*}{
 				\frac{T(x,t) - T_\text{i}}{T_\infty - T_\text{i}} = \erfc\parens{\frac{x}{2\sqrt{a t}}} \\

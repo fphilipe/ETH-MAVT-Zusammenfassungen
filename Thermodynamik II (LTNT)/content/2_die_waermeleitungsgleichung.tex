@@ -1,28 +1,21 @@
 %!TEX root = ../Thermodynamik II (LTNT).tex
 
 \section{Die Wärmeleitungsgleichung} % (fold)
-	\subsection{Grundsätzliche Überlungen} % (fold)
-		Die zeitliche Änderung der inneren Energie im Kontrollvolumen ergibt sich aus der
-		Differenz zwischen zu- und wegfliessendem Energiestrom und aus der innerhalb des
-		Kontrollvolumens produzierten Wärme (aufgrund von Quellen).
-	% subsection: Grundsätzliche Überlungen (end)
 	\subsection{Die Energieerhaltungsgleichung} % (fold)
 		\emphequation{equation*}{
 			\rho c \frac{\partial T}{\partial t} = \nabla \cdot (\lambda \cdot \nabla T) + \dot Q_\text{Quellen}'''
 		}
-		
+
 		Falls $\boldsymbol{\lambda = \const}$:
 		\emphequation{equation*}{
 			\frac 1 a \frac{\partial{T}}{\partial{t}} = \nabla^2 T + \frac 1 \lambda \cdot \dot Q_\text{Quellen}''' \qquad \text{mit } a = \frac{\lambda}{\rho\cdot c} \unit{\Square\metre\per\second}
 		}
-		$\dot Q_\text{Quellen}'''$ kann z.B.~von dissipierter elektrischer Leistung, absorbierter Strahlung in semitransparenten Materialien oder eingeschlossener Radioaktivität stammen. \\
-		\textbf{Meistens ist $\boldsymbol{\dot Q_\text{Quellen}''' = 0}$}.
-		
-		Falls \textbf{stationär} und \textbf{keine inneren Quellen}:
+
+		Falls \textbf{stationär} und $\dot{Q}'''_\text{Quellen} = 0$:
 		\emphequation{equation*}{
 			\nabla^2 T = 0
 		}
-		
+
 		\paragraph{Zylinder-Koordinaten} % (fold)
 			\[
 				\nabla = \begin{bmatrix}
@@ -42,7 +35,7 @@
 				\frac{1}{a}\Part{T}{t} = \frac{1}{r}\Part{}{r}\parens{r \Part{T}{r}} + \frac{1}{r^2} \frac{\partial^2 T}{\partial \theta^2} + \frac{\partial^2 T}{\partial z^2} + \frac{\dot Q_\text{Q}'''}{\lambda}
 			}
 		% paragraph: Zylinder-Koordinaten (end)
-		
+
 		\paragraph{Kugel-Koordinaten} % (fold)
 			\begin{align*}
 				\nabla &= \begin{bmatrix}
@@ -59,7 +52,7 @@
 					&\quad \ + \frac{1}{r^2\sin\phi}\Part{}{\phi} \parens{\lambda \sin\phi \Part{T}{\phi}} + \dot Q_\text{Q}'''
 				\end{split}
 			}
-			
+
 			Falls $\boldsymbol{\lambda = \const}$:
 			\emphequation{equation*}{
 				\begin{split}
@@ -69,32 +62,29 @@
 			}
 		% paragraph: Kugel-Koordinaten (end)
 	% subsection: Die Energieerhaltungsgleichung (end)
+
 	\subsection{Rand- und Anfangsbedingungen} % (fold)
-		\subsubsection{Randbedingungen} % (fold)
-			\begin{itemize}
-				\item Temperatur der Oberfläche ist gegeben:
-					\[
-						T(x=0,t) = T_0(t)
-					\]
-				\item Wärmestrom an der Oberfläche ist bekannt:
-					\[
-						-\lambda \left.\parens{\Part T x}\right|_{x=0} = \dot q''(0)
-					\]
-					Bei ideal isolierten Körpern verschwindet der Wärmestrom auf der Oberfläche:
-					\[
-						\dot q_0'' = 0 \quad \text{bzw.} \quad \left.\parens{\Part T x}\right|_{x=0} = 0
-					\]
-				\item Konvektiver Wärmeübergang auf der Aussenfläche vorgegeben:
-					\[
-						\underbrace{\lambda \left.\parens{\Part T x}\right|_{x=0}}_\text{Körper} = \underbrace{\alpha [T(0,t) - T_\infty] \vphantom{\left.\parens{\Part T x}\right|_{x=0}}}_\text{umgebendes Fluid}
-					\]
-			\end{itemize}
-		% subsubsection: Randbedingungen (end)
-		\subsubsection{Anfangsbedingungen} % (fold)
-			Legen das dreidimensionale Feld entweder in Form der Temperatur oder des Wärmeflusses zu Beginn ($t=0$) fest, z.B.:
+		\begin{itemize}
+			\item Temperatur der Oberfläche ist gegeben:
+				\[
+					T(x=0,t) = T_0(t)
+				\]
+			\item Wärmestrom an der Oberfläche ist bekannt:
+				\[
+					-\lambda \left.\parens{\Part T x}\right|_{x=0} = \dot q''(0)
+				\]
+				Bei ideal isolierten Körpern verschwindet der Wärmestrom auf der Oberfläche:
+				\[
+					\dot q_0'' = 0 \quad \text{bzw.} \quad \left.\parens{\Part T x}\right|_{x=0} = 0
+				\]
+			\item Konvektiver Wärmeübergang auf der Aussenfläche vorgegeben:
+				\[
+					\underbrace{\lambda \left.\parens{\Part T x}\right|_{x=0}}_\text{Körper} = \underbrace{\alpha [T(0,t) - T_\infty] \vphantom{\left.\parens{\Part T x}\right|_{x=0}}}_\text{umgebendes Fluid}
+				\]
+			\item Anfangstemperatur gegeben:
 			\[
-				T(x,t=0) = T_\text{heiss}
+				T(x,t=0) = T_0
 			\]
-		% subsubsection: Anfangsbedingungen (end)
+		\end{itemize}
 	% subsection: Rand- und Anfangsbedingungen (end)
 % section: Die Wärmeleitungsgleichung (end)

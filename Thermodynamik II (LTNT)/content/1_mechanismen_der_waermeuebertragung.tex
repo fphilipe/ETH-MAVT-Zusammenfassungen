@@ -1,12 +1,6 @@
 %!TEX root = ../Thermodynamik II (LTNT).tex
 
 \section{Mechanismen der Wärmeübertragung} % (fold)
-	\subsection{Allgemeine Betrachtung} % (fold)
-		\begin{itemize}
-			\item Eine Temperaturdifferenz verursacht einen Wärmefluss
-			\item Wärmetransport ist materialabhängig
-		\end{itemize}
-	% subsection: Allgemeine Betrachtung (end)
 	\subsection{Die Arten der Wärmeübertragung} % (fold)
 		\begin{description}
 			\item[Leitung (Conduction):] in jeglicher Art von Materie, hauptsächlich in Festkörpern
@@ -14,12 +8,13 @@
 			\item[Strahlung (Radiation):] Wärmetransport in Form von elektromagnetischer Strahlung (nicht an Materie gebunden)
 		\end{description}
 	% subsection: Die Arten der Wärmeübertragung (end)
+
 	\subsection{Wärmeleitung} % (fold)
 		Kann man auch als \emph{Diffusion von thermischer Energie} auffassen.
-		
+
 		\paragraph{Das Gesetz von Fourier (Fourier's Law)} % (fold)
 			\emphequation{equation*}{
-				\dot q'' = - \lambda \Diff T n
+				\dot q'' = - \lambda \Diff T x
 			}
 			Wärmestromdichte ist proportional zum Temperaturgradienten.
 			\begin{itemize}
@@ -36,58 +31,32 @@
 							Styropor & 0&$.03 - 0.05$
 						\end{tabular}
 					\end{center}
-				\item[$n$:] Richtung normal zur Fläche
 			\end{itemize}
-			
-			negatives Vorzeichen $\Rightarrow$ Strom in Richtung des Temperaturgefälles
 		% paragraph: Das Gesetz von Fourier (Fourier's Law) (end)
+
 		\subsubsection{Konvektion} % (fold)
-			Ein heisser Körper wird von einem kalten Fluid angeströmt. Dabei wird Wärme an
-			das Fluid übertragen und in der Strömung abtransportiert.
-			
-			\paragraph{Konvektiver Wärmeübergang pro Fläche} % (fold)
-				\begin{equation*}
-					\dot q'' = \frac{\dot{Q}}{A} = \alpha (T_\text{H} - T_\text{K})
-				\end{equation*}
-				
-				$\alpha$ ist der konvektive Wärmeübertragungskoeffizient (englisch $h$) und hängt von verschiedenen Faktoren ab:
-				\begin{itemize}
-					\item Art der Strömung (laminar, turbulent)
-					\item Oberflächenrauhigkeit
-					\item Geometrie
-					\item Art des Fluids
-					\item Phasenübergänge
-				\end{itemize}
-			% paragraph: Konvektiver Wärmeübergang pro Fläche (end)
+			\begin{equation*}
+				\dot q'' = \frac{\dot{Q}}{A} = \alpha (T_\text{H} - T_\text{K})
+			\end{equation*}
+
+			$\alpha$ ist der konvektive Wärmeübertragungskoeffizient (englisch $h$) und hängt von verschiedenen Faktoren ab:
+			\begin{tightitemize}
+				\item Art der Strömung (laminar, turbulent)
+				\item Oberflächenrauhigkeit
+				\item Geometrie
+				\item Art des Fluids
+				\item Phasenübergänge
+			\end{tightitemize}
+
 			Je nach Randbedingungen unterscheidet man \emph{vier Arten} des konvektiven Wärmeübergangs:
-			
-			\paragraph{Erzwungene Konvektion} % (fold)
-				~
-				
-				Strömungsbedingungen sind durch ein äusseres Element fest vorgegeben (z.B.~Ventilator)
-			% paragraph: Erzwungene Konvektion (end)
-			
-			\paragraph{Natürliche Konvektion} % (fold)
-				~
-				
-				Kommt bei vertikal orientierten Flächen vor, wenn zwischen Wand und Fluid
-				eine Temperaturdifferenz herrscht. Das Fluid wärmt sich in der Grenzschicht
-				auf und durch die damit verbundene Dichteänderung führt dies zu Auf- oder Abtrieb.
-			% paragraph: Natürliche Konvektion (end)
-			
-			\paragraph{Sieden} % (fold)
-				~
-				
-				Dampfblasen bei siedenden Flüssigkeiten erhöhen den Wärmeübergang.
-			% paragraph: Sieden (end)
-			
-			\paragraph{Kondensation} % (fold)
-				~
-				
-				Durch Dampf, der auf einer Oberfläche kondensiert und nach unten fliesst,
-				können sehr hohe Wärmeübergangskoeffizienten erzielt werden.
-			% paragraph: Kondensation (end)
-			
+
+			\begin{tightitemize}
+				\item Erzwungene Konvektion
+				\item Natürliche Konvektion
+				\item Sieden
+				\item Kondensation
+			\end{tightitemize}
+
 			\begin{tabular}{lr|r@{$ - $}l}
 				\multicolumn{2}{l}{\textbf{Art der Konvektion}} & \multicolumn{2}{l}{$\boldmath{\alpha}$ \niceunit{\watt\per\metre\squared\per\kelvin}} \\
 				\midrule
@@ -104,12 +73,8 @@
 				& \textbf{Kondensation von Wasserdampf} & 5000 & 100000 \\
 			\end{tabular}
 		% subsubsection: Konvektion (end)
-		
+
 		\subsubsection{Wärmestrahlung} % (fold)
-			Besteht aus elektromagnetischen Wellen und ist nicht an Materie gebunden und kann somit auch in Vakuum stattfinden.
-			
-			Für alle Körper existiert ein Zusammenhang zwischen dem \emph{Absorptionsvermögen} und dem Emissionsvermögen einer Oberfläche.
-			
 			Ein Körper, der sämtliche auf ihn treffende Strahlung absorbiert, nennst man einen idealen \textbf{schwarzen Körper}.
 			Dieser zeigt auch das maximal mögliche Emissionsvermögen $E_b$, welches durch das \textbf{Stefan-Boltzmann Gesetz} beschreiben wird:
 			\begin{equation*}
@@ -121,7 +86,4 @@
 			\end{equation*}
 		% subsubsection: Wärmestrahlung (end)
 	% subsection: Wärmeleitung (end)
-	\subsection{Kombinierter Wärmeübergang} % (fold)
-		In praktisch jeder realen Situation treten die drei möglichen Arten der Wärmeübertragung kombiniert auf.
-	% subsection: Kombinierter Wärmeübergang (end)
 % section: Mechanismen der Wärmeübertragung (end)
