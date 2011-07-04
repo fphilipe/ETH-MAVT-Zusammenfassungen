@@ -48,6 +48,19 @@ for iter=1:maxit
 end
 	\end{lstlisting}
 
+\section{Singulärwertzerlegung (SVD)}
+	\begin{lstlisting}[style=list]
+B = [4 2 0; 3 5 7; -2 -1 0; 1 0 -1];
+c = [10 13 -5 1.8]';
+[u,s,v] = svd(B);
+k = rank(B);
+y = zeros(k,1);
+for i = 1:k
+	y(i) = u(:,i)' * c / s(i,i);
+end
+xstar = v(:,1:k) * y
+	\end{lstlisting}[style=list]
+
 \section{Fourier-Transform} 
 	\begin{lstlisting}[style=list]
 % Plotten der diskreten Funktionswerte
