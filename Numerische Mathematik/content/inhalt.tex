@@ -55,8 +55,8 @@
 		Im Laufe eines Algorithmus kann sich der Fehler vergrössern.
 
 		\begin{description}
-			\item[Absoluter Fehler:] $\Delta x = \hat x - x$
-			\item[Relativer Fehler:] $\delta x = \Delta x / x$
+			\item[Absoluter Fehler:] $\Delta x = ||\hat x - x||$
+			\item[Relativer Fehler:] $\delta x = \Delta x / ||x||$
 		\end{description}
 
 		\subsubsection{Auslöschung}
@@ -112,7 +112,8 @@
 			\item Lineare Konvergenz
 		\end{tightitemize}
 
-		~
+		Falls $||T|| < 1$ in irgendeiner Norm, dann konvergiert das Verfahren gegen
+		einen eindeutigen Grenzwert und zwar \emph{in jeder Norm}.
 
 		\begin{definition}
 			Für die EW $\lambda_i$ der Matrix T ist der Spektralradius
@@ -366,8 +367,6 @@
 			Bisektionsverfahren, anschliessend ein lokales Verfahren. Da die Konvergenz eines solchen Verfahrens nicht garantiert ist, muss es robust implementiert werden.
 
 	\subsection{Nichtlineare Gleichungssysteme}
-		Im $n$-dimensionalen Fall gibt es leider nur das Newton-Verfahren.
-
 		\subsubsection{Banach'scher Fixpunktsatz}
 			\begin{description}
 				\item[Voraussetzung:] ~
@@ -657,13 +656,13 @@
 			\end{equation}
 			mit
 			\begin{align*}
-				(W)_{jl} &= w^{jl} = e^{-ijl\frac{2\pi}{N}}, \quad \text{bzw.} \\
 				W &= \Mx{
 					1 & 1 & 1 & \cdots \\
 					1 & w & w^2 & \cdots \\
 					1 & w^2 & w^4 & \cdots \\
 					\vdots & \vdots & \vdots & \ddots
-				}
+				} \\
+				\text{wobei } w &= \eu^{-\iu \frac{2\pi}{N}}
 			\end{align*}
 
 		\subsubsection{Fourier-Synthese}
@@ -792,6 +791,8 @@
 				\item $[a,b] \to [-1,1]$ mit der Substitution:
 					\[
 						t= \frac{b-a}{2}x + \frac{a+b}{2}
+						\quad \rightarrow \quad
+						x = \frac{2t - a - b}{b - a}
 					\]
 					daraus folgt:
 					\[
@@ -1192,6 +1193,13 @@
 			\item Wir erhalten die $N-1$-dimensionale ODE:
 				\[
 					\vek{\dot u} = \frac{1}{h^2} \hat A \vek{u} = A \vek{u}
+					\quad \text{mit }
+					\hat A = \Mx{
+						-2 &  1     &        &  0 \\
+						 1 & \ddots & \ddots &    \\
+						   & \ddots & \ddots &  1 \\
+						 0 &        &  1     & -2
+					}
 				\]
 			\item Lösen mit (\ref{richardson}) oder (\ref{crank}) mit dem \textbf{Zeitschritt} $\overline{h}$.
 		\end{tightenumerate}
