@@ -1,14 +1,14 @@
 %!TEX root = /Users/philipe/Documents/ETH/4. Semester/Physik/Zusammenfassung/Physik II - Zusammenfassung.tex
 
-\begin{tikzpicture}[>=latex,domain=-9.425:9.425,samples=100,xscale=.39,yscale=4]
+\begin{tikzpicture}[>=latex,domain=-9.425:9.425,samples=100,xscale=.39,yscale=2]
 	\draw[->] (-10,0) -- (10,0) node[right] {$X$};
-	\draw[->] (-10,-.15) -- (10,-.15) node[right] {$\sin \phi$};
-	\draw[->] (0,-.165) node[below] {$0 \vphantom{\frac \lambda s}$} -- (0,1.1) node[left] {$I$};
+	\draw[->] (-10,-.3) -- (10,-.3) node[right] {$\sin \phi$};
+	\draw[->] (0,-.33) node[below] {$0 \vphantom{\frac \lambda s}$} -- (0,1.1) node[left] {$I$};
 	\foreach \i in {-3,-2,-1,1,2,3} {
-		\draw (\i*3.1416,.015) -- (\i*3.1416,-.015) node[below] {$\i\pi$};
+		\draw (\i*3.1416,.03) -- (\i*3.1416,-.03) node[below] {$\i\pi$};
 	};
 	\foreach \i in {-3,-2,-1,1,2,3} {
-		\draw[yshift=-.15cm] (\i*3.1416,.015) -- (\i*3.1416,-.015) node[below] {$\i\frac{\lambda}{s}$};
+		\draw[yshift=-.3cm] (\i*3.1416,.03) -- (\i*3.1416,-.03) node[below] {$\i\frac{\lambda}{s}$};
 	};
 	\draw plot[id=intensitaet,smooth] function{sin(x)**2/x**2};
 \end{tikzpicture}

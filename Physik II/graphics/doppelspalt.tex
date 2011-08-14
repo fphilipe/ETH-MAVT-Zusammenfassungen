@@ -41,15 +41,16 @@
 		
 		% x-scale
 		\draw[thin,->] (0,0) -- (4,0) node[right] {$x$};
+		\draw[thin,|-|] (-.05,2) -- (5,2) node[above,pos=.5] {$a$};
 		
 		% y-scale
-		\draw[thin,->,xshift=-1] (0,2) -- (0,3) node[above] {$y$};
+		\draw[thin,|->] (5,0) -- (5,1.35) node[right,pos=.5] {$y$};
+		\draw[fill=black] (5,1.4) circle (.5mm) node[right]{$P$};
 		
 		\foreach \i in {0,1,2} {
 			\draw[->,yshift=(\i-1)*-.75cm] (0,0) -- (3.25+0.2756*\i*.75,1);
 		};
 		\draw[rotate=16,xshift=.215cm,yshift=-.725cm] (0,0) -- (0,1.45);
-		\draw (3.457,1) node[above right] {zum Punkt $P$};
 		
 		\draw[->] (2,0) arc (0:16:2) node[below right] {$\theta$};
 		

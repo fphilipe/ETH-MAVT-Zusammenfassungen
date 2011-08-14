@@ -15,7 +15,8 @@
 		Folge zweier entgegengesetzter Ursachen:
 		\begin{itemize}
 			\item \textbf{Rückstellkraft} proportional zur Auslenkung $\psi$
-			\item \textbf{Trägheit}, die einer Änderung von $\diff \psi/\!\diff t$ entgegenwirkt
+			\item \textbf{Trägheit}, die einer Änderung von $\diff \psi/\!\diff t$
+				entgegenwirkt
 		\end{itemize}
 		\emphequation{equation*}{
 			\omega^2 = \text{Rückstellkraft pro Einheitsauslenkung und -masse}
@@ -30,7 +31,8 @@
 		Approximation von $l - a_0$ bei Transversalen Wellen:
 		\begin{description}
 			\item[Weit dehnbare Federn:] \[
-				a_0/a \ll 1 \quad \Rightarrow \quad a_0/l \ll 1 \quad \Rightarrow \text{\emph{vernachlässigbar}}
+				a_0/a \ll 1 \quad \Rightarrow \quad a_0/l \ll 1 \quad
+				\Rightarrow \text{\emph{vernachlässigbar}}
 			\]
 			\item[Kleine Auslenkungen:] \begin{gather*}
 				l^2 = a^2 + x^2 = a^2(1+\epsilon)\ ,\quad \epsilon = \nicefrac{x^2}{a^2} \\
@@ -41,31 +43,41 @@
 			\emph{Longitudinale Schwingungen sind schneller als transversale.}
 		\end{description}
 		\[
-			\frac{\omega_\text{long}}{\omega_\text{trans}} = \frac{1}{\parens{1-\frac{a_0}{a}}^\half}
+			\frac{\omega_\text{long}}{\omega_\text{trans}} =
+				\frac{1}{\parens{1-\frac{a_0}{a}}^\half}
 		\]
 	% subsection systeme_mit_einem_freiheitsgrad (end)
 	
 	\subsection{Systeme mit zwei Freiheitsgraden} % (fold)
-		\emph{Superposition} zweier linear unabhängiger, harmonischer Bewegungen (\textbf{Normalschwingungen}, \textbf{Eigenschwingungen} oder \textbf{modes})
+		\emph{Superposition} zweier linear unabhängiger, harmonischer Bewegungen
+		(\textbf{Normalschwingungen}, \textbf{Eigenschwingungen} oder \textbf{modes})
 		\emphequation{align*}{
-			\psi_a(t) &= A_1\eu^{\iu(\omega_1 t + \phi_1)} + A_2\eu^{\iu(\omega_2 t + \phi_2)} \\
-			\psi_b(t) &= B_1\eu^{\iu(\omega_1 t + \phi_1)} + B_2\eu^{\iu(\omega_2 t + \phi_2)}
+			\psi_a(t) &= A_1\eu^{\iu(\omega_1 t + \phi_1)} +
+				A_2\eu^{\iu(\omega_2 t + \phi_2)} \\
+			\psi_b(t) &= B_1\eu^{\iu(\omega_1 t + \phi_1)} +
+				B_2\eu^{\iu(\omega_2 t + \phi_2)}
 		}
 		
 		\paragraph{Eigenschaften von Normalschwingungen} % (fold)
 			~
 			
-			Wenn nur eine Normalschwingung angeregt ist, vollführt jedes Teil des Systems eine einfache harmonische Bewegung mit \textbf{gleicher Frequenz} und \textbf{gleicher Phase}.
+			Wenn nur eine Normalschwingung angeregt ist, vollführt jedes Teil des
+			Systems eine einfache harmonische Bewegung mit \textbf{gleicher Frequenz}
+			und \textbf{gleicher Phase}.
 			
-			Jede Normalschwingung hat eine \emph{charakteristische Frequenz} ($\omega_1, \omega_2$) und eine \emph{charakteristische Form}, die gegeben ist durch das Verhältnis der Amplituden ($A_1/B_1, A_2/B_2$).
+			Jede Normalschwingung hat eine \emph{charakteristische Frequenz}
+			($\omega_1, \omega_2$) und eine \emph{charakteristische Form}, die gegeben
+			ist durch das Verhältnis der Amplituden ($A_1/B_1, A_2/B_2$).
 			
-			Wenn zwei Normalschwingungen dieselbe Frequenz haben, nennt man sie \textbf{entartet}.
+			Wenn zwei Normalschwingungen dieselbe Frequenz haben, nennt man sie
+			\textbf{entartet}.
 		% paragraph eigenschaften_von_normalschwingungen (end)
 		
 		\paragraph{Normalkoordinaten} % (fold)
 			~
 			
-			Spezielle Koordinaten in denen die Differentialgleichungen ungekoppelt erscheinen, heissen \textbf{Normalkoordinaten}.
+			Spezielle Koordinaten in denen die Differentialgleichungen ungekoppelt
+			erscheinen, heissen \textbf{Normalkoordinaten}.
 		% paragraph  (end)
 	% subsection systeme_mit_zwei_freiheitsgraden (end)
 	\subsection{Systematische Herleitung der Normalschwingungen} % (fold)
@@ -82,9 +94,11 @@
 						a_{21} & a_{22} - \omega^2
 					\end{bmatrix} \overset{!}= 0 \\
 					\omega_{1,2}^2 = \half \bigg{(}a_{11} + a_{22} \\
-					\qquad\  \pm \sqrt{(a_{11} + a_{22})^2 - 4(a_{11} a_{22} - a_{12} a_{21})}\bigg{)}
+					\qquad\  \pm \sqrt{(a_{11} + a_{22})^2 - 4(a_{11} a_{22} -
+						a_{12} a_{21})}\bigg{)}
 				\end{gather*}
-			\item Für Normalkoordinaten Wähle die Eigenvektoren als Basis eines neuen Koordinatensystems. Die Matrix $A$ ist in diesem System diagonal:
+			\item Für Normalkoordinaten Wähle die Eigenvektoren als Basis eines neuen
+				Koordinatensystems. Die Matrix $A$ ist in diesem System diagonal:
 				\[
 					A = \diag{(\omega_1^2, \omega_2^2)}
 				\]
@@ -97,18 +111,24 @@
 		\end{enumerate}
 	% subsection systematische_herleitung_der_normalschwingungen (end)
 	\subsection{Schwebungen} % (fold)
-		Superposition zweier harmonischer Schwingungen mit gleicher Amplitude und Phase:
+		Superposition zweier harmonischer Schwingungen mit gleicher Amplitude und
+		Phase:
 		\[
 			\psi = \psi_1 + \psi_2 = A\eu^{\iu\omega_1 t} + A\eu^{\iu\omega_2 t}
 		\]
-		\emph{Mittlere Frequenz} $\overline\omega$ und \emph{Modulationsfrequenz} $\omega_\text{mod}$:
+		\emph{Mittlere Frequenz} $\overline\omega$ und \emph{Modulationsfrequenz}
+		$\omega_\text{mod}$:
 		\begin{gather*}
-			\overline\omega \equiv \half (\omega_1 + \omega_2) \ ,\quad \omega_\text{mod} \equiv \half (\omega_1 - \omega_2) \\
-			\omega_1 = \overline\omega + \omega_\text{mod} \ , \quad \omega_2 = \overline\omega - \omega_\text{mod}
+			\overline\omega \equiv \half (\omega_1 + \omega_2) \ ,\quad
+				\omega_\text{mod} \equiv \half (\omega_1 - \omega_2) \\
+			\omega_1 = \overline\omega + \omega_\text{mod} \ , \quad \omega_2 =
+				\overline\omega - \omega_\text{mod}
 		\end{gather*}
 		Damit wird $\psi$ zu:
 		\emphequation{equation*}{
-			\psi = A\eu^{\iu(\overline\omega + \omega_\text{mod}) t} + A\eu^{\iu(\overline\omega - \omega_\text{mod}) t} = 2 A\eu^{\iu\overline\omega t}\cos(\omega_\text{mod}t)
+			\psi = A\eu^{\iu(\overline\omega + \omega_\text{mod}) t} +
+				A\eu^{\iu(\overline\omega - \omega_\text{mod}) t} =
+					2 A\eu^{\iu\overline\omega t}\cos(\omega_\text{mod}t)
 		}
 		In reeler Schreibweise:
 		\emphequation{equation*}{
@@ -116,7 +136,8 @@
 			A_\text{mod}(t) = 2A\cos(\omega_\text{mod}t)
 		}
 		
-		Die \textbf{Schwebungsfrequenz} ist die Wiederholungsrate von $A_\text{mod}^2$:
+		Die \textbf{Schwebungsfrequenz} ist die Wiederholungsrate von
+		$A_\text{mod}^2$:
 		\[
 			\omega_\text{beat} = 2\omega_\text{mod} = \omega_1 - \omega_2
 		\]
@@ -126,13 +147,16 @@
 	\subsection{Transversale Seil- oder Saitenschwinungen} % (fold)
 		In der Gleichgewichtslage sei die Saite längs der $z$-Richtung ausgestreckt.
 		
-		Schwingungen längs der $z$-Richtung nennt man \textbf{longitudinal}, solche längs $x$ oder $y$ \textbf{transversal}.
+		Schwingungen längs der $z$-Richtung nennt man \textbf{longitudinal}, solche
+		längs $x$ oder $y$ \textbf{transversal}.
 		
-		Wir nehmen an, die Welle sei \textbf{linear polarisiert}, d.h.~die Auslenkungen seien auf eine Richtung ($x$) beschränkt.
+		Wir nehmen an, die Welle sei \textbf{linear polarisiert}, d.h.~die
+		Auslenkungen seien auf eine Richtung ($x$) beschränkt.
 		
 		\textbf{Wellengleichung:}
 		\emphequation{equation*}{
-			\frac{\partial^2 \psi(z,t)}{\partial t^2} = \frac{T_0}{\rho_0} \frac{\partial^2\psi(z,t)}{\partial z^2}
+			\frac{\partial^2 \psi(z,t)}{\partial t^2} =
+				\frac{T_0}{\rho_0} \frac{\partial^2\psi(z,t)}{\partial z^2}
 		}
 		
 		Wellenzahl:
@@ -144,25 +168,30 @@
 			~
 			
 			Allgemeine Form der stehenden Welle:
-			\[
-				\psi(z,t) = A(z) \eu^{\iu(\omega t + \phi)} \qquad \text{mit} \quad A(z) = A\eu^{\iu(kz+\delta)}
-			\]
+			\begin{gather*}
+				\psi(z,t) = A(z) \eu^{\iu(\omega t + \phi)} \\
+				\text{mit} \quad A(z) = A\eu^{\iu(kz+\delta)}
+					= B \cos(kz) + C \sin(kz)
+			\end{gather*}
 			Eingesetzt in die Wellengleichung:
 			\begin{equation}
 				\label{eq:wellengleichung_saite}
 				-\omega^2 A(z) = \frac{T_0}{\rho_0} \frac{\diff^2 A(z)}{\diff z^2}
 			\end{equation}
 			
-			Beziehung zwischen Wellenzahl und Frequenz ist die \textbf{Dispersionsrelation} für Saitenschwingungen:
+			Beziehung zwischen Wellenzahl und Frequenz ist die
+			\textbf{Dispersionsrelation} für Saitenschwingungen:
 			\[
 				\omega = \sqrt{\frac{T_0}{\rho_0}}k
 			\]
-			Verhält sich eine Welle so, wird sie \textbf{dispersionslos} genannt.
+			Ist diese Beziehung linear, so wird die Welle \textbf{dispersionslos}
+			genannt.
 			
 			\textbf{Phasengeschwindigkeit:}
-			\[
-				\nu \cdot \lambda = \sqrt{\frac{T_0}{\rho_0}} \equiv v_0 = \const
-			\]
+			\emphequation{equation*}{
+				v_\phi = \frac{\omega}{k} = \nu \cdot \lambda = \sqrt{\frac{T_0}{\rho_0}}
+					\equiv v_0 = \const
+			}
 		% paragraph stehende_wellen (end)
 		\paragraph{Eigenschwingungen der Saite} % (fold)
 			\emphequation{equation*}{
@@ -170,7 +199,8 @@
 			}
 			Da $\sin(kL) \overset{!}= 0$, muss für $k$ gelten:
 			\[
-				k_n = \frac{2\pi}{\lambda_n} = n \frac \pi L \qquad \text{mit } n = 1,2,3,\dots
+				k_n = \frac{2\pi}{\lambda_n} = n \frac \pi L \qquad
+				\text{mit } n = 1,2,3,\dots
 			\]
 			
 			Wellenlängen der Eigenschwingungen:
@@ -193,41 +223,31 @@
 	% subsection transversale_seil_oder_saitenschwinungen (end)
 	\subsection{Elektron in einem eindimensionalen Quantentopf} % (fold)
 		\paragraph{Eigenschaften von Materialwellen} % (fold)
-			~
-			
+			\[
+				\Delta \vec E - \frac{1}{c^2} \frac{\partial^2 \vec E}{\partial t^2} = 0
+			\]
+
 			Ein Teilchen mit dem Impuls $p = mv$ kann sich wie eine Welle verhalten, deren Wellenlänge gegeben ist durch die Beziehung von \textbf{de Broglie}:
 			\[
-				p = \frac h \lambda
-			\]
-			mit dem \textbf{Planck'schem Wirkungsquantum}:
-			\[
-				h = 6.62\cdot 10^{-34} \si{\joule\sec}
-			\]
-			Mit $k = 2 \pi / \lambda$ kann man schreiben:
-			\[
-				p = \frac h {2\pi} \frac {2\pi}{\lambda} = \hbar k \quad \text{mit } \hbar = \frac h {2\pi}
+				p = \frac h \lambda = \hbar k \quad
+				\text{wobei } \hbar = \frac h {2\pi}
 			\]
 			
 			Energie eines Teilchens:
 			\[
-				E = h \frac c \lambda = h \nu = \hbar \omega = p c
+				E = \half mv^2 = \frac{p^2}{2m}
+					= \overbrace{\frac{\hbar^2 k^2}{2m} = \hbar \omega}^{
+							\mathclap{\text{Dispersionsrelation für freie Elektronen}}
+						}
+					= h\nu = \underbrace{eU}_{\mathclap{\text{Elektron in Potentialfeld}}}
 			\]
-			\textbf{Dispersionsrelation für freie Elektronen:}
-			\[
-				E = \hbar \omega = \frac{\hbar^2 k^2}{2m}
-			\]
-			Die Welle eines freien Elektrons weist Dispersion auf.
-			
 			\textbf{Schrödinger-Gleichung:}
 			\[
 				\left[
 					\frac{p^2}{2m} + V(x)
 				\right] \psi(x) = E \psi(x)
 			\]
-			Mit dem \textbf{Impulsoperator}
-			\[
-				p = p_x = \frac \hbar \iu \Diff{} x
-			\]
+			Mit dem \textbf{Impulsoperator} $p = p_x = \frac \hbar \iu \frac{\diff}{\diff x}$
 			und $V(x) = 0$ kann die Gleichung in folgende Form gebracht werden:
 			\[
 				\frac{\hbar^2}{2m} \frac{\diff^2\psi(x)}{\diff x^2} + E\psi(x) = 0
@@ -237,6 +257,7 @@
 			Für die Energieeigenwerte findet man:
 			\[
 				E_n = \frac{\hbar^2 k_n^2}{2m} = \frac{\pi^2 \hbar^2}{2m L^2}n^2
+					  = \frac{h^2}{8mL^2} n^2
 			\]
 		% paragraph eigenschaften_von_materialwellen (end)
 	% subsection elektron_in_einem_eindimensionalen_quantentopf (end)
@@ -284,11 +305,11 @@
 			\[
 				\ddot \psi_n = -\omega_0^2 \psi_n + \frac{f}{m}(\psi_{n+1} - 2\psi_n + \psi_{n-1})
 			\]
-			wobei $\omega_0^2 = \nicefrac gl$.
+			mit der \emph{unteren Abschnittfrequenz} $\omega_0 = \sqrt{\nicefrac gl}$.
 			
 			Ansatz:
 			\begin{align*}
-				\psi_n(t) &= A_n \eu^{\iu\omega t}
+				\psi_n(t) &= A_n \eu^{\iu\omega t} \\
 				A_n &= A \eu^{\iu k n a}
 			\end{align*}
 			
@@ -296,16 +317,17 @@
 			\[
 				\omega^2 = \omega_0^2 + \frac{4f}{m} \sin^2 \frac{ka}{2}
 			\]
-			Für \textbf{imaginäres $k$} ($k = \iu\kappa$) lautet diese:
+			Für \textbf{imaginäres $k$} ($k = \iu\kappa$, $k^2 = -\kappa^2 < 0$) lautet diese:
 			\[
 				\omega^2 = \omega_0^2 - \frac{4f}{m} \sinh^2 \frac{\kappa a}{2}
 			\]
 			und gilt nur für Frequenzen unterhalb $\omega_\text{min}$. Für solch tiefe Frequenzen haben die Auslenkungen aller Pendel das gleiche Vorzeichen. Dasselbe gilt für $\omega = \omega_\text{min} = \omega_0$, bei der alle Pendel mit gleicher Amplitude schwingen, bzw. $k = 0$ und $\lambda = \infty$.
 			
 			Für Anregungen oberhalb der Grenzfrequenz $\omega_\text{max}$ gilt die Dispersionsrelation für exponentiell gedämpfte Zickzackwellen:
-			\[
+			\begin{gather*}
+				A_n = (-1)^n A \eu^{-\kappa n a} \\
 				\omega^2 = \omega_0^2 + \frac{4f}{m}\cosh^2 \frac{\kappa a}{2}
-			\]
+			\end{gather*}
 			
 			\textbf{Zusammenfassend:}
 			\begin{itemize}
@@ -361,29 +383,30 @@
 		\]
 		
 		Allgemeine Dispersionsbeziehung für propagierende transversale Wellen:
-		\[
-			\omega^2 = \frac{4 T_0}{ma} \sin^2 \frac{ka}{2}
-		\]
-		\[
-			\omega_\text{max} = 2 \sqrt{\frac{T_0}{ma}}
-		\]
-		\[
-			\frac{\omega_\text{max}^l}{\omega_\text{max}^t} = \sqrt{\frac{fa}{T_0}} = \frac{1}{\parens{1-\frac{a_0}{a}}^\half}
-		\]
+		\begin{gather*}
+			\omega^2 = \frac{4 T_0}{ma} \sin^2 \frac{ka}{2} \\
+			\omega_\text{max} = 2 \sqrt{\frac{T_0}{ma}} \\
+			\frac{\omega_\text{max}^l}{\omega_\text{max}^t} =
+				\sqrt{\frac{fa}{T_0}} = \frac{1}{\parens{1-\frac{a_0}{a}}^\half}
+		\end{gather*}
 	% subsection die_lineare_federkette (end)
 % section laufende_wellen (end)
+
 \section{Die spezifische Wärme von Festkörpern} % (fold)
 	\subsection{Klassische statistische Mechanik} % (fold)
-		Innere Energie eines Festkörpers bestehend aus $N$ Atomen:
+		\textbf{Innere Energie} eines Festkörpers bestehend aus $N$ Atomen:
 		\[
-			U = 3NkT
+			U = 3 N k_B T
 		\]
-		Mittlere kinetische Energie eines Teilchen mit drei translatorischen Freiheitsgraden:
+
+		Mittlere kinetische Energie eines Teilchen mit drei translatorischen
+		Freiheitsgraden:
 		\[
-			\langle E \rangle = -\frac{\partial}{\partial \beta} \left[-\frac 3 2 \ln \beta \right] = \frac 3 2 \frac 1 \beta = \frac 3 2 kT
+			\langle E \rangle = -\frac{\partial}{\partial \beta}
+			\left[-\frac 3 2 \ln \beta \right] = \frac 3 2 \frac 1 \beta = \frac 3 2 k_B T
 		\]
 		
-		$\Rightarrow$ Temperaturunabhängige spezifische Wärme
+		Temperaturunabhängige spezifische Wärme = 3R
 	% subsection klassische_statistische_mechanik (end)
 	\subsection{Das Einstein-Modell der spezifischen Wärme} % (fold)
 		\paragraph{Der quantenmechanische Oszillator} % (fold)
@@ -396,7 +419,7 @@
 
 			Wahrscheinlichkeit, dass ein Zustand $n$ besetzt ist:
 			\[
-				P_n = \eu^{-\frac{n\hbar\omega}{kT}}\parens{1 - \eu^{-\frac{\hbar\omega}{kT}}}
+				P_n = \eu^{-\frac{n\hbar\omega}{k_B T}}\parens{1 - \eu^{-\frac{\hbar\omega}{k_B T}}}
 			\]
 
 			Mittlere Energie eines Oszillators:
@@ -404,26 +427,35 @@
 				\langle E \rangle = \parens{\langle n \rangle + \half} \hbar \omega
 			\]
 
-			Die mittlere Besetzungszahl (\textbf{Bose-Einstein Verteilungsfunktion}):
+			Die mittlere Besetzungszahl (\textbf{Bose-Einstein Verteilungsfunktion})
+			von ``Bosonen'':
 			\[
-				\langle n \rangle = \frac{1}{\eu^{\frac{\hbar\omega}{kT}} - 1}
+				\langle n \rangle = \frac{1}{\eu^{\frac{\hbar\omega}{k_B T}} - 1}
 			\]
 			Kann als Zahl der angeregten Phononen bei der Temperatur $T$ aufgefasst werden.
 		% paragraph \textsc{der_quantenmechanische_oszillator} (end)
 		\paragraph{Spezifische Wärme} % (fold)
 			~
 			
-			Vereinfachtes Modell von Einstein, wobei alle Oszillatoren mit derselben Frequenz $\omega$ schwingen.
-			Führt zu nicht quantitative Resultate, zeigt aber, dass die spezifische Wärme mit fallender Temperatur abnimmt.
+			Vereinfachtes Modell von Einstein, wobei alle Oszillatoren mit derselben
+			Frequenz $\omega$ schwingen. Führt zu nicht quantitativen Resultaten,
+			zeigt aber, dass die spezifische Wärme mit fallender Temperatur abnimmt.
 			
-			$N$ Oszillatoren derselben Resonanzfrequenz $\omega$ besitzen die mittlere Energie:
+			$N$ Oszillatoren der selben Resonanzfrequenz $\omega$ besitzen die
+			mittlere Energie:
 			\[
-				U = N \langle n \rangle \hbar \omega = \frac{N \hbar \omega}{\eu^{\frac{\hbar\omega}{kT}} - 1}
+				U = N \langle n \rangle \hbar \omega =
+					\frac{N \hbar \omega}{\eu^{\frac{\hbar\omega}{k_B T}} - 1}
+			\]
+
+			Einstein-Temperatur:
+			\[
+				\Theta_E = \frac{\hbar \omega_E}{k_B} = \frac{E}{k_B}
 			\]
 			
 			Spezifische Wärme:
 			\[
-				c_V = \parens{\frac{\partial U}{\partial T}}_V = N k \parens{\frac{\hbar\omega}{kt}}^2 \frac{\eu^{\frac{\hbar\omega}{kT}}}{\parens{\eu^{\frac{\hbar\omega}{kT}} - 1}^2}
+				c_V = \parens{\frac{\partial U}{\partial T}}_V = N k_B  \parens{\frac{\hbar\omega}{k_B T}}^2 \frac{\eu^{\frac{\hbar\omega}{k_B T}}}{\parens{\eu^{\frac{\hbar\omega}{k_B T}} - 1}^2}
 			\]
 		% paragraph spezifische_wärme (end)
 	% subsection das_einstein_modell_der_spezifischen_wärme (end)
@@ -437,7 +469,7 @@
 			\]
 			
 			\[
-				U = \int \rho(k) \langle n_k \rangle \hbar \omega_k \diff k
+				U = \sum_k \langle n_k \rangle \hbar \omega_k = \int \rho(k) \langle n_k \rangle \hbar \omega_k \diff k
 			\]
 			
 			Für laufende Wellen:
@@ -447,29 +479,33 @@
 			Energie bleibt die selbe.
 			
 			Zustandsdichte im Frequenzraum:
-			\[
-				\rho(\omega) = 2 \cdot \frac L {\pi a} (\omega_\text{max}^2 - \omega^2)^{-\nicehalf} \neq \const
-			\]
+			\begin{align*}
+				\rho(\omega) \diff \omega &= \rho(k) \diff k \\
+				\Rightarrow \rho(\omega) &= 2 \cdot \frac L {\pi a} (\omega_\text{max}^2 - \omega^2)^{-\nicehalf} \neq \const
+			\end{align*}
+
 			Der Faktor $2$ kommt daher, dass die negativen und positiven $k$-Werte gleich viel zur Zustandsdichte im Frequenzraum beitragen.
 		% paragraph die_zustandsdichte_für_phononen (end)
 		\paragraph{Die Debye'sche Näherung der Zustandsdichte} % (fold)
 			~
 			
 			\[
-				U = \frac{9N}{\omega_D^3} \int_0^{\omega_D} \frac{\hbar\omega^3}{\eu^{\frac{\hbar\omega}{kT}} - 1} \diff \omega
+				U = \frac{9N}{\omega_D^3} \int_0^{\omega_D}
+					\frac{\hbar\omega^3}{\eu^{\frac{\hbar\omega}{k_B T}} - 1} \diff \omega
 			\]
 			
 			\[
-				c_v = \frac{9N}{\omega_D^3} \frac{\hbar^2}{kT^2} \int_0^{\omega_D} \frac{\omega^4 \eu^{\frac{\hbar\omega}{kT}}}{\parens{\eu^{\frac{\hbar\omega}{kT}} - 1}^2} \diff \omega
+				c_v = \frac{9N}{\omega_D^3} \frac{\hbar^2}{k_B T^2} \int_0^{\omega_D}
+					\frac{\omega^4 \eu^{\frac{\hbar\omega}{k_B T}}}{\parens{\eu^{\frac{\hbar\omega}{k_B T}} - 1}^2} \diff \omega
 			\]
 			
 			Durch Substitutionen
 			\begin{align*}
-				\Theta_D &= \frac{\hbar \omega_D}{k} \\
-				x &= \frac{\hbar\omega}{kT} \\
-				c_v^\infty &= 3Nk
+				\Theta_D &= \frac{\hbar \omega_D}{k_B } \tag{Debye-Temperatur} \\
+				x &= \frac{\hbar\omega}{k_B T} \\
+				c_v^\infty &= 3Nk_B \tag{klassischer Hochtemperaturwert}
 			\end{align*}
-			findet man die Vereinfachung
+			ergibt sich:
 			\[
 				\frac{c_v}{c_v^\infty} = 3 \parens{\frac{T}{\Theta_D}}^3 \int_0^{\theta_D/T} \frac{x^4 \ \eu^x}{(e^x - 1)^2} \diff x
 			\]
@@ -480,9 +516,19 @@
 % section die_spezifische_wärme_von_festkörpern (end)
 \section{Wellenausbreitung in periodischen Strukturen} % (fold)
 	\subsection{Optische und akustische Gitterschwingungen} % (fold)
-		Die kleinst mögliche Einheitszelle einer \emph{einatomigen} Federkette hat die Länge $a$ und bei der \emph{zweiatomigen} die Länge $2a$.
-		
-		Bei einem einzigen Atom schauen alle Dispersionsrelationen qualitativ gleich aus, welche nur \textbf{akustische Äste} aufweisen, d.h.~insgesamt drei für drei Polarisationsrichtungen. Bei mehreren Atomen in der Einheitszelle treten für jedes zusätzliche Atom drei zusätzlich sogenannte \textbf{optische Äste} auf.
+		Gitterschwingungen in einem Kristall mit $3N$ Atomen:
+		\begin{tightitemize}
+			\item $3$ akustische (1 longitudinale, 2 transversale) und
+			\item $3N - 3$ optische Moden.
+			\item[$\Rightarrow$] optische Moden treten nur bei $N > 1$
+		\end{tightitemize}
+
+		Damit ein Kristall optisch aktiv sein kann, braucht es eine
+		\emph{(elektrische) Polarisation}. Phononen können dann durch Photonen
+		angeregt werden. Polarisation tritt bei \emph{mehratomigen} Kristallen auf
+		und entspricht den optischen Moden wobei die verschiedenen Atomarten
+		gegeneinander schwingen während in den akustischen Moden die Atome
+		miteinander schwingen.
 	% subsection optische_und_akustische_gitterschwingungen (end)
 	\subsection{Die zweiatomige Federkette} % (fold)
 		Federkette mit leichterer Masse $m$, schwererer Masse $M$ und Federkonstante $f$.
@@ -522,10 +568,9 @@
 		\[
 			\Diff z t = v_\text{mod} = \frac{\omega_\text{mod}}{k_\text{mod}}
 		\]
-		$\omega$ und $k$ sind über die Dispersionsrelation $\omega(k)$ miteinander verknüpft. Die Modulationsgeschwindigkeit kann deshalb in eine Taylor-Reihe entwickelt werden. Ist zusätzlich die Differenz $\omega_1 - \omega_2$ sehr klein im Vergleich zum Mittelwert beider Frequenzen, kommt man zur \textbf{Gruppengeschwindigkeit}:
-		\[
+		\emphequation{equation*}{
 			v_g = \Diff \omega k
-		\]
+		}
 		
 		Die Wellenberge pflanzen sich nicht mit der Phasengeschwindigkeit $\overline v_0 = \overline \omega/\overline k$ fort, sondern mit $v_g$.
 		
@@ -563,9 +608,10 @@
 			\Delta k \Delta z = 2\pi
 		\end{equation}
 		
-		Im Falle einer dispersiven Welle hat jede harmonische Komponente ihre eigene Phasengeschwindigkeit $v_\phi = \omega/k(\omega)$. Ein Band der Breite $\Delta k$ enthält ein Band von Gruppengeschwindigkeiten $\Delta v_g$:
+		Im Falle einer dispersiven Welle hat jede harmonische Komponente ihre eigene Phasengeschwindigkeit $v_\phi(\omega) = \omega/k(\omega)$. Ein Band der Breite $\Delta k$ enthält ein Band von Gruppengeschwindigkeiten $\Delta v_g$:
 		\[
 			\Delta v_g = \parens{\frac{\diff^2 \omega}{\diff k^2}}_0 \Delta k
+				= \parens{\Diff{v_g}{k}}_0 \Delta k
 		\]
 		
 		$\dots_0$ bedeutet, dass der Wert der Ableitung im Zentrum des Frequenzbandes zu nehmen ist.
@@ -579,6 +625,14 @@
 	\subsection{Anwendungen in der Quantenmechanik} % (fold)
 		\paragraph{Zeitabhängige Schrödinger-Gleichung} % (fold)
 			~
+
+			Wellenfunktionen beschreiben eine Wahrscheinlichkeitsdichte
+			\[
+				\int_{-\infty}^\infty \abs{\psi(z)}^2 \diff z = 1
+			\]
+			wobei $\abs{\psi(z)}^2 \diff z$ der Wahrscheinlichkeit entspricht, dass
+			ein Elektron sich innerhalb eines um $z$ zentrierten Intervalls $\diff z$
+			befindet.
 			
 			Zustände $E_n$ (Energieeigenwert) werden \textbf{stationäre Zustände} genannt, da ein Elektron in solch einem Zustand ohne äusseren Einfluss ewig in diesem Zustand bleibt.
 			\[
@@ -591,7 +645,8 @@
 			
 			Wird ein Atom in einem stationären Zustand durch einen Zusammenstoss oder durch elektromagnetischer Strahlung gestört, so wird dieses vom Eigenzustand $\psi_1$ in den Eigenzustand $\psi_2$ übergehen und dabei elektromagnetische Strahlung aussenden.
 			
-			Der Übergang wird beschrieben durch
+			Der Übergang wird beschrieben durch eine Linearkombination der beiden
+			Zustände:
 			\[
 				\psi = c_1 \psi_1 \eu^{\iu E_1 t / \hbar} + c_2 \psi_2 \eu^{\iu E_2 t / \hbar}
 			\]
@@ -600,7 +655,11 @@
 			\[
 				\omega = \frac{E_2 - E_1}{\hbar}
 			\]
-			Diese sinusförmige Schwingung erzeugt elektromagnetische Dipolstrahlung.
+			Die Wahrscheinlichkeitsdichte eines kohährenten Zustandes variiert
+			sinusförmig mit der Zeit und damit auch die mittlere Lage $\overline z$
+			eines Elektrons. Diese Schwingung erzeugt elektromagnetische
+			Dipolstrahlung die beim Übergang zwischen zwei Zuständen absorbiert oder
+			emitiert wird.
 		% paragraph elektromagnetische_strahlung_eines_atoms (end)
 	% subsection anwendungen_in_der_quantenmechanik (end)
 	\subsection{Klassische Analyse der Linienform} % (fold)
@@ -618,7 +677,8 @@
 			}
 		\]
 		
-		Die Amplitude der Welle wird exponentiall mit der Distanz $z$ gedämpft:
+		Die Amplitude der Welle wird exponentiall mit der Distanz $z$ gedämpft, d.h.
+		das Medium absorbiert Energie aus der Welle.
 		\[
 			\vec E = \vec E_0 \ \eu^{-\alpha z} \ \eu^{\iu(\omega t - kz)}
 		\]
@@ -665,16 +725,18 @@
 		
 		Für genügend kleine Dämpfungen kann man die Form der Absorptionskonstante $\alpha$ oder des Extinktionskoeffizienten $\kappa$ sehr gut durch die \textbf{Lorentz-Kurve} $L(\omega)$ annähern:
 		\[
-			L(\omega) = \frac{(\nicefrac \Gamma 2)^2}{(\omega_0 - \omega)^2 + (\nicefrac \omega 2)^2}
+			L(\omega) = \frac{(\nicefrac \Gamma 2)^2}{(\omega_0 - \omega)^2 + (\nicefrac \Gamma 2)^2}
 		\]
 		
 		\paragraph{Natürliche Linienbreite und Unschärfe Relation} % (fold)
 			~
-			Es gibt eine minimale Breite der Breite $\Gamma$ einer Spektrallinie, die sog.~\emph{natürliche Linientbreite}, die nicht unterschritten werden kann. Diese wird bestimmt durch die Lebensdauer $\tau_0$ eines angeregten Zustandes.
+			Es gibt eine minimale Breite $\Gamma$ einer Spektrallinie, die sog.
+			\emph{natürliche Linienbreite}, die nicht unterschritten werden kann. Diese wird bestimmt durch die Lebensdauer $\tau_0$ eines angeregten Zustandes.
 			
 			\textbf{Unschärfe-Relation von Heisenberg:}
 			\[
-				\hbar\Gamma \cdot \tau_0 = \hbar\Delta\omega \cdot \Delta t = \Delta E \cdot \Delta t \approx h
+				\hbar\Gamma \cdot \tau_0 = \hbar\Delta\omega \cdot \Delta t
+					= \Delta E \cdot \Delta t = \Delta p_y \cdot \Delta y \approx h
 			\]
 		% paragraph natürliche_linienbreite (end)
 	% subsection klassische_analyse_der_linienform (end)
@@ -693,10 +755,15 @@
 		\begin{align*}
 			I(\vec r) &= |\vec E|^2 \\
 			&= |\vec E_1|^2 + |\vec E_2|^2 + 2 \vec E_1 \cdot \vec E_2 \cos \Delta \Phi \\
-			&= I_1 + I_2 + \underbrace{2 \vec E_1 \cdot \vec E_2 \cos \Delta \Phi}_{\mathclap{\text{\textbf{Interferenzterm}}}}
+			&= I_1 + I_2 + \underbrace{
+				2 \vec E_1 \cdot \vec E_2 \cos \Delta \Phi
+			}_{\mathclap{\text{\textbf{Interferenzterm}}}} \\
+			\Delta \Phi &= \vec k_1 \cdot \vec r - \vec k_2 \cdot \vec r + \phi_1 - \phi_2
 		\end{align*}
 		
-		Es gibt keine Interferenz bei inkohärenten Wellen oder bei orthogonaler Polarisation, da $\vec E_1 \cdot \vec E_2 = 0$.
+		Es gibt keine Interferenz bei inkohärenten Wellen da der Mittelwert von
+		$\cos \Delta \Phi = 0$ ist sowie bei orthogonaler Polarisation, da
+		$\vec E_1 \cdot \vec E_2 = 0$.
 	% subsection prinzip_der_linearen_superposition (end)
 	\subsection{Das Young'sche Doppelspalt-Experiment} % (fold)
 		\begin{center}
@@ -705,19 +772,21 @@
 %				}
 		\end{center}
 		
-		Bei $P$ haben die Strahlen die Phasendifferenz
+		Bei $P$ gilt:
 		\[
-			\Delta \Phi = k\cdot d \sin \theta
+			\Delta \Phi = k\cdot d \sin \theta\,, \qquad y = a \cdot \tan \Theta
 		\]
 		
-		Intensitätsmaxima erwartet man, wenn die Phasendifferenz ein ganzzahliges Vielfaches von $2\pi$ beträgt ($\Delta \Phi = \pm 2n\pi$) bzw.~wenn
-		\[
-			\underbrace{|d \sin \theta|}_{\mathclap{\text{\textbf{Gangunterschied}}}} = n\lambda
-		\]
+		Für die Intensität gilt
+		\begin{align*}
+			d \sin \theta &= n\lambda \tag{maxima} \\
+			\underbrace{d \sin \theta}_{\mathclap{\text{\textbf{Gangunterschied}}}} &= (n - \half) \lambda \tag{minima}
+		\end{align*}
+
+		Bei einem breiten Einfachspalt ist dies analog, ausser dass $d = \frac B 2$
+		ist (halbe Spaltbreite).
 	% subsection das_young_sche_doppelspalt_experiment (end)
 	\subsection{Das Prinzip von Huygens} % (fold)
-		\emph{Von jedem infinitesimalen Raumelement eines Wellenfeldes geht eine Kugelwelle aus. Die Flächen gleicher Auslenkungen, also die sog.~Wellenflächen, ergeben sich aus der Umhüllenden dieser Kugelwellenflächen.}
-		
 		\paragraph{Reflexions- und Brechungsgesetz} % (fold)
 			\begin{center}
 				\input{graphics/reflexion}
@@ -726,19 +795,29 @@
 			Zur Zeit $t=0$ trifft die Wellenfront bei $O$ ein. Eine Kugelwelle wird erzeugt, die
 			sich mit $c_1 = c/n_1$ im Medium 1 und mit $c_2 = c/n_2$ im Medium 2 ausbreitet.
 			Zur Zeit $\tau$ trifft die Wellenfront in $P$ ein. Die Kugelwelle im Medium 1 hat den Radius $c_1 \tau$ und im Medium 2 $c_2 \tau$.
+			
 			\[
-				\Rightarrow \quad \Theta_i = \Theta_R \,,\quad \frac{\sin\Theta_i}{\sin\Theta_T} = \frac{c_1}{c_2} = \frac{n_2}{n_1}
+				\Rightarrow \quad \Theta_i = \Theta_R \,,\quad
+					\frac{\sin\Theta_i}{\sin\Theta_T} = \frac{c_1}{c_2}
+					= \frac{n_2}{n_1} = \frac{\lambda_1}{\lambda_2}
 			\]
 			
 			Kritischer Winkel (vollständige Reflexion):
 			\[
 				\Theta_c = \arcsin \frac{n_2}{n_1}
 			\]
+
+			Bei \emph{Reflexion an dichterem Medium} erfährt die Welle einen
+			\textbf{Phasensprung} um $\pi$ bzw. um $\lambda/2$.
 		% paragraph reflexions_und_brechungsgesetz (end)
 		\paragraph{Linsen} % (fold)
 			\begin{center}
 				\vspace{-1cm}
 				\input{graphics/linse}
+			\end{center}
+
+			\begin{center}
+				\input{graphics/linse2}
 			\end{center}
 			
 			\textbf{Linsenmacherformel:}
@@ -764,7 +843,8 @@
 		
 		Die Intensität variiert mit dem Beobachtungswinkel gemäss
 		\[
-			I \propto \frac{\sin^2 X}{X^2} \,,\qquad \text{wobei} \quad X = \half k s \sin \phi
+			I \propto \frac{\sin^2 X}{X^2} = \sinc^2 X \,,\qquad
+				\text{wobei} \quad X = \half k s \sin \phi
 		\]
 		
 		\begin{center}
@@ -796,7 +876,8 @@
 		
 			\textbf{Impulsoperator:}
 			\[
-				\vec{\tilde{p}} = (\tilde p_x, \tilde p_y, \tilde p_z) = \parens{
+				\vec{\tilde{\boldsymbol p}} = (\tilde{\boldsymbol p}_x,
+					\tilde{\boldsymbol p}_y, \tilde{\boldsymbol p}_z) = \parens{
 					\frac{\hbar}{i} \frac{\partial}{\partial x},
 					\frac{\hbar}{i} \frac{\partial}{\partial y},
 					\frac{\hbar}{i} \frac{\partial}{\partial z}
@@ -814,7 +895,7 @@
 			
 			Die Wellenfunktion $\psi(z) = C\cdot \eu^{\iu kz}$ ist ein Eigenzustand des Impulsoperators:
 			\[
-				\tilde p_z \psi(z) = \hbar k \psi(z) = p_z \psi(z)
+				\tilde{\boldsymbol p}_z \psi(z) = \hbar k \psi(z) = p_z \psi(z)
 			\]
 			Der Impuls kann exakt bestimmt werden (Impuls ist \textbf{scharf}). Das Teilchen kann aber nicht exakt lokalisiert werden (sein Ort ist \textbf{unscharf}).
 			
@@ -825,7 +906,10 @@
 					0 & \text{sonst}
 				\end{array}\right.
 			\]
-			Wahrscheinlichkeit, dass ein Teilchen den Spalt passiert, ist $1$.
+			Wahrscheinlichkeit, dass ein Teilchen den Spalt passiert:
+			\[
+				\int_{-\nicefrac s 2}^{\nicefrac s 2} \abs{\psi}^2 \diff y = 1
+			\]
 			
 			Impulsverteilung der Teilchen nach dem sie den Spalt passiert haben (Fourier-Transformation von $\psi(y)$):
 			\[
@@ -841,12 +925,15 @@
 				~
 				
 				Spalt bei $y=y_1$.
-				\[
-					\phi(p_y) = \frac{1}{\sqrt{2\pi\hbar}} \,\eu^{- \iu \frac{p_y}{\hbar} y_1}
-				\]
-				\[
-					P(p_y) = |\phi(p_y)|^2 = \const
-				\]
+
+				\begin{align*}
+					\psi(y) &= \delta(y - y_1) \\
+					\phi(p_y) &= \frac{1}{\sqrt{2\pi\hbar}} \int_{-\infty}^{\infty}
+						\psi(y) \,\eu^{- \iu \frac{p_y}{\hbar} y_1}
+						= \frac{1}{\sqrt{2\pi\hbar}} \,\eu^{- \iu \frac{p_y}{\hbar} y_1} \\
+					P(p_y) &= |\phi(p_y)|^2 = \const
+				\end{align*}
+
 				Teilchen werden mit gleicher Wahrscheinlichkeit unter jedem Winkel gestreut (vgl.~Kugelwellen nach Spalt).
 			% subparagraph spalt_infinitesimaler_breite (end)
 			\subsection{Spalt endlicher Breite} % (fold)
@@ -875,7 +962,8 @@
 		\]
 		Beugungsmaxima treten nur auf bei
 		\[
-			k_y = n \cdot \frac{2\pi}{a}
+			k_y = n \cdot \frac{2\pi}{a} \,\qquad
+			\sin \phi_n = n \frac{\lambda}{a}
 		\]
 		und werden mit zunehmenden $N$ immer schärfer.
 	% subsection die_beugung_an_einem_strichgitter (end)
@@ -889,6 +977,14 @@
 			\item[$m$:] Masse des Elektrons
 		\end{tightitemize}
 	% subsection compton_streuung (end)
+
+	\subsubsection{Bragg-Reflexion} % (fold)
+		Bragg'sche Gleichung erlaubt es, bei bekannter Wellenlänge $\lambda$ der
+		Röntgenstrahlung die Gitterkonstante $a$ zu bestimmen:
+		\[
+			2 a \sin \Theta = n \lambda
+		\]
+	% subsubsection Bragg-Reflexion (end)
 % section interferenz_und_beugung (end)
 
 

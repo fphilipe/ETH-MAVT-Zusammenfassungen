@@ -13,7 +13,8 @@
 				\text{Avogadrozahl:} & N_A & \SI{6.02e23}{\per\mole} \\
 				\text{Gaskonstante:} & R & k_B N_A = \SI{8.31}{\joule\per\kelvin\per\mole} \\
 				\text{Erdbeschleunigung:} & g & \SI{9.81}{\metre\per\Square\second} \\
-				\text{Plank'sches Wirkungsquantum:} & h & \SI{6.62e-34}{\joule\sec}
+				\text{Plank'sches Wirkungsquantum:} & h & \SI{6.62e-34}{\joule\sec} \\
+				\text{Masse eines Elektrons:} & m_e & \SI{9.11e-31}{\kilo\gram}
 			\end{array}
 		\end{equation*}
 	}
@@ -74,10 +75,10 @@
 			\]
 			
 			\paragraph{Beziehungen} % (fold)
-				\begin{gather*}
-					\rotation(\gradient T) = \rot (\grad T) = 0 \\
-					\divergenz(\rotation \vec{h}) = \Div (\rot \vec{h}) = 0
-				\end{gather*}
+				\begin{align*}
+					\rotation(\gradient T) &= \rot (\grad T) = 0 \\
+					\divergenz(\rotation \vec{h}) &= \Div (\rot \vec{h}) = 0
+				\end{align*}
 				
 				\begin{theorem}
 					Wenn die Rotation eines Vektorfeldes $\vec{A}$ verschwindet ($\rot \vec{A} = 0$), dann ist $\vec{A}$ immer der Gradient eines skalaren Feldes $\phi$, so dass $\vec{A} = \grad \phi$.
@@ -160,7 +161,7 @@
 	\subsection{Fourier-Transformation} % (fold)
 		\paragraph{Orts- $\rightarrow$ Impulsraum} % (fold)
 			\[
-				A(k_y) = \sqrt{\frac{1}{2\pi}} \int_{-\infty}^{\infty} f(y) \, \eu^{-\iu k_y y} \diff y
+				A(\omega) = \sqrt{\frac{1}{2\pi}} \int_{-\infty}^{\infty} f(y) \, \eu^{-\iu \omega y} \diff y
 			\]
 		% paragraph orts_rightarrow_impulsraum (end)
 		\paragraph{Impuls- $\rightarrow$ Ortsraum} % (fold)
@@ -169,5 +170,46 @@
 			\]
 		% paragraph impuls_rightarrow_ortsraum (end)
 	% subsection fourier_transformation (end)
+
+	\subsubsection{Mathematische Identitäten und Näherungen} % (fold)
+		\begin{align*}
+			\sin x &= \frac{1}{2\iu} \parens{\eu^{\iu x} - \eu^{-\iu x}} \\
+			\cos x &= \frac{1}{2} \parens{\eu^{\iu x} + \eu^{-\iu x}} \\
+			\sin^2 x &= \half \parens{1 - \cos 2x} \\
+			\cos^2 x &= \half \parens{1 + \cos 2x} \\
+			\sinc x &= \frac{\sin x}{x} \\
+			\sqrt{1 + x} &= 1 + \half x + \mathcal O (x^2) \\
+			\eu^x &= 1 + x + \mathcal O (x^2) \\
+			\sum_{n=0}^{N-1} x^n &= \begin{dcases}
+				\frac{1-x^N}{1-x} & \text{falls } x \neq 1 \\
+				N & \text{falls } x = 1
+			\end{dcases}
+		\end{align*}
+	% subsubsection Identitäten und Näherungen (end)
+
+	\subsubsection{Lagrange} % (fold)
+		\[
+			\Diff{}{t} \parens{\Part{T}{\dot{\vec q}}}^\transp
+				- \parens{\Part{T}{\vec q}}^\transp + \parens{\Part{V}{\vec q}}^\transp
+				= 0
+		\]
+
+		Wobei
+		\begin{align*}
+			V &= mgz \\
+			V_\text{Feder} &= \half c (z - z_0)^2 \\
+			T &= \half m \dot{\vec r}^2 + \half \Theta \dot \phi^2 \\
+			T_\text{Masse an Seil} &= \half m l^2 \dot \phi^2
+		\end{align*}
+	% subsubsection Lagrange (end)
+
+	\subsubsection{Elektrotechnik} % (fold)
+		\begin{alignat*}{2}
+			v_C &= \frac{1}{C} \int i_C \diff t & \qquad
+			i_C &= C \Diff{v_C}{t} \\
+			v_L &= L \Diff{i_L}{t} &
+			i_L &= \frac{1}{L} \int v_L \diff t
+		\end{alignat*}
+	% subsubsection Elektrotechnik (end)
 	
 % section: Mathematische Grundlagen (end)
