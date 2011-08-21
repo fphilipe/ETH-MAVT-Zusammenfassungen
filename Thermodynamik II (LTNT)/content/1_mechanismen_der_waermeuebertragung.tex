@@ -13,8 +13,11 @@
 		Kann man auch als \emph{Diffusion von thermischer Energie} auffassen.
 
 		\paragraph{Das Gesetz von Fourier (Fourier's Law)} % (fold)
-			\emphequation{equation*}{
-				\dot q'' = - \lambda \Diff T x
+			\emphequation{align*}{
+				\dot q'' &= - \lambda \Diff T x \\
+				\dot q'' &= \frac{\dot q'}{2\pi r} = - \lambda \parens{
+					\Diff T r + \frac{1}{r} \Diff T \phi + \Diff T z
+				}
 			}
 			Wärmestromdichte ist proportional zum Temperaturgradienten.
 			\begin{itemize}

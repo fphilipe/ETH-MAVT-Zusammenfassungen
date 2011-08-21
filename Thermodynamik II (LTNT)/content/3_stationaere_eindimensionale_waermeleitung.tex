@@ -1,6 +1,9 @@
 %!TEX root = ../Thermodynamik II (LTNT).tex
-
 \section{Stationäre eindimensionale Wärmeleitung} % (fold)
+	Mittlere Temperaturdifferenz bei gegebener Anfangs- und Endtemperaturdifferenz:
+	\emphequation{equation*}{
+		\overline{ \Delta T } = \frac{\Delta T_1 - \Delta T_2}{\ln (\Delta T_1 / \Delta T_2)}
+	}
 	\subsection{Der Begriff des Wärmeleitwiderstandes} % (fold)
 		Analogie zwischen elektrischem Strom und Wärmestrom: $T \ \Rightarrow$ Potential, $\dot Q \ \Rightarrow$ Strom, $R \ \Rightarrow$ Widerstand, wobei
 		\emphequation{equation*}{
@@ -156,8 +159,8 @@
 			\begin{tightitemize}
 				\item Bewegung in Längsrichtung mit Geschwindigkeit $u$
 				\item In Querrichtung durch Fluid angeströmt (konvektiver Wärmeübergang mit $\alpha$)
-				\item Querschnittsfläche $S(x)$, welche von $x$ abhängen kann
-				\item Umfang $P$
+				\item \textbf{Querschnittsfläche} $S(x)$, welche von $x$ abhängen kann
+				\item \textbf{Umfang} $P$
 				\item Temperaturverläufe innerhalb der Querschnittsfläche können vernachlässigt werden
 			\end{tightitemize}
 
@@ -184,9 +187,13 @@
 			\emphequation{equation*}{
 				\frac{\diff^2 \theta}{\diff x^2} - m^2 \cdot \theta = 0
 			}
-			mit \textbf{Rippenparameter} $m$ und \textbf{Übertemperatur} $\Theta$:
+			mit \textbf{Rippenparameter} $m$ und \textbf{Übertemperatur} $\theta$:
 			\[
-				m^2 = \frac{\alpha \cdot P}{\lambda \cdot S}
+				m = \sqrt{
+					\frac{\alpha P}{\lambda S}
+				} = \sqrt{
+					\frac{4 \alpha}{\lambda D}
+				}
 				\,,\qquad
 				\theta = T - T_\infty
 			\]
@@ -196,16 +203,22 @@
 				\theta(x) = C_1 \cdot \eu^{mx} + C_2 \cdot \eu^{-mx}
 			}
 
+			Wärmefluss durch den Fuss der Rippe:
+			\[
+				\dot Q_F = - \lambda S \Diff \theta x \Big|_{x = 0}
+			\]
+
 			\begin{description}
 				\item[1. Randbedingung:] Temperatur des Rippenfusses bekannt:
 					\[
-						T(0) = T_\text{F} \quad \Rightarrow \quad \theta(0) = T_\text{F} - T_\infty = \theta_\text{F} = C_1 + C_2
+						T(0) = T_\text{F} \quad \Rightarrow \ \theta(0) = T_\text{F} - T_\infty = \theta_\text{F} = C_1 + C_2
 					\]
 				\item[2. Randbedingung:] mehrere Möglichkeiten:
 					\begin{description}
 						\item[Rippe bei $\boldsymbol{x = L}$ isoliert:] (gute Näherung zur Realität)
-							\emphequation{equation*}{
-								\theta(x) = \theta_\text{F} \cdot \frac{\cosh(m \cdot (L-x))}{\cosh (m\cdot L)}
+							\emphequation{align*}{
+								\theta(x) &= \theta_\text{F} \cdot \frac{\cosh(m \cdot (L-x))}{\cosh (m\cdot L)} \\
+								\dot Q_\text{F} &= \lambda \cdot S \cdot \theta_\text{F} \cdot m \cdot \tanh(m\cdot L)
 							}
 						\item[Konvektiver Wärmeübergang am Rippenende:]
 							\[
@@ -217,16 +230,12 @@
 								&= \theta_\text{K} = C_1 \cdot \eu^{mL} + C_2 \cdot \eu^{-mL}
 							\end{align*}
 						\item[Rippe ist sehr lang (kein Wärmefluss bis zum Kopf):]
-							\[
-								C_1 = 0
-							\]
+							\begin{align*}
+								C_1 &= 0 \\
+								\dot Q_F &= \lambda \cdot S \cdot \theta_F \cdot m
+							\end{align*}
 					\end{description}
 			\end{description}
-
-			\textbf{Wärmeübertragungsleistung} (Wärmefluss, der am Fuss in die Rippe hineinfliesst bei adiabatem Kopf):
-			\emphequation{equation*}{
-				\dot Q_\text{F} = \lambda \cdot S \cdot \theta_\text{F} \cdot m \cdot \tanh(m\cdot L)
-			}
 
 			Eine Rippe erreicht ihre \textbf{maximale Übertragungsleistung} bei $m\cdot L = 2$. Eine weitere Verlängerung erhöht die Wärme\-über\-tragung kaum.
 
