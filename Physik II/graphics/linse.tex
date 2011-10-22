@@ -1,0 +1,24 @@
+\begin{tikzpicture}[>=latex]
+	\draw (3.7,0) -- (-4.7,0);
+	\draw[fill=black] (0,1.2) node[above]{$P$} -- (-4.5,0) circle (.25mm) node[below] {$O$};
+	\draw[fill=black] (0,1.2) -- (3.5,0) circle (.25mm) node[below] {$O'$};
+	\draw (0,-1.4) -- (0,0);
+	\draw[<->] (0,1.2) -- (0,0) node[pos=.5,fill=white]{$h$};
+
+	\draw[fill=black] (0,1.2) -- (1.75,0) node[pos=.5,below,xshift=.75cm]{$R_2$} circle (.25mm);
+	\begin{scope}
+		\clip (0,-1.25) rectangle (-1,1.25);
+		\draw[thick] (1.75,0) circle (2.1219cm);
+	\end{scope}
+
+	\draw[fill=black] (0,1.2) -- (-2,0) node[pos=.5,below,xshift=-.85cm]{$R_1$} circle (.25mm);
+	\begin{scope}
+		\clip (0,-1.25) rectangle (1,1.25);
+		\draw[thick] (-2,0) circle (2.3324cm);
+	\end{scope}
+	
+	\draw (-4.5,-.5) -- (-4.5,-1.4);
+	\draw (3.5,-.5) -- (3.5,-1.4);
+	\draw[<->] (-4.5,-1.3) -- (0,-1.3) node[pos=.5,fill=white]{$s$};
+	\draw[<->] (3.5,-1.3) -- (0,-1.3) node[pos=.5,fill=white]{$s'$};
+\end{tikzpicture}

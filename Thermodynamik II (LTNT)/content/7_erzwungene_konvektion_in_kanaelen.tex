@@ -1,0 +1,124 @@
+%!TEX root = ../Thermodynamik II (LTNT).tex
+
+\section{Erzwungene Konvektion an durchströmten Kanälen} % (fold)
+	\subsection{Hydrodynamische Betrachtung} % (fold)
+		Geschwindigkeitsprofil der Strömung nach der Einlauflänge:
+		\emphequation{equation*}{
+			u(r) = (r_0^2 - r^2) \frac{p_1 - p_2}{4\mu l} = - \Diff p x \cdot \frac{r_0^2 - r^2}{4 \mu}
+		}
+
+		Durchschnittsgeschwindigkeit (konstant über ganze Länge):
+		\emphequation{equation*}{
+			u_m = \frac{1}{A} \int_0^L \int_0^{2\pi} u(r) \cdot r \diff \theta \diff x
+		}
+
+		\[
+			\dot{m} = \rho u_m A
+			\ ,\quad
+			\mathrm{Re}_D = \frac{\rho u_m D}{\mu}
+			\ ,\quad
+			\text{mit } \mathrm{Re}_{D,krit} \approx 2300
+		\]
+
+		Bestimmung der Einlauflänge $X_{d,h}$:
+		\[
+			\parens{\frac{X_{d,h}}{D}}_\text{lam} \approx 0.05 \cdot \mathrm{Re}_D
+			\ ,\quad
+			10 \leq \parens{\frac{X_{d,h}}{D}}_\text{turb} \leq 60
+		\]
+
+		Druckverlust und Widerstandsbeiwert (Moody friction factor) für laminare Strömungen:
+		\[
+			-\Diff p x = \frac \lambda D \cdot \frac \rho 2 \cdot u_m^2
+			\ ,\quad
+			\lambda = \frac{64}{\mathrm{Re}_D}
+		\]
+	% (end)
+
+	\subsection{Thermische Betrachtung} % (fold)
+		Eintrittslänge des Temperaturprofils:
+		\[
+			\parens{\frac{X_{d,T}}{D}}_\text{lam} \approx 0.05 \cdot \mathrm{Re}_D \cdot \mathrm{Pr}
+		\]
+
+		Mittlere Temperatur:
+		\[
+			T_m = \frac{2}{u_m \cdot r_0^2} \int_0^{r_0} u \cdot T(r) \cdot r \diff r
+		\]
+
+		Wärmestrom zwischen Wand und Fluid:
+		\[
+			\dot{q}'' = \alpha (T_s - T_m)
+			\ ,\ \text{wobei } \alpha = \const\,, \ x \geq X_{d,T}
+		\]
+
+		Änderung der Temperatur entlang des Rohres:
+		\[
+			\Diff{T_m}{x} = \frac{U}{c_p \dot m} \cdot \dot{q}''
+			\ ,\quad \text{mit } U = \pi D
+		\]
+
+		Es existieren zwei Fälle:
+		\begin{description}
+			\item[$\dot{q}'' = \const$:] \[
+				T_m(x) = T_m(0) + \frac{ \dot{q}'' \cdot U }{ c_p \dot m } \cdot x
+			\]
+			\item[$T_s = \const$:] \begin{gather*}
+				\frac{\Delta T(x)}{\Delta T_e} = \frac{ T_s - T_m(x) }{ T_s - T_{m}(L) } = \exp \parens{ - \frac{ U \overline{\alpha}_x }{ c_p \dot m  } \cdot x } \\
+				\overline{\alpha}_x = \frac 1 x \int_0^x \alpha \diff x
+			\end{gather*}
+			\[
+				\overline{\Delta T} = \frac 1 L \int_0^L \Delta T(x) \diff x = \frac{ \Delta T_a - \Delta T_e }{ \ln \nicefrac{ \Delta T_a }{ \Delta T_e } }
+			\]
+			Falls $X_{d,T}$ kurz ist gegenüber $x$, kann man deren Einfluss vernachlässigen:
+			\[ \overline{\alpha}_x = \overline{\alpha}_L = \overline{\alpha} \]
+			\item[$T_\infty = \const$:] Gleiche wie bei $T_s = \const$. Es muss lediglich $T_s$ durch $T_\infty$ und $\overline{\alpha}$ durch $\overline{k}_L$ ersetzt werden.
+			\[
+				\dot Q_s = \overline{k}_L \cdot L \cdot \overline{\Delta T}
+			\]
+		\end{description}
+	% subsection Thermische Betrachtung (end)
+
+	\subsection{Wärmeübergangskoeffizient bei laminarer Strömung} % (fold)
+		Für $\dot{q}'' = \const$ gilt:
+		\emphequation{equation*}{
+			T(r) = T_s - \frac{ 2 u_m r_0^2 }{a} \cdot \Diff{T_m}{x} \cdot \parens{ \frac{3}{16} + \frac{1}{16} \parens{\frac{r}{r_0}}^4 - \frac{1}{4} \parens{\frac{r}{r_0}}^2}
+		}
+		wobei $a = \frac{\lambda}{\rho \cdot c}$ die Temperaturleitfähigkeit ist.
+
+		\paragraph{Nusselt-Zahl} % (fold)
+			\begin{description}
+				\item[Bei konstantem Wärmestrom:] \[
+					\mathrm{Nu}_D = \frac{ \alpha \cdot D }{ \lambda } = 4.36
+				\]
+				\item[Bei konstanter Oberflächentemperatur:] \[
+					\mathrm{Nu}_D = \frac{ \alpha \cdot D }{ \lambda } = 3.66
+				\]
+				\item[Im Einflaufbereich:] \[
+					\overline{\mathrm{Nu}}_D = \frac{ \alpha \cdot D }{ \lambda } = \left[
+						3.66 + \frac{
+							0.067 \cdot \parens{ \mathrm{Re}_D \cdot \mathrm{Pr} \cdot \frac d L }^{1.33}
+						}{
+							1 + 0.1 \cdot \mathrm{Pr} \cdot \parens{ \mathrm{Re}_D \cdot \frac d L }^{0.83}
+						} \cdot \parens{\frac{\mu}{\mu_w}}^{0.14}
+					\right]
+				\]
+			\end{description}
+		% paragraph Nusselt-Zahl (end)
+	% subsection Wärmeübergangskoeffizient bei laminarer Strömung (end)
+
+	\subsection{Wärmeübergangskoeffizient bei turbulenter Strömung} % (fold)
+		Folgender experimenteller Ansatz für die Nusselt-Zahl gilt sowohl für konstante Oberflächentemperatur als auch für konstanter Wärmestrom. Der Einlauf wir durch den letzten Term berücksichtigt:
+		\begin{align*}
+			\overline{\mathrm{Nu}}_D =&\ 0.0235 \cdot ( \mathrm{Re}_D^{0.8} - 230 ) \cdot ( 1.8 \cdot \mathrm{Pr}^0.3 - 0.8 ) \\
+			& \cdot \parens{\frac{\mu}{\mu_w}}^{0.14} \cdot \left[
+				1 + \parens{\frac d L}^{\nicefrac 2 3}
+			\right]
+		\end{align*}
+
+		Falls $\mathrm{Re_D} \in (3000,10^5)$, $\mathrm{Pr} \in (0.6, 500)$ und $L/d > 40$, dann gilt die einfachere Beziehung:
+		\[
+			\overline{\mathrm{Nu}}_D = 0.027 \cdot \mathrm{Re}_D^{0.8} \cdot \mathrm{Pr}^{1/3} \cdot \parens{\frac{\mu}{\mu_w}}^{0.14}
+		\]
+	% subsection Wärmeübergangskoeffizient bei turbulenter Strömung (end)
+% (end)

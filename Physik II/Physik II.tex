@@ -1,0 +1,55 @@
+\documentclass[9pt,fleqn,article,ngerman]{memoir}
+
+\title{Physik II -- Zusammenfassung}
+\date{\today}
+\author{Philipe Fatio}
+
+\input{../.includes/layout_setup}
+\input{../.includes/page_setup}
+\input{../.includes/extra_packages}
+\input{../.includes/macro_setup}
+
+\hypersetup{
+    pdffitwindow=true,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={Physik II -- Zusammenfassung},    % title
+    pdfauthor={Philipe Fatio},     % author
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=black,          % color of internal links
+    citecolor=black,        % color  of links to bibliography
+    filecolor=black,      % color of file links
+    urlcolor=black           % color of external links
+}
+
+\numberwithin{equation}{section}
+
+\renewcommand{\arraystretch}{1}
+
+\DeclareMathOperator{\divergenz}{div}
+\DeclareMathOperator{\rotation}{rot}
+\DeclareMathOperator{\gradient}{grad}
+\newcommand{\laplace}{\grad\:\!^2}
+
+\setlength{\parskip}{1ex plus 0.5ex minus 0.2ex}
+
+\settocdepth{section}
+
+\begin{document}
+\content{titelseite}
+\begin{multicols*}{3}
+	\chapter{Schwingungen und Wellen} % (fold)
+		\content{schwingungen_und_wellen}
+	% chapter: Elektrizität und Magnetismus (end)
+\end{multicols*}
+
+% ============
+% = Appendix =
+% ============
+\appendix
+\begin{multicols*}{3}
+	\chapter{Anhang}
+	\settocdepth{chapter}
+	\content{anhang}
+\end{multicols*}
+\end{document}

@@ -1,0 +1,272 @@
+%!TEX root = ../Thermodynamik II (LTNT).tex
+\section{Stationäre eindimensionale Wärmeleitung} % (fold)
+	Mittlere Temperaturdifferenz bei gegebener Anfangs- und Endtemperaturdifferenz:
+	\emphequation{equation*}{
+		\overline{ \Delta T } = \frac{\Delta T_1 - \Delta T_2}{\ln (\Delta T_1 / \Delta T_2)}
+	}
+	\subsection{Der Begriff des Wärmeleitwiderstandes} % (fold)
+		Analogie zwischen elektrischem Strom und Wärmestrom: $T \ \Rightarrow$ Potential, $\dot Q \ \Rightarrow$ Strom, $R \ \Rightarrow$ Widerstand, wobei
+		\emphequation{equation*}{
+			R = \frac{L}{A\:\lambda}
+			\qquad \text{bzw.} \qquad
+			R = \frac{1}{A\:\alpha}
+			\quad
+			\unit{\kelvin\per\watt}
+		}
+		\begin{gather*}
+			\Delta U = R \: I \quad \Rightarrow \quad \Delta T = R \: \dot Q \\
+			\dot Q = k \: A \: \Delta T \,, \text{ Wärmeübergangskoeffizient } k = \frac{1}{R\: A}
+		\end{gather*}
+	% subsection: Der Begriff des Wärmeleitwiderstandes (end)
+
+	\subsection{Wärmefluss durch die ebene Wand} % (fold)
+		\emphequation{equation*}{
+			\frac{\partial^2 T}{\partial x^2} = 0 \qquad \text{mit } T(x=0) = T_1 \text{ und } T(x=L) = T_2
+		}
+		\emphequation{equation*}{
+			T(x) = \frac{T_2 - T_1}{L} x + T_1
+		}
+
+		Wärmefluss durch Anwendung des Fourier'schen Gesetzes:
+		\emphequation{equation*}{
+			\dot Q_x'' = - \lambda \Diff{T}{x} = \lambda \frac{T_1 - T_2}{L} = \const \sunit{\watt\per\Square\metre}
+		}
+	% subsection: Wärmefluss durch die ebene Wand (end)
+
+	\subsection{Ebene Wand mit Konvektion an den Oberflächen} % (fold)
+		\paragraph{Die Biot-Zahl (BI)} % (fold)
+			stellt das Verhältnis des Wär\-me\-leit\-wi\-der\-stan\-des im inneren eines Körpers (bez.~einer charakteristischen Ausdehnung $L$) zum äusseren konvektiven Wärme\-über\-gangswiderstand dar.
+			\emphequation{equation*}{
+				\mathrm{Bi} = \frac{\alpha\cdot L}{\lambda}
+			}
+
+			Die hauptsächliche Temperaturdifferenz findet man für…
+			\begin{description}
+				\item[grosse Bi-Zahl] innerhalb des Körpers
+				\item[kleine Bi-Zahl] zwischen Oberfläche des Körpers und umgebendem Fluid
+			\end{description}
+		% paragraph: Die Biot-Zahl (BI) (end)
+
+		\emphequation{equation*}{
+			T(x) = \frac{T_{\infty 2} - T_{\infty 1}}{2+\mathrm{Bi}} \cdot \parens{ \frac{\alpha}{\lambda} \cdot x + 1 } + T_{\infty 1}
+		}
+		\emphequation{equation*}{
+			\dot Q_x'' = - \lambda \Diff{T}{x} = \frac{T_{\infty 1} - T_{\infty 2}}{2 + \mathrm{Bi}} \cdot \alpha = \const \sunit{\watt\per\Square\metre}
+		}
+
+		Wärmeübergangskoeffizient $k$ für eine beliebige Wandkonstruktion:
+		\emphequation{equation*}{
+			k = \frac{1}{\displaystyle{\frac{1}{\alpha_\text{H}} + \sum_{i=1}^{n} \frac{L_i}{\lambda_i} + \frac{1}{\alpha_\text{K}}}} \sunit{\watt\per\Square\metre\per\kelvin}
+		}
+	% subsection: Ebene Wand mit Konvektion an den Oberflächen (end)
+
+	\subsection{Die ebene Wand mit Wärmequellen} % (fold)
+		Temperaturverlauf ist \textbf{quadratisch}:
+		\emphequation{equation*}{
+			T(x) = - \frac{\dot Q_\text{Quellen}'''}{2\lambda} \cdot x^2 +
+			\parens{\frac{T_2 - T_1}{L} + \frac{\dot Q_\text{Quellen}''' \cdot L}{2\lambda}} \cdot x + T_1
+		}
+
+		Lage des Extremums (Maxima falls Quelle positiv, Minima falls negativ):
+		\emphequation{equation*}{
+			x_e = \frac{L}{2} + \frac{T_2 - T_1}{L} \cdot \frac{\lambda}{\dot Q_\text{Quellen}'''}
+		}
+
+		Verteilung des Wärmeflusses:
+		\emphequation{align*}{
+			\dot q'' &= \dot Q_\text{Quellen}''' \cdot x - \lambda \cdot \frac{T_2 - T_1}{L} - \frac{\dot Q_\text{Quellen}''' \cdot L}{2} \\
+			\dot q''\big|_{x=0} &= - \lambda \cdot \frac{T_2 - T_1}{L} - \frac{\dot Q_\text{Quellen}''' \cdot L}{2} \\
+			\dot q''\big|_{x=L} &= \frac{\dot Q_\text{Quellen}''' \cdot L}{2} - \lambda \cdot \frac{T_2 - T_1}{L}
+		}
+
+		Die Summe der austretenden Wärmeflüsse muss nach der Energieerhaltung gleich der Gesamtheit der eingeschlossenen Wärmequellen sein:
+		\[
+			\dot q_{x=L}'' -
+			\dot q_{x=0}'' = \dot Q_\text{Quellen}''' \cdot L
+		\]
+	% subsection: Die ebene Wand mit Wärmequellen (end)
+
+	\subsection{Wärmefluss durch eine Rohrisolation} % (fold)
+		Innen $T_\text{$\infty$H}$,
+		aussen $T_\text{$\infty$K}$.
+
+		\emphequation{equation*}{
+			T(r) = \frac{T_\text{$\infty$H} - T_\text{$\infty$K}}{\ln \nicefrac{r_1}{r_2}} \cdot \ln \frac{r}{r_2} + T_\text{$\infty$K}
+		}
+
+		Wärmeleitwiderstand:
+		\emphequation{equation*}{
+			R = \frac{\ln \nicefrac{r_2}{r_1}}{2\pi\cdot\lambda\cdot L}
+			\qquad \text{bzw.} \qquad
+			R = \frac{1}{2\pi \cdot L \cdot r \cdot \alpha}
+		}
+
+		\paragraph{Rohrkonstruktion aus mehreren Schichten} % (fold)
+			\emphequation{equation*}{
+				\dot Q_r = k(r) \cdot 2\pi\cdot r \cdot L \cdot ( T_\text{$\infty$H} - T_\text{$\infty$K} )
+			}
+			\emphequation{equation*}{
+				k(r) = \frac{1}{\displaystyle{
+					\frac{r}{r_\text{H} \cdot \alpha_\text{H}} +
+					r \cdot \sum_{i=1}^n \frac{\ln \nicefrac{r_{i+1}}{r_i}}{\lambda_i} +
+					\frac{r}{r_\text{K} \cdot \alpha_\text{K}}
+				}} \sunit{\watt\per\Square\metre\per\kelvin}
+			}
+		% paragraph: Rohrkonstruktion aus mehreren Schichten (end)
+
+		\paragraph{Wärmeverlust pro Länge} % (fold)
+			\emphequation{equation*}{
+				\dot Q_r = k_\text{L} \cdot L \cdot (T_\text{$\infty$H} - T_\text{$\infty$K})
+			}
+			mit \textbf{$\boldsymbol{k_\text{L}}$ unabhängig von $\boldsymbol r$}:
+			\emphequation{align*}{
+				k_\text{L} &= k(r) \cdot 2\pi \cdot r = \frac{\dot Q_r}{L \cdot \Delta T} \\
+				&= \frac{2\pi}{\displaystyle{
+					\frac{1}{r_\text{H} \cdot \alpha_\text{H}} +
+					\sum_{i=1}^n \frac{\ln \nicefrac{r_{i+1}}{r_i}}{\lambda_i} +
+					\frac{1}{r_\text{K} \cdot \alpha_\text{K}}
+				}} \sunit{\watt\per\metre\per\kelvin}
+			}
+		% paragraph: Wärmeverlust pro Länge (end)
+	% subsection: Wärmefluss durch eine Rohrisolation (end)
+
+	\subsection{Zylinder mit Wärmequellen} % (fold)
+		Temperaturverlauf:
+		\emphequation{equation*}{
+			T(r) = \frac{\dot Q_\text{Quellen}''' \cdot r_0^2}{4\lambda} \cdot \parens{1-\frac{r^2}{r_0^2}} + T_0
+		}
+		\begin{itemize}
+			\item[$r_0$:] Aussenradius
+		\end{itemize}
+
+		Temperaturmaxima:
+		\emphequation{equation*}{
+			T_\text{max} = T(r=0) = T_0 + \frac{\dot Q_\text{Quellen}''' \cdot r_0^2}{4\lambda}
+		}
+
+		Wärmefluss:
+		\emphequation{equation*}{
+			\dot q_0'' = -\lambda \cdot \left.\parens{\Diff T r}\right|_{r=r_0} = \frac{\dot Q_\text{Quellen}''' \cdot r_0}{2} \sunit{\watt\per\Square\metre}
+		}
+	% subsection: Zylinder mit Wärmequellen (end)
+
+	\subsection{Wärmeleitung in Rippen} % (fold)
+		Rippen dienen zur Vergrösserung der Wärmetauscherfläche.
+
+		Ist die Dicke im Verhältnis zur Länge der Rippen klein, können diese mit eindimensionaler Wärmeleitung behandelt werden.
+
+		\subsubsection{Allgemeine Energieerhaltungsgleichung für Rippen} % (fold)
+			\begin{tightitemize}
+				\item Bewegung in Längsrichtung mit Geschwindigkeit $u$
+				\item In Querrichtung durch Fluid angeströmt (konvektiver Wärmeübergang mit $\alpha$)
+				\item \textbf{Querschnittsfläche} $S(x)$, welche von $x$ abhängen kann
+				\item \textbf{Umfang} $P$
+				\item Temperaturverläufe innerhalb der Querschnittsfläche können vernachlässigt werden
+			\end{tightitemize}
+
+			\emphequation{align*}{
+				\rho c \Part{}{t}\parens{\Diff V x T} &= \lambda \Part{}{x} \parens{S \Part T x} - \rho c \Part{}{x} \parens{SuT}\\
+				& \quad \, - \Diff A x \alpha \parens{ T - T_\infty} + \dot Q_\text{Quellen}''' \Diff V x \\
+				& \, \quad - \dot Q_\text{Strahlung}'' \Diff A x
+			}
+			mit \[
+				\dot Q_\text{Strahlung}'' = \sigma \epsilon (T^4 - T_\infty^4)
+			\]
+		% subsubsection: Allgemeine Energieerhaltungsgleichung für Rippen (end)
+
+		\subsubsection{Rippen an Wärmetauschern} % (fold)
+			\begin{tightitemize}
+				\item Querschnittsfläche $= \const$
+				\item Rippe bewegt sich nicht $(u = 0)$
+				\item stationär $(\partial/\partial t = 0)$
+				\item keine Quellen
+				\item keine Strahlung
+			\end{tightitemize}
+
+			Die allgemeine Energieerhaltungsgleichung vereinfacht sich zu:
+			\emphequation{equation*}{
+				\frac{\diff^2 \theta}{\diff x^2} - m^2 \cdot \theta = 0
+			}
+			mit \textbf{Rippenparameter} $m$ und \textbf{Übertemperatur} $\theta$:
+			\[
+				m = \sqrt{
+					\frac{\alpha P}{\lambda S}
+				} = \sqrt{
+					\frac{4 \alpha}{\lambda D}
+				}
+				\,,\qquad
+				\theta = T - T_\infty
+			\]
+
+			Zweimaliges Integrieren ergibt:
+			\emphequation{equation*}{
+				\theta(x) = C_1 \cdot \eu^{mx} + C_2 \cdot \eu^{-mx}
+			}
+
+			Wärmefluss durch den Fuss der Rippe:
+			\[
+				\dot Q_F = - \lambda S \Diff \theta x \Big|_{x = 0}
+			\]
+
+			\begin{description}
+				\item[1. Randbedingung:] Temperatur des Rippenfusses bekannt:
+					\[
+						T(0) = T_\text{F} \quad \Rightarrow \ \theta(0) = T_\text{F} - T_\infty = \theta_\text{F} = C_1 + C_2
+					\]
+				\item[2. Randbedingung:] mehrere Möglichkeiten:
+					\begin{description}
+						\item[Rippe bei $\boldsymbol{x = L}$ isoliert:] (gute Näherung zur Realität)
+							\emphequation{align*}{
+								\theta(x) &= \theta_\text{F} \cdot \frac{\cosh(m \cdot (L-x))}{\cosh (m\cdot L)} \\
+								\dot Q_\text{F} &= \lambda \cdot S \cdot \theta_\text{F} \cdot m \cdot \tanh(m\cdot L)
+							}
+						\item[Konvektiver Wärmeübergang am Rippenende:]
+							\[
+								C_1 \cdot m \cdot \eu^{mL} - C_2 \cdot m \cdot \eu^{-mL} = - \frac{\alpha}{\lambda} \cdot \parens{C_1 \cdot \eu^{mL} + C_2 \cdot \eu^{-mL}}
+							\]
+						\item[Temperatur des Rippenendes bekannt:]
+							\begin{align*}
+								\theta(L) &= T_\text{K} - T_\infty \\
+								&= \theta_\text{K} = C_1 \cdot \eu^{mL} + C_2 \cdot \eu^{-mL}
+							\end{align*}
+						\item[Rippe ist sehr lang (kein Wärmefluss bis zum Kopf):]
+							\begin{align*}
+								C_1 &= 0 \\
+								\dot Q_F &= \lambda \cdot S \cdot \theta_F \cdot m
+							\end{align*}
+					\end{description}
+			\end{description}
+
+			Eine Rippe erreicht ihre \textbf{maximale Übertragungsleistung} bei $m\cdot L = 2$. Eine weitere Verlängerung erhöht die Wärme\-über\-tragung kaum.
+
+			Ein \textbf{effizienter Materialeinsatz} ist für $m\cdot L = 1$ gewähr\-leistet.
+			\[
+				L_\text{optimal} < \frac{1}{m} = \sqrt \frac{\lambda \cdot S}{\alpha \cdot P}
+			\]
+			Je grösser $\lambda$ (um so kleiner $m\cdot L$) desto höher die Temperatur am Rippenende.
+		% subsubsection: Rippen an Wärmetauschern (end)
+
+		\subsubsection{Der Rippenwirkungsgrad} % (fold)
+			\emphequation{align*}{
+				\eta_\text{R} &= \frac{\text{übertragene Wärmemenge}}{\text{maximal übertragbare Wärmemenge}} \\
+				&= \frac{\dot Q_\text{F}}{\dot Q_\text{M}} = \frac{\lambda \cdot S \cdot \theta_\text{F} \cdot m \cdot \tanh(m\cdot L)}{\alpha \cdot P \cdot L \cdot \theta_\text{F}} \\
+				&= \frac{\tanh(m\cdot L)}{m\cdot L}
+			}
+			\begin{align*}
+				\eta_\text{R}(m\cdot L = 1) &< 80\% \\
+				\eta_\text{R}(m\cdot L = 2) &< 50\%
+			\end{align*}
+		% subsubsection: Der Rippenwirkungsgrad (end)
+
+		\subsubsection{Kreisförmige Rippen} % (fold)
+			Für den Fall des isolierten Rippenkopfes:
+			\emphequation{equation*}{
+				\theta(r) = \theta_\text{F} \frac{I_0(m \cdot r) \cdot K_1(m\cdot r_2) + I_1(m\cdot r_2) \cdot K_0(m\cdot r)}{I_0(m \cdot r_1) \cdot K_1(m\cdot r_2) + I_1(m\cdot r_2) \cdot K_0(m\cdot r_1)}
+			}
+			mit \[
+				m^2 = \frac{2\alpha}{\lambda \cdot d}
+			\]
+			wobei $I_{0,1}$ und $K_{0,1}$ Besselfunktionen 0.~und 1.~Ordnung sind.
+		% subsubsection: Kreisförmige Rippen (end)
+	% subsection: Wärmeleitung in Rippen (end)
+% section: Stationäre eindimensionale Wärmeleitung (end)

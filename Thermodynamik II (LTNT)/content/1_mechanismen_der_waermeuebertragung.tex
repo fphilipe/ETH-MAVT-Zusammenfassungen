@@ -1,0 +1,92 @@
+%!TEX root = ../Thermodynamik II (LTNT).tex
+
+\section{Mechanismen der Wärmeübertragung} % (fold)
+	\subsection{Die Arten der Wärmeübertragung} % (fold)
+		\begin{description}
+			\item[Leitung (Conduction):] in jeglicher Art von Materie, hauptsächlich in Festkörpern
+			\item[Konvektion (Convection):] Wärmetransport, der mit fliessender Materie verbunden ist (Gase, Flüssigkeiten)
+			\item[Strahlung (Radiation):] Wärmetransport in Form von elektromagnetischer Strahlung (nicht an Materie gebunden)
+		\end{description}
+	% subsection: Die Arten der Wärmeübertragung (end)
+
+	\subsection{Wärmeleitung} % (fold)
+		Kann man auch als \emph{Diffusion von thermischer Energie} auffassen.
+
+		\paragraph{Das Gesetz von Fourier (Fourier's Law)} % (fold)
+			\emphequation{align*}{
+				\dot q'' &= - \lambda \Diff T x \\
+				\dot q'' &= \frac{\dot q'}{2\pi r} = - \lambda \parens{
+					\Diff T r + \frac{1}{r} \Diff T \phi + \Diff T z
+				}
+			}
+			Wärmestromdichte ist proportional zum Temperaturgradienten.
+			\begin{itemize}
+				\item[$\dot q''$:] Wärmestromdichte (Wärmestr.~durch Fläche) \niceunit{\watt\per\metre\squared}
+				\item[$\lambda$:] Wärmeleitfähigkeit (Materialabhängig) \niceunit{\watt\per\metre\per\kelvin}
+					\begin{center}
+						\begin{tabular}{l|r@{}l}
+							\textbf{Material} & \multicolumn{2}{l}{\textbf{Wärmeleitfähigkeit} \niceunit{\watt\per\metre\per\kelvin}} \\
+							\midrule
+							Kupfer & 380 & \\
+							Glas & 1&.05 \\
+							Wasser & 0&.599 \\
+							Luft & 0&.024 \\
+							Styropor & 0&$.03 - 0.05$
+						\end{tabular}
+					\end{center}
+			\end{itemize}
+		% paragraph: Das Gesetz von Fourier (Fourier's Law) (end)
+
+		\subsubsection{Konvektion} % (fold)
+			\begin{equation*}
+				\dot q'' = \frac{\dot{Q}}{A} = \alpha (T_\text{H} - T_\text{K})
+			\end{equation*}
+
+			$\alpha$ ist der konvektive Wärmeübertragungskoeffizient (englisch $h$) und hängt von verschiedenen Faktoren ab:
+			\begin{tightitemize}
+				\item Art der Strömung (laminar, turbulent)
+				\item Oberflächenrauhigkeit
+				\item Geometrie
+				\item Art des Fluids
+				\item Phasenübergänge
+			\end{tightitemize}
+
+			Je nach Randbedingungen unterscheidet man \emph{vier Arten} des konvektiven Wärmeübergangs:
+
+			\begin{tightitemize}
+				\item Erzwungene Konvektion
+				\item Natürliche Konvektion
+				\item Sieden
+				\item Kondensation
+			\end{tightitemize}
+
+			\begin{tabular}{lr|r@{$ - $}l}
+				\multicolumn{2}{l}{\textbf{Art der Konvektion}} & \multicolumn{2}{l}{$\boldmath{\alpha}$ \niceunit{\watt\per\metre\squared\per\kelvin}} \\
+				\midrule
+				\multicolumn{2}{l}{\textbf{Natürliche Konvektion}} & \multicolumn{2}{l}{} \\
+				& Gase & 2 & 25 \\
+				& Flüssigkeiten & 50 & $1000$ \\
+				\midrule
+				\multicolumn{2}{l}{\textbf{Erzwungene Konvektion}} & \multicolumn{2}{l}{} \\
+				& Gase & 25 & 250 \\
+				& Flüssigkeiten & 50 & 20000 \\
+				\midrule
+				& \textbf{Siedendes Wasser} & 2000 & 25000 \\
+				\midrule
+				& \textbf{Kondensation von Wasserdampf} & 5000 & 100000 \\
+			\end{tabular}
+		% subsubsection: Konvektion (end)
+
+		\subsubsection{Wärmestrahlung} % (fold)
+			Ein Körper, der sämtliche auf ihn treffende Strahlung absorbiert, nennst man einen idealen \textbf{schwarzen Körper}.
+			Dieser zeigt auch das maximal mögliche Emissionsvermögen $E_b$, welches durch das \textbf{Stefan-Boltzmann Gesetz} beschreiben wird:
+			\begin{equation*}
+				E_b = \sigma \cdot T^4 \qquad \text{mit } \sigma = 5.67\cdot 10^{-8} \si[fraction=frac]{\watt\per\metre\squared\per\kelvin\tothe{4}}
+			\end{equation*}
+			Für nicht ideale Körper (graue Körper) reduziert es sich um einen Faktor $\epsilon$:
+			\begin{equation*}
+				E = \epsilon\cdot\sigma\cdot T^4 \qquad \text{mit } 0 < \epsilon < 1
+			\end{equation*}
+		% subsubsection: Wärmestrahlung (end)
+	% subsection: Wärmeleitung (end)
+% section: Mechanismen der Wärmeübertragung (end)

@@ -1,6 +1,6 @@
 %!TEX root = ../Numerische Mathematik.tex
 
-\section{Grundlagen der Numerik} 
+\section{Grundlagen der Numerik}
 	\subsection{Gleitpunktarithmetik} Gleitpunktzahl
 		\[
 			\hat x = \sigma M B^E
@@ -14,58 +14,58 @@
 
 		$\mathbb{M} (B; l, k) = $ Menge der Maschinenzahlen
 		\begin{tightitemize}
-			\item $\mathbb{M}$ ist endlich. 
-			\item Es gibt eine grösste Zahl $\hat x_{\text{max}}$ und eine kleinste positive Zahl $\hat x_\text{min}$. 
-			\item Die Zahlen von $\mathbb{M}$ haben nicht den gleichen Abstand voneinander. 
+			\item $\mathbb{M}$ ist endlich.
+			\item Es gibt eine grösste Zahl $\hat x_{\text{max}}$ und eine kleinste positive Zahl $\hat x_\text{min}$.
+			\item Die Zahlen von $\mathbb{M}$ haben nicht den gleichen Abstand voneinander.
 		\end{tightitemize}
-		
+
 		\subsubsection{Reduktionsabbildung}
-			$\hat x = \rho(x)$ ist die zu $x$ \textbf{nächstgelegene Zahl} in $\mathbb{M}$. Beim \textbf{Runden} gilt es zu beachten: 
+			$\hat x = \rho(x)$ ist die zu $x$ \textbf{nächstgelegene Zahl} in $\mathbb{M}$. Beim \textbf{Runden} gilt es zu beachten:
 			\begin{tightenumerate}
 				\item den absoluten Reduktionsfehler
 				\[ |x-\rho(x)|\]
 				\item den relativen Reduktionsfehler
 				\[ \Big\vert \frac{x-\rho(x)}{x}\Big\vert \leq \frac{1}{2}B^{1-l} =: \mathrm{eps}\]
-				mit $\mathrm{eps}$ der \textbf{Maschinengenauigkeit}. 
+				mit $\mathrm{eps}$ der \textbf{Maschinengenauigkeit}.
 			\end{tightenumerate}
-			
+
 		\subsubsection{Maschinengenauigkeit}
 			\[
 				1 + \frac{\mathrm{eps}}{2} = 1, \qquad 1 + \mathrm{eps} > 1, \qquad \mathrm{eps} - \frac{\mathrm{eps}}{2} > 0
 			\]
-			
-		\subsubsection{Pseudoarithmetik in $\mathbb{M}$} $\mathbb{M}$ ist im Gegensatz zu $\mathbb{R}$ gegenüber elementaren Operationen nicht abgeschlossen: 
+
+		\subsubsection{Pseudoarithmetik in $\mathbb{M}$} $\mathbb{M}$ ist im Gegensatz zu $\mathbb{R}$ gegenüber elementaren Operationen nicht abgeschlossen:
 			\begin{align*}
 				\hat x + \hat y &= \rho(\hat x + \hat y) \\
 				\hat x \cdot \hat y &= \rho(\hat x \cdot \hat y) \\
 				\frac{\hat x}{\hat y} &= \rho\left(\frac{\hat x}{\hat y}\right)
 			\end{align*}
-			
+
 			\begin{regeln}
-				\item Assoziativ- und Distributivgesetz gelten nicht in $\mathbb{M}$. 
-				\item Kommutativgesetz gilt bezüglich Addition und Multiplikation. 
+				\item Assoziativ- und Distributivgesetz gelten nicht in $\mathbb{M}$.
+				\item Kommutativgesetz gilt bezüglich Addition und Multiplikation.
 			\end{regeln}
-			
+
 			\begin{folgerungen}
 				\item Lange Summen von kleinen zu grossen Summanden summieren
 				\item Im $\mathbb M$ hat $1 + \hat x = 1$ viele Lösungen, nämlich alle $\hat x$ mit $\abs{\hat x} < \mathrm{eps}$
 			\end{folgerungen}
-			
+
 	\subsection{Fehlerfortpflanzung}
 		Im Laufe eines Algorithmus kann sich der Fehler vergrössern.
-		
+
 		\begin{description}
-			\item[Absoluter Fehler:] $\Delta x = \hat x - x$
-			\item[Relativer Fehler:] $\delta x = \Delta x / x$
+			\item[Absoluter Fehler:] $\Delta x = ||\hat x - x||$
+			\item[Relativer Fehler:] $\delta x = \Delta x / ||x||$
 		\end{description}
-		
+
 		\subsubsection{Auslöschung}
 			Bei einer Subtraktion ähnlich grosser Zahlen kann der relative Fehler der Summe viel grösser werden als diejenigen der Summanden.
-			
+
 			$\Rightarrow$ Subtraktion fast gleich grosser Zahlen vermeiden oder lokal höhere Genauigkeit anwenden.
-			
-			Falls der relative Fehler (im Dezimalsystem) von der \textbf{Grössenordnung} $10^{-k}$ ist, sind ca.~\textbf{$\boldsymbol k$ Ziffern des Resultats richtig}. 
-			
+
+			Falls der relative Fehler (im Dezimalsystem) von der \textbf{Grössenordnung} $10^{-k}$ ist, sind ca.~\textbf{$\boldsymbol k$ Ziffern des Resultats richtig}.
+
 	\subsection{Kondition eines Problems}
 		Die \textbf{Konditionszahl} $\kappa_H$ von $H$ ist der Verstärkungsfaktor des relativen Fehlers von $x$ durch $H$.
 		\[
@@ -82,20 +82,20 @@
 		\[
 			\kappa (A) = ||A||\cdot ||A^{-1}||
 		\]
-		
+
 		In der 2-Norm gilt:
 		\[
 			\kappa(A) = \frac{\sqrt{\mu_\text{max}}}{\sqrt{\mu_\text{min}}} \text{ mit } \mu_i \text{ EW von }A^T A
 			\quad,\qquad
 			\kappa(A) = \frac{|\lambda_\text{max}|}{|\lambda_\text{min}|} \text{ für den Fall } A=A^T
 		\]
-		
-\section{Lineare Gl'sys.} 
+
+\section{Lineare Gl'sys.}
 	\begin{tightenumerate}
 		\item \textbf{Diagonalstrategien} sind nur für diagonal dominante Matrizen gut
-		\item Die \textbf{relative Spaltenmaximumstrategie} ist ein guter Algorithmus 
+		\item Die \textbf{relative Spaltenmaximumstrategie} ist ein guter Algorithmus
 	\end{tightenumerate}
-	
+
 	Um ein \textbf{gut konditioniertes} Problem so gut wie möglich zu lösen brauchen wir eine gute \textbf{Pivotstrategie} (Auslöschung wird vermieden):
 	\begin{tightenumerate}
 		\item Skaliere zunächst jede Gleichung so, dass $\underset{k}{\max}|a_{ik}| = 1$:
@@ -103,7 +103,7 @@
 		\[ a_{21}x_1 + a_{22}x_2 = b_2 \rightarrow q_2 = \frac{a_{21}}{a_{2\text{max}}}\]
 		\item Wähle das Pivot in der Zeile mit dem grössten $q$ (Skalierung wird nicht durchgeführt).
 	\end{tightenumerate}
-	
+
 	\subsection{Iterative Methoden}
 		Für grosse, dünn besetzte lineare Gleichungssysteme suchen wir Lösungsmethoden mit folgenden Merkmalen:
 		\begin{tightitemize}
@@ -111,21 +111,22 @@
 			\item Aufwand pro Iterationsschritt entspricht einer Matrix $\times$ Vektor-Operation
 			\item Lineare Konvergenz
 		\end{tightitemize}
-		
-		~
-		
+
+		Falls $||T|| < 1$ in irgendeiner Norm, dann konvergiert das Verfahren gegen
+		einen eindeutigen Grenzwert und zwar \emph{in jeder Norm}.
+
 		\begin{definition}
 			Für die EW $\lambda_i$ der Matrix T ist der Spektralradius
 			\[
 				\rho(T) := \underset{i = 1, \dots , n}\max{|\lambda_i|}
 			\]
-			
+
 			\begin{tightenumerate}
-				\item Für jede Norm ist $\rho(T) \leq ||T||$ 
-				\item Für jedes $\epsilon > 0$ existiert eine Norm, dass $||T||_\epsilon \leq \rho(T) + \epsilon$ 
+				\item Für jede Norm ist $\rho(T) \leq ||T||$
+				\item Für jedes $\epsilon > 0$ existiert eine Norm, dass $||T||_\epsilon \leq \rho(T) + \epsilon$
 			\end{tightenumerate}
 		\end{definition}
-		
+
 		\begin{definition}
 			Eine Matrix $A$ heisst \textbf{strikt diagonal dominant}, falls
 			\[
@@ -134,7 +135,7 @@
 				}}^n \abs{a_{ij}}, \ i = 1,\dots,n
 			\]
 		\end{definition}
-		
+
 		\begin{notation}
 			Zerlegung von A
 			\[
@@ -169,59 +170,59 @@
 			\end{gather*}
 
 		\subsubsection{Jacobi-Verfahren}
-			\[ 
+			\[
 				Dx_{k+1} = -(L+R)x_k + b\,,\quad k = 0,1,2,\dots
 			\]
-			
+
 			\begin{bedingung}
 				$\rho(D^{-1}(L+R)) < 1$
 			\end{bedingung}
-			
+
 			\begin{bemerkungen}
 				\item Falls $D$ regulär ist, ist das Verfahren \textbf{konsistent}
 				\item Falls $A$ strikt diagonal dominant ist, konvergiert das Verfahren
 			\end{bemerkungen}
-			
+
 		\subsubsection{Gauss-Seidelverfahren}
 			\[
 				x_{k+1} = -(D+L)^{-1} R x_k + (D+L)^{-1}b
 			\]
-			
+
 			\begin{bedingung}
 				$\rho((D+L)^{-1}R)<1$
 			\end{bedingung}
-			
+
 			\begin{bemerkungen}
 				\item Falls $D$ regulär ist, konvergiert das Verfahren für ein beliebiges $x_0$ gegen die Lösung $x^*$.
 				\item Falls $A$ strikt diagonal dominant und symmetrische positiv definit ist, konvergiert das Verfahren und zwar schneller als das Jacobi-Verfahren.
 			\end{bemerkungen}
-			
+
 		\subsubsection{SOR-Verfahren}
 			\[
 				x_{k+1} = \underbrace{(D+\omega L)^{-1}\cdot[-\omega R + (1-\omega)D]}_{T(\omega)} x_k + (D+\omega L)^{-1}\omega b
 			\]
-			
+
 			\begin{bedingung}
 				$\rho(T(\omega)) < 1$
 			\end{bedingung}
-			
+
 			\begin{bemerkungen}
 				\item Für $D$ regulär konvergiert das Verfahren
 				\item Für den besten Relaxations-Parameter \[
 					\omega_b \cong \frac{2}{1 + \sqrt{1 - [\rho(D^{-1}(L+R))]^2}}
 				\] konvergiert das Verfahren für gewisse Probleme schneller als das Gauss-Seidel-Verfahren.
 			\end{bemerkungen}
-			
+
 		\subsubsection{CG-Methode}
 			\label{cgrad}
 			Die \textbf{Methode der konjugierten Gradienten} ist eine instationäre iterative Methode für grosse, symmetrische, positiv definite ($\lambda_i \overset{!}{>} 0$) Matrizen.
-			
+
 			\begin{achtung}
 				CG löst $Ax + b = 0$! Für $Ax=b \Rightarrow r^0 = Au_0 - b$.
 			\end{achtung}
 
 			\begin{tightenumerate}
-				\item \textbf{Start:} $u_0 ; r_0 = Au_0 + b ; p_1 = -r_0; \mathrm{TOL}$ 
+				\item \textbf{Start:} $u_0 ; r_0 = Au_0 + b ; p_1 = -r_0; \mathrm{TOL}$
 				\item \textbf{Schritt $\boldsymbol k$:}
 					\begin{align*}
 						 e_{k-1} &= \frac{(r_{k-1}, r_{k-1})}{(r_{k-2},r_{k-2})} \qquad \text{für } k \geq 2 \\
@@ -230,35 +231,35 @@
 						 u_k &= u_{k-1}+\rho_k p_k \\
 						 r_k &= r_{k-1} + \rho_k A p_k
 					\end{align*}
-				\item \textbf{Abbruchkriterium:} $||r_k|| \leq \mathrm{TOL}$ 
+				\item \textbf{Abbruchkriterium:} $||r_k|| \leq \mathrm{TOL}$
 			\end{tightenumerate}
-			
+
 			Für grosse $n$ ist das CG-Verfahren nur bei kleiner Kondition $\kappa(A)$ direkt anwendbar. Ansonsten braucht es eine \textbf{Vorkonditionierung}.
-			
+
 			Für $m \times m$-Matrix erhält man die Lösung nach maximal $m$ Schritten.
-			
+
 		\subsubsection{Vorkonditionierung}
 			Transformation des Gleichungssystems auf ein \textbf{äquivalentes} System mit viel kleinerer Kondition.
-			
+
 			Sei $C=C^T$ und positiv definit und $C=H H^T$:
 			\[
 				Ax + b = 0 \quad\Leftrightarrow\quad \underbrace{H^{-1}AH^T}_{=: \tilde A} \underbrace{H^Tx}_{=: \tilde x} + \underbrace{H^{-1}b}_{=: \tilde b} = 0\]
 			Dabei ist $\tilde A$ ähnich zu $C^{-1}A$. Man sollte also $C$ so wählen, dass die Kondition von $\tilde A$ möglichst klein ist. \\
-			
+
 			\begin{folgerung}
 				$C$ sollte eine Approximation von $A$ sein.
 			\end{folgerung}
-			
+
 			\textsc{Möglichkeit:} $H$ aus unvollständiger Cholesky-Zerlegung von $A$ gewinnen. Jedes Mal, wenn ein Nullelement zu $\neq 0$ würde, setzt man es Null.
 
-\section{Nichtlineare Gleichungssysteme} 
+\section{Nichtlineare Gleichungssysteme}
 	\subsection{Nichtlineare Gleichungen}
-		Gegeben sei eine stetige Funktion $f(x)$. Gesucht ist die Lösung der Gleichung $f(x)=0$. 
+		Gegeben sei eine stetige Funktion $f(x)$. Gesucht ist die Lösung der Gleichung $f(x)=0$.
 		\begin{tightenumerate}
-			\item $f'(x^*)\not= 0$ 
-			\item $f'(x^*) = 0 $ 
+			\item $f'(x^*)\not= 0$
+			\item $f'(x^*) = 0 $
 		\end{tightenumerate}
-		Für den zweiten Fall ist des Problem schlecht konditioniert.
+		Für $\abs{f'(x^*)} \ll 1$ ist des Problem schlecht konditioniert.
 
 		\subsubsection{Fixpunktsatz}
 			Nullstelle der Tangentengleichung:
@@ -273,11 +274,11 @@
 			\[
 				x= F(x)
 			\]
-			Fixpunktsatz: 
+			Fixpunktsatz:
 			\begin{description}
 				\item[Voraussetzung:] ~
 					\begin{tightenumerate}
-						\item $F$ bildet das Intervall $[a,b]$ in sich ab. 
+						\item $F$ bildet das Intervall $[a,b]$ in sich ab.
 						\item $F$ ist eine \textbf{Kontraktion}, d.h. es existiert eine positive Konstante $L < 1$ (\textbf{Lipschitz-Konstante}) mit
 							\[
 								|F(x_1) - F(x_2)| \leq L \cdot |x_1 - x_2| \forall x_1 , x_2 \in [a,b]
@@ -285,8 +286,8 @@
 					\end{tightenumerate}
 				\item[Folgerungen:] ~
 					\begin{tightenumerate}
-						\item Fixpunktgleichung hat \textbf{genau eine Lösung} $\bar x \in [a,b]$. 
-						\item Die Iteration konvergiert für beliebiges $x_0 \in [a,b]$ gegen $\bar x$. 
+						\item Fixpunktgleichung hat \textbf{genau eine Lösung} $\bar x \in [a,b]$.
+						\item Die Iteration konvergiert für beliebiges $x_0 \in [a,b]$ gegen $\bar x$.
 						\item Es gilt lineare Konvergenz:
 							\[
 								|x_k - \bar x| \leq \frac{L^{k-j}}{1-L}\cdot |x_{j+1} - x_j|, \quad 0 \leq j \leq k-1
@@ -303,14 +304,14 @@
 				e_{k+1} \cong \frac{f''(x*)}{2 f'(x*)}e_k^2
 			\]
 			Das heisst für $f'(x*) \not= 0$ konvergiert es mindestens quadratisch. Die Anzahl richtiger Stellen wird pro Schritt ungefähr verdoppelt.
-			
+
 			\begin{algo} ~
-				
+
 				Gegeben: $\quad x_0;\, \mathrm{RTOL},\, \mathrm{ATOL}$
 				\[
 					x_{k+1} = x_k - \frac{f(x_k)}{f'(x_k)}
 				\]
-				
+
 				Abbruchkriterium: $\quad|x_{k+1} - x_k| \leq |x_{k+1}|\cdot \mathrm{RTOL} + \mathrm{ATOL}$
 				\begin{description}
 					\item[Pro:] Schnelle Konvergenz
@@ -320,13 +321,13 @@
 
 		\subsubsection{Sekantenmethode}
 			\begin{algo} ~
-				
+
 				Gegeben: $\quad x_0,\, x_1 ;\, \mathrm{RTOL},\, \mathrm{ATOL}$
-				
+
 				\[
 					x_{k+1} = \frac{x_{k-1}\cdot f(x_k) - x_k \cdot f(x_{k-1})}{f(x_k) - f(x_{k-1})}
 				\]
-				
+
 				Abbruchkriterium: $\quad|x_{k+1} - x_k| \leq |x_{k+1}|\cdot \mathrm{RTOL} + \mathrm{ATOL}$
 				\begin{description}
 					\item[Pro:] Kleinerer Aufwand als Newton
@@ -336,9 +337,9 @@
 
 		\subsubsection{Bisektionsverfahren}
 			\begin{algo} ~
-				
+
 				Gegeben: $\quad a_0,\, b_0 > a_0;\, x_0 := \frac{a_0 + b_0}{2};\, \mathrm{RTOL},\, \mathrm{ATOL}$
-				
+
 				Für $k=0,1,\dots$ :
 				\begin{tightenumerate}
 					\item Falls $f(x_k) = 0$: $\quad$\textbf{Abbruch}
@@ -366,22 +367,23 @@
 			Bisektionsverfahren, anschliessend ein lokales Verfahren. Da die Konvergenz eines solchen Verfahrens nicht garantiert ist, muss es robust implementiert werden.
 
 	\subsection{Nichtlineare Gleichungssysteme}
-		Im $n$-dimensionalen Fall gibt es leider nur das Newton-Verfahren.
-
-		\subsubsection{Banach'scher Fixpunktsatz} 
+		\subsubsection{Banach'scher Fixpunktsatz}
 			\begin{description}
 				\item[Voraussetzung:] ~
 					\begin{tightenumerate}
-						\item $F$ bildet ein abgeschlossenes Gebiet $D \subset \mathbb{R}^n$ in sich ab. 
+						\item $F$ bildet ein abgeschlossenes Gebiet $D \subset \mathbb{R}^n$ in sich ab.
 						\item $F$ ist eine \textbf{Kontraktion}, d.h. es existiert eine positive Konstante $L < 1$ mit
 							\[
-								||F(x_1) - F(x_2)|| \leq L \cdot ||x_1 - x_2|| \quad \forall\ x_1 , x_2 \in D
+								||F(x_1) - F(x_2)|| \leq L \cdot ||x_1 - x_2||
 							\]
+						\item Hinreichende Bedingung: \[
+								||F'(x)|| \leq L < 1
+              \]
 					\end{tightenumerate}
 				\item[Folgerungen:] ~
 				\begin{tightenumerate}
-					\item Es existiert \textbf{genau ein Fixpunkt} $ x^* \in D$. 
-					\item Die Iteration $x_{k+1} = F(x_k)$ konvergiert für alle $x_0 \in D$ gegen $x^*$. 
+					\item Es existiert \textbf{genau ein Fixpunkt} $ x^* \in D$.
+					\item Die Iteration $x_{k+1} = F(x_k)$ konvergiert für alle $x_0 \in D$ gegen $x^*$.
 					\item Es gelten die Abschätzungen:
 						\begin{align*}
 							||x_k - x^*|| &\leq \frac{L^{k}}{1-L}\cdot ||x_{1} - x_0||, \quad \tag{a priori} \\
@@ -399,11 +401,11 @@
 					\Part{f_n}{x_1} & \cdots & \Part{f_n}{x_n}
 				}
 			\]
-			
+
 			\begin{algo} ~
-				
+
 				Gegeben: $\quad x_0;\, \mathrm{RTOL},\, \mathrm{ATOL}$
-				
+
 				Für $k=0,1,\cdots$ löse das lineare Gleichungssystem
 				\[
 					J(x_k) \Delta_k = -f(x_k)
@@ -412,19 +414,19 @@
 				\[
 					x_{k+1} = x_k + \Delta_k
 				\]
-				
+
 				Abbruchkriterium: $\quad ||\Delta_k|| \leq ||x_{k+1}||\cdot \mathrm{RTOL} + \mathrm{ATOL}$
 			\end{algo}
-			
+
 			\begin{description}
 				\item[Probleme:] ~
 					\begin{tightitemize}
-						\item Startvektor $x_0$ finden. 
-						\item Berechnen der Jacobi-Matrix in jedem Schritt. 
+						\item Startvektor $x_0$ finden.
+						\item Berechnen der Jacobi-Matrix in jedem Schritt.
 					\end{tightitemize}
 				\item[Mögliche Verbesserungen:] ~
 					\begin{tightenumerate}
-						\item \textbf{Quasi-Newton-Verfahren:} In jedem Schritt die gleiche Jacobi-Matrix $J(x_0)$ verwenden. 
+						\item \textbf{Quasi-Newton-Verfahren:} In jedem Schritt die gleiche Jacobi-Matrix $J(x_0)$ verwenden.
 						\item \textbf{Gedämpftes Newton-Verfahren:} Verbesserung des Anfangs-Konvergenz-Verhaltens durch:
 							\[
 								x_{k+1} = x_k + \alpha_k \cdot \Delta_k
@@ -440,13 +442,13 @@
 			\end{description}
 			Der \textbf{Aufwand des Newtonverfahrens} pro Schritt ist mit $\mathcal{O}\parens{\frac{n^3}{3}}$ gross.
 
-\section{Ausgleichsrechnung -- Methode der kleinsten Quadrate} 
+\section{Ausgleichsrechnung -- Methode der kleinsten Quadrate}
 	\subsection{Lineare Ausgleichsrechnung}
 		Fehlergleichung: $\quad\ \:\: A\cdot \vek x - \vek c = \vek r$
-		
+
 		Normalgleichung: $\quad A^T \cdot A \cdot \vek x = A^T \cdot \vek c$
-		
-		\subsubsection{LR-Zerlegung} 
+
+		\subsubsection{LR-Zerlegung}
 			\begin{algo}
 				\begin{tightenumerate}
 					\item Gauss-Algorithmus ohne Zeilenvertauschen:
@@ -461,21 +463,21 @@
 								* & * & 1
 							}
 						\]
-					\item $L\cdot \vek c = \vek b \quad \rightarrow \vek c$. 
-					\item $R \cdot \vek x = \vek c \quad \rightarrow \vek x$. 
+					\item $L\cdot \vek c = \vek b \quad \rightarrow \vek c$.
+					\item $R \cdot \vek x = \vek c \quad \rightarrow \vek x$.
 				\end{tightenumerate}
 			\end{algo}
-			
+
 		\subsubsection{QR-Zerlegung}
 			\begin{algo}
 				\begin{tightenumerate}
-					\item QR-Zerlegung mit Givens-Rotationen: $\quad R = Q^T A$ 
-					\item $\vek d = Q^T \vek c$ 
-					\item $R_0 \vek x = \vek d_0$ 
+					\item QR-Zerlegung mit Givens-Rotationen: $\quad R = Q^T A$
+					\item $\vek d = Q^T \vek c$
+					\item $R_0 \vek x = \vek d_0$
 				\end{tightenumerate}
-				Für die Kondition der Matrizen gilt: $\quad \kappa(R_0)^2 = \kappa(A^T A) = \mu_\text{max}/\mu_\text{min}$ 
+				Für die Kondition der Matrizen gilt: $\quad \kappa(R_0)^2 = \kappa(A^T A) = \mu_\text{max}/\mu_\text{min}$
 			\end{algo}
-		
+
 		\subsubsection{Singulärwertzerlegung (SVD)}
 			\begin{gather*}
 				A=USV^T, \quad S = \Mx{\scriptsize
@@ -490,19 +492,19 @@
 			\end{gather*}
 			\begin{algo}
 				\begin{tightenumerate}
-					\item $\displaystyle y_i = \frac{1}{s_i} \vek u_i^T \, \vek c, \qquad i=1,\dots , n$ 
-					\item $x= V\, y$ 
+					\item $\displaystyle y_i = \frac{1}{s_i} \vek u_i^T \, \vek c, \qquad i=1,\dots , n$
+					\item $x= V\, y$
 				\end{tightenumerate}
 			\end{algo}
-			
+
 	\subsection{Nichtlineare Ausgleichsprobleme}
 		Fehlergleichungen: $\quad \vek f (x) - \vek c = \vek r $
-		
+
 		\subsubsection{Gauss-Newton-Methode}
 			\begin{algo} ~
-				
+
 				Gegeben: $\quad x_0;\, \mathrm{TOL},\, \overline{\mathrm{TOL}} $
-				
+
 				Für $k = 0,1, \dots$ :
 				\begin{tightenumerate}
 					\item Jacobimatrix: $\quad A_k = \Part{\vek f}{x}(x_k)$.
@@ -518,13 +520,13 @@
 				Konvergenz ist sichergestellt, läuft je nach $x_0$ anfangs langsam, gegen Ende aber `fast' quadratisch.
 			\end{algo}
 
-\section{Interpolation} 
-	\subsection{Interpolationspolynom} 
+\section{Interpolation}
+	\subsection{Interpolationspolynom}
 		\begin{description}
 			\item[Gegeben:] $n+1$ Stützpunkte $(x_0,f_0)$ bis $(x_n,f_n)$
 			\item[Gesucht:] Polynom $n$-ten Grades (Grad $\leq n$)
 		\end{description}
-		
+
 		\subsubsection{Lagrange'sche Darstellung}
 			\begin{align*}
 				l_i(x) :&= \prod_{\substack{
@@ -533,7 +535,7 @@
 				P_n(x) &= \sum_{i=0}^{n}f_i l_i(x)
 			\end{align*}
 			Auswertung des Lagrange'schen Polynoms ist mit $\mathcal{O}(n^2)$ aufwändig.
-			
+
 		\subsubsection{Baryzentrische Darstellung}
 			\begin{align*}
 				\lambda_i :&= \frac{1}{\prod_{\substack{
@@ -542,28 +544,27 @@
 				\mu_i :&= \frac{\lambda_i}{x-x_i},\quad i= 0, \dots , n \\
 				P_n(x) &= \frac{\sum_{i=0}^n \mu_i f_i}{\sum_{i=0}^n \mu_i}
 			\end{align*}
-			\textbf{Vorteil:} $\lambda_i$ (nur abhängig von den Stützstellen) lassen sich einmal berechnen, nachher ist die Auswertung billig. 
+			\textbf{Vorteil:} $\lambda_i$ (nur abhängig von den Stützstellen) lassen sich einmal berechnen, nachher ist die Auswertung billig.
 
 		\subsubsection{Fehler des Interpolationspolynoms}
 			Fehler der linearen Interpolation: $\displaystyle\quad |f(x) - P_1(x)| \leq \frac{1}{8}h^2M_2$
-			
+
 			mit $M_2$ dem Maximum der 2.~Ableitung im Intervall.
-			
+
 			Allgemein gilt: $\displaystyle\quad |f(x)-P_n(x)|=\mathcal{O}(h^{n+1}) \quad$ mit $h=x_1 - x_0$
 
 	\subsection{Splineinterpolation}
-		Gegeben: $n$ Stützpunkte $(x_1,f_1)$ bis $(x_n,f_n)$. 
-		
+		Gegeben: $n$ Stützpunkte $(x_1,f_1)$ bis $(x_n,f_n)$.
+
 		\subsubsection{Hermite-Interpolation}
+			Voraussetzung: $\quad f_i , f_i'$ gegeben
+
 			\begin{algo} ~
-				
-				Gegeben: $\quad f_i , f_i'$
-				
 				\begin{tightenumerate}
 					\item Bestimme Index $i$: $\quad x_i\leq x < x_{i+1}$
-					\item $ h_i := x_{i+1}-x_i$ 
-					\item $\displaystyle t := \frac{x-x_i}{h_i}$ 
-					\item Berechnung von $Q_i(t)$: 
+					\item $ h_i := x_{i+1}-x_i$
+					\item $\displaystyle t := \frac{x-x_i}{h_i}$
+					\item Berechnung von $Q_i(t)$:
 				\end{tightenumerate}
 				\begin{center}
 					\begin{tabular}
@@ -576,94 +577,92 @@
 						& \multicolumn{2}{c}{$ \delta_0 = \gamma_1 - \gamma_0$}\\
 						& & & \\
 						\multicolumn{4}{c}{$\mathbf{Q_i(t)} = \alpha_0 + \left[ \beta_0 + (\gamma_0 + \delta_0 \cdot t)(t-1)\right]\cdot t = g(x)$}\\
-						\bottomrule 
+						\bottomrule
 					\end{tabular}
 				\end{center}
 			\end{algo}
-	\subsubsection{Splineinterpolation}
-		\begin{algo}
-			\begin{tightenumerate}
-				\item Bestimme $f'$ mit $Af' = d$
-				\[
-					A = \Mx{
-						b_1 & \frac{a_1}{2} & & & \\
-						b_1 & a_1 & b_2 & & \\
-						& \ddots & \ddots & \ddots & \\
-						& & b_{n-2} & a_{n-2} & b_{n-1} \\
-						& & & \frac{a_{n-2}}{2} & b_{n-1}
-					}
-				\]
-				\[
-					\begin{array}{r@{\::=\:}l@{,\ }l@{\qquad\quad}r@{\::=\:}l}
-						b_i & \frac{1}{h_i} & i=1, \dots , n-1 &
-						d_1 & 2c_1 + \frac{h_1}{h_1 + h_2}(c_1 + c_2) \\
-						a_i & 2(b_i + b_{i+1}) & i = 1, \dots, n-2 &
-						d_i & 3(c_{i-1} + c_i),\hfill i=2, \dots , n-1 \\
-						c_i & \frac{f_{i+1} - f_i}{h_i^2} & i=1, \dots , n-1 &
-						d_n & 2c_{n-1} + \frac{h_{n-1}}{h_{n-1} + h_{n-2}}(c_{n-1} + c_{n-2})
-					\end{array}
-				\]
-				\item Führe den Hermite-Algorithmus aus
-			\end{tightenumerate}
-		\end{algo}
-		Hier wurde die \textbf{not a knot condition} von de Boor verwendet:
-		\[
-			P_1(x) \equiv P_2 (x) \quad P_{n-2}(x) \equiv P_{n-1}(x)
-		\]
-		
-		Andere Randbedingungen:
-		\begin{tightitemize}
-			\item Natürliche Randbedingung:
-				$\quad\displaystyle P_1''(x_1) = P_{n-1}''(x_n) = 0$
-			\item Bei periodischen Funktionen:
-				\begin{align*}
-					P_1''(x_1) &= P_{n-1}''(x_n), \qquad f_n' = f_1' \\
-					A &= \Mx{
-						* & * & * &* \\
-						b_1 & a_1 & b_2 & \\
-						& \ddots & \ddots & \ddots \\
-						b_{n-1}& & b_{n-2} & a_{n-2}
-					}
-				\end{align*}
-				Zur Berechnung der ersten Zeile von $A$ benutzt man: 
-				\begin{align*}
-					\ddot Q_i(t) =&\: f_i(-6 +12t) + f_{i+1}(6-12t) \\
-					&+h_if_i'(-4+6t) + h_if_{i+1}'(-2+6t) 
-				\end{align*}
-				und
-				\[
-					\frac{\ddot Q_1(0)}{h^2}=\frac{\ddot Q_{n-1}(1)}{h^2}
-				\]
-		\end{tightitemize}
+
+		\subsubsection{Splineinterpolation}
+			Voraussetzung: $\quad f_i$ gegeben, $f'_i$ unbekannt
+
+			\begin{algo}
+				\begin{tightenumerate}
+					\item Bestimme $f'$ mit $Af' = d$
+					\[
+						A = \Mx{
+							b_1 & \frac{a_1}{2} & & & \\
+							b_1 & a_1 & b_2 & & \\
+							& \ddots & \ddots & \ddots & \\
+							& & b_{n-2} & a_{n-2} & b_{n-1} \\
+							& & & \frac{a_{n-2}}{2} & b_{n-1}
+						}
+					\]
+					\[
+						\begin{array}{r@{\::=\:}l@{,\ }l@{\qquad\quad}r@{\::=\:}l}
+							b_i & \frac{1}{h_i} & i=1, \dots , n-1 &
+							d_1 & 2c_1 + \frac{h_1}{h_1 + h_2}(c_1 + c_2) \\
+							a_i & 2(b_i + b_{i+1}) & i = 1, \dots, n-2 &
+							d_i & 3(c_{i-1} + c_i),\hfill i=2, \dots , n-1 \\
+							c_i & \frac{f_{i+1} - f_i}{h_i^2} & i=1, \dots , n-1 &
+							d_n & 2c_{n-1} + \frac{h_{n-1}}{h_{n-1} + h_{n-2}}(c_{n-1} + c_{n-2})
+						\end{array}
+					\]
+					\item Führe den Hermite-Algorithmus aus
+				\end{tightenumerate}
+			\end{algo}
+			Hier wurde die \textbf{not a knot condition} von de Boor verwendet:
+			\[
+				P_1(x) \equiv P_2 (x) \quad P_{n-2}(x) \equiv P_{n-1}(x)
+			\]
+
+			Andere Randbedingungen:
+			\begin{tightitemize}
+				\item Natürliche Randbedingung:
+					$\quad\displaystyle P_1''(x_1) = P_{n-1}''(x_n) = 0$
+				\item Bei periodischen Funktionen:
+					\begin{align*}
+						P_1''(x_1) &= P_{n-1}''(x_n), \qquad f_n' = f_1' \\
+						A &= \Mx{
+							* & * & * &* \\
+							b_1 & a_1 & b_2 & \\
+							& \ddots & \ddots & \ddots \\
+							b_{n-1}& & b_{n-2} & a_{n-2}
+						}
+					\end{align*}
+					Zur Berechnung der ersten Zeile von $A$ und $d$ benutzt man: \[
+						8 f_1' + 2 f_2' + 2 f_{n-1}' = \frac 6 h (f_2 - f_{n-1})
+					\]
+			\end{tightitemize}
 
 	\subsection{Trigonometrische Interpolation}
 		Gegeben: $2\pi$-periodische Funktion $f(x)$ mit \textbf{gerader} Anzahl ($N$) Stützpunkte:
 		\[
 			x_k:=\frac{k\cdot 2\pi}{N} \qquad f_k:= f(x_k)
 		\]
-		
-		\textbf{Theoretische Vorgehensweise:} 
+
+		\textbf{Theoretische Vorgehensweise:}
 		\begin{tightenumerate}
-			\item Diskrete Foruier-Analyse (\ref{DFAnalyse}) 
+			\item Diskrete Foruier-Analyse (\ref{DFAnalyse})
 			\item Auswertung von $p(x)$:
-				\[
-					p(x) = \frac{a_0}{2} + \sum_{j=1}^{N/2-1}\left[a_j\cos(jx) + b_j \sin(jx)) + \frac{a_{N/2}}{2}\cos\left(\frac{N}{2}x\right) \right]
-				\]
+				\begin{align*}
+					p(x) &= \frac{a_0}{2} + \sum_{j=1}^{N/2-1}\left[a_j\cos(jx) + b_j \sin(jx)) + \frac{a_{N/2}}{2}\cos\left(\frac{N}{2}x\right) \right] \\
+					     &= \sum_{j=-N/2+1}^{N/2-1} \tilde c_j \: \eu^{\iu j x} + \tilde c_{N/2} \: \cos \parens{\frac N 2 x}
+				\end{align*}
 		\end{tightenumerate}
-		
-		\subsubsection{Fourier-Analyse} 
+
+		\subsubsection{Fourier-Analyse}
 			\begin{equation}
-				\tilde c_N = \frac{1}{N}Wf_N \label{DFAnalyse} 
+				\tilde c_N = \frac{1}{N}Wf_N \label{DFAnalyse}
 			\end{equation}
 			mit
 			\begin{align*}
-				(W)_{jl} &= w^{jl} = e^{-ijl\frac{2\pi}{N}}, \quad \text{bzw.} \\
 				W &= \Mx{
 					1 & 1 & 1 & \cdots \\
 					1 & w & w^2 & \cdots \\
 					1 & w^2 & w^4 & \cdots \\
 					\vdots & \vdots & \vdots & \ddots
-				}
+				} \\
+				\text{wobei } w &= \eu^{-\iu \frac{2\pi}{N}}
 			\end{align*}
 
 		\subsubsection{Fourier-Synthese}
@@ -679,8 +678,8 @@
 			\end{align*}
 			Vorgehen zur \textbf{Daten-Kompression}:
 			\begin{tightenumerate}
-				\item Fourier-Analyse ergibt $N$ approximative Fourier-Koeffizienten. 
-				\item Wir setzen die hinteren Koeffizienten gleich Null (Rauschunterdrückung). 
+				\item Fourier-Analyse ergibt $N$ approximative Fourier-Koeffizienten.
+				\item Wir setzen die hinteren Koeffizienten gleich Null (Rauschunterdrückung).
 				\item mit $M \ll N$ verbleibenden Koeffizienten
 					\[
 						\tilde c_N^* := [\tilde c_0, \cdots, \underbrace{0, \cdots, 0}_{N-M}, \cdots, \tilde c_{M-1}]^T
@@ -691,19 +690,19 @@
 					\]
 			\end{tightenumerate}
 
-\section{Numerische Integration und Differentiation} 
+\section{Numerische Integration und Differentiation}
 	\subsection{Numerische Integration} Gegeben sei die Funktion $f(x)$ und das Intervall $[a,b]$. Gesucht ist
 		\[
 			I = \int_a^b f(x) \diff x
 		\]
-		
+
 		\subsubsection{Trapezmethode}
-			\[ 
+			\[
 				h:= b-a, \quad \tilde I = T:=\frac{h}{2} [ f(a) + f(b) ]
 			\]
 
 			\begin{algo} ~
-				
+
 				Gegeben: $\quad a,\, b,\, h_0 = b-a;\, \mathrm{TOL}$
 				\[
 					s_0 = \frac{1}{2}\left[ f(a) + f(b)\right], \quad T_0 = s_0 h_0, \quad N_0 =1
@@ -715,15 +714,15 @@
 					T_{n+1} &= h_{n+1}\cdot s_{n+1}, \qquad N_{n+1}=2\cdot N_n
 				\end{align*}
 				Abbruch: $\quad |T_{n+1}-T_n|\leq |T_{n+1}|\cdot \mathrm{TOL} + \mathrm{TOL}$
-				
-				Die Trapezmethode \textbf{konvergiert linear}. 
+
+				Die Trapezmethode \textbf{konvergiert linear}.
 			\end{algo}
-		
+
 		\subsubsection{Simpson-Methode}
 			\begin{algo}~
-				
+
 				Gegeben: $\quad a, b, h_0 = b-a ; \mathrm{TOL}$
-				
+
 				Berechne $T_0=T(h_0), T_1=T(h_1), \dots$ mit der Trapezmethode und bilde
 				\[
 					S_i = \frac{4T_i-T_{i-1}}{3}, \quad i=1,2,\dots
@@ -732,7 +731,7 @@
 
 				Mit der Simpsonmethode werden die Fehlerterme der Ordnung $h^2$ eliminiert.
 			\end{algo}
-			
+
 		\subsubsection{Romberg-Verfahren}
 			\[
 				h_0 = b-a ; h_1=\frac{h_0}{2}, h_2 = \frac{h_1}{2}, \dots
@@ -747,7 +746,7 @@
 					& & $\searrow$ & & $\searrow$ & \\
 					$h/4$ & $R_{2,0}$ & $\rightarrow$ & $R_{2,1}$ & $\rightarrow$ & $R_{2,2}$ \\
 					$\vdots$ & $\vdots$ & & $\vdots$ & & $\vdots\ddots$ \\
-					\bottomrule 
+					\bottomrule
 				\end{tabular}
 			\end{center}
 			\begin{align*}
@@ -758,13 +757,13 @@
 					j = 1,2, \dots
 				\end{array}
 			\end{align*}
-			
+
 			Jede Spalte des Romberg-Schemas \textbf{konvergiert schneller als die vorherige} gegen $I$.
-			
+
 			Abbruch: $\quad |R_{j,j}-R_{j,j-1}|\leq |R_{j,j}|\cdot \mathrm{TOL} + \mathrm{TOL}$
-			
-			\textbf{Wichtig:} Obere Schranke für die Anzahl Eliminationsschritte. 
-			
+
+			\textbf{Wichtig:} Obere Schranke für die Anzahl Eliminationsschritte.
+
 		\subsubsection{Gauss'sche Quadraturformeln}
 			Mit den Bezeichnungen
 			\begin{description}
@@ -776,7 +775,7 @@
 			\[
 				Q_n = \sum_{j=1}^n w_j\cdot f_j
 			\]
-			Es existiert \textbf{genau eine} Quadraturformel $Q_n$, welche den \textbf{maximalen Genauigkeitsgrad} $(2n-1)$ besitzt: 
+			Es existiert \textbf{genau eine} Quadraturformel $Q_n$, welche den \textbf{maximalen Genauigkeitsgrad} $(2n-1)$ besitzt:
 			\begin{tightitemize}
 				\item $x_j \in [-1,1]$ sind NST von $P_n(x)$ mit
 					\begin{align*}
@@ -792,13 +791,15 @@
 				\item $[a,b] \to [-1,1]$ mit der Substitution:
 					\[
 						t= \frac{b-a}{2}x + \frac{a+b}{2}
+						\quad \rightarrow \quad
+						x = \frac{2t - a - b}{b - a}
 					\]
 					daraus folgt:
 					\[
 						I = \int\limits_a^b g(t) \diff t = \frac{b-a}{2}\int\limits_{-1}^1g \parens{ \frac{b-a}{2}x + \frac{a+b}{2}} \diff x
 					\]
 			\end{tightitemize}
-			
+
 			Die \textbf{Gausspunkte} und \textbf{Gewichte} können für jedes $n$ einmal berechnet und tabelliert werden, ausserdem sind sie \textbf{paarweise symmetrisch zum Nullpunkt}.
 
 			Hohe $n$ sind \textbf{kein Problem}, da für das Polynom $P_{n-1}(x)$, über welches von -1 bis +1 integriert wird, \textbf{nicht äquidistante} Stützstellen benutzt werden.
@@ -806,14 +807,14 @@
 	\subsection{Numerische Differentiation}
 		\label{subsec:numerische_differentiation}
 		Vorwärts-Differenzenquotient: $\quad \displaystyle \frac{f(z+h) - f(z)}{h}= f'(z) + \frac{h}{2}f''(z) + \mathcal{O}\left( h^2\right) $
-		
+
 		Rückwärts-Differenzenquotient: $\quad\displaystyle\frac{f(z)-f(z-h)}{h}= f'(z) - \frac{h}{2}f''(z) + \mathcal{O}\left( h^2\right)$
-		
+
 		\textbf{Symmetrischer Differenzenquotient 1. Ordnung:}
 		\[
 			\Delta_h^1(z):=\frac{f(z+h)-f(z-h)}{2h}= f'(z) + \frac{h^2}{6}f'''(z) + \mathcal{O} \parens{h^3}
 		\]
-		
+
 		\textbf{2. Ordnung:}
 		\[
 			\Delta_h^2(z):=\frac{f(z+h)-2f(z)+f(z-h)}{h^2}= f''(z) + \mathcal{O} \parens{ h^2 }
@@ -824,11 +825,11 @@
 			\text{mit } a_j &= \parens{
 				\begin{array}{@{}c@{}}
 					\nu \\
-					j 
+					j
 				\end{array}
 			}, \qquad b_j = \nu-2j
 		\end{align*}
-		
+
 		Wegen \textbf{nicht signifikanter Nullen durch Auslöschung} muss $h$ vorsichtig gewählt werden:
 		\[
 			h_\text{opt} \cong \sqrt{10^{-d}\cdot 2 \frac{|f(z)|}{|f''(z)|}}
@@ -836,70 +837,73 @@
 		in $d$-stelliger Gleitpunktarithmetik.
 
 \section{Gewöhnliche DGs (AWP)}
-	Skalare gewöhnliche Differentialgleichung 1. Ordnung: $\quad \diff{x}{t} = f(t,x) $ \\
+	Skalare gewöhnliche Differentialgleichung 1. Ordnung:
+	\begin{equation}
+		\dot x = f(t,x) \label{dx}
+	\end{equation}
 	mit der \textbf{Anfangsbedingung} $\quad x(t_0) = x_0$ \\
 	nennt man ein \textbf{Anfangswertproblem (AWP)}.
-	
+
 	\textbf{Numerische Fragestellung:}
-	
+
 	Gegeben: $\quad \dot x = f(t,x), \quad x(t_0 ) = x_0, \quad t_f $ \\
 	Gesucht: Approximation für $x(t_f)$
-	
-	\subsection{Explizite Einschrittverfahren} 
+
+	\subsection{Explizite Einschrittverfahren}
 		\subsubsection{Eulerverfahren}
 			Verfahrensfunktion: $\quad F(t,x,h) = x + h\cdot f(t,x)$
 
 			\begin{algo}
 				\begin{align*}
 					\tilde x_0 &= x_0 \\
-					\tilde x_{j+1} &= F(t_j,\tilde x_j, h_j), \qquad \text{mit } j=0,1,\cdots, (n-1) 
+					\tilde x_{j+1} &= F(t_j,\tilde x_j, h_j), \qquad \text{mit } j=0,1,\cdots, (n-1)
 				\end{align*}
-				
+
 				Oft äquidistante Schritte:
 				\[
 					h=\frac{t_f-t_0}{n}, \quad t_j = t_0 + jh
 				\]
 			\end{algo}
-			
-		\subsubsection{Fehler} 
+
+		\subsubsection{Fehler}
 			\paragraph{Lokaler Diskretisationsfehler}
 				\[
 					l(t_j,\tilde x_j,h) := F(t_j,\tilde x_j, h)-\overline{x}(t_j+h)
 				\]
-				mit $\overline{x}(t_j+h)$ als Lösung an der Stelle $t_j+h$ mit Anfangsbedingung $\overline{x}(t_j)=\tilde x_j$. 
-				
+				mit $\overline{x}(t_j+h)$ als Lösung an der Stelle $t_j+h$ mit Anfangsbedingung $\overline{x}(t_j)=\tilde x_j$.
+
 			\paragraph{Globaler Fehler}
 				\[
 					\tilde x_j - x(t_j)
 				\]
-				
-			\paragraph{Fehlerordnung} Für ein Verfahren mit Fehlerordnung $p$ gilt: 
+
+			\paragraph{Fehlerordnung} Für ein Verfahren mit Fehlerordnung $p$ gilt:
 				\begin{tightitemize}
-					\item Lokaler Fehler der Ordnung $\mathcal{O}\left(h^{p+1}\right)$. 
-					\item Globaler Fehler der Ordnung $\mathcal{O}\left(h^{p}\right)$. 
-					\item Anzahl übereinstimmender Terme der Taylorentwicklungen von $F(t,x,h)$ und $x(t+h)$ nach $h$: $p$. 
+					\item Lokaler Fehler der Ordnung $\mathcal{O}\left(h^{p+1}\right)$.
+					\item Globaler Fehler der Ordnung $\mathcal{O}\left(h^{p}\right)$.
+					\item Anzahl übereinstimmender Terme der Taylorentwicklungen von $F(t,x,h)$ und $x(t+h)$ nach $h$: $p$.
 				\end{tightitemize}
-				
-		\subsubsection{Taylorentwicklung} 
+
+		\subsubsection{Taylorentwicklung}
 			\begin{align*}
 				f(t+\delta , x + \Delta) =&\: f(t,x) + f_t (t,x)\cdot \delta + f_x (t,x)\cdot \Delta \\
 				& + \mathcal{O}(\delta^2) + \mathcal{O}(\delta \Delta) + \mathcal{O}(\Delta^2) \\
 				x(t+h) =&\: x(t) + h \cdot \dot x(t) + \frac{h^2}{2} \cdot \ddot x(t) + \mathcal{O}(h^3)
 			\end{align*}
-			
+
 		\subsubsection{Taylorverfahren 2. Ordnung}
 			Verfahrensfunktion: $\quad F(t,x,h)=x + hf(t,x) + \frac{h^2}{2}\left[ f_t(t,x) + f_x(t,x)\cdot f(t,x)\right]$
-			
-			Fehlerordnung 2. 
-			
-		\subsubsection{Taylorverfahren der Ordnung $p$} 
+
+			Fehlerordnung 2.
+
+		\subsubsection{Taylorverfahren der Ordnung $p$}
 			\begin{tightitemize}
-				\item Approximation durch das Taylorpolynom vom Grad $p$. 
-				\item Fehlerordnung $p$. 
-				\item Benötigt partielle Ableitungen von $f$ bis zur Ordnung $p-1$. 
+				\item Approximation durch das Taylorpolynom vom Grad $p$.
+				\item Fehlerordnung $p$.
+				\item Benötigt partielle Ableitungen von $f$ bis zur Ordnung $p-1$.
 			\end{tightitemize}
-			
-		\subsubsection{Runge-Kutta-Verfahren} 
+
+		\subsubsection{Runge-Kutta-Verfahren}
 			\paragraph{Verfahren von Heun}
 				\label{heun}
 				\begin{align*}
@@ -907,9 +911,10 @@
 					k_2 &= f\left[(t+h),(x+hk_1)\right] \\
 					\overline{x} &= F(t,x,h)=x + \frac{h}{2}\left[ k_1 + k_2\right]
 				\end{align*}
-				
-				Explizites Runge-Kutta-Verfahren mit \textbf{zwei Stufen} und der \textbf{Fehlerordnung 2}. 
-				
+				wobei $x$ und $\overline x$ die Approximationen an den Stellen $t$ und $t+h$ sind.
+
+				Explizites Runge-Kutta-Verfahren mit \textbf{zwei Stufen} und der \textbf{Fehlerordnung 2}.
+
 			\paragraph{Klassisches Runge-Kutta-Verfahren}
 				\begin{align*}
 					k_1 &= f(t,x) \\
@@ -918,11 +923,11 @@
 					k_4 &= f\left[ \left( t+h\right),\left( x + hk_3\right)\right] \\
 					\overline{x} &= F(t,x,h)=x + \frac{h}{6}\left[ k_1 + 2k_2 + 2k_3 + k_4\right]
 				\end{align*}
-				4 Stufen, Fehlerordnung 4. 
-				
+				4 Stufen, Fehlerordnung 4.
+
 			\paragraph{Butcher-Tableau}
-				für explizites $s$-stufiges Runge-Kutta-Verfahren. Entspricht dem Tableau für allgemeine Runge-Kutta-Verfahren (\ref{allgrungekutta}) mit der Bedingung $a_{ij}=0$ für $i \leq j$: 
-				
+				für explizites $s$-stufiges Runge-Kutta-Verfahren. Entspricht dem Tableau für allgemeine Runge-Kutta-Verfahren (\ref{allgrungekutta}) mit der Bedingung $a_{ij}=0$ für $i \leq j$:
+
 				\hspace{5ex}
 				\begin{tabular}{c|ccccc}
 					0 & & & & & \\
@@ -937,8 +942,10 @@
 					k_i &= f\left[t+c_ih , x+h\cdot \sum_{j=1}^{i-1} a_{ij}k_j\right], \qquad i=1, \cdots , s \\
 					\overline{x} &= x + h \cdot \sum\limits_{i=1}^s b_ik_i
 				\end{align*}
-				\textbf{Butcher-Barrier:} Für $p \geq 5$ existiert kein explizites Runge-Kutta-Verfahren der Fehlerordnung $p$ mit $p$ Stufen. 
-				
+				\textbf{Butcher-Barrier:} Für $p \geq 5$ existiert kein explizites Runge-Kutta-Verfahren der Fehlerordnung $p$ mit $p$ Stufen.
+
+				Runge-Kutta-Verfahren ist genau dann konsistent, wenn $\sum_{i=1}^{s} b_i = 1$.
+
 		\subsubsection{Variable Schrittweiten}
 			\begin{description}
 				\item[Ziel:] Schrittweiten sollen so gewählt werden, dass der lokale Fehler gleich TOL ist.\\
@@ -947,24 +954,25 @@
 						\overline{l}=\mathcal{O}\parens{ h^{p+1} }
 					\]
 			\end{description}
-			
-			\paragraph{Richardson-Extrapolation} 
+
+			\paragraph{Richardson-Extrapolation}
 				\begin{tightitemize}
 					\item[$F$:] Ein Eulerschritt $h$
 					\item[$\hat F$:] Zwei Eulerschritte $\frac{h}{2}$
 				\end{tightitemize}
-				
+
 				\[
 					l(t_j,\tilde x_j, h) = 2\cdot \overline{l}(t_j,\tilde x_j, h) + \mathcal{O}\left( h^3\right)
 				\]
-				
+
 				Für allgemeine Ordnung $p$:
 				\[
-					\hat l = \hat{\tilde{x}}_{j+1} - z(t_j + h) = \underbrace{\frac{\tilde x_{j+1} - \hat{\tilde{x}}_{j+1}}{2^p - 1}}_{\overline{l}} + \mathcal{O}\left( h^{p+2}\right)
+					\hat l = \hat{\tilde{x}}_{j+1} - z(t_j + h) = \underbrace{\frac{\tilde x_{j+1} - \hat{\tilde{x}}_{j+1}}{2^p - 1}}_{\overline{l}(t_j, \tilde x_j, h)} + \mathcal{O}\left( h^{p+2}\right)
 				\]
-				
+				wobei $z$ die Lösung von (\ref{dx}) ist.
+
 			\paragraph{Eingebettetes Runge-Kutta-Verfahren} ~
-				
+
 				\hspace{5ex}
 				\begin{tabular}
 					{c|ccccc} 0 & & & & & \\
@@ -981,9 +989,9 @@
 					\overline{l} &= \mathcal{O}\left( h^{p+1}\right) \\
 					l &= \overline{l}+ \mathcal{O}(h^{p+2)}
 				\end{align*}
-			
+
 			\paragraph{Praktische Schrittweitensteuerung} ~
-			
+
 				\begin{algo}
 					\begin{tightenumerate}
 						\item Berechne $\quad\overline{l}= \tilde x_{j+1} - \hat{\tilde{x}}_{j+1} \quad$ (für Richardson $\cdot \frac{1}{2^p-1}$)
@@ -993,10 +1001,10 @@
 								\[
 									h^* = h_j \cdot \left( \frac{\mathrm{TOL}}{|\overline{l}|}\right)^{\frac{1}{p+1}}\cdot \mathrm{Fak}, \quad \text{Fak: Sicherheitsfaktor (z.B.~$0.8$)}
 								\]
-							\item Setze $h_j := h^*$ 
-							\item goto 1 
+							\item Setze $h_j := h^*$
+							\item goto 1
 						\end{tightitemize}
-						\item Sonst: 
+						\item Sonst:
 						\begin{tightitemize}
 							\item Akzeptiere $\tilde x_{j+1}$ als Approximation für $x(t_{j+1})$
 							\item Bestimme Vorschlag für $h_{j+1}$:
@@ -1006,27 +1014,27 @@
 						\end{tightitemize}
 					\end{tightenumerate}
 				\end{algo}
-				
+
 	\subsection{Implizite Einschrittverfahren}
-		Implizite Verfahren sind den Expliziten \textbf{überlegen}, dafür aber \textbf{aufwändiger}. 
-		
+		Implizite Verfahren sind den Expliziten \textbf{überlegen}, dafür aber \textbf{aufwändiger}.
+
 		\subsubsection{Implizite Trapezmethode}
 			\[
 				\tilde x_{j+1}=\tilde x_j + \frac{h_j}{2}\left[ f(t_j, \tilde x_j)+f(t_{j+1},\tilde x_{j+1})\right]
 			\]
 			Lösung mit \textbf{Fixpunktiteration in jedem Schritt}:
-			\begin{gather*}
-				_{(0)} \tilde x_{j+1}, \qquad \textbf{(Euler)} \\
-				_{(k+1)}\tilde x_{j+1} = \tilde x_j + \frac{h_j}{2}\left[ f(t_j,\tilde x_j) + f(t_{j+1}, _{(k)} \tilde x_{j+1})\right]
-			\end{gather*}
+			\begin{align*}
+				_{(0)} \tilde x_{j+1} &= \tilde x_j + h \cdot f(t_j, \tilde x_j) \tag{Euler} \\
+				_{(k+1)}\tilde x_{j+1} &= \tilde x_j + \frac{h_j}{2}\left[ f(t_j,\tilde x_j) + f(t_{j+1}, _{(k)}\tilde x_{j+1})\right]
+			\end{align*}
 			Abbruch: $\quad |_{(k+1)}\tilde x_{j+1} - _{(k)} \tilde x_{j+1}| \leq |_{(k+1)}\tilde x_{j+1}|\cdot \mathrm{TOL}+\mathrm{TOL}$
-			
+
 			Fehlerordnung: $p=2$
-		
+
 		\subsubsection{Allgemeine Runge-Kutta-Verfahren}
 			\label{allgrungekutta}
-			Ein Runge-Kutta-Verfahren ist \textbf{explizit}, falls $a_{ij}=0$ für $i \leq j$. 
-			
+			Ein Runge-Kutta-Verfahren ist \textbf{explizit}, falls $a_{ij}=0$ für $i \leq j$.
+
 			\hspace{5ex}
 			\begin{tabular}
 				{c|cccc} $c_1$ & $a_{11}$ & $a_{12}$& $\cdots$& $a_{1s}$ \\
@@ -1035,27 +1043,27 @@
 				$c_s$ & $a_{s1}$ & $\cdots$ & $\cdots$ & $a_{ss}$ \\
 				\hline & $b_1$ & $b_2$ & $\cdots$ & $b_s$\\
 			\end{tabular}
-			
+
 			\begin{align*}
-				k_i &= f\left[t+c_ih , x+h\cdot \sum_{j=1}^s a_{ij}k_j\right], \qquad i=1, \dots, s \\
+				k_i &= f \parens{t+c_ih , x+h\cdot \sum_{j=1}^s a_{ij}k_j}, \qquad i=1, \dots, s \\
 				\overline{x} &= x + h \cdot \sum\limits_{i=1}^s b_ik_i
 			\end{align*}
 
 	\subsection{DG-Systeme (ODE)}
 		$n$-dimensionales AWP:
 		\[
-			\dot{\vek{x}} = \vek{f}(t,\vek{x}), \qquad \vek{x} = \Mx{
+			\dot{\vek{x}} = \vek{f}(t,\vek{x}), \quad \vek{x} = \Mx{
 				x_1 \\ \vdots \\ x_n
-			}, \qquad \vek{f}(t,\vek{x}) = \Mx{
+			}, \quad \vek{f}(t,\vek{x}) = \Mx{
 				f_1 \\ \vdots \\ f_n
-			}
+			}, \quad \vek x(t_0) = \vek x_0
 		\]
-		Es gelten alle bisherigen Formeln analog. 
-		
+		Es gelten alle bisherigen Formeln analog.
+
 		\subsubsection{DGs höherer Ordnung}
 			Jede DG $n$-ter Ordnung kann in $n$ DG erster Ordnung überführt werden.
 
-	\subsection{Mehrschrittverfahren} 
+	\subsection{Mehrschrittverfahren}
 		\subsubsection{3-Schritt-Adams-Bashforth}
 			\label{adamsbash}
 			\begin{align*}
@@ -1063,40 +1071,40 @@
 				f_j &= f(t_j,\tilde x_j), \quad f_{j-1}= f(t_{j-1}, \tilde x_{j-1}), \\
 				f_{j-2} &= f(t_{j-2},\tilde x_{j-2})
 			\end{align*}
-			
+
 			\begin{tightitemize}
 				\item Explizit, linear, Fehlerordnung 3
 				\item Drei Startwerte nötig (z.B.~durch Einschrittverfahren gleicher Fehlerordnung)
 			\end{tightitemize}
-			
+
 		\subsubsection{3-Schritt-Adams-Moulton-Formel}
 			\[
 				\tilde x_{j+1}=\tilde x_j + \frac{h}{24}\left[ 9f_{j+1} + 19 f_j - 5 f_{j-1} + f_{j-2}\right]
 			\]
 			\begin{tightitemize}
-				\item \textbf{Implizit}, Fehlerordnung 4. 
-				\item Fixpunktiteration mit Startwert $\tilde x_{j+1}=\tilde x_j$. 
-				\item Nicht mehr implizit: Startwert mit (\ref{adamsbash}). 
+				\item \textbf{Implizit}, Fehlerordnung 4.
+				\item Fixpunktiteration mit Startwert $\tilde x_{j+1}=\tilde x_j$.
+				\item Nicht mehr implizit: Startwert mit (\ref{adamsbash}).
 			\end{tightitemize}
-			
+
 	\subsection{Stabilitätsgebiete von Einschrittverfahren}
-		Modellproblem: 
+		Modellproblem:
 		\begin{equation}
-			\dot x = \lambda x, \quad x(0)=x_0 \label{modellproblem}
+			\dot x = \lambda x, \quad x(0)=x_0, \quad \lambda \in \C \label{modellproblem}
 		\end{equation}
 		\[
 			\rightarrow x(t) = x_o\cdot e^{\lambda t}
 		\]
-		
+
 		Für $\text{Re}(\lambda) < 0$ gilt: $x(t \to \infty) \to 0$
-		
+
 		\subsubsection{Stabilitätsfunktion}
 			Angewandt auf das Modellproblem (\ref{modellproblem}) findet man
 			\[
-				\tilde x_{j+1} = R(h\lambda)\tilde x_j, \qquad j=0,1,2,\dots \qquad \text{wobei } f(t,x) = \lambda x
+				\tilde x_{j+1} = \underbrace{\parens{1 + h\lambda + \frac{(h\lambda)^2}{2}}}_{R(h\lambda)}\tilde x_j, \qquad j=0,1,2,\dots \qquad \text{wobei } f(t,x) = \lambda x
 			\]
-			Der Faktor $R(h\lambda) \in \mathbb{C}$, mit dem die numerische Approximation eines Einschrittverfahrens in jedem $h$-Schritt multipliziert wird, heisst \textbf{Stabilitätsfunktion} des Einschrittverfahrens. 
-			
+			Der Faktor $R(h\lambda) \in \mathbb{C}$, mit dem die numerische Approximation eines Einschrittverfahrens in jedem $h$-Schritt multipliziert wird, heisst \textbf{Stabilitätsfunktion} des Einschrittverfahrens.
+
 		\subsubsection{Stabilitätsgebiet}
 			\begin{description}
 				\item[Reelles Stabilitätsintervall:]
@@ -1108,15 +1116,15 @@
 						A=\left\{ z \in \C \Big\vert |R(z)|<1\right\} \subset \mathbb{C}
 					\]
 			\end{description}
-		\subsubsection{Bestimmen des Stabilitätsgebiets} 
+		\subsubsection{Bestimmen des Stabilitätsgebiets}
 			\begin{tightenumerate}
-				\item Methode auf das Modellproblem (\ref{modellproblem}) anwenden. $\rightarrow$ $R(z)$. Für das Theta-Verfahren: 
+				\item Methode auf das Modellproblem (\ref{modellproblem}) anwenden. $\rightarrow$ $R(z)$. Für das Theta-Verfahren:
 				\begin{align*}
 					k_1 &= f(t+\vartheta h, x + \vartheta h k_1), \qquad f(t,x) = \lambda x \\
 					\Rightarrow k_1 &= \lambda \cdot (x + \vartheta h k_1) \quad \Rightarrow \hfill k_1 = \frac{\lambda x_k}{1 - \vartheta h \lambda} \\
 					\Rightarrow x_{k+1} &= x_k + hk_1 = x_k \cdot \left( \frac{1 + h\lambda}{1- \vartheta h \lambda}\right)
 				\end{align*}
-				\item Reelles Stabilitätsintervall bestimmen. 
+				\item Reelles Stabilitätsintervall bestimmen.
 				\item Rand des Stabilitätsgebiets bestimmten:
 				\[ R(z)\cdot\overline{R(z)} \overset{!}{=} 1 \hfill \text{mit } z= u + i \cdot v\]
 			\end{tightenumerate}
@@ -1141,24 +1149,24 @@
 				B_\text{Trapez} &= (-\infty,0), \qquad A_\text{Trapez} = \left\{ z \in \mathbb{C} \big\vert \text{Re}(z) <0\right\}
 			\end{align*}
 
-			Ein Einschrittverfahren, dessen Stabilitätsgebiet die linke Halbebene von $\mathbb{C}$ enthält, heisst \textbf{A-stabil} (absolut stabil). 
-			
+			Ein Einschrittverfahren, dessen Stabilitätsgebiet die linke Halbebene von $\mathbb{C}$ enthält, heisst \textbf{A-stabil} (absolut stabil).
+
 			\vspace{5pt}
 			\begin{definition}
 				\textbf{Steife Differentialgleichungen}
-				
+
 				Ein lineares (inhomogenes) DG-System heisst \textbf{steif}, falls
 				\[
-					\exists \lambda_k\quad \big\vert\quad|\lambda_k| \gg |\max_i(\text{Re}(\lambda_i))|
+					\exists \lambda_k \ \Big| \ \Re(\lambda_k) < 0, \ |\Re(\lambda_k)| \gg |\max_{i, i \neq k}(\Re(\lambda_i))|
 				\]
 			\end{definition}
-			
+
 \section{Partielle Differentialgleichungen}
-	Allgemeine lineare partielle DG zweiter Ordnung mit konstanten Koeffizienten: 
+	Allgemeine lineare partielle DG zweiter Ordnung mit konstanten Koeffizienten:
 	\[
-		A u_{xx} + 2Bu_{xy} + Cu_{yy}+ Du_x+ E u_y + Fu= f(x,y) 
+		A u_{xx} + 2Bu_{xy} + Cu_{yy}+ Du_x+ E u_y + Fu= f(x,y)
 	\]
-	Klassierung mittels der Diskriminanten $\Delta := AC-B^2$: 
+	Klassierung mittels der Diskriminante $\Delta := AC-B^2$:
 	\begin{description}
 		\item[elliptisch]   falls $\Delta > 0$
 		\item[parabolisch]  falls $\Delta = 0$
@@ -1173,31 +1181,38 @@
 				\text{RB: } u(t,0) = u(t,1)=0
 			\end{array}
 		\]
-		\textbf{Method of lines:} 
+		\textbf{Method of lines:}
 		\begin{tightenumerate}
-			\item Approximation von $u_{xx}$ durch den symmetrischen Differenzenquotient (vgl.~Abschnitt~\ref{subsec:numerische_differentiation}) 
+			\item Approximation von $u_{xx}$ durch den symmetrischen Differenzenquotient (vgl.~Abschnitt~\ref{subsec:numerische_differentiation})
 			\item Mit dem \textbf{Ortsschritt} $h$ und $x_l = lh,$ $l=0,\dots, N$:
 				\begin{align*}
-					\dot u_l(t) &= \frac{1}{h^2}\left[ u_{l+1}(t) - 2u_l(t) + u_{l-1}(t)\right] \\
+					\dot u_l(t) &= u_t(t,x_l) = \frac{1}{h^2}\left[ u_{l+1}(t) - 2u_l(t) + u_{l-1}(t)\right] \\
 					u_l(0) &= f(x_l) \\
 					u_0(t) &= 0,\quad u_N(t) = 0
 				\end{align*}
 			\item Wir erhalten die $N-1$-dimensionale ODE:
 				\[
 					\vek{\dot u} = \frac{1}{h^2} \hat A \vek{u} = A \vek{u}
+					\quad \text{mit }
+					\hat A = \Mx{
+						-2 &  1     &        &  0 \\
+						 1 & \ddots & \ddots &    \\
+						   & \ddots & \ddots &  1 \\
+						 0 &        &  1     & -2
+					}
 				\]
-			\item Lösen mit (\ref{richardson}) oder (\ref{crank}) mit dem \textbf{Zeitschritt} $\overline{h}$. 
+			\item Lösen mit (\ref{richardson}) oder (\ref{crank}) mit dem \textbf{Zeitschritt} $\overline{h}$.
 		\end{tightenumerate}
-		
+
 		\subsubsection{Richardson-Methode}
 			\label{richardson}
 			Mit dem expliziten Eulerverfahren: $\quad \vek{\tilde u}^{(j+1)}= \vek{\tilde u}^{(j)} + \overline{h}A\vek{\tilde u}^{(j)}, \quad j=0,1,\cdots$
-			
+
 			\textbf{Einschränkung:}
 			\[
 				\frac{\overline{h}}{h^2} \leq \frac{1}{2} \qquad \Rightarrow\qquad \overline{h}\leq \frac{1}{2} h^2
 			\]
-			
+
 		\subsubsection{Methode von Crank-Nicolson}
 			\label{crank}
 			Mit der Trapezmethode:
@@ -1205,8 +1220,8 @@
 				\vek{\tilde u}^{(j+1)} = \vek{\tilde u}^{(j)} + \frac{\overline{h}}{2}\left[A\vek{\tilde u}^{(j)} + A\vek{\tilde u}^{(j+1)}\right], \quad j=0,1,\dots \\
 				\left[ 2I - \frac{\overline{h}}{h^2}\hat A\right]\vek{\tilde u}^{(j+1)} = \left[ 2I + \frac{\overline{h}}{h^2}\hat A\right]\vek{\tilde u}^{(j)}, \quad j=0,1,\dots
 			\end{align*}
-			\textbf{Keine Einschränkung} für $\overline{h}$. 
-			
+			\textbf{Keine Einschränkung} für $\overline{h}$.
+
 	\subsection{Elliptische Probleme}
 		Modellproblem:
 		\begin{align*}
@@ -1214,9 +1229,9 @@
 			\text{RB: } u(x,y) &= \varphi(x,y),\quad (x,y) \in \partial G
 		\end{align*}
 		\begin{tightenumerate}
-			\item Diskretisierung in quadratischem Gitter $\rightarrow$ $(N-1)^2$ innere Gitterpunkte, $4N$ Randpunkte. 
-			\item Approximation von $u_{xx}, u_{yy}$ durch den symmetrischen Differenzenquotienten 
-			\item \textbf{5-Punkte-Differenzenverfahren}:
+			\item Diskretisierung in quadratischem Gitter $\rightarrow$ $(N-1)^2$ innere Gitterpunkte, $4N$ Randpunkte.
+			\item Approximation von $u_{xx}, u_{yy}$ durch den symmetrischen Differenzenquotienten
+			\item \textbf{5-Punkte-Differenzenverfahren} für jeden Punkt in $G$:
 				\[
 					\frac{1}{h^2}\left[ \tilde u_{i+1,j} + \tilde u_{i-1,j} + \tilde u_{i,j+1} + \tilde u_{i,j-1} - 4 \tilde u_{i,j}\right] = f_{ij}, \quad f_{ij} := f(x_i,y_i)
 				\]
@@ -1225,25 +1240,25 @@
 				\[
 					A \vek{\tilde u} = \vek{b}
 				\]
-				Lösung mit dem CG-Verfahren (\ref{cgrad})
+				Lösung mit dem CG-Verfahren (\ref{cgrad}), da $A$ gross, dünn besetzt und symmetrisch positiv definit ist.
 		\end{tightenumerate}
-		
+
 		\subsubsection{Dirichlet-Problem in allgemeinen Gebieten}
 			Für einen \textbf{randnahen Gitterpunkt} $P$ in einem nichtquadratischen Gebiet mit $f \equiv 0$:
-			\begin{align*}
-				u_{xx} &= \frac{2}{h^2}\left[ \frac{\tilde u_E}{1+a} + \frac{\tilde u_{W'}}{a(1+a)} - \frac{\tilde u_P}{a} \right] \\
-				u_{yy} &= \frac{2}{h^2}\left[ \frac{\tilde u_N}{1+b} + \frac{\tilde u_{S'}}{b(1+b)} - \frac{\tilde u_P}{b} \right]
-			\end{align*}
+			\[
+				u_{xx} + u_{yy} = \frac{2}{h^2}\left[ \frac{\tilde u_E}{1+a} + \frac{\tilde u_{W'}}{a(1+a)} - \frac{\tilde u_P}{a} + \frac{\tilde u_N}{1+b} + \frac{\tilde u_{S'}}{b(1+b)} - \frac{\tilde u_P}{b} \right] = 0
+			\]
+
 			\begin{tightitemize}
 				\item[$N,E$:] Punkte mit Abstand $h$ im Norden/Osten von $P$
-				\item[$W'$:] Punkt im Abstand $ah$ im Westen von $P$
-				\item[$S'$:] Punkt im Abstand $bh$ im Süden von $P$
+				\item[$W'$:] Punkt auf Rand im Abstand $ah$ im Westen von $P$
+				\item[$S'$:] Punkt auf Rand im Abstand $bh$ im Süden von $P$
 				\item[$\tilde u_I$:] $\tilde u (I)$
 			\end{tightitemize}
 
 			\begin{tightitemize}
 				\item Für $a=b=1$ gilt die Formel für einen inneren Punkt.\\
-				\item Für komplizierte Gebiete ist die FEM-Methode besser geeignet. 
+				\item Für komplizierte Gebiete ist die FEM-Methode besser geeignet.
 			\end{tightitemize}
 
 	\subsection{Hyperbolische Probleme} Modellproblem (eindimensionale Wellengleichung):
@@ -1253,55 +1268,55 @@
 				\text{AB 2: } u_t(0,x)=\psi(x)
 			\end{array}
 		\]
-		
+
 		Allgemeine Lösung: $\quad u(t,x)=P(x+ct)+Q(x-ct) $
-		
-		Die Geraden $x \pm ct = \const$ heissen \textbf{Charakteristiken} des Modellproblems. 
-		
-		\subsubsection{Analytisches Abhängigkeitsgebiet}
-			Das \textbf{analytische Abhängigkeitsgebiet} des Punktes $(x^*,t^*)$ ist das Dreieck $x_1$-$x_2$-$(x^*,t^*)$, wobei $x_1$ und $x_2$ das Abhängigkeitsintervall $[x^*-ct^*, x^*+ct^*]$ begrenzen. 
-			
-		\subsubsection{Numerische Approximation} 
+
+		Die Geraden $x \pm ct = \const$ heissen \textbf{Charakteristiken} des Modellproblems.
+
+		\paragraph{Analytisches Abhängigkeitsgebiet}
+			Das \textbf{analytische Abhängigkeitsgebiet} des Punktes $(x^*,t^*)$ ist das Dreieck $x_1$-$x_2$-$(x^*,t^*)$, wobei $x_1$ und $x_2$ das Abhängigkeitsintervall $[x^*-ct^*, x^*+ct^*]$ begrenzen.
+
+		\paragraph{Numerische Approximation}
 			\begin{tightenumerate}
-				\item Bekannt: $\quad \tilde u_j^0=\varphi(x_j), j \in \mathbb{Z}$. 
+				\item Bekannt: $\quad \tilde u_j^0=\varphi(x_j),\quad j \in \mathbb{Z}$.
 				\item $\tilde u_j^1$ aus Taylorentwicklung approximieren:
 					\[
-						\tilde u_j^1 := \tilde u_j^0 + \Delta t \cdot \psi(x_j), j \in \mathbb{Z}
+						\tilde u_j^1 := \tilde u_j^0 + \Delta t \cdot \psi(x_j),\quad j \in \mathbb{Z}
 					\]
 				\item Mit der Approximation $\tilde u_j^k$ für $u(t_k,x_j)$ gilt folgendes Verfahren:
 					\[
 						\tilde u_j^{k+1} = 2\tilde u_j^k + \lambda^2 \left( \tilde u_{j+1}^k -2\tilde u_j^k + \tilde u_{j-1}^k\right) - \tilde u_j^{k-1}
 					\]
-					mit der Courant-Zahl $ \lambda := c \frac{\Delta t}{\Delta x}$. 
+					mit der Courant-Zahl $ \lambda := c \frac{\Delta t}{\Delta x}$.
 			\end{tightenumerate}
-			
-		\subsubsection{Numerisches Abhängigkeitsgebiet}
-			Der Wert der Approximation $\tilde u_j^k$ im Punkt $(x_j^*,t_k^*)$ hängt nur von den Anfangswerten im numerischen Abhängigkeitsintervall $\mathbf{\left[ x_j^* - \frac{\Delta t}{\Delta x}t_k^*, x_j^* + \frac{\Delta t}{\Delta x}t_k^*\right]}$ ab. 
-		
-		\subsubsection{Konvergenz des Verfahrens}
+
+		\paragraph{Numerisches Abhängigkeitsgebiet}
+			Der Wert der Approximation $\tilde u_j^k$ im Punkt $(x_j^*,t_k^*)$ hängt nur von den Anfangswerten im numerischen Abhängigkeitsintervall $\left[ x_j^* - \frac{\Delta t}{\Delta x}t_k^*, x_j^* + \frac{\Delta t}{\Delta x}t_k^*\right]$ ab.
+
+		\paragraph{Konvergenz des Verfahrens}
 			Eine notwendige Bedingung für die Konvergenz ist die \textbf{Courant-Friedrichs-Levy}-Bedingung \textbf{(CFL)}:
 			\[
 				\text{numerisches Abhängigkeitsgebiet } \overset{!}{\supset} \text{ analytisches Abhängigkeitsgebiet}
 			\]
-			
-			äquivalent: $\quad \lambda \overset{!}{\leq} 1$
-			
-		\subsubsection{EW-Probleme partieller DGs}
-			Die Diskretisierung partieller DGs führt auf ein \textbf{algebraisches EW-Problem} der Form:
-			\[
-				Ax = \lambda x \qquad \text{mit } A \in \mathbb{R}^{n \times n}\text{, symmetrisch}
-			\]
 
-\section{Numerik des Eigenwert-Problems} 
-	\subsection{Vektoriteration} 
+			äquivalent: $\quad \lambda \overset{!}{\leq} 1$
+
+	\subsection{EW-Probleme partieller DGs}
+		Die Diskretisierung partieller DGs führt auf ein \textbf{algebraisches EW-Problem} der Form:
+		\[
+			Ax = \lambda x \qquad \text{mit } A \in \mathbb{R}^{n \times n}\text{, symmetrisch}
+		\]
+
+\section{Numerik des Eigenwert-Problems}
+	\subsection{Vektoriteration}
 		\begin{tightitemize}
 			\item Eigenbasis zu A (reell, regulär, halbeinfach): $u^{(1)}, \cdots , u^{(n)}$
 			\item $x^{(0)}=c_1^{(0)}u^{(1)} + \cdots + c_n^{(0)}u^{(n)}$
 		\end{tightitemize}
-		
+
 		\subsubsection{Rückwärts-Iteration (Kleinster EW)}
 			\begin{tightenumerate}
-				\item Wähle und normiere $\hat x^{0}\neq 0, \quad PA=:LR$. 
+				\item Wähle und normiere $\hat x^{0}\neq 0, \quad PA=:LR$.
 				\item Iteration:
 				\begin{gather*}
 					Lc=\hat x^{k}, \quad Ry^{k}=c \\
@@ -1309,7 +1324,7 @@
 				\end{gather*}
 				\item Abbruch: $\quad ||\hat x^{k}-\hat x^{k-1}||\leq \mathrm{TOL}$
 				\item Approximation des EV: $\quad \hat x^{(1)}:=\hat x^k$
-				\item EW: $\quad \hat \lambda_1 = \text{sign}(y_1^k)\cdot ||y^k||^{-1}$ 
+				\item EW: $\quad \hat \lambda_1 = \text{sign}(y_1^k)\cdot ||y^k||^{-1}$
 			\end{tightenumerate}
 
 		\subsubsection{Vorwärts-Iteration (Grösster EW)}
@@ -1317,30 +1332,30 @@
 				y^k = A \hat x^{k-1} \\
 				\text{EW: } \hat \lambda_n = \text{sign}(y_1^k) \cdot || y^k||_2
 			\end{gather*}
-			
+
 		\subsubsection{Simultan-Iteration}
 			\[
 				Az^k = \vek{\tilde x}^{k-1}, \qquad \vek{x} \text{: orthonormale Vektoren}
 			\]
 			$z^k$ orthonormieren (Schmidt) $\rightarrow \vek{\tilde x}^k$
-			
-	\subsection{Symmetrisches EW-Problem} 
+
+	\subsection{Symmetrisches EW-Problem}
 		\subsubsection{Eigenwerte}
 			\[
 				A_k = T_k^T A_{k-1}T_k
 			\]
 			$T_k$: Givens-Rotationen
-			
+
 			Abbruch: $A_k$ diagonal
-			 
+
 		\subsubsection{Eigenvektoren}
-			\[ 
+			\[
 				T= T_1 \cdot \dots \cdot T_k \cong (x^{(1)}, \cdots , x^{(n)})
 			\]
-	
+
 	\subsection{QR-Algorithmus}
 		\textbf{Ziel:} Trafo von $A$ zur Schur'schen Normalform (rechte obere Dreiecksmatrix mit reellen EW bzw. konj. kompl. EW-Paaren auf der Diagonale).
-		
+
 		\begin{tightenumerate}
 			\item Trafo von $A$ zu einer oberen Hessenbergmatrix $H$:
 				\[
@@ -1351,7 +1366,7 @@
 						0 & & * & *
 					} = U^TAU,\qquad U \text{ orthogonal}
 				\]
-			\item Algorithmus: 
+			\item Algorithmus:
 				\begin{tightenumerate}
 					\item Zerlegung:
 						\[

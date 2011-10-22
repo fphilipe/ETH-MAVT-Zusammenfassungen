@@ -6,7 +6,7 @@
 \usepackage[sc]{mathpazo}
 \usepackage[thmmarks]{ntheorem}
 \usepackage[nice]{nicefrac}
-\usepackage[load={prefixed,prefix,abbr,named,synchem,addn},per=frac,fraction=frac]{siunitx}
+\usepackage[load-configurations=version-1,load={prefixed,prefix,abbr,named,synchem,addn},per=frac,fraction=frac]{siunitx}
 \usepackage{tikz}
 \usepackage[T1]{fontenc}
 \usepackage{microtype}
@@ -23,9 +23,9 @@
 }
 % Macro for units
 \newcommand{\sunit}[1]{\ensuremath{ \quad \left[ \si{#1} \right] } }
-\newcommand{\nicesunit}[1]{\ensuremath{ \quad \left[ \si[fraction=nicefrac]{#1} \right] } }
+\newcommand{\nicesunit}[1]{\ensuremath{ \quad \left[ \si[fraction-function=\nicefrac]{#1} \right] } }
 \newcommand{\unit}[1]{\ensuremath{ \left[ \si{#1} \right] } }
-\newcommand{\niceunit}[1]{\ensuremath{ \left[ \si[fraction=nicefrac]{#1} \right] } }
+\newcommand{\niceunit}[1]{\ensuremath{ \left[ \si[fraction-function=\nicefrac]{#1} \right] } }
 
 %% [OPT] Multi-rowed cells in tabulars
 %\usepackage{multirow}

@@ -1,0 +1,58 @@
+%!TEX root = ../Thermodynamik II (LTNT).tex
+
+\section{Natürliche Konvektion} % (fold)
+	Thermischer Ausdehnungskoeffizient:
+	\[
+		\beta = - \frac 1 \rho \cdot \parens{ \Part \rho T }_p
+	\]
+
+	Rayleigh-Zahl:
+	\[
+		\mathrm{Ra}_H = \mathrm{Gr}_H \cdot \mathrm{Pr} = \frac{g \cdot \beta \cdot (T_w - T_\infty) \cdot H^3}{\nu^2} \cdot \mathrm{Pr}
+	\]
+	wobei $H$ die Höhe der Oberfläche ist. Der Übergang zur turbulenten Strömung befindet sich bei $\mathrm{Ra}_{H\text{,krit}} \approx 10^9$.
+
+	\paragraph{Laminare Grenzschicht:} % (fold)
+		\[
+			\overline{\mathrm{Nu}}_H = \frac{\overline{\alpha} \cdot H}{\lambda} =
+			\parens{\frac{\mathrm{Pr} \cdot \mathrm{Ra}_H}{\mathrm{Pr} + 0.986 \cdot \mathrm{Pr}^{1/2} + 0.492}}^{\nicefrac 1 4}
+		\]
+	% paragraph Laminare Grenzschicht: (end)
+
+	\paragraph{Turbulente Grenzschicht:} % (fold)
+		(Gilt für $\mathrm{Ra}_H \in (10^9,10^{12})$)
+		\[
+			\overline{\mathrm{Nu}}_H = \frac{\overline{\alpha} \cdot H}{\lambda} =
+			0.13 \cdot \mathrm{Ra}_H^{\nicefrac 1 3}
+		\]
+	% paragraph Turbulente Grenzschicht: (end)
+
+	\paragraph{Beziehung für laminare und turbulente Strömung} % (fold)
+		\[
+			\overline{\mathrm{Nu}}_H = \frac{\overline{\alpha} \cdot H}{\lambda} = \parens{0.825 + \frac{0.387 \cdot \mathrm{Ra}_H^{\nicefrac 1 6}}{\parens{1 + \parens{0.492 / \mathrm{Pr}}^{\nicefrac{9}{16}}}^{\nicefrac{8}{27}}}}^2
+		\]
+	% paragraph Beziehung für laminare und turbulente Strömung (end)
+
+	\paragraph{Beziehung für Zylinder} % (fold)
+		(für $\mathrm{Ra}_D \leq 10^{12}$)
+		\[
+			\overline{\mathrm{Nu}}_D = \frac{\overline{\alpha} \cdot D}{\lambda} = \parens{0.6 + \frac{0.387 \cdot \mathrm{Ra}_D^{\nicefrac 1 6}}{\parens{1 + \parens{0.559 / \mathrm{Pr}}^{\nicefrac{9}{16}}}^{\nicefrac{8}{27}}}}^2
+		\]
+	% paragraph Beziehung für Zylinder (end)
+
+	\paragraph{Beziehung für Kugel} % (fold)
+		(für $\mathrm{Pr} \geq 0.7$ und $\mathrm{Ra}_D \leq 10^{11}$)
+		\[
+			\overline{\mathrm{Nu}}_D = \frac{\overline{\alpha} \cdot D}{\lambda} = 2 + \frac{0.589 \cdot \mathrm{Ra}_D^{\nicefrac 1 4}}{\parens{1 + \parens{0.469 / \mathrm{Pr}}^{\nicefrac{9}{16}}}^{\nicefrac{4}{9}}}
+		\]
+	% paragraph Beziehung für Kugel (end)
+
+	\paragraph{Senkrechte Kavitäten} % (fold)
+		Zwischen zwei parallelen senkrechten Platten (eine warm, die andere kalt) im Abstand $L$ kommt es zu einer konvektiven Kreisströmung wenn $\mathrm{Ra}_L > 1000$ ist.
+
+		Die Nusselt-Beziehung gilt für $H/L \in (10,40)$, $\mathrm{Pr} \in (1,2\cdot10^4)$ und $\mathrm{Ra}_L \in (10^4,10^7)$:
+		\[
+		\overline{\mathrm{Nu}}_L = 0.42 \cdot \mathrm{Ra}_L^{\nicefrac 1 4} \cdot \mathrm{Pr}^{0.012} \cdot \parens{\frac H L}^{-0.3}
+		\]
+	% paragraph Senkrechte Kavitäten (end)
+% section Natürliche Konvektion (end)
