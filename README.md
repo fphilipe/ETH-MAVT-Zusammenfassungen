@@ -34,3 +34,6 @@ Alle Zusammenfassungen wurden von mir (Philipe Fatio) erstellt. Sie basieren mei
 Die Qualität des Inhaltes oder des Layouts der Zusammenfassungen ist unterschiedlich. Ich übernehme keine Haftung oder Garantie für die Aktualität, Korrektheit, Vollständigkeit der zur Verfügung gestellten Zusammenfassungen.
 
 Die Zusammenfassungen dürfen nach belieben verändert und für Prüfungen auch ohne meinen Namen verwendet werden. Falls eine modifizierte Zusammenfassungen irgendwo online zur Verfügung gestellt wird, muss jedoch ein Hinweis enthalten sein, dass es sich um eine Bearbeitung meiner Zusammenfassung handelt.
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/fphilipe/eth-mavt-zusammenfassungen/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
